@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.GameStatePictureBox = new System.Windows.Forms.PictureBox();
             this.NewGameBtn = new System.Windows.Forms.Button();
             this.LoadGameBtn = new System.Windows.Forms.Button();
@@ -43,6 +44,7 @@
             this.HandDetectedBtn = new System.Windows.Forms.Button();
             this.UserLogsListBox = new System.Windows.Forms.ListBox();
             this.VizualizationChoiceComboBox = new System.Windows.Forms.ComboBox();
+            this.ResultProcessingTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -189,6 +191,12 @@
             this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(158, 24);
             this.VizualizationChoiceComboBox.TabIndex = 15;
             // 
+            // ResultProcessingTimer
+            // 
+            this.ResultProcessingTimer.Enabled = true;
+            this.ResultProcessingTimer.Interval = 30;
+            this.ResultProcessingTimer.Tick += new System.EventHandler(this.ResultProcessingTimer_Tick);
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -236,5 +244,6 @@
         private System.Windows.Forms.Button HandDetectedBtn;
         private System.Windows.Forms.ListBox UserLogsListBox;
         private System.Windows.Forms.ComboBox VizualizationChoiceComboBox;
+        private System.Windows.Forms.Timer ResultProcessingTimer;
     }
 }

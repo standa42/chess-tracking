@@ -7,14 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChessTracking.ControllingElements;
 
 namespace ChessTracking.Forms
 {
     public partial class MainGameForm : Form
     {
+        private VizualizationForm VizualizationForm { get; }
+        private TrackingManager TrackingManager { get; }
+
         public MainGameForm()
         {
             InitializeComponent();
+            VizualizationForm = new VizualizationForm();
+            VizualizationForm.Show();
+            TrackingManager = new TrackingManager(this);
+        }
+
+        public void DisplayVizuaization(Bitmap bitmap)
+        {
+            VizualizationForm?.DisplayVizulization(bitmap);
         }
 
         #region Click events
@@ -36,7 +48,7 @@ namespace ChessTracking.Forms
 
         private void StartTrackingBtn_Click(object sender, EventArgs e)
         {
-
+            TrackingManager.StartTracking();
         }
 
         private void RestartTrackingBtn_Click(object sender, EventArgs e)
@@ -46,11 +58,15 @@ namespace ChessTracking.Forms
 
         private void StopTrackingBtn_Click(object sender, EventArgs e)
         {
-
+            TrackingManager.StopTracking();
         }
+
 
         #endregion
 
-
+        private void ResultProcessingTimer_Tick(object sender, EventArgs e)
+        {
+            TrackingManager?.ProcessQueue();
+        }
     }
 }

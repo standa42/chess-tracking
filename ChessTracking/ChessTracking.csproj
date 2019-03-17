@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="Forms\MainGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +59,12 @@
     <Compile Include="Forms\VizualizationForm.Designer.cs">
       <DependentUpon>VizualizationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MultithreadingMessages\CommandMessage.cs" />
+    <Compile Include="MultithreadingMessages\KinectResourcesMessage.cs" />
+    <Compile Include="MultithreadingMessages\Message.cs" />
+    <Compile Include="MultithreadingMessages\ResultMessage.cs" />
+    <Compile Include="ProcessingElements\Kinect.cs" />
+    <Compile Include="ProcessingElements\ProcessingController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainGameForm.resx">

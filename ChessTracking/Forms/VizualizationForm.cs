@@ -16,5 +16,10 @@ namespace ChessTracking.Forms
         {
             InitializeComponent();
         }
+
+        public void DisplayVizulization(Bitmap bitmap)
+        {
+            VizualizationPictureBox.Image = bitmap;
+        }
     }
 }

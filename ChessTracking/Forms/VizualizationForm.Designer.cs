@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.VizualizationPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.VizualizationPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // VizualizationPictureBox
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(921, 541);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.VizualizationPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VizualizationPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.VizualizationPictureBox.Name = "VizualizationPictureBox";
+            this.VizualizationPictureBox.Size = new System.Drawing.Size(921, 541);
+            this.VizualizationPictureBox.TabIndex = 0;
+            this.VizualizationPictureBox.TabStop = false;
             // 
             // VizualizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 541);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.VizualizationPictureBox);
             this.Name = "VizualizationForm";
             this.Text = "VizualizationForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VizualizationPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox VizualizationPictureBox;
     }
 }
