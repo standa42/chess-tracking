@@ -16,5 +16,41 @@ namespace ChessTracking.Forms
         {
             InitializeComponent();
         }
+
+        #region Click events
+
+        private void NewGameBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadGameBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveGameBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StartTrackingBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RestartTrackingBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StopTrackingBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
     }
 }

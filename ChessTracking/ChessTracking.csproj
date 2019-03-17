@@ -51,8 +51,20 @@
     <Compile Include="Forms\MainGameForm.Designer.cs">
       <DependentUpon>MainGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\VizualizationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VizualizationForm.Designer.cs">
+      <DependentUpon>VizualizationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\MainGameForm.resx">
+      <DependentUpon>MainGameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VizualizationForm.resx">
+      <DependentUpon>VizualizationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
