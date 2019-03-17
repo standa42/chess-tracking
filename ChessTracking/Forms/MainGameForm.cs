@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ChessTracking
+namespace ChessTracking.Forms
 {
-    public partial class Form1 : Form
+    public partial class MainGameForm : Form
     {
-        public Form1()
+        public MainGameForm()
         {
             InitializeComponent();
         }
