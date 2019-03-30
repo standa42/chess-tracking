@@ -12,14 +12,23 @@ namespace ChessTracking.Forms
 {
     public partial class VizualizationForm : Form
     {
-        public VizualizationForm()
+        public MainGameForm MainForm { get; }
+
+        public VizualizationForm(MainGameForm mainForm)
         {
             InitializeComponent();
+            MainForm = mainForm;
         }
 
         public void DisplayVizulization(Bitmap bitmap)
         {
             VizualizationPictureBox.Image = bitmap;
+        }
+
+        private void VizualizationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainForm.Close();
+            // e.Cancel = true;
         }
     }
 }

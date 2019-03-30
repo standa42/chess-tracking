@@ -15,26 +15,45 @@ namespace ChessTracking.ControllingElements
         public MainGameForm GameForm { get; }
         public BlockingCollection<Message> ProcessingCommandsQueue { get; set; }
         public BlockingCollection<Message> ProcessingOutputQueue { get; set; }
+        public FPSCounter FpsCounter;
 
         public TrackingManager(MainGameForm mainGameForm)
         {
             this.GameForm = mainGameForm;
             ProcessingCommandsQueue = new BlockingCollection<Message>();
             ProcessingOutputQueue = new BlockingCollection<Message>();
+            FpsCounter = new FPSCounter();;
+
+            InitPipelineThread();
         }
 
-        public void StartTracking()
+        private void InitPipelineThread()
         {
             Task.Run(() =>
             {
-                var processingController = new ProcessingController(ProcessingCommandsQueue, ProcessingOutputQueue);
+                var processingController = new PipelineController(ProcessingCommandsQueue, ProcessingOutputQueue);
                 processingController.Start();
             });
         }
 
+        public void StartTracking()
+        {
+            ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.StartTracking));
+        }
+
         public void StopTracking()
         {
-            ProcessingCommandsQueue.Add(new CommandMessage());
+            ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.StopTracking));
+        }
+
+        public void Recalibrate()
+        {
+            ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.Recalibrate));
+        }
+
+        public void ChangeVisualisation(VisualisationType newVisualisationType)
+        {
+            ProcessingCommandsQueue.Add(new VisualisationChangeMessage(newVisualisationType));
         }
 
         public void ProcessQueue()
@@ -43,13 +62,23 @@ namespace ChessTracking.ControllingElements
 
             do
             {
-                messageProcessed = ProcessingOutputQueue.TryTake(out var message, TimeSpan.FromMilliseconds(1));
+                messageProcessed = ProcessingOutputQueue.TryTake(out var message);
 
                 if (message is ResultMessage resultMessage)
                 {
+                    UpdateFps();
                     GameForm.DisplayVizuaization(resultMessage.BitmapToDisplay);
                 }
             } while (messageProcessed);
+        }
+
+        private void UpdateFps()
+        {
+            int? fps = FpsCounter.Update();
+            if (fps != null)
+            {
+                GameForm.UpdateFPS(fps.Value);
+            }
         }
     }
 }

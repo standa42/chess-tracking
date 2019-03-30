@@ -8,5 +8,16 @@ namespace ChessTracking.MultithreadingMessages
 {
     class CommandMessage : Message
     {
+        public CommandMessageType MessageType { get; set; }
+
+        public CommandMessage()
+        {
+
+        }
+
+        public CommandMessage(CommandMessageType messageType)
+        {
+            MessageType = messageType;
+        }
     }
 }

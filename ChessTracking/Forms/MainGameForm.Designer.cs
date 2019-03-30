@@ -34,7 +34,7 @@
             this.LoadGameBtn = new System.Windows.Forms.Button();
             this.SaveGameBtn = new System.Windows.Forms.Button();
             this.StartTrackingBtn = new System.Windows.Forms.Button();
-            this.RestartTrackingBtn = new System.Windows.Forms.Button();
+            this.Recalibrate = new System.Windows.Forms.Button();
             this.StopTrackingBtn = new System.Windows.Forms.Button();
             this.GameHistoryListBox = new System.Windows.Forms.ListBox();
             this.TrackedBoardStatePictureBox = new System.Windows.Forms.PictureBox();
@@ -99,15 +99,15 @@
             this.StartTrackingBtn.UseVisualStyleBackColor = true;
             this.StartTrackingBtn.Click += new System.EventHandler(this.StartTrackingBtn_Click);
             // 
-            // RestartTrackingBtn
+            // Recalibrate
             // 
-            this.RestartTrackingBtn.Location = new System.Drawing.Point(538, 216);
-            this.RestartTrackingBtn.Name = "RestartTrackingBtn";
-            this.RestartTrackingBtn.Size = new System.Drawing.Size(120, 45);
-            this.RestartTrackingBtn.TabIndex = 5;
-            this.RestartTrackingBtn.Text = "Restart tracking";
-            this.RestartTrackingBtn.UseVisualStyleBackColor = true;
-            this.RestartTrackingBtn.Click += new System.EventHandler(this.RestartTrackingBtn_Click);
+            this.Recalibrate.Location = new System.Drawing.Point(538, 216);
+            this.Recalibrate.Name = "Recalibrate";
+            this.Recalibrate.Size = new System.Drawing.Size(120, 45);
+            this.Recalibrate.TabIndex = 5;
+            this.Recalibrate.Text = "Recalibrate";
+            this.Recalibrate.UseVisualStyleBackColor = true;
+            this.Recalibrate.Click += new System.EventHandler(this.RecalibrateBtn_Click);
             // 
             // StopTrackingBtn
             // 
@@ -194,7 +194,7 @@
             // ResultProcessingTimer
             // 
             this.ResultProcessingTimer.Enabled = true;
-            this.ResultProcessingTimer.Interval = 30;
+            this.ResultProcessingTimer.Interval = 15;
             this.ResultProcessingTimer.Tick += new System.EventHandler(this.ResultProcessingTimer_Tick);
             // 
             // MainGameForm
@@ -211,7 +211,7 @@
             this.Controls.Add(this.TrackedBoardStatePictureBox);
             this.Controls.Add(this.GameHistoryListBox);
             this.Controls.Add(this.StopTrackingBtn);
-            this.Controls.Add(this.RestartTrackingBtn);
+            this.Controls.Add(this.Recalibrate);
             this.Controls.Add(this.StartTrackingBtn);
             this.Controls.Add(this.SaveGameBtn);
             this.Controls.Add(this.LoadGameBtn);
@@ -234,7 +234,7 @@
         private System.Windows.Forms.Button LoadGameBtn;
         private System.Windows.Forms.Button SaveGameBtn;
         private System.Windows.Forms.Button StartTrackingBtn;
-        private System.Windows.Forms.Button RestartTrackingBtn;
+        private System.Windows.Forms.Button Recalibrate;
         private System.Windows.Forms.Button StopTrackingBtn;
         private System.Windows.Forms.ListBox GameHistoryListBox;
         private System.Windows.Forms.PictureBox TrackedBoardStatePictureBox;

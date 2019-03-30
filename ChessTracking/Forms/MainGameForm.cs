@@ -19,7 +19,7 @@ namespace ChessTracking.Forms
         public MainGameForm()
         {
             InitializeComponent();
-            VizualizationForm = new VizualizationForm();
+            VizualizationForm = new VizualizationForm(this);
             VizualizationForm.Show();
             TrackingManager = new TrackingManager(this);
         }
@@ -27,6 +27,11 @@ namespace ChessTracking.Forms
         public void DisplayVizuaization(Bitmap bitmap)
         {
             VizualizationForm?.DisplayVizulization(bitmap);
+        }
+
+        public void UpdateFPS(int fps)
+        {
+            FPSLabel.Text = $@"FPS: {fps}";
         }
 
         #region Click events
@@ -43,7 +48,7 @@ namespace ChessTracking.Forms
 
         private void SaveGameBtn_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void StartTrackingBtn_Click(object sender, EventArgs e)
@@ -51,16 +56,16 @@ namespace ChessTracking.Forms
             TrackingManager.StartTracking();
         }
 
-        private void RestartTrackingBtn_Click(object sender, EventArgs e)
+        private void RecalibrateBtn_Click(object sender, EventArgs e)
         {
-
+            TrackingManager.Recalibrate();
         }
 
         private void StopTrackingBtn_Click(object sender, EventArgs e)
         {
             TrackingManager.StopTracking();
         }
-
+        
 
         #endregion
 

@@ -38,6 +38,7 @@
             this.VizualizationPictureBox.Location = new System.Drawing.Point(0, 0);
             this.VizualizationPictureBox.Name = "VizualizationPictureBox";
             this.VizualizationPictureBox.Size = new System.Drawing.Size(921, 541);
+            this.VizualizationPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.VizualizationPictureBox.TabIndex = 0;
             this.VizualizationPictureBox.TabStop = false;
             // 
@@ -49,6 +50,7 @@
             this.Controls.Add(this.VizualizationPictureBox);
             this.Name = "VizualizationForm";
             this.Text = "VizualizationForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VizualizationForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.VizualizationPictureBox)).EndInit();
             this.ResumeLayout(false);
 
