@@ -143,6 +143,7 @@
             this.ImmediateBoardStatePictureBox.Location = new System.Drawing.Point(319, 319);
             this.ImmediateBoardStatePictureBox.Name = "ImmediateBoardStatePictureBox";
             this.ImmediateBoardStatePictureBox.Size = new System.Drawing.Size(300, 300);
+            this.ImmediateBoardStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImmediateBoardStatePictureBox.TabIndex = 10;
             this.ImmediateBoardStatePictureBox.TabStop = false;
             // 

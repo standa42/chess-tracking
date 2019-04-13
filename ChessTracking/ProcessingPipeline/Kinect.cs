@@ -55,6 +55,11 @@ namespace ChessTracking.ProcessingElements
                 return;
             }
 
+            if (OutputQueue.Count >= 3)
+            {
+                return;
+            }
+
             ColorFrame colorFrame = null;
             DepthFrame depthFrame = null;
             InfraredFrame infraredFrame = null;

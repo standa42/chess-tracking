@@ -68,6 +68,7 @@ namespace ChessTracking.ControllingElements
                 {
                     UpdateFps();
                     GameForm.DisplayVizuaization(resultMessage.BitmapToDisplay);
+                    GameForm.UpdateImmediateBoard(resultMessage.FiguresBitmap);
                 }
             } while (messageProcessed);
         }

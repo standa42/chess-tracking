@@ -65,7 +65,14 @@ namespace ChessTracking.Forms
         {
             TrackingManager.StopTracking();
         }
-        
+
+        public void UpdateImmediateBoard(Bitmap bitmap)
+        {
+            if (bitmap != null)
+            {
+                ImmediateBoardStatePictureBox.Image = bitmap;
+            }
+        }
 
         #endregion
 

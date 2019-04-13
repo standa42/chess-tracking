@@ -11,6 +11,8 @@
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,9 +35,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accord, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.3.8.0\lib\net462\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net462\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net462\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=3.4.3.3016, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EMGU.CV.3.4.3.3016\lib\net35\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.World, Version=3.4.3.3016, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EMGU.CV.3.4.3.3016\lib\net35\Emgu.CV.World.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Spatial, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Spatial.0.4.0\lib\net40\MathNet.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +70,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllingElements\FPSCounter.cs" />
@@ -67,6 +96,7 @@
     <Compile Include="MultithreadingMessages\ResultMessage.cs" />
     <Compile Include="MultithreadingMessages\VisualisationChangeMessage.cs" />
     <Compile Include="MultithreadingMessages\VisualisationType.cs" />
+    <Compile Include="ProcessingPipeline\AttemptToRecreateOldVisualiser.cs" />
     <Compile Include="ProcessingPipeline\Kinect.cs" />
     <Compile Include="ProcessingPipeline\Pipeline.cs" />
     <Compile Include="ProcessingPipeline\PipelineCongestionControl.cs" />
@@ -88,6 +118,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,5 +132,27 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChessboardTrackingOctoberEdition\ChessboardTrackingOldProject.csproj">
+      <Project>{f6757a1e-1498-4423-9de2-e9a305ed54d2}</Project>
+      <Name>ChessboardTrackingOldProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kinect v0.1\KinectOldProject.csproj">
+      <Project>{51b01a33-8025-4d85-8bae-7f8cc49f7f0c}</Project>
+      <Name>KinectOldProject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License-LGPL.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets" Condition="Exists('..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets'))" />
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
 </Project>

@@ -22,7 +22,10 @@ namespace ChessTracking.Forms
 
         public void DisplayVizulization(Bitmap bitmap)
         {
-            VizualizationPictureBox.Image = bitmap;
+            if (bitmap != null)
+            {
+                VizualizationPictureBox.Image = bitmap;
+            }
         }
 
         private void VizualizationForm_FormClosing(object sender, FormClosingEventArgs e)
