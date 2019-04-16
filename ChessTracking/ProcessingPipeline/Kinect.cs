@@ -19,6 +19,8 @@ namespace ChessTracking.ProcessingElements
         private MultiSourceFrameReader Reader { get; set; }
         private CoordinateMapper CoordinateMapper { get; }
 
+        private int CongestionControlConstant { get; } = 2; // originally 3
+
         public BlockingCollection<Message> OutputQueue { get; }
 
         public Kinect(BlockingCollection<Message> processingCommandsQueue)
@@ -55,7 +57,8 @@ namespace ChessTracking.ProcessingElements
                 return;
             }
 
-            if (OutputQueue.Count >= 3)
+            // congestion control -> don't send resources to pipeline if there are some of them in queue already
+            if (OutputQueue.Count >= CongestionControlConstant)
             {
                 return;
             }

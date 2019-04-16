@@ -8,6 +8,7 @@ namespace ChessTracking.MultithreadingMessages
 {
     enum VisualisationType
     {
-        RawRGB
+        RawRGB,
+        MaskedColorImageOfTable,
     }
 }

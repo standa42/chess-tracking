@@ -108,6 +108,7 @@ namespace ChessTracking.ProcessingPipeline
 
             var colorImg = ReturnColorImageOfTable(resultBools, colorFrameData, pointsFromColorToDepth);
             //colorImg._EqualizeHist();;
+            colorImg.Bitmap.Save(@"D:\Desktop\clr.jpeg", ImageFormat.Jpeg);
 
             Task.Run(() =>
             {
@@ -415,6 +416,7 @@ namespace ChessTracking.ProcessingPipeline
                 {
                     colorImg = ReturnLocalizedChessboardWithTable(colorImg, resultBools, pointsFromColorToDepth,
                         cameraSpacePointsFromDepthData, firstVectorFinal);
+                    colorImg.Bitmap.Save(@"D:\Desktop\clr2.jpeg", ImageFormat.Jpeg);
                 }
                 
                 if (state == State.Localization)

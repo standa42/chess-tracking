@@ -1,4 +1,4 @@
-﻿namespace ChessTracking.Forms
+﻿namespace ChessTracking.UserInterface
 {
     partial class MainGameForm
     {
@@ -191,6 +191,7 @@
             this.VizualizationChoiceComboBox.Name = "VizualizationChoiceComboBox";
             this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(158, 24);
             this.VizualizationChoiceComboBox.TabIndex = 15;
+            this.VizualizationChoiceComboBox.SelectedIndexChanged += new System.EventHandler(this.VizualizationChoiceComboBox_SelectedIndexChanged);
             // 
             // ResultProcessingTimer
             // 

@@ -77,16 +77,27 @@
   <ItemGroup>
     <Compile Include="ControllingElements\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
-    <Compile Include="Forms\MainGameForm.cs">
+    <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
+    <Compile Include="Game\GameController.cs" />
+    <Compile Include="ProcessingPipeline\ChessboardDoneData.cs" />
+    <Compile Include="ProcessingPipeline\ChessboardLocalization.cs" />
+    <Compile Include="ProcessingPipeline\FiguresDoneData.cs" />
+    <Compile Include="ProcessingPipeline\FiguresLocalization.cs" />
+    <Compile Include="ProcessingPipeline\PlaneDoneData.cs" />
+    <Compile Include="ProcessingPipeline\PlaneLocalization.cs" />
+    <Compile Include="ProcessingPipeline\RawData.cs" />
+    <Compile Include="UserInterface\MainGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainGameForm.Designer.cs">
+    <Compile Include="UserInterface\MainGameForm.Designer.cs">
       <DependentUpon>MainGameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\VizualizationForm.cs">
+    <Compile Include="UserInterface\UserInterfaceInputFacade.cs" />
+    <Compile Include="UserInterface\UserInterfaceOutputFacade.cs" />
+    <Compile Include="UserInterface\VizualizationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\VizualizationForm.Designer.cs">
+    <Compile Include="UserInterface\VizualizationForm.Designer.cs">
       <DependentUpon>VizualizationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MultithreadingMessages\CommandMessage.cs" />
@@ -99,14 +110,14 @@
     <Compile Include="ProcessingPipeline\AttemptToRecreateOldVisualiser.cs" />
     <Compile Include="ProcessingPipeline\Kinect.cs" />
     <Compile Include="ProcessingPipeline\Pipeline.cs" />
-    <Compile Include="ProcessingPipeline\PipelineCongestionControl.cs" />
     <Compile Include="ProcessingPipeline\PipelineController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\MainGameForm.resx">
+    <Compile Include="Utils\ArrayExtensions.cs" />
+    <EmbeddedResource Include="UserInterface\MainGameForm.resx">
       <DependentUpon>MainGameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VizualizationForm.resx">
+    <EmbeddedResource Include="UserInterface\VizualizationForm.resx">
       <DependentUpon>VizualizationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

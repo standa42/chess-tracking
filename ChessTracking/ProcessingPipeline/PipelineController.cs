@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
-using ChessTracking.ProcessingPipeline;
+using ChessTracking.ProcessingElements;
 
-namespace ChessTracking.ProcessingElements
+namespace ChessTracking.ProcessingPipeline
 {
     class PipelineController
     {
@@ -60,7 +53,7 @@ namespace ChessTracking.ProcessingElements
                     Pipeline.Recalibrate();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new InvalidOperationException($"Unexpected message type in {nameof(PipelineController)}");
             }
         }
         

@@ -9,12 +9,12 @@ namespace ChessTracking.MultithreadingMessages
 {
     class KinectResourcesMessage : Message
     {
-        public byte[] colorFrameData;
-        public ushort[] depthData;
-        public ushort[] infraredData;
-        public CameraSpacePoint[] cameraSpacePointsFromDepthData;
-        public DepthSpacePoint[] pointsFromColorToDepth;
-        public ColorSpacePoint[] pointsFromDepthToColor;
+        public byte[] ColorFrameData { get; set; }
+        public ushort[] DepthData { get; set; }
+        public ushort[] InfraredData { get; set; }
+        public CameraSpacePoint[] CameraSpacePointsFromDepthData { get; set; }
+        public DepthSpacePoint[] PointsFromColorToDepth { get; set; }
+        public ColorSpacePoint[] PointsFromDepthToColor { get; set; }
 
         public KinectResourcesMessage(
             byte[] colorFrameData,
@@ -25,12 +25,12 @@ namespace ChessTracking.MultithreadingMessages
             ColorSpacePoint[] pointsFromDepthToColor
         )
         {
-            this.colorFrameData = colorFrameData;
-            this.depthData = depthData;
-            this.infraredData = infraredData;
-            this.cameraSpacePointsFromDepthData = cameraSpacePointsFromDepthData;
-            this.pointsFromColorToDepth = pointsFromColorToDepth;
-            this.pointsFromDepthToColor = pointsFromDepthToColor;
+            this.ColorFrameData = colorFrameData;
+            this.DepthData = depthData;
+            this.InfraredData = infraredData;
+            this.CameraSpacePointsFromDepthData = cameraSpacePointsFromDepthData;
+            this.PointsFromColorToDepth = pointsFromColorToDepth;
+            this.PointsFromDepthToColor = pointsFromDepthToColor;
         }
     }
 }
