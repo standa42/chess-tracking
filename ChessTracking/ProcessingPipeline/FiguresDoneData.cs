@@ -26,6 +26,8 @@ namespace ChessTracking.ProcessingPipeline
         public Emgu.CV.Image<Rgb, byte> MaskedColorImageOfTable { get; set; }
         public byte[] CannyDepthData { get; set; }
         public MyVector3DStruct FirstVectorFinal;
+        public Bitmap ColorBitmap { get; set; }
+        public bool[] MaskOfTable { get; set; }
 
         public Bitmap FiguresBitmap { get; set; }
 
@@ -43,6 +45,8 @@ namespace ChessTracking.ProcessingPipeline
             this.MaskedColorImageOfTable = chessboardData.MaskedColorImageOfTable;
             this.CannyDepthData = chessboardData.CannyDepthData;
             this.FirstVectorFinal = chessboardData.FirstVectorFinal;
+            this.MaskOfTable = chessboardData.MaskOfTable;
+            this.ColorBitmap = chessboardData.ColorBitmap;
         }
     }
 }

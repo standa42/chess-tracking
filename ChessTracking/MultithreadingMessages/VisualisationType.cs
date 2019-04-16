@@ -10,5 +10,6 @@ namespace ChessTracking.MultithreadingMessages
     {
         RawRGB,
         MaskedColorImageOfTable,
+        HighlightedChessboard
     }
 }

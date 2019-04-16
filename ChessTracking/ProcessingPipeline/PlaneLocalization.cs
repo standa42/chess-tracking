@@ -57,6 +57,8 @@ namespace ChessTracking.ProcessingPipeline
                 planeData.Bitmap = ReturnColorBitmap(planeData.ColorFrameData);
 
             planeData.CannyDepthData = CannyAppliedToDepthData(planeData.CameraSpacePointsFromDepthData);
+            planeData.MaskOfTable = LocalizedTableMask;
+            planeData.ColorBitmap = ReturnColorBitmap(planeData.ColorFrameData);
 
             var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
