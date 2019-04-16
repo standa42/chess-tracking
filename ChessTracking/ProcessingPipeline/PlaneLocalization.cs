@@ -55,7 +55,9 @@ namespace ChessTracking.ProcessingPipeline
             
             if (planeData.VisualisationType == VisualisationType.RawRGB)
                 planeData.Bitmap = ReturnColorBitmap(planeData.ColorFrameData);
-            
+
+            planeData.CannyDepthData = CannyAppliedToDepthData(planeData.CameraSpacePointsFromDepthData);
+
             var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
 
@@ -166,6 +168,45 @@ namespace ChessTracking.ProcessingPipeline
             bmp.UnlockBits(bmpData);
 
             return bmp;
+        }
+
+
+        private byte[] CannyAppliedToDepthData(CameraSpacePoint[] cameraSpacePointsFromDepthData)
+        {
+            int depthColorChange = 128;
+
+            Bitmap bbb = new Bitmap(512, 424, PixelFormat.Format24bppRgb);
+            BitmapData bbbData = bbb.LockBits(new Rectangle(0, 0, bbb.Width, bbb.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            unsafe
+            {
+                byte* ptr = (byte*)bbbData.Scan0;
+
+                // draw pixel according to its type
+                for (int y = 0; y < 424; y++)
+                {
+                    // compensates sensors natural flip of image
+                    for (int x = 0; x < 512; x++)
+                    {
+                        int position = y * 512 + x;
+
+                        byte value = (byte)(cameraSpacePointsFromDepthData[position].Z * depthColorChange);
+
+                        *ptr++ = value;
+                        *ptr++ = value;
+                        *ptr++ = value;
+
+                    }
+                }
+            }
+
+            bbb.UnlockBits(bbbData);
+
+            //////////////////
+            Image<Gray, byte> CanniedImage = new Image<Gray, byte>(bbb);
+            CanniedImage = CanniedImage.Canny(1000, 1200, 7, true).SmoothGaussian(3, 3, 1, 1).ThresholdBinary(new Gray(65), new Gray(255));
+            var canniedBytes = CanniedImage.Bytes;
+            return canniedBytes;
         }
     }
 }

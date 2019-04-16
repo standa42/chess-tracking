@@ -23,6 +23,7 @@ namespace ChessTracking.ProcessingPipeline
         public Bitmap Bitmap { get; set; }
         
         public Emgu.CV.Image<Rgb, byte> MaskedColorImageOfTable { get; set; }
+        public byte[] CannyDepthData { get; set; }
 
         public PlaneDoneData(RawData rawData)
         {

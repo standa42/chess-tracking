@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
 using Emgu.CV.Structure;
+using Kinect_v0._1;
 using Microsoft.Kinect;
 
 namespace ChessTracking.ProcessingPipeline
@@ -23,6 +24,8 @@ namespace ChessTracking.ProcessingPipeline
         public Bitmap Bitmap { get; set; }
 
         public Emgu.CV.Image<Rgb, byte> MaskedColorImageOfTable { get; set; }
+        public byte[] CannyDepthData { get; set; }
+        public MyVector3DStruct FirstVectorFinal { get; set; }
 
         public ChessboardDoneData(PlaneDoneData planeData)
         {
@@ -36,6 +39,7 @@ namespace ChessTracking.ProcessingPipeline
             this.VisualisationType = planeData.VisualisationType;
             this.Bitmap = planeData.Bitmap;
             this.MaskedColorImageOfTable = planeData.MaskedColorImageOfTable;
+            this.CannyDepthData = planeData.CannyDepthData;
         }
     }
 }
