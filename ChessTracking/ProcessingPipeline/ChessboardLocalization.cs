@@ -262,6 +262,14 @@ namespace ChessTracking.ProcessingPipeline
                                 break;
                             }
 
+                            // ensure right orientation
+                            if (MyVector3DStruct.CrossProduct(ref firstVector, ref secondVector).z < 0)
+                            {
+                                var temp = firstVector;
+                                firstVector = secondVector;
+                                secondVector = temp;
+                            }
+
                             // length normalization
                             double averageLength = (firstVector.Magnitude() + secondVector.Magnitude()) / 2;
 
