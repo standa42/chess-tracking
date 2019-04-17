@@ -189,7 +189,7 @@ namespace ChessTracking.ProcessingPipeline
                         drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X + 2, (int)contractedPoint.Y + 1,
                             Color.Red);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
 
                     }
@@ -217,7 +217,7 @@ namespace ChessTracking.ProcessingPipeline
                     contractedPointsCSP.Select(x => new MyVector3DStruct(x.X, x.Y, x.Z)).ToArray();
 
                 double lowestError = double.MaxValue;
-                int eliminator = 0;
+                //int eliminator = 0;
                 foreach (var csp in contractedPointsCSPStruct/*.Where(x => (eliminator++) % 2 == 0)*/)
                 {
                     // take 6 nearest neighbors
@@ -431,8 +431,7 @@ namespace ChessTracking.ProcessingPipeline
                 }
             }
             bm.UnlockBits(bitmapData);
-
-            BitmapData bmpdata = null;
+            
 
             return bm;
         }
@@ -455,7 +454,7 @@ namespace ChessTracking.ProcessingPipeline
                 var diffX = lines[i].P1.X - lines[i].P2.X;
                 var diffY = lines[i].P1.Y - lines[i].P2.Y;
 
-                int theta = mod(((int)ConvertRadiansToDegrees(Math.Atan2(diffY, diffX))), deg);
+                int theta = Mod(((int)ConvertRadiansToDegrees(Math.Atan2(diffY, diffX))), deg);
                 linesByAngle[theta].Add(lines[i]);
             }
 
@@ -470,7 +469,7 @@ namespace ChessTracking.ProcessingPipeline
 
                 for (int j = i; j < i + angle; j++)
                 {
-                    number += linesByAngle[mod(j, deg)].Count;
+                    number += linesByAngle[Mod(j, deg)].Count;
                 }
 
                 if (number > maxNumber)
@@ -483,14 +482,14 @@ namespace ChessTracking.ProcessingPipeline
             // fill and remove
             for (int j = maxIndex; j < maxIndex + angle; j++)
             {
-                var linesOfCertainAngle = linesByAngle[mod(j, deg)];
+                var linesOfCertainAngle = linesByAngle[Mod(j, deg)];
 
                 foreach (var lineOfCeratinAngle in linesOfCertainAngle)
                 {
                     resultLines1.Add(lineOfCeratinAngle);
                 }
 
-                linesByAngle[mod(j, deg)].Clear();
+                linesByAngle[Mod(j, deg)].Clear();
             }
 
             // get second max window
@@ -504,7 +503,7 @@ namespace ChessTracking.ProcessingPipeline
 
                 for (int j = i; j < i + angle; j++)
                 {
-                    number += linesByAngle[mod(j, deg)].Count;
+                    number += linesByAngle[Mod(j, deg)].Count;
                 }
 
                 if (number > maxNumber)
@@ -517,14 +516,14 @@ namespace ChessTracking.ProcessingPipeline
             // fill and remove
             for (int j = maxIndex; j < maxIndex + angle; j++)
             {
-                var linesOfCertainAngle = linesByAngle[mod(j, deg)];
+                var linesOfCertainAngle = linesByAngle[Mod(j, deg)];
 
                 foreach (var lineOfCeratinAngle in linesOfCertainAngle)
                 {
                     resultLines2.Add(lineOfCeratinAngle);
                 }
 
-                linesByAngle[mod(j, deg)].Clear();
+                linesByAngle[Mod(j, deg)].Clear();
             }
 
 
@@ -537,7 +536,7 @@ namespace ChessTracking.ProcessingPipeline
             return (degrees);
         }
 
-        int mod(int x, int m)
+        int Mod(int x, int m)
         {
             return (x % m + m) % m;
         }

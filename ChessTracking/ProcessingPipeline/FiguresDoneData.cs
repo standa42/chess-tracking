@@ -8,6 +8,7 @@ using ChessTracking.MultithreadingMessages;
 using Emgu.CV.Structure;
 using Kinect_v0._1;
 using Microsoft.Kinect;
+using TrackingState = ChessTracking.MultithreadingMessages.TrackingState;
 
 namespace ChessTracking.ProcessingPipeline
 {
@@ -30,7 +31,7 @@ namespace ChessTracking.ProcessingPipeline
         public bool[] MaskOfTable { get; set; }
         public string HandDetected { get; set; }
 
-        public Bitmap FiguresBitmap { get; set; }
+        public TrackingState TrackingState { get; set; }
 
         public FiguresDoneData(ChessboardDoneData chessboardData)
         {

@@ -56,6 +56,7 @@
             this.GameStatePictureBox.Location = new System.Drawing.Point(13, 13);
             this.GameStatePictureBox.Name = "GameStatePictureBox";
             this.GameStatePictureBox.Size = new System.Drawing.Size(300, 300);
+            this.GameStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GameStatePictureBox.TabIndex = 0;
             this.GameStatePictureBox.TabStop = false;
             // 
@@ -134,6 +135,7 @@
             this.TrackedBoardStatePictureBox.Location = new System.Drawing.Point(12, 319);
             this.TrackedBoardStatePictureBox.Name = "TrackedBoardStatePictureBox";
             this.TrackedBoardStatePictureBox.Size = new System.Drawing.Size(300, 300);
+            this.TrackedBoardStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.TrackedBoardStatePictureBox.TabIndex = 9;
             this.TrackedBoardStatePictureBox.TabStop = false;
             // 

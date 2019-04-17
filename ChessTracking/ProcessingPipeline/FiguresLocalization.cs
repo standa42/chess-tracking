@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
 using Kinect_v0._1;
 using Microsoft.Kinect;
+using TrackingState = ChessTracking.MultithreadingMessages.TrackingState;
 
 namespace ChessTracking.ProcessingPipeline
 {
@@ -37,7 +38,7 @@ namespace ChessTracking.ProcessingPipeline
             var figuresData = new FiguresDoneData(chessboardData);
 
             {
-                figuresData.FiguresBitmap =
+                figuresData.TrackingState =
                     FigureLocalization(
                         figuresData.CameraSpacePointsFromDepthData,
                         figuresData.ColorFrameData,
@@ -87,7 +88,7 @@ namespace ChessTracking.ProcessingPipeline
             //return counter.ToString();
         }
 
-            private Bitmap FigureLocalization(CameraSpacePoint[] cameraSpacePointsFromDepthData, byte[] colorFrameData, ColorSpacePoint[] pointsFromDepthToColor, ushort[] infraredData,
+            private TrackingState FigureLocalization(CameraSpacePoint[] cameraSpacePointsFromDepthData, byte[] colorFrameData, ColorSpacePoint[] pointsFromDepthToColor, ushort[] infraredData,
                                            MyVector3DStruct magnitudeVector, byte[] canniedBytes)
         {
             List<RGBcolor>[,] loc = new List<RGBcolor>[8, 8];
@@ -153,6 +154,8 @@ namespace ChessTracking.ProcessingPipeline
             SolidBrush whiteBrush = new SolidBrush(Color.White);
             SolidBrush blueBrush = new SolidBrush(Color.LightSkyBlue);
 
+            TrackingFieldState[,] figures = new TrackingFieldState[8,8];
+
             for (int x = 0; x < 8; x++)
             {
                 for (int y = 0; y < 8; y++)
@@ -161,6 +164,7 @@ namespace ChessTracking.ProcessingPipeline
                     {
                         if (loc[x, y].Count < 5)
                         {
+                            figures[x, y] = TrackingFieldState.None;
                             graphics.FillRectangle(blueBrush, new Rectangle(x * 40, y * 40, 40, 40));
                             //bm.SetPixel(x, y, Color.LightSkyBlue);
                         }
@@ -174,11 +178,13 @@ namespace ChessTracking.ProcessingPipeline
 
                             if (brightness > 0.47) // 41
                             {
+                                figures[x, y] = TrackingFieldState.White;
                                 graphics.FillRectangle(whiteBrush, new Rectangle(x * 40, y * 40, 40, 40));
                                 //bm.SetPixel(x, y, Color.White);
                             }
                             else
                             {
+                                figures[x, y] = TrackingFieldState.Black;
                                 graphics.FillRectangle(blackBrush, new Rectangle(x * 40, y * 40, 40, 40));
                                 //bm.SetPixel(x, y, Color.Black);
                             }
@@ -188,7 +194,7 @@ namespace ChessTracking.ProcessingPipeline
                 }
             }
 
-            return bm;
+            return new TrackingState(figures);
             //DISPLAY: FormLocations.Image
         }
 

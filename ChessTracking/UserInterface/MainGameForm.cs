@@ -100,7 +100,15 @@ namespace ChessTracking.UserInterface
             HandDetectedBtn.Text = state;
         }
 
+        public void UpdateAveragedBoard(Bitmap bitmap)
+        {
+            if (bitmap != null)
+            {
+                TrackedBoardStatePictureBox.Image = bitmap;
+            }
+        }
+
         #endregion
-        
+
     }
 }

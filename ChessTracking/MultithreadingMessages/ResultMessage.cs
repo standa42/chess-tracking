@@ -10,13 +10,13 @@ namespace ChessTracking.MultithreadingMessages
     class ResultMessage : Message
     {
         public Bitmap BitmapToDisplay { get; }
-        public Bitmap FiguresBitmap { get; }
+        public TrackingState TrackingState { get; }
         public string HandDetected { get; }
 
-        public ResultMessage(Bitmap bitmapToDisplay, Bitmap figuresBitmap,string handDetected)
+        public ResultMessage(Bitmap bitmapToDisplay, TrackingState trackingState, string handDetected)
         {
             this.BitmapToDisplay = bitmapToDisplay;
-            FiguresBitmap = figuresBitmap;
+            TrackingState = trackingState;
             this.HandDetected = handDetected;
         }
     }

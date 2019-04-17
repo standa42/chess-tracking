@@ -78,7 +78,10 @@
     <Compile Include="ControllingElements\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
+    <Compile Include="ControllingElements\TrackingResultReceiver.cs" />
     <Compile Include="Game\GameController.cs" />
+    <Compile Include="MultithreadingMessages\TrackingState.cs" />
+    <Compile Include="MultithreadingMessages\TrackingFieldState.cs" />
     <Compile Include="ProcessingPipeline\ChessboardDoneData.cs" />
     <Compile Include="ProcessingPipeline\ChessboardLocalization.cs" />
     <Compile Include="ProcessingPipeline\FiguresDoneData.cs" />

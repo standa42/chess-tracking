@@ -24,6 +24,11 @@ namespace ChessTracking.UserInterface
             MainForm?.UpdateImmediateBoard(bitmap);
         }
 
+        public void UpdateAveragedBoard(Bitmap bitmap)
+        {
+            MainForm?.UpdateAveragedBoard(bitmap);
+        }
+
         public void DisplayVizuaization(Bitmap bitmap)
         {
             VizualizationForm?.DisplayVizulization(bitmap);
