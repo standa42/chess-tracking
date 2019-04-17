@@ -94,6 +94,12 @@ namespace ChessTracking.UserInterface
             }
         }
 
+        public void HandDetectionUpdate(string state)
+        {
+            HandDetectedBtn.BackColor = state == "true" ? Color.LimeGreen : Color.Gray;
+            HandDetectedBtn.Text = state;
+        }
+
         #endregion
         
     }

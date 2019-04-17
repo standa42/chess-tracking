@@ -45,12 +45,49 @@ namespace ChessTracking.ProcessingPipeline
                         figuresData.InfraredData,
                         figuresData.FirstVectorFinal,
                         figuresData.CannyDepthData);
+                figuresData.HandDetected =
+                    HandDetection(
+                        figuresData.CameraSpacePointsFromDepthData,
+                        figuresData.FirstVectorFinal
+                    );
             }
 
             return figuresData;
         }
 
-        private Bitmap FigureLocalization(CameraSpacePoint[] cameraSpacePointsFromDepthData, byte[] colorFrameData, ColorSpacePoint[] pointsFromDepthToColor, ushort[] infraredData,
+        private string HandDetection(CameraSpacePoint[] cameraSpacePointsFromDepthData, MyVector3DStruct magnitudeVector)
+        {
+            int counter = 0;
+
+            for (int i = 0; i < cameraSpacePointsFromDepthData.Length; i++)
+            {
+                if (
+                    !(float.IsInfinity(cameraSpacePointsFromDepthData[i].Z) || float.IsNaN(cameraSpacePointsFromDepthData[i].Z))
+                    && cameraSpacePointsFromDepthData[i].X > (-magnitudeVector.Magnitude()*(7/10f))
+                    && cameraSpacePointsFromDepthData[i].Y > (-magnitudeVector.Magnitude() * (7 / 10f))
+                    && cameraSpacePointsFromDepthData[i].X < magnitudeVector.Magnitude() * 8 + (magnitudeVector.Magnitude() * (7 / 10f))
+                    && cameraSpacePointsFromDepthData[i].Y < magnitudeVector.Magnitude() * 8 + (magnitudeVector.Magnitude() * (7 / 10f))
+                    && cameraSpacePointsFromDepthData[i].Z < -0.095f
+                    && cameraSpacePointsFromDepthData[i].Z > -0.2f
+                )
+                {
+                    counter++;
+                }
+            }
+
+            if (counter > 20)
+            {
+                return "true";
+            }
+            else
+            {
+                return "false";
+            }
+
+            //return counter.ToString();
+        }
+
+            private Bitmap FigureLocalization(CameraSpacePoint[] cameraSpacePointsFromDepthData, byte[] colorFrameData, ColorSpacePoint[] pointsFromDepthToColor, ushort[] infraredData,
                                            MyVector3DStruct magnitudeVector, byte[] canniedBytes)
         {
             List<RGBcolor>[,] loc = new List<RGBcolor>[8, 8];

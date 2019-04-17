@@ -11,11 +11,13 @@ namespace ChessTracking.MultithreadingMessages
     {
         public Bitmap BitmapToDisplay { get; }
         public Bitmap FiguresBitmap { get; }
+        public string HandDetected { get; }
 
-        public ResultMessage(Bitmap bitmapToDisplay, Bitmap figuresBitmap)
+        public ResultMessage(Bitmap bitmapToDisplay, Bitmap figuresBitmap,string handDetected)
         {
             this.BitmapToDisplay = bitmapToDisplay;
             FiguresBitmap = figuresBitmap;
+            this.HandDetected = handDetected;
         }
     }
 }

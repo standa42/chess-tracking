@@ -752,7 +752,8 @@ namespace ChessTracking.ProcessingPipeline
             SendResultMessage(
                 new ResultMessage(
                         bmpToSend,
-                        bm
+                        bm,
+                    "whatever"
             ));
             //DISPLAY: FormLocations.Image
         }

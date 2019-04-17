@@ -613,9 +613,7 @@ namespace ChessTracking.ProcessingPipeline
             }
 
         }
-
-
-
+        
         private void MakeSomeFiltering(CameraSpacePoint[] cameraSpacePointsFromDepthData)
         {
             float[,,] channelsImage = new float[512, 424, 1];
@@ -664,8 +662,6 @@ namespace ChessTracking.ProcessingPipeline
                 }
             }
         }
-
         
-
     }
 }

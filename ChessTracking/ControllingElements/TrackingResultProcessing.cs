@@ -35,6 +35,7 @@ namespace ChessTracking.ControllingElements
                     UpdateFps();
                     OutputFacade.DisplayVizuaization(resultMessage.BitmapToDisplay);
                     OutputFacade.UpdateImmediateBoard(resultMessage.FiguresBitmap);
+                    OutputFacade.HandDetected(resultMessage.HandDetected);
                 }
                 
                 if(messageProcessed && message == null)
