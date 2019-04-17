@@ -43,5 +43,10 @@ namespace ChessTracking.UserInterface
         {
             MainForm?.HandDetectionUpdate(detection);
         }
+
+        public void UpdateBoardState(Bitmap bitmap)
+        {
+            MainForm?.UpdateBoardState(bitmap);
+        }
     }
 }

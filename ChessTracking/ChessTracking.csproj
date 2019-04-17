@@ -79,7 +79,16 @@
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
     <Compile Include="ControllingElements\TrackingResultReceiver.cs" />
+    <Compile Include="Game\Figures\Dama.cs" />
+    <Compile Include="Game\Figures\Figure.cs" />
+    <Compile Include="Game\Figures\Kral.cs" />
+    <Compile Include="Game\Figures\Jezdec.cs" />
+    <Compile Include="Game\Figures\Pesec.cs" />
+    <Compile Include="Game\Figures\Position.cs" />
+    <Compile Include="Game\Figures\Strelec.cs" />
     <Compile Include="Game\GameController.cs" />
+    <Compile Include="Game\GameData.cs" />
+    <Compile Include="Game\Figures\Vez.cs" />
     <Compile Include="MultithreadingMessages\TrackingState.cs" />
     <Compile Include="MultithreadingMessages\TrackingFieldState.cs" />
     <Compile Include="ProcessingPipeline\ChessboardDoneData.cs" />

@@ -59,6 +59,7 @@ namespace ChessTracking.UserInterface
         public void Recalibrate()
         {
             TrackingManager.Recalibrate();
+            TrackingResultProcessing.Reset();
         }
 
         public void ProcessQueueTick()

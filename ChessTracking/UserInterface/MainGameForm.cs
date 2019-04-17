@@ -108,6 +108,14 @@ namespace ChessTracking.UserInterface
             }
         }
 
+        public void UpdateBoardState(Bitmap bitmap)
+        {
+            if (bitmap != null)
+            {
+                GameStatePictureBox.Image = bitmap;
+            }
+        }
+
         #endregion
 
     }

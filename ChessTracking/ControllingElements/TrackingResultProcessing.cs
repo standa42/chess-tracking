@@ -29,6 +29,12 @@ namespace ChessTracking.ControllingElements
             AveragingQueue = new Queue<TrackingState>();
         }
 
+        public void Reset()
+        {
+            TrackningInProgress = false;
+            AveragingQueue.Clear();
+        }
+
         public void ProcessResult(ResultMessage resultMessage)
         {
             OutputFacade.HandDetected(resultMessage.HandDetected);
@@ -113,6 +119,9 @@ namespace ChessTracking.ControllingElements
 
         private Bitmap GenerateImageForTrackingState(TrackingState trackingState)
         {
+            trackingState = new TrackingState(trackingState.Figures);
+            trackingState.RotateClockWise(2);
+
             var bm = new Bitmap(320, 320, PixelFormat.Format24bppRgb);
             SolidBrush blackBrush = new SolidBrush(Color.Black);
             SolidBrush whiteBrush = new SolidBrush(Color.White);
@@ -146,3 +155,4 @@ namespace ChessTracking.ControllingElements
         }
     }
 }
+
