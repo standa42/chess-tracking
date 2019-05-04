@@ -17,11 +17,14 @@ namespace ChessTracking.ControllingElements
         public UserInterfaceOutputFacade OutputFacade { get; }
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
         private BlockingCollection<Message> ProcessingCommandsQueue { get; }
-        
-        
-        public TrackingManager(UserInterfaceOutputFacade outputFacade)
+        private TrackingResultProcessing TrackingResultProcessing { get; }
+
+
+        public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing)
         {
             this.OutputFacade = outputFacade;
+            TrackingResultProcessing = trackingResultProcessing;
+
             ProcessingCommandsQueue = new BlockingCollection<Message>();
             ProcessingOutputQueue = new BlockingCollection<Message>();
 
@@ -55,6 +58,27 @@ namespace ChessTracking.ControllingElements
         public void ChangeVisualisation(VisualisationType newVisualisationType)
         {
             ProcessingCommandsQueue.Add(new VisualisationChangeMessage(newVisualisationType));
+        }
+
+        public void ProcessQueue()
+        {
+            bool messageProcessed = false;
+
+            do
+            {
+                messageProcessed = ProcessingOutputQueue.TryTake(out var message);
+
+                if (message is ResultMessage resultMessage)
+                {
+                    TrackingResultProcessing.ProcessResult(resultMessage);
+                }
+
+                if (messageProcessed && message == null)
+                {
+                    throw new InvalidOperationException($"Unexpected incoming message in {nameof(TrackingManager)}");
+                }
+
+            } while (messageProcessed);
         }
     }
 }

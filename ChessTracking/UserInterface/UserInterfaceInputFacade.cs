@@ -14,7 +14,6 @@ namespace ChessTracking.UserInterface
     {
         private UserInterfaceOutputFacade OutputFacade { get; }
         private TrackingManager TrackingManager { get; }
-        private TrackingResultReceiver TrackingResultReceiver { get; }
         private TrackingResultProcessing TrackingResultProcessing { get; }
         private GameController GameController { get; }
 
@@ -22,9 +21,8 @@ namespace ChessTracking.UserInterface
         {
             OutputFacade = outputFacade;
             GameController = new GameController(outputFacade);
-            TrackingManager = new TrackingManager(OutputFacade);
             TrackingResultProcessing = new TrackingResultProcessing(outputFacade, GameController);
-            TrackingResultReceiver = new TrackingResultReceiver(outputFacade, TrackingManager.ProcessingOutputQueue, TrackingResultProcessing);
+            TrackingManager = new TrackingManager(OutputFacade, TrackingResultProcessing);
         }
 
         public void NewGame()
@@ -65,7 +63,7 @@ namespace ChessTracking.UserInterface
 
         public void ProcessQueueTick()
         {
-            TrackingResultReceiver.ProcessQueue();
+            TrackingManager.ProcessQueue();
         }
     }
 }
