@@ -90,32 +90,45 @@ namespace ChessTracking.ProcessingPipeline.Plane
             }
         }
         
-        public void RANSAC()
+        /// <summary>
+        /// Performs RANSAC algorithm
+        /// </summary>
+        public void Ransac()
         {
-            if (TriangleSeedsForRansac == null) GeneratePseudorandomTriangles();
+            if (TriangleSeedsForRansac == null)
+                GenerateTriangleSeedsInImage();
 
-            int pocetCasti = PlaneLocalizationConfig.ParalelTasksCount;
-            List<Task> tasky = new List<Task>();
+            // Uniform distribution of work into tasks
+            int partsCount = PlaneLocalizationConfig.ParalelTasksCount;
+            var tasks = new List<Task>();
 
-            int delka = TriangleSeedsForRansac.Count;
-            int zacatek = 0;
-            int konec = delka / pocetCasti;
-            int krok = delka / pocetCasti;
+            int trianglesCount = TriangleSeedsForRansac.Count;
+            int step = trianglesCount / partsCount;
+            int start = 0;
+            int end = step;
 
-            for (int i = 0; i < pocetCasti; i++)
+            for (int i = 0; i < partsCount; i++)
             {
-                int zac = zacatek;
-                int kon = konec;
+                int startClosure = start;
+                int endClosure = end;
 
-                var t = Task.Run(() => RANSACimplementace(zac, kon));
-                tasky.Add(t);
+                var t = Task.Run(() => RansacImplementation(startClosure, endClosure));
+                tasks.Add(t);
 
-                zacatek += krok;
-                konec += krok;
+                start += step;
+                end += step;
             }
 
-            Task.WaitAll(tasky.ToArray());
+            Task.WaitAll(tasks.ToArray());
 
+            MarkTablePixels();
+        }
+
+        /// <summary>
+        /// Mark pixels that are near plane as part of that plane
+        /// </summary>
+        private void MarkTablePixels()
+        {
             for (int i = 0; i < DepthData.Length; i++)
             {
                 if (DepthData[i].Type == PixelType.Invalid) continue;
@@ -123,17 +136,34 @@ namespace ChessTracking.ProcessingPipeline.Plane
                 float pointX = DepthData[i].X;
                 float pointY = DepthData[i].Y;
                 float pointZ = DepthData[i].Z;
+                
+                float eucledidianDistancePointToPlane = 
+                    (float)
+                    (Math.Abs(
+                         PlaneLocalizationConfig.FinalNormal.x * pointX + 
+                         PlaneLocalizationConfig.FinalNormal.y * pointY + 
+                         PlaneLocalizationConfig.FinalNormal.z * pointZ + 
+                         PlaneLocalizationConfig.FinalD
+                         ) 
+                     / 
+                     Math.Sqrt(
+                         PlaneLocalizationConfig.FinalNormal.x * PlaneLocalizationConfig.FinalNormal.x +
+                         PlaneLocalizationConfig.FinalNormal.y * PlaneLocalizationConfig.FinalNormal.y +
+                         PlaneLocalizationConfig.FinalNormal.z * PlaneLocalizationConfig.FinalNormal.z
+                         )
+                     );
 
-                float distance = (float)(Math.Abs(PlaneLocalizationConfig.FinalNormal.x * pointX + PlaneLocalizationConfig.FinalNormal.y * pointY + PlaneLocalizationConfig.FinalNormal.z * pointZ + PlaneLocalizationConfig.FinalD) / Math.Sqrt(PlaneLocalizationConfig.FinalNormal.x * PlaneLocalizationConfig.FinalNormal.x + PlaneLocalizationConfig.FinalNormal.y * PlaneLocalizationConfig.FinalNormal.y + PlaneLocalizationConfig.FinalNormal.z * PlaneLocalizationConfig.FinalNormal.z));
-
-                if (distance < PlaneLocalizationConfig.RansacThickness)
+                if (eucledidianDistancePointToPlane < PlaneLocalizationConfig.RansacThickness)
                 {
                     DepthData[i].Type = PixelType.Table;
                 }
             }
         }
 
-        public void RANSACimplementace(int zacatek, int konec)
+        /// <summary>
+        /// Performs RANSAC algorithm
+        /// </summary>
+        private void RansacImplementation(int zacatek, int konec)
         {
             int GridSizeForTestingPlaneFit = PlaneLocalizationConfig.GridSizeForTestingPlaneFit;
             float threshold = PlaneLocalizationConfig.RansacThickness;
@@ -722,8 +752,10 @@ namespace ChessTracking.ProcessingPipeline.Plane
             return resultBools;
         }
 
-       
-        private void GeneratePseudorandomTriangles()
+       /// <summary>
+       /// Generates uniformly distributed right triangles into image bounds
+       /// </summary>
+        private void GenerateTriangleSeedsInImage()
         {
             TriangleSeedsForRansac = new List<RansacSeedTriangle>();
 
@@ -759,6 +791,10 @@ namespace ChessTracking.ProcessingPipeline.Plane
 
         }
 
+        /// <summary>
+        /// Generates right triangle in x,y position with given size and rotation
+        /// </summary>
+        /// <returns>Generated triangle</returns>
         private RansacSeedTriangle GenerateTriangle(int x, int y, int size, int rotation)
         {
             var center = new Position2D(x, y);
