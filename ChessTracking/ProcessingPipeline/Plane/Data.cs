@@ -20,9 +20,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
         /// <summary>
         /// Triangles generated uniformly over image. Serve as seeds for RANSAC algorithm
         /// </summary>
-        public int[] TringlePointsForRansac;
-
-        private int TriangleCount;
+        public List<RansacSeedTriangle> TriangleSeedsForRansac;
 
         /// <summary>
         /// Converts depth data from sensor to custom structure
@@ -94,13 +92,12 @@ namespace ChessTracking.ProcessingPipeline.Plane
         
         public void RANSAC()
         {
-            if (TringlePointsForRansac == null) GeneratePseudorandomTriangles();
-            //if (PlaneLocalizationConfig.NumberOfFramesToAverage == 1) return;
+            if (TriangleSeedsForRansac == null) GeneratePseudorandomTriangles();
 
             int pocetCasti = PlaneLocalizationConfig.ParalelTasksCount;
             List<Task> tasky = new List<Task>();
 
-            int delka = TriangleCount;
+            int delka = TriangleSeedsForRansac.Count;
             int zacatek = 0;
             int konec = delka / pocetCasti;
             int krok = delka / pocetCasti;
@@ -148,9 +145,9 @@ namespace ChessTracking.ProcessingPipeline.Plane
             for (int i = zacatek; i < konec; i++)
             {
                 // get pseudorandom predefinied triangle points
-                int a = TringlePointsForRansac[3 * i];
-                int b = TringlePointsForRansac[3 * i + 1];
-                int c = TringlePointsForRansac[3 * i + 2];
+                int a = TriangleSeedsForRansac[i].FirstVertexIndex;
+                int b = TriangleSeedsForRansac[i].SecondVertexIndex;
+                int c = TriangleSeedsForRansac[i].ThirdVertexIndex;
 
                 // are those points even valid?
                 if (
@@ -728,74 +725,54 @@ namespace ChessTracking.ProcessingPipeline.Plane
        
         private void GeneratePseudorandomTriangles()
         {
-            int zacX = 0 + 102; // 100
-            int konX = 512 - 102; // 400
-            int zacY = 0 + 102; // 100
-            int konY = 424 - 102; // 324
-            int centerStep = 15; // 3
-            int angleStep = 43; // degrees 7
+            TriangleSeedsForRansac = new List<RansacSeedTriangle>();
 
-            int size = 60;
-            int rotation = 0;
-            List<int> tempBodyTrojuhelniku = new List<int>();
+            int offsetFromImageBorders = 102;
 
-            for (int y = zacY; y < konY; y += centerStep)
+            // intervals to move in
+            int zacX = 0 + offsetFromImageBorders; 
+            int konX = PlaneLocalizationConfig.DepthImageWidth - offsetFromImageBorders; 
+            int zacY = 0 + offsetFromImageBorders; 
+            int konY = PlaneLocalizationConfig.DepthImageHeight - offsetFromImageBorders;
+
+            // generation steps
+            int positionStep = 15;
+            int angleStep = 43;
+
+            int currentRotation = 0;
+            
+            // move in discrete steps over image
+            // and generate triangles with various sizes and rotations
+            for (int y = zacY; y < konY; y += positionStep)
             {
-                for (int x = zacX; x < konX; x += centerStep)
+                for (int x = zacX; x < konX; x += positionStep)
                 {
-                    Position2D center;
-                    Position2D up;
-                    Position2D right;
-
-
-                    size = 30;
-                    center = new Position2D(x, y);
-                    up = new Position2D(x, y + size);
-                    right = new Position2D(x + size, (int)(y));
-
-                    up.RotateAroundPoint(rotation, center);
-                    right.RotateAroundPoint(rotation, center);
-
-                    tempBodyTrojuhelniku.Add(center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth);
-
-
-
-                    size = 60;
-                    center = new Position2D(x, y);
-                    up = new Position2D(x, y + size);
-                    right = new Position2D(x + size, (int)(y));
-
-                    up.RotateAroundPoint(rotation, center);
-                    right.RotateAroundPoint(rotation, center);
-
-                    tempBodyTrojuhelniku.Add(center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth);
-
-
-                    size = 98;
-                    center = new Position2D(x, y);
-                    up = new Position2D(x, y + size);
-                    right = new Position2D(x + size, (int)(y));
-
-                    up.RotateAroundPoint(rotation, center);
-                    right.RotateAroundPoint(rotation, center);
-
-                    tempBodyTrojuhelniku.Add(center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth);
-
-
-                    rotation += angleStep;
-                    if (rotation >= 360) rotation -= 360;
+                    TriangleSeedsForRansac.Add(GenerateTriangle(x,y,30,currentRotation));
+                    TriangleSeedsForRansac.Add(GenerateTriangle(x, y, 60, currentRotation));
+                    TriangleSeedsForRansac.Add(GenerateTriangle(x, y, 98, currentRotation));
+                    
+                    // reset rotation if overflows
+                    currentRotation += angleStep;
+                    if (currentRotation >= 360) currentRotation -= 360;
                 }
             }
 
-            TringlePointsForRansac = tempBodyTrojuhelniku.ToArray();
-            TriangleCount = TringlePointsForRansac.Length / 3;
+        }
 
+        private RansacSeedTriangle GenerateTriangle(int x, int y, int size, int rotation)
+        {
+            var center = new Position2D(x, y);
+            var up = new Position2D(x, y + size);
+            var right = new Position2D(x + size, (int)(y));
+
+            up.RotateAroundPoint(rotation, center);
+            right.RotateAroundPoint(rotation, center);
+
+            return new RansacSeedTriangle(
+                center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth,
+                up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth,
+                right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth
+                );
         }
 
 

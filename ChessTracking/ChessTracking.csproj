@@ -102,6 +102,7 @@
     <Compile Include="ProcessingPipeline\Plane\ConvexHull.cs" />
     <Compile Include="ProcessingPipeline\Plane\Data.cs" />
     <Compile Include="ProcessingPipeline\Plane\MyCameraSpacePoint.cs" />
+    <Compile Include="ProcessingPipeline\Plane\RansacSeedTriangle.cs" />
     <Compile Include="ProcessingPipeline\Plane\Utils.cs" />
     <Compile Include="ProcessingPipeline\RawData.cs" />
     <Compile Include="UserInterface\MainGameForm.cs">
