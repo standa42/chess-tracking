@@ -188,12 +188,6 @@
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Kinect v0.1\KinectOldProject.csproj">
-      <Project>{51b01a33-8025-4d85-8bae-7f8cc49f7f0c}</Project>
-      <Name>KinectOldProject</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EMGU.CV.3.4.1.2976\build\EMGU.CV.targets" Condition="Exists('..\packages\EMGU.CV.3.4.1.2976\build\EMGU.CV.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

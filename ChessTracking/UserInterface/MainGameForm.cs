@@ -64,7 +64,7 @@ namespace ChessTracking.UserInterface
                     var stream = new StreamReader(fileDialog.FileName);
                     InputFacade.LoadGame(stream);
                 }
-                catch (SecurityException ex)
+                catch (SecurityException)
                 {
                     // TODO: má se tu něco dělat?
                 }

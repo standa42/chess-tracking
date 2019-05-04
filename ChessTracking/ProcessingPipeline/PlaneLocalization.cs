@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.ProcessingPipeline.Plane;
 using Emgu.CV;
 using Emgu.CV.Structure;
-using Kinect_v0._1;
 using Microsoft.Kinect;
 
 namespace ChessTracking.ProcessingPipeline
@@ -62,6 +62,7 @@ namespace ChessTracking.ProcessingPipeline
 
             var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
+            //planeData.MaskedColorImageOfTable._EqualizeHist(); // TODO zjisitit jestli to pomáhá
 
             if (planeData.VisualisationType == VisualisationType.MaskedColorImageOfTable)
                 planeData.Bitmap = colorImg.Bitmap;

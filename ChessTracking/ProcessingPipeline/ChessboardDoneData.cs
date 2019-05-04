@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.ProcessingPipeline.Plane;
 using Emgu.CV.Structure;
-using Kinect_v0._1;
 using Microsoft.Kinect;
 
 namespace ChessTracking.ProcessingPipeline

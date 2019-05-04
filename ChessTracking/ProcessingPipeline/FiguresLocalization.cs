@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
-using Kinect_v0._1;
+using ChessTracking.ProcessingPipeline.Plane;
 using Microsoft.Kinect;
 using TrackingState = ChessTracking.MultithreadingMessages.TrackingState;
 

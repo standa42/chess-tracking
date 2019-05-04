@@ -96,6 +96,11 @@
     <Compile Include="ProcessingPipeline\FiguresLocalization.cs" />
     <Compile Include="ProcessingPipeline\PlaneDoneData.cs" />
     <Compile Include="ProcessingPipeline\PlaneLocalization.cs" />
+    <Compile Include="ProcessingPipeline\Plane\Config.cs" />
+    <Compile Include="ProcessingPipeline\Plane\ConvexHull.cs" />
+    <Compile Include="ProcessingPipeline\Plane\Data.cs" />
+    <Compile Include="ProcessingPipeline\Plane\MyCameraSpacePoint.cs" />
+    <Compile Include="ProcessingPipeline\Plane\Utils.cs" />
     <Compile Include="ProcessingPipeline\RawData.cs" />
     <Compile Include="UserInterface\MainGameForm.cs">
       <SubType>Form</SubType>
@@ -152,16 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ChessboardTrackingOctoberEdition\ChessboardTrackingOldProject.csproj">
-      <Project>{f6757a1e-1498-4423-9de2-e9a305ed54d2}</Project>
-      <Name>ChessboardTrackingOldProject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kinect v0.1\KinectOldProject.csproj">
-      <Project>{51b01a33-8025-4d85-8bae-7f8cc49f7f0c}</Project>
-      <Name>KinectOldProject</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
