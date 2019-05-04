@@ -88,6 +88,7 @@
     <Compile Include="Game\GameController.cs" />
     <Compile Include="Game\GameData.cs" />
     <Compile Include="Game\Figures\Vez.cs" />
+    <Compile Include="Game\GameFactory.cs" />
     <Compile Include="MultithreadingMessages\TrackingState.cs" />
     <Compile Include="MultithreadingMessages\TrackingFieldState.cs" />
     <Compile Include="ProcessingPipeline\ChessboardDoneData.cs" />
