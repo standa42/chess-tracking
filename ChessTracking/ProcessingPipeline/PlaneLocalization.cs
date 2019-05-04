@@ -45,7 +45,7 @@ namespace ChessTracking.ProcessingPipeline
 
             var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
-
+            //colorImg.Save(@"D:\Desktop\LocColor.jpeg");
             return planeData;
         }
 

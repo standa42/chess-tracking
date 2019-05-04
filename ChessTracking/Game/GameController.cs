@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,7 +86,7 @@ namespace ChessTracking.Game
             var figures = new Figure[8, 8];
 
             figures[0, 0] = new Vez(new Position(0, 0), true);
-            figures[1, 0] = new Jezdec(new Position(1, 0), true);
+            /*figures[1, 0] = new Jezdec(new Position(1, 0), true);
             figures[2, 0] = new Strelec(new Position(2, 0), true);
             figures[3, 0] = new Kral(new Position(3, 0), true);
             figures[4, 0] = new Dama(new Position(4, 0), true);
@@ -118,7 +119,7 @@ namespace ChessTracking.Game
             figures[4, 6] = new Pesec(new Position(4, 6), false);
             figures[5, 6] = new Pesec(new Position(5, 6), false);
             figures[6, 6] = new Pesec(new Position(6, 6), false);
-            figures[7, 6] = new Pesec(new Position(7, 6), false);
+            figures[7, 6] = new Pesec(new Position(7, 6), false);*/
 
             Game = new GameData(figures, isWhitePlaying: true);
 
@@ -130,7 +131,7 @@ namespace ChessTracking.Game
 
         }
 
-        public void LoadGame()
+        public void LoadGame(StreamReader stream)
         {
 
         }

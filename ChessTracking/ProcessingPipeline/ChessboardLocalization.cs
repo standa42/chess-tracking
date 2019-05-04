@@ -41,10 +41,13 @@ namespace ChessTracking.ProcessingPipeline
                 Image<Bgr, Byte> drawnEdges2 = null;
 
                 Image<Gray, Byte> grayImage = planeData.MaskedColorImageOfTable.Convert<Gray, Byte>();
+                //grayImage.Save(@"D:\Desktop\LocGray.jpeg");
                 var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
                 CvInvoke.Threshold(grayImage, binarizedImg, 200, 255, ThresholdType.Otsu);
+                //binarizedImg.Save(@"D:\Desktop\LocOtzu.jpeg");
                 Image<Gray, Byte> cannyEdges = binarizedImg.Canny(700, 1400, 5, true).SmoothGaussian(3)
                     .ThresholdBinary(new Gray(50), new Gray(255));
+                //cannyEdges.Save(@"D:\Desktop\LocCanny.jpeg");
                 var lines = cannyEdges.HoughLinesBinary(
                     0.8f, //Distance resolution in pixel-related units
                     Math.PI / 1500, //Angle resolution measured in radians.
@@ -66,7 +69,31 @@ namespace ChessTracking.ProcessingPipeline
                     10 //gap between lines
                 )[0];
 
-                var linesTuple = FilterLinesBasedOnAngle(lines2, 25);
+                Pen redPen = new Pen(Color.Red, 3);
+
+                var colorNonFiltered = (Image)planeData.MaskedColorImageOfTable.Bitmap.Clone();
+                using (var graphics = Graphics.FromImage(colorNonFiltered))
+                {
+                    foreach (var line in lines2)
+                    {
+                        graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
+                    }
+                }
+                //colorNonFiltered.Save(@"D:\Desktop\LocHoughNonfiltered.jpeg");
+                
+
+                var linesTuple = FilterLinesBasedOnAngle(lines2, 25); //TODO 25
+
+
+                var colorFiltered = (Image)planeData.MaskedColorImageOfTable.Bitmap.Clone();
+                using (var graphics = Graphics.FromImage(colorFiltered))
+                {
+                    foreach (var line in linesTuple.Item1.Concat(linesTuple.Item2))
+                    {
+                        graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
+                    }
+                }
+                colorFiltered.Save(@"D:\Desktop\LocHoughfiltered.jpeg");
 
                 drawnEdges2 = new Image<Bgr, Byte>( /*colorImg.Bitmap*/
                     new Size(cannyEdges.Width, cannyEdges.Height));
@@ -166,35 +193,32 @@ namespace ChessTracking.ProcessingPipeline
                     }
                 }
 
+                var colorD = (Bitmap)planeData.MaskedColorImageOfTable.Bitmap.Clone();
+                using (var graphics = Graphics.FromImage(colorD))
+                {
+                    foreach (var line in linesTuple.Item1.Concat(linesTuple.Item2))
+                    {
+                        graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
+                    }
+                }
 
+
+                Pen yellowPen = new Pen(Color.Yellow, 3);
                 foreach (var contractedPoint in contractedPoints)
                 {
                     try
                     {
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X, (int)contractedPoint.Y, Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X + 1, (int)contractedPoint.Y,
-                            Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X, (int)contractedPoint.Y + 1,
-                            Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X + 1, (int)contractedPoint.Y + 1,
-                            Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X + 2, (int)contractedPoint.Y,
-                            Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X, (int)contractedPoint.Y + 2,
-                            Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X + 2, (int)contractedPoint.Y + 2,
-                            Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X + 1, (int)contractedPoint.Y + 2,
-                            Color.Red);
-                        drawnEdges2.Bitmap.SetPixel((int)contractedPoint.X + 2, (int)contractedPoint.Y + 1,
-                            Color.Red);
+                        using (var graphics = Graphics.FromImage(colorD))
+                        {
+                             graphics.DrawRectangle(yellowPen, new Rectangle((int)contractedPoint.X-3, (int)contractedPoint.Y-3, 7 , 7));
+                        }
                     }
                     catch (Exception)
                     {
 
                     }
                 }
-
+                //colorD.Save(@"D:\Desktop\LocIntersections.jpeg");
                 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 List<CameraSpacePoint> contractedPointsCSP = new List<CameraSpacePoint>();

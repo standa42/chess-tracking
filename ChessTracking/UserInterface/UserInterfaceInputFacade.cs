@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,9 +37,9 @@ namespace ChessTracking.UserInterface
             GameController.SaveGame();
         }
 
-        public void LoadGame()
+        public void LoadGame(StreamReader stream)
         {
-            GameController.LoadGame();
+            GameController.LoadGame(stream);
         }
 
         public void ChangeVisualisation(VisualisationType type)

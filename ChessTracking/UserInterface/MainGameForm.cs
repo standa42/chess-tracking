@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security;
 using System.Windows.Forms;
 using ChessTracking.Forms;
 using ChessTracking.MultithreadingMessages;
@@ -54,7 +56,19 @@ namespace ChessTracking.UserInterface
 
         private void LoadGameBtn_Click(object sender, EventArgs e)
         {
-            InputFacade.LoadGame();
+            var fileDialog = new OpenFileDialog();
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var stream = new StreamReader(fileDialog.FileName);
+                    InputFacade.LoadGame(stream);
+                }
+                catch (SecurityException ex)
+                {
+                    // TODO: má se tu něco dělat?
+                }
+            }
         }
 
         private void SaveGameBtn_Click(object sender, EventArgs e)
