@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.IO;
-
 using Microsoft.Kinect;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Globalization;
 using System.Runtime.CompilerServices;
 using MathNet.Numerics.LinearRegression;
 using MathNet.Numerics.LinearAlgebra.Double;
@@ -38,6 +34,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
         /// <param name="UpperLeftCorner">left-upper coordinates to draw bitmap</param>
         public unsafe void Render(Bitmap bm, Graphics g, Position2D UpperLeftCorner)
         {
+            /*
             BitmapData bmpData = bm.LockBits(new Rectangle(0, 0, bm.Width, bm.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
 
             unsafe
@@ -90,6 +87,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
             }
             bm.UnlockBits(bmpData);
             g.DrawImage(bm, UpperLeftCorner.X, UpperLeftCorner.Y);
+            */
         }
         
         public void CutOffMinMaxDepth(float minDepth, float maxDepth)
