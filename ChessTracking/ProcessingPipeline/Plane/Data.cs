@@ -13,141 +13,94 @@ namespace ChessTracking.ProcessingPipeline.Plane
     public class Data
     {
         /// <summary>
-        /// Reprezents raw points that can be further processed
+        /// Custom structure holding depth data from senzor, that are beeing processed
         /// </summary>
-        public MyCameraSpacePoint[] RawData;
+        public MyCameraSpacePoint[] DepthData;
 
-        public Data(CameraSpacePoint[] preparedCameraSpacePoints)
+        /// <summary>
+        /// Triangles generated uniformly over image. Serve as seeds for RANSAC algorithm
+        /// </summary>
+        public int[] TringlePointsForRansac;
+
+        private int TriangleCount;
+
+        /// <summary>
+        /// Converts depth data from sensor to custom structure
+        /// </summary>
+        /// <param name="cameraSpacePoints">Camera space points from sensor</param>
+        public Data(CameraSpacePoint[] cameraSpacePoints)
         {
-            RawData = new MyCameraSpacePoint[preparedCameraSpacePoints.Length];
-            for (int i = 0; i < preparedCameraSpacePoints.Length; i++)
+            DepthData = new MyCameraSpacePoint[cameraSpacePoints.Length];
+
+            for (int i = 0; i < cameraSpacePoints.Length; i++)
             {
-                RawData[i] = new MyCameraSpacePoint(ref preparedCameraSpacePoints[i]);
+                DepthData[i] = new MyCameraSpacePoint(ref cameraSpacePoints[i]);
             }
         }
 
         /// <summary>
-        /// Renders data to bitmap a draws them to the form graphics
+        /// Marks (Cuts off) depths under minDepth and over maxDepth as invalid.
+        /// Used for distances, where sensor cannot guarantee reliability of measurement, of
+        /// for distance requirements of user
         /// </summary>
-        /// <param name="bm">bitmap</param>
-        /// <param name="g">graphics</param>
-        /// <param name="UpperLeftCorner">left-upper coordinates to draw bitmap</param>
-        public unsafe void Render(Bitmap bm, Graphics g, Position2D UpperLeftCorner)
-        {
-            /*
-            BitmapData bmpData = bm.LockBits(new Rectangle(0, 0, bm.Width, bm.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
-            unsafe
-            {
-                byte* ptr = (byte*)bmpData.Scan0;
-
-                int bitmapSize = Config.DepthImageHeight * Config.DepthImageWidth;
-                int depthColorChange = Config.DepthColorChange;
-
-                // draw pixel according to its type
-                for (int y = 0; y < Config.DepthImageHeight; y++)
-                {
-                    // compensates sensors natural flip of image
-                    for (int x = Config.DepthImageWidth - 1; x >= 0; x--)
-                    {
-                        int position = y * Config.DepthImageWidth + x;
-
-                        if (RawData[position].type == PixelType.Invalid)
-                        {
-                            *ptr++ = 255;
-                            *ptr++ = 0;
-                            *ptr++ = 255;
-                        }
-                        else if (RawData[position].type == PixelType.Table)
-                        {
-                            byte value = (byte)(RawData[position].Z * depthColorChange);
-
-                            *ptr++ = 0;
-                            *ptr++ = 0;
-                            *ptr++ = value;
-                        }
-                        else if (RawData[position].type == PixelType.Object)
-                        {
-                            byte value = (byte)(RawData[position].Z * depthColorChange);
-
-                            *ptr++ = 0;
-                            *ptr++ = 255;
-                            *ptr++ = 0;
-                        }
-                        else
-                        {
-                            byte value = (byte)(RawData[position].Z * depthColorChange);
-
-                            *ptr++ = value;
-                            *ptr++ = value;
-                            *ptr++ = value;
-                        }
-                    }
-                }
-            }
-            bm.UnlockBits(bmpData);
-            g.DrawImage(bm, UpperLeftCorner.X, UpperLeftCorner.Y);
-            */
-        }
-        
+        /// <param name="minDepth">Minimal depth that is recognized as valid</param>
+        /// <param name="maxDepth">Maximal depth that is recognized as valid</param>
         public void CutOffMinMaxDepth(float minDepth, float maxDepth)
         {
-            int pocetCasti = Config.paralelTasksCount;
-            List<Task> tasky = new List<Task>();
+            // Uniform distribution of work into tasks
+            int partsCount = PlaneLocalizationConfig.ParalelTasksCount;
+            var tasks = new List<Task>();
 
-            int delka = RawData.Length;
-            int zacatek = 0;
-            int konec = delka / pocetCasti;
-            int krok = delka / pocetCasti;
+            int dataLength = DepthData.Length;
+            int step = dataLength / partsCount;
+            int start = 0;
+            int end = step;
 
-            for (int i = 0; i < pocetCasti; i++)
+            for (int i = 0; i < partsCount; i++)
             {
-                int zac = zacatek;
-                int kon = konec;
+                var startClosure = start;
+                var endClosure = end;
 
-                var t = Task.Run(() => CutOffMinMaxDepthImplementation(minDepth, maxDepth, zac, kon));
-                tasky.Add(t);
+                var t = Task.Run(() => CutOffMinMaxDepthImplementation(minDepth, maxDepth, startClosure, endClosure));
+                tasks.Add(t);
 
-                zacatek += krok;
-                konec += krok;
+                start += step;
+                end += step;
             }
 
-            Task.WaitAll(tasky.ToArray());
+            Task.WaitAll(tasks.ToArray());
         }
 
+        /// <summary>
+        /// Marks (Cuts off) depths under minDepth and over maxDepth in given range as invalid.
+        /// Used for distances, where sensor cannot guarantee reliability of measurement, of
+        /// for distance requirements of user
+        /// </summary>
+        /// <param name="minDepth">Minimal depth that is recognized as valid</param>
+        /// <param name="maxDepth">Maximal depth that is recognized as valid</param>
+        /// <param name="startIndex">Start index of array for processing</param>
+        /// <param name="endIndex">Last index of array for processing</param>
         private void CutOffMinMaxDepthImplementation(float minDepth, float maxDepth, int startIndex, int endIndex)
         {
             for (int i = startIndex; i < endIndex; i++)
             {
-                if ((RawData[i].Z > maxDepth) || (RawData[i].Z < minDepth))
+                if ((DepthData[i].Z > maxDepth) || (DepthData[i].Z < minDepth))
                 {
-                    RawData[i].Z = 0f;
-                }
-            }
-
-            ValidatePointsImplementation(startIndex, endIndex);
-        }
-
-        private void ValidatePointsImplementation(int startIndex, int endIndex)
-        {
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                if (RawData[i].Z == 0f)
-                {
-                    RawData[i].type = PixelType.Invalid;
+                    DepthData[i].Z = 0f;
+                    DepthData[i].Type = PixelType.Invalid;
                 }
             }
         }
         
         public void RANSAC()
         {
-            if (Config.tringlePointsForRANSAC == null) GeneratePseudorandomTriangles();
-            //if (Config.NumberOfFramesToAverage == 1) return;
+            if (TringlePointsForRansac == null) GeneratePseudorandomTriangles();
+            //if (PlaneLocalizationConfig.NumberOfFramesToAverage == 1) return;
 
-            int pocetCasti = Config.paralelTasksCount;
+            int pocetCasti = PlaneLocalizationConfig.ParalelTasksCount;
             List<Task> tasky = new List<Task>();
 
-            int delka = Config.triangleCount;
+            int delka = TriangleCount;
             int zacatek = 0;
             int konec = delka / pocetCasti;
             int krok = delka / pocetCasti;
@@ -166,27 +119,27 @@ namespace ChessTracking.ProcessingPipeline.Plane
 
             Task.WaitAll(tasky.ToArray());
 
-            for (int i = 0; i < RawData.Length; i++)
+            for (int i = 0; i < DepthData.Length; i++)
             {
-                if (RawData[i].type == PixelType.Invalid) continue;
+                if (DepthData[i].Type == PixelType.Invalid) continue;
 
-                float pointX = RawData[i].X;
-                float pointY = RawData[i].Y;
-                float pointZ = RawData[i].Z;
+                float pointX = DepthData[i].X;
+                float pointY = DepthData[i].Y;
+                float pointZ = DepthData[i].Z;
 
-                float distance = (float)(Math.Abs(Config.finalNormal.x * pointX + Config.finalNormal.y * pointY + Config.finalNormal.z * pointZ + Config.finalD) / Math.Sqrt(Config.finalNormal.x * Config.finalNormal.x + Config.finalNormal.y * Config.finalNormal.y + Config.finalNormal.z * Config.finalNormal.z));
+                float distance = (float)(Math.Abs(PlaneLocalizationConfig.FinalNormal.x * pointX + PlaneLocalizationConfig.FinalNormal.y * pointY + PlaneLocalizationConfig.FinalNormal.z * pointZ + PlaneLocalizationConfig.FinalD) / Math.Sqrt(PlaneLocalizationConfig.FinalNormal.x * PlaneLocalizationConfig.FinalNormal.x + PlaneLocalizationConfig.FinalNormal.y * PlaneLocalizationConfig.FinalNormal.y + PlaneLocalizationConfig.FinalNormal.z * PlaneLocalizationConfig.FinalNormal.z));
 
-                if (distance < Config.RansacThickness)
+                if (distance < PlaneLocalizationConfig.RansacThickness)
                 {
-                    RawData[i].type = PixelType.Table;
+                    DepthData[i].Type = PixelType.Table;
                 }
             }
         }
 
         public void RANSACimplementace(int zacatek, int konec)
         {
-            int GridSizeForTestingPlaneFit = Config.GridSizeForTestingPlaneFitInRANSAC;
-            float threshold = Config.RansacThickness;
+            int GridSizeForTestingPlaneFit = PlaneLocalizationConfig.GridSizeForTestingPlaneFit;
+            float threshold = PlaneLocalizationConfig.RansacThickness;
 
             double finalD = 0;
             MyVector3D finalNormal = new MyVector3D(0, 0, 0);
@@ -195,35 +148,35 @@ namespace ChessTracking.ProcessingPipeline.Plane
             for (int i = zacatek; i < konec; i++)
             {
                 // get pseudorandom predefinied triangle points
-                int a = Config.tringlePointsForRANSAC[3 * i];
-                int b = Config.tringlePointsForRANSAC[3 * i + 1];
-                int c = Config.tringlePointsForRANSAC[3 * i + 2];
+                int a = TringlePointsForRansac[3 * i];
+                int b = TringlePointsForRansac[3 * i + 1];
+                int c = TringlePointsForRansac[3 * i + 2];
 
                 // are those points even valid?
                 if (
-                    RawData[a].type == PixelType.Invalid ||
-                    RawData[b].type == PixelType.Invalid ||
-                    RawData[c].type == PixelType.Invalid
+                    DepthData[a].Type == PixelType.Invalid ||
+                    DepthData[b].Type == PixelType.Invalid ||
+                    DepthData[c].Type == PixelType.Invalid
                     ) continue;
 
                 // get plane analytical equation (ax + by + cz + c)
                 var normal = MyVector3D.CrossProduct(
-                    new MyVector3D(RawData[a].X - RawData[b].X, RawData[a].Y - RawData[b].Y, RawData[a].Z - RawData[b].Z),
-                    new MyVector3D(RawData[a].X - RawData[c].X, RawData[a].Y - RawData[c].Y, RawData[a].Z - RawData[c].Z)
+                    new MyVector3D(DepthData[a].X - DepthData[b].X, DepthData[a].Y - DepthData[b].Y, DepthData[a].Z - DepthData[b].Z),
+                    new MyVector3D(DepthData[a].X - DepthData[c].X, DepthData[a].Y - DepthData[c].Y, DepthData[a].Z - DepthData[c].Z)
                     );
-                double d = -(normal.x * RawData[a].X + normal.y * RawData[a].Y + normal.z * RawData[a].Z);
+                double d = -(normal.x * DepthData[a].X + normal.y * DepthData[a].Y + normal.z * DepthData[a].Z);
 
                 // Get number of points that belong to this plane
                 int numberOfTablePoints = 0;
-                for (int y = 0; y < Config.DepthImageHeight; y += GridSizeForTestingPlaneFit)
+                for (int y = 0; y < PlaneLocalizationConfig.DepthImageHeight; y += GridSizeForTestingPlaneFit)
                 {
-                    for (int x = 0; x < Config.DepthImageHeight; x += GridSizeForTestingPlaneFit)
+                    for (int x = 0; x < PlaneLocalizationConfig.DepthImageHeight; x += GridSizeForTestingPlaneFit)
                     {
-                        if (RawData[x + y * Config.DepthImageWidth].type == PixelType.Invalid) continue;
+                        if (DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Type == PixelType.Invalid) continue;
 
-                        float pointX = RawData[x + y * Config.DepthImageWidth].X;
-                        float pointY = RawData[x + y * Config.DepthImageWidth].Y;
-                        float pointZ = RawData[x + y * Config.DepthImageWidth].Z;
+                        float pointX = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].X;
+                        float pointY = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Y;
+                        float pointZ = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Z;
 
                         float distance = (float)(Math.Abs(normal.x * pointX + normal.y * pointY + normal.z * pointZ + d) / Math.Sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z));
 
@@ -243,13 +196,13 @@ namespace ChessTracking.ProcessingPipeline.Plane
                     finalNormal = normal;
 
                     // globally (over many frames)
-                    if (max > Config.maxObservedPlaneSize)
+                    if (max > PlaneLocalizationConfig.MaxObservedPlaneSize)
                     {
-                        lock (Config.lockingObj)
+                        lock (PlaneLocalizationConfig.LockingObj)
                         {
-                            Config.maxObservedPlaneSize = max;
-                            Config.finalD = finalD;
-                            Config.finalNormal = finalNormal;
+                            PlaneLocalizationConfig.MaxObservedPlaneSize = max;
+                            PlaneLocalizationConfig.FinalD = finalD;
+                            PlaneLocalizationConfig.FinalNormal = finalNormal;
                         }
                     }
                 }
@@ -269,14 +222,14 @@ namespace ChessTracking.ProcessingPipeline.Plane
         {
             List<Root> roots = new List<Root>();
             roots.Add(new Root(0, 0, 0)); // empty root for filling the list
-            int[] rootOvnershipMarkers = new int[RawData.Length];
+            int[] rootOvnershipMarkers = new int[DepthData.Length];
 
-            for (int y = 1; y < Config.DepthImageHeight; y += 20)
+            for (int y = 1; y < PlaneLocalizationConfig.DepthImageHeight; y += 20)
             {
-                for (int x = 1; x < Config.DepthImageWidth; x += 20)
+                for (int x = 1; x < PlaneLocalizationConfig.DepthImageWidth; x += 20)
                 {
                     // is table pixel and doesnt belong to any area yet? -> perform bfs from this point
-                    if ((RawData[PosFromCoor(x, y)].type == PixelType.Table) && (rootOvnershipMarkers[PosFromCoor(x, y)] == 0))
+                    if ((DepthData[PosFromCoor(x, y)].Type == PixelType.Table) && (rootOvnershipMarkers[PosFromCoor(x, y)] == 0))
                     {
                         int position = PosFromCoor(x, y);
                         int areaNumber = roots.Count;
@@ -293,7 +246,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
                         {
                             Point point = points.Dequeue();
 
-                            if ((RawData[point.position].type == PixelType.Table) && (rootOvnershipMarkers[point.position] == 0))
+                            if ((DepthData[point.position].Type == PixelType.Table) && (rootOvnershipMarkers[point.position] == 0))
                             {
                                 root.count++;
                                 rootOvnershipMarkers[point.position] = areaNumber;
@@ -309,12 +262,12 @@ namespace ChessTracking.ProcessingPipeline.Plane
                                     points.Enqueue(new Point(point.x - 1, point.y));
                                 }
 
-                                if (point.y < Config.DepthImageHeight - 1)
+                                if (point.y < PlaneLocalizationConfig.DepthImageHeight - 1)
                                 {
                                     points.Enqueue(new Point(point.x, point.y + 1));
                                 }
 
-                                if (point.x < Config.DepthImageWidth - 1)
+                                if (point.x < PlaneLocalizationConfig.DepthImageWidth - 1)
                                 {
                                     points.Enqueue(new Point(point.x + 1, point.y));
                                 }
@@ -341,11 +294,11 @@ namespace ChessTracking.ProcessingPipeline.Plane
             }
 
             // Invalidate all table pixels that doesnt belong to the largest area
-            for (int i = 0; i < RawData.Length; i++)
+            for (int i = 0; i < DepthData.Length; i++)
             {
-                if ((rootOvnershipMarkers[i] != maxPosition) && RawData[i].type == PixelType.Table)
+                if ((rootOvnershipMarkers[i] != maxPosition) && DepthData[i].Type == PixelType.Table)
                 {
-                    RawData[i].type = PixelType.NotMarked;
+                    DepthData[i].Type = PixelType.NotMarked;
                 }
 
             }
@@ -362,7 +315,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
             {
                 x = _x;
                 y = _y;
-                position = x + y * Config.DepthImageWidth;
+                position = x + y * PlaneLocalizationConfig.DepthImageWidth;
             }
         }
 
@@ -387,17 +340,17 @@ namespace ChessTracking.ProcessingPipeline.Plane
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static int PosFromCoor(int x, int y)
         {
-            return y * Config.DepthImageWidth + x;
+            return y * PlaneLocalizationConfig.DepthImageWidth + x;
         }
 
         public void LinearRegression()
         {
-            int step = Config.RegressionIsEvaluatedOnEveryXthTablePixel;
+            int step = PlaneLocalizationConfig.RegressionIsEvaluatedOnEveryNthTablePixel;
 
             int NumberOfEvaluatedTablePixels = 0;
-            for (int i = 0; i < RawData.Length; i += step)
+            for (int i = 0; i < DepthData.Length; i += step)
             {
-                if (RawData[i].type == PixelType.Table)
+                if (DepthData[i].Type == PixelType.Table)
                 {
                     NumberOfEvaluatedTablePixels++;
                 }
@@ -420,13 +373,13 @@ namespace ChessTracking.ProcessingPipeline.Plane
             {
                 ones[i] = 1;
             }
-            for (int i = 0; i < RawData.Length; i += step)
+            for (int i = 0; i < DepthData.Length; i += step)
             {
-                if (RawData[i].type == PixelType.Table)
+                if (DepthData[i].Type == PixelType.Table)
                 {
-                    LAx[counter] = RawData[i].X;
-                    LAy[counter] = RawData[i].Y;
-                    LAvalue[counter] = RawData[i].Z;
+                    LAx[counter] = DepthData[i].X;
+                    LAy[counter] = DepthData[i].Y;
+                    LAvalue[counter] = DepthData[i].Z;
 
                     counter++;
                 }
@@ -472,33 +425,33 @@ namespace ChessTracking.ProcessingPipeline.Plane
             double d = -(normal.x * x1 + normal.y * y1 + normal.z * z1);
 
             // erase potentional table markers
-            for (int i = 0; i < RawData.Length; i++)
+            for (int i = 0; i < DepthData.Length; i++)
             {
-                if (RawData[i].type == PixelType.Table)
+                if (DepthData[i].Type == PixelType.Table)
                 {
-                    RawData[i].type = PixelType.NotMarked;
+                    DepthData[i].Type = PixelType.NotMarked;
                 }
             }
 
             // Mark pixels as table, based on distance from computed plane 
-            for (int y = 0; y < Config.DepthImageHeight; y++)
+            for (int y = 0; y < PlaneLocalizationConfig.DepthImageHeight; y++)
             {
-                for (int x = 0; x < Config.DepthImageWidth; x++)
+                for (int x = 0; x < PlaneLocalizationConfig.DepthImageWidth; x++)
                 {
-                    if (RawData[x + y * Config.DepthImageWidth].type == PixelType.Invalid)
+                    if (DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Type == PixelType.Invalid)
                     {
                         continue;
                     }
 
-                    float pointX = RawData[x + y * Config.DepthImageWidth].X;
-                    float pointY = RawData[x + y * Config.DepthImageWidth].Y;
-                    float pointZ = RawData[x + y * Config.DepthImageWidth].Z;
+                    float pointX = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].X;
+                    float pointY = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Y;
+                    float pointZ = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Z;
 
                     float distance = (float)(Math.Abs(normal.x * pointX + normal.y * pointY + normal.z * pointZ + d) / Math.Sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z));
 
-                    if (distance < Config.RegreseTloustka)
+                    if (distance < PlaneLocalizationConfig.RegreseTloustka)
                     {
-                        RawData[PosFromCoor(x, y)].type = PixelType.Table;
+                        DepthData[PosFromCoor(x, y)].Type = PixelType.Table;
                     }
                 }
             }
@@ -517,13 +470,13 @@ namespace ChessTracking.ProcessingPipeline.Plane
         {
             // get angles to vector(0,0,1)
             // angle in plane x=0
-            double dotx = Config.finalNormal.y * 0 + Config.finalNormal.z * 1;
-            double detx = Config.finalNormal.y * 1 - Config.finalNormal.z * 0;
+            double dotx = PlaneLocalizationConfig.FinalNormal.y * 0 + PlaneLocalizationConfig.FinalNormal.z * 1;
+            double detx = PlaneLocalizationConfig.FinalNormal.y * 1 - PlaneLocalizationConfig.FinalNormal.z * 0;
             double angleX = Math.Atan2(detx, dotx);
 
             // angle in plane y=0
-            double doty = Config.finalNormal.x * 0 + Config.finalNormal.z * 1;
-            double dety = Config.finalNormal.x * 1 - Config.finalNormal.z * 0;
+            double doty = PlaneLocalizationConfig.FinalNormal.x * 0 + PlaneLocalizationConfig.FinalNormal.z * 1;
+            double dety = PlaneLocalizationConfig.FinalNormal.x * 1 - PlaneLocalizationConfig.FinalNormal.z * 0;
             double angleY = -Math.Atan2(dety, doty);
 
             // rotation matrix mRowColumn
@@ -543,34 +496,34 @@ namespace ChessTracking.ProcessingPipeline.Plane
             int count = 0;
 
             // Find the center of table by averaging values of table pixels
-            for (int i = 0; i < RawData.Length; i++)
+            for (int i = 0; i < DepthData.Length; i++)
             {
-                if (RawData[i].type == PixelType.Table)
+                if (DepthData[i].Type == PixelType.Table)
                 {
                     count++;
-                    sumX += RawData[i].X;
-                    sumY += RawData[i].Y;
-                    sumZ += RawData[i].Z;
+                    sumX += DepthData[i].X;
+                    sumY += DepthData[i].Y;
+                    sumZ += DepthData[i].Z;
                 }
             }
             MyVector3D tableCenter = new MyVector3D((sumX / count), (sumY / count), (sumZ / count));
 
             // Translation of origin to the center of the table 
             // and rotating them to vector(0,0,1)
-            for (int i = 0; i < RawData.Length; i++)
+            for (int i = 0; i < DepthData.Length; i++)
             {
-                RawData[i].X = (float)(RawData[i].X - tableCenter.x);
-                RawData[i].Y = (float)(RawData[i].Y - tableCenter.y);
-                RawData[i].Z = (float)(RawData[i].Z - tableCenter.z);
+                DepthData[i].X = (float)(DepthData[i].X - tableCenter.x);
+                DepthData[i].Y = (float)(DepthData[i].Y - tableCenter.y);
+                DepthData[i].Z = (float)(DepthData[i].Z - tableCenter.z);
 
-                float newX = (float)(RawData[i].X * m11 + RawData[i].Y * m12 + RawData[i].Z * m13);
-                float newY = (float)(RawData[i].X * m21 + RawData[i].Y * m22 + RawData[i].Z * m23);
-                float newZ = (float)(RawData[i].X * m31 + RawData[i].Y * m32 + RawData[i].Z * m33);
+                float newX = (float)(DepthData[i].X * m11 + DepthData[i].Y * m12 + DepthData[i].Z * m13);
+                float newY = (float)(DepthData[i].X * m21 + DepthData[i].Y * m22 + DepthData[i].Z * m23);
+                float newZ = (float)(DepthData[i].X * m31 + DepthData[i].Y * m32 + DepthData[i].Z * m33);
 
 
-                RawData[i].X = newX;
-                RawData[i].Y = newY;
-                RawData[i].Z = newZ;
+                DepthData[i].X = newX;
+                DepthData[i].Y = newY;
+                DepthData[i].Z = newZ;
             }
             return new Tuple<double,double>(angleX, angleY);
         }
@@ -579,14 +532,14 @@ namespace ChessTracking.ProcessingPipeline.Plane
         public bool[] ConvexHullAlgorithmModified()
         {
             // get candidates to convex hull
-            List<ConvexAlgorithmPoints> pts = new List<ConvexAlgorithmPoints>();
+            List<ConvexHullPoints> pts = new List<ConvexHullPoints>();
 
-            for (int y = 0; y < Config.DepthImageHeight; y++)
+            for (int y = 0; y < PlaneLocalizationConfig.DepthImageHeight; y++)
             {
-                for (int x = 0; x < Config.DepthImageWidth; x++)
+                for (int x = 0; x < PlaneLocalizationConfig.DepthImageWidth; x++)
                 {
                     #region longIfs - optimalization - takes only pixels of table that are surrounded with different pixel type
-                    if (RawData[PosFromCoor(x, y)].type == PixelType.Table)
+                    if (DepthData[PosFromCoor(x, y)].Type == PixelType.Table)
                     {
 
                         bool left = false;
@@ -596,7 +549,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
 
                         if (x > 0)
                         {
-                            if (RawData[PosFromCoor(x - 1, y)].type == PixelType.Table)
+                            if (DepthData[PosFromCoor(x - 1, y)].Type == PixelType.Table)
                             {
                                 left = true;
                             }
@@ -610,9 +563,9 @@ namespace ChessTracking.ProcessingPipeline.Plane
                             left = true;
                         }
 
-                        if (x < Config.DepthImageWidth - 1)
+                        if (x < PlaneLocalizationConfig.DepthImageWidth - 1)
                         {
-                            if (RawData[PosFromCoor(x + 1, y)].type == PixelType.Table)
+                            if (DepthData[PosFromCoor(x + 1, y)].Type == PixelType.Table)
                             {
                                 right = true;
                             }
@@ -628,7 +581,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
 
                         if (y > 0)
                         {
-                            if (RawData[PosFromCoor(x, y - 1)].type == PixelType.Table)
+                            if (DepthData[PosFromCoor(x, y - 1)].Type == PixelType.Table)
                             {
                                 up = true;
                             }
@@ -642,9 +595,9 @@ namespace ChessTracking.ProcessingPipeline.Plane
                             up = true;
                         }
 
-                        if (y < Config.DepthImageHeight - 1)
+                        if (y < PlaneLocalizationConfig.DepthImageHeight - 1)
                         {
-                            if (RawData[PosFromCoor(x, y + 1)].type == PixelType.Table)
+                            if (DepthData[PosFromCoor(x, y + 1)].Type == PixelType.Table)
                             {
                                 down = true;
                             }
@@ -660,7 +613,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
 
                         if (!(left && right && up && down))
                         {
-                            pts.Add(new ConvexAlgorithmPoints(ref RawData[PosFromCoor(x, y)], PosFromCoor(x, y)));
+                            pts.Add(new ConvexHullPoints(ref DepthData[PosFromCoor(x, y)], PosFromCoor(x, y)));
                         }
 
                         #endregion
@@ -669,7 +622,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
             }
 
             // make convex hull with algorithm
-            List<ConvexAlgorithmPoints> hullPts = (List<ConvexAlgorithmPoints>)ConvexHull.MakeHull(pts);
+            List<ConvexHullPoints> hullPts = (List<ConvexHullPoints>)ConvexHull.MakeHull(pts);
 
             // make Minimal Bounding Rectangle and check, which points fall into it
 
@@ -747,17 +700,17 @@ namespace ChessTracking.ProcessingPipeline.Plane
 
             bool[] resultBools = new bool[512*424];
 
-            for (int i = 0; i < RawData.Length; i++)
+            for (int i = 0; i < DepthData.Length; i++)
             {
-                double x = RawData[i].X * Math.Cos(minAreaAngle) - RawData[i].Y * Math.Sin(minAreaAngle);
-                double y = RawData[i].X * Math.Sin(minAreaAngle) + RawData[i].Y * Math.Cos(minAreaAngle);
+                double x = DepthData[i].X * Math.Cos(minAreaAngle) - DepthData[i].Y * Math.Sin(minAreaAngle);
+                double y = DepthData[i].X * Math.Sin(minAreaAngle) + DepthData[i].Y * Math.Cos(minAreaAngle);
 
                 if (
                     (x > minValues.X) && (x < maxValues.X) &&
                     (y > minValues.Y) && (y < maxValues.Y) &&
-                    //RawData[i].type == PixelType.NotMarked &&
-                    //&& RawData[i].Z > Config.RegreseTloustka && RawData[i].Z < 0.2f
-                    RawData[i].Z < 0.2f && RawData[i].Z > -0.3f
+                    //DepthData[i].type == PixelType.NotMarked &&
+                    //&& DepthData[i].Z > PlaneLocalizationConfig.RegreseTloustka && DepthData[i].Z < 0.2f
+                    DepthData[i].Z < 0.2f && DepthData[i].Z > -0.3f
                     )
                 {
                     resultBools[i] = true;
@@ -803,9 +756,9 @@ namespace ChessTracking.ProcessingPipeline.Plane
                     up.RotateAroundPoint(rotation, center);
                     right.RotateAroundPoint(rotation, center);
 
-                    tempBodyTrojuhelniku.Add(center.X + center.Y * Config.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(up.X + up.Y * Config.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(right.X + right.Y * Config.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth);
 
 
 
@@ -817,9 +770,9 @@ namespace ChessTracking.ProcessingPipeline.Plane
                     up.RotateAroundPoint(rotation, center);
                     right.RotateAroundPoint(rotation, center);
 
-                    tempBodyTrojuhelniku.Add(center.X + center.Y * Config.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(up.X + up.Y * Config.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(right.X + right.Y * Config.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth);
 
 
                     size = 98;
@@ -830,9 +783,9 @@ namespace ChessTracking.ProcessingPipeline.Plane
                     up.RotateAroundPoint(rotation, center);
                     right.RotateAroundPoint(rotation, center);
 
-                    tempBodyTrojuhelniku.Add(center.X + center.Y * Config.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(up.X + up.Y * Config.DepthImageWidth);
-                    tempBodyTrojuhelniku.Add(right.X + right.Y * Config.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth);
+                    tempBodyTrojuhelniku.Add(right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth);
 
 
                     rotation += angleStep;
@@ -840,8 +793,8 @@ namespace ChessTracking.ProcessingPipeline.Plane
                 }
             }
 
-            Config.tringlePointsForRANSAC = tempBodyTrojuhelniku.ToArray();
-            Config.triangleCount = Config.tringlePointsForRANSAC.Length / 3;
+            TringlePointsForRansac = tempBodyTrojuhelniku.ToArray();
+            TriangleCount = TringlePointsForRansac.Length / 3;
 
         }
 

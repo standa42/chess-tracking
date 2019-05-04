@@ -96,7 +96,9 @@
     <Compile Include="ProcessingPipeline\FiguresLocalization.cs" />
     <Compile Include="ProcessingPipeline\PlaneDoneData.cs" />
     <Compile Include="ProcessingPipeline\PlaneLocalization.cs" />
-    <Compile Include="ProcessingPipeline\Plane\Config.cs" />
+    <Compile Include="ProcessingPipeline\Plane\ConvexHullPoints.cs" />
+    <Compile Include="ProcessingPipeline\Plane\PixelType.cs" />
+    <Compile Include="ProcessingPipeline\Plane\PlaneLocalizationConfig.cs" />
     <Compile Include="ProcessingPipeline\Plane\ConvexHull.cs" />
     <Compile Include="ProcessingPipeline\Plane\Data.cs" />
     <Compile Include="ProcessingPipeline\Plane\MyCameraSpacePoint.cs" />

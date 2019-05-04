@@ -31,7 +31,7 @@ namespace ChessTracking.ProcessingPipeline
             var planeData = new PlaneDoneData(rawData);
 
             Data data = new Data(planeData.CameraSpacePointsFromDepthData);
-            data.CutOffMinMaxDepth(Config.minDepth, Config.maxDepth);
+            data.CutOffMinMaxDepth(PlaneLocalizationConfig.MinDepth, PlaneLocalizationConfig.MaxDepth);
             data.RANSAC();
             data.LargestTableArea();
             data.LinearRegression();
