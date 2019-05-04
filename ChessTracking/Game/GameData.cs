@@ -8,42 +8,16 @@ using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.Game
 {
-    class GameData
+    public class GameData
     {
-        public Figure[,] Figures { get; set; }
+        public ChessboardModel Chessboard;
         public bool IsWhitePlaying { get; set; }
 
-        public GameData(Figure[,] figures, bool isWhitePlaying)
+        public GameData(ChessboardModel chessboard, bool isWhitePlaying = true)
         {
-            this.Figures = figures;
+            this.Chessboard = chessboard;
             this.IsWhitePlaying = isWhitePlaying;
         }
 
-        public TrackingState GetTrackingStates()
-        {
-            var figures = new TrackingFieldState[8,8];
-
-            for (int x = 0; x < 8; x++)
-            {
-                for (int y = 0; y < 8; y++)
-                {
-                    if (Figures[x,y] == null)
-                    {
-                        figures[x, y] = TrackingFieldState.None;
-                    }
-                    else if (Figures[x,y].IsWhite)
-                    {
-                        figures[x, y] = TrackingFieldState.White;
-                    }
-                    else
-                    {
-                        figures[x, y] = TrackingFieldState.Black;
-                    }
-                }
-            }
-
-            var state = new TrackingState(figures);
-            return state;
-        }
     }
 }

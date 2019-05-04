@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.Game.Figures
 {
-    abstract class Figure
+    public abstract class Figure
     {
         public Position Position { get; set; }
         public bool IsWhite { get; set; }

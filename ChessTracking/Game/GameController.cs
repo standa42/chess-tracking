@@ -24,7 +24,7 @@ namespace ChessTracking.Game
 
         public int? InitiateWithTracingInput(TrackingState trackingState)
         {
-            var figures = Game.GetTrackingStates().Figures;
+            var figures = Game.Chessboard.GetTrackingStates().Figures;
 
             TrackingState chessboardState = new TrackingState(figures);
 
@@ -43,7 +43,7 @@ namespace ChessTracking.Game
         public void TryChangeChessboardState(TrackingState trackingState)
         {
             var tsfigures = trackingState.Figures;
-            var gamefigures = Game.GetTrackingStates().Figures;
+            var gamefigures = Game.Chessboard.GetTrackingStates().Figures;
 
             Position missing = null;
             Position appearance = null;
@@ -74,8 +74,8 @@ namespace ChessTracking.Game
 
             if (missing != null && appearance != null)
             {
-                Game.Figures[appearance.X, appearance.Y] = Game.Figures[missing.X, missing.Y];
-                Game.Figures[missing.X, missing.Y] = null;
+                Game.Chessboard.Figures[appearance.X, appearance.Y] = Game.Chessboard.Figures[missing.X, missing.Y];
+                Game.Chessboard.Figures[missing.X, missing.Y] = null;
             }
 
             OutputFacade.UpdateBoardState(RenderGameState());
@@ -121,7 +121,7 @@ namespace ChessTracking.Game
             figures[6, 6] = new Pesec(new Position(6, 6), false);
             figures[7, 6] = new Pesec(new Position(7, 6), false);*/
 
-            Game = new GameData(figures, isWhitePlaying: true);
+            Game = new GameData(new ChessboardModel(figures), isWhitePlaying: true);
 
             OutputFacade.UpdateBoardState(RenderGameState());
         }
@@ -154,9 +154,9 @@ namespace ChessTracking.Game
                 {
                     using (Graphics graphics = Graphics.FromImage(bm))
                     {
-                        if (Game.Figures[x, y] != null)
+                        if (Game.Chessboard.Figures[x, y] != null)
                         {
-                            graphics.DrawImageUnscaled(Game.Figures[x, y].ImageBitmap, x * 40, y * 40);
+                            graphics.DrawImageUnscaled(Game.Chessboard.Figures[x, y].ImageBitmap, x * 40, y * 40);
                         }
                     }
                 }

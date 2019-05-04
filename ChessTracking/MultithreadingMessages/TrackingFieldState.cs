@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
-    enum TrackingFieldState
+    public enum TrackingFieldState
     {
         None = 0,
         White,

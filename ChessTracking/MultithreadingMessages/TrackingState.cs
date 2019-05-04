@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
-    class TrackingState
+    public class TrackingState
     {
         public TrackingFieldState[,] Figures { get; set; }
 

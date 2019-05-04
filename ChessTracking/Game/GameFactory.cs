@@ -10,7 +10,7 @@ namespace ChessTracking.Game
     {
         public static GameData NewGame()
         {
-
+            return null;
         }
 
     }

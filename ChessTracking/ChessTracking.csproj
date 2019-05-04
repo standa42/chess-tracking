@@ -78,6 +78,7 @@
     <Compile Include="ControllingElements\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
+    <Compile Include="Game\ChessboardModel.cs" />
     <Compile Include="Game\Figures\Dama.cs" />
     <Compile Include="Game\Figures\Figure.cs" />
     <Compile Include="Game\Figures\Kral.cs" />
