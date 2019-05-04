@@ -118,7 +118,6 @@
     <Compile Include="MultithreadingMessages\ResultMessage.cs" />
     <Compile Include="MultithreadingMessages\VisualisationChangeMessage.cs" />
     <Compile Include="MultithreadingMessages\VisualisationType.cs" />
-    <Compile Include="ProcessingPipeline\AttemptToRecreateOldVisualiser.cs" />
     <Compile Include="ProcessingPipeline\Kinect.cs" />
     <Compile Include="ProcessingPipeline\Pipeline.cs" />
     <Compile Include="ProcessingPipeline\PipelineController.cs" />
