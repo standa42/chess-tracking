@@ -74,11 +74,11 @@ namespace ChessTracking.Game
                 // if is ended - stop everything
             }
 
+            OutputFacade.UpdateRecordState(Game.RecordOfGame);
             OutputFacade.UpdateBoardState(RenderGameState());
            
 
         }
-
         
     }
 }

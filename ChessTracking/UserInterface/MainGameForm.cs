@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -149,6 +150,15 @@ namespace ChessTracking.UserInterface
             if (bitmap != null)
             {
                 GameStatePictureBox.Image = bitmap;
+            }
+        }
+
+        public void UpdateRecordState(IList<string> records)
+        {
+            if (records != null)
+            {
+                GameHistoryListBox.DataSource = null;
+                GameHistoryListBox.DataSource = records;
             }
         }
 

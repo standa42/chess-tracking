@@ -66,6 +66,36 @@ namespace ChessTracking.MultithreadingMessages
 
             return equivalent;
         }
-        
+
+        public void VerticalFlip()
+        {
+            var newMatrix = new TrackingFieldState[Figures.GetLength(1), Figures.GetLength(0)];
+
+            for (int column = 0; column < 0; column++)
+            {
+                for (int row = 0; row < Figures.GetLength(0); row++)
+                {
+                    newMatrix[row, column] = Figures[row, (Figures.GetLength(0) - 1) - column];
+                }
+            }
+
+            Figures = newMatrix;
+        }
+
+        public void HorizontalFlip()
+        {
+            var newMatrix = new TrackingFieldState[Figures.GetLength(1), Figures.GetLength(0)];
+
+            for (int column = 0; column < Figures.GetLength(0); column++)
+            {
+                for (int row = 0; row < Figures.GetLength(1); row++)
+                {
+                    newMatrix[row, column] = Figures[(Figures.GetLength(1) - 1) - row, column];
+                }
+            }
+
+            Figures = newMatrix;
+        }
+
     }
 }

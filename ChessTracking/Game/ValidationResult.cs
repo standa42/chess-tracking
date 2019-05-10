@@ -10,6 +10,7 @@ namespace ChessTracking.Game
     {
         public bool IsValid { get; set; }
         public GameData NewGameState { get; set; }
+        public GameData SomethingChanged { get; set; }
 
         public ValidationResult(bool isValid, GameData newGameState)
         {

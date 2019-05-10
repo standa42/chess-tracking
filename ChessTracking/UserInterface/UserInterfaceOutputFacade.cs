@@ -48,5 +48,10 @@ namespace ChessTracking.UserInterface
         {
             MainForm?.UpdateBoardState(bitmap);
         }
+
+        public void UpdateRecordState(IList<string> records)
+        {
+            MainForm?.UpdateRecordState(records);
+        }
     }
 }

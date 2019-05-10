@@ -19,6 +19,7 @@ namespace ChessTracking.ControllingElements
         private bool TrackningInProgress { get; set; }
         private int NumberOfCWRotations { get; set; }
         private Queue<TrackingState> AveragingQueue { get; set; }
+        private TrackingState LastSentState { get; set; }
 
         public TrackingResultProcessing(UserInterfaceOutputFacade outputFacade, GameController gameController)
         {
@@ -45,6 +46,7 @@ namespace ChessTracking.ControllingElements
                 return;
 
             var trackingState = resultMessage.TrackingState;
+            trackingState.HorizontalFlip();
 
             if (TrackningInProgress)
             {
@@ -54,8 +56,14 @@ namespace ChessTracking.ControllingElements
                 var average = Averaging(trackingState);
                 // poslat průměrování
                 OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average));
-                // poslat to do game
-                GameController.TryChangeChessboardState(average);
+                // ověřit, zda neposíláme znovu stejný stav
+                if (LastSentState != null && !LastSentState.IsEquivalentTo(average))
+                {
+                    // poslat to do game
+                    GameController.TryChangeChessboardState(average);
+                }
+
+                LastSentState = average;
             }
             else
             {
@@ -74,9 +82,18 @@ namespace ChessTracking.ControllingElements
                     if (rotation.HasValue)
                     {
                         NumberOfCWRotations = rotation.Value;
+                        RotatedSavedStates();
                         TrackningInProgress = true;
                     }
                 }
+            }
+        }
+
+        private void RotatedSavedStates()
+        {
+            foreach (var averageState in AveragingQueue)
+            {
+                averageState.RotateClockWise(NumberOfCWRotations);
             }
         }
 
@@ -117,15 +134,20 @@ namespace ChessTracking.ControllingElements
             }
         }
 
+        private static Bitmap ChessboardBitmap { get; set; }
+
+        static TrackingResultProcessing()
+        {
+            ChessboardBitmap = new Bitmap($@"img\ChessboardSmaller4.png");
+        }
+
         private Bitmap GenerateImageForTrackingState(TrackingState trackingState)
         {
             trackingState = new TrackingState(trackingState.Figures);
-            trackingState.RotateClockWise(2);
 
-            var bm = new Bitmap(320, 320, PixelFormat.Format24bppRgb);
+            var bm = (Bitmap)ChessboardBitmap.Clone();
             SolidBrush blackBrush = new SolidBrush(Color.Black);
             SolidBrush whiteBrush = new SolidBrush(Color.White);
-            SolidBrush blueBrush = new SolidBrush(Color.LightSkyBlue);
 
             for (int x = 0; x < 8; x++)
             {
@@ -133,7 +155,7 @@ namespace ChessTracking.ControllingElements
                 {
                     using (Graphics graphics = Graphics.FromImage(bm))
                     {
-                        switch (trackingState.Figures[x, y])
+                        switch (trackingState.Figures[x, 7 - y])
                         {
                             case TrackingFieldState.White:
                                 graphics.FillRectangle(whiteBrush, new Rectangle(x * 40, y * 40, 40, 40));
@@ -142,7 +164,6 @@ namespace ChessTracking.ControllingElements
                                 graphics.FillRectangle(blackBrush, new Rectangle(x * 40, y * 40, 40, 40));
                                 break;
                             case TrackingFieldState.None:
-                                graphics.FillRectangle(blueBrush, new Rectangle(x * 40, y * 40, 40, 40));
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();

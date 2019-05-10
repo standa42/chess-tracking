@@ -11,9 +11,8 @@ namespace ChessTracking.Game
     {
         public static ValidationResult ValidateAndPerform(GameData game, TrackingState trackingState)
         {
-            /*
            var tsfigures = trackingState.Figures;
-           var gamefigures = Game.Chessboard.GetTrackingStates().Figures;
+           var gamefigures = game.Chessboard.GetTrackingStates().Figures;
 
            ChessPosition missing = null;
            ChessPosition appearance = null;
@@ -45,15 +44,12 @@ namespace ChessTracking.Game
 
            if (missing != null && appearance != null)
            {
-               Game.Chessboard.Figures[appearance.X, appearance.Y] = Game.Chessboard.Figures[missing.X, missing.Y];
-               Game.Chessboard.Figures[missing.X, missing.Y] = null;
+               game.Chessboard.Figures[appearance.X, appearance.Y] = game.Chessboard.Figures[missing.X, missing.Y];
+               game.Chessboard.Figures[missing.X, missing.Y] = null;
+               game.RecordOfGame.Add($"st with fields {missing.X} {missing.Y} and {appearance.X} {appearance.Y}");
            }
-
-           OutputFacade.UpdateBoardState(RenderGameState());
-
-           */
-
-            return new ValidationResult(true, game);
+           
+           return new ValidationResult(true, game);
         }
     }
 }
