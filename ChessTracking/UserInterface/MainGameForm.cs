@@ -59,21 +59,43 @@ namespace ChessTracking.UserInterface
             var fileDialog = new OpenFileDialog();
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
+                StreamReader stream = null;
                 try
                 {
-                    var stream = new StreamReader(fileDialog.FileName);
+                    stream = new StreamReader(fileDialog.FileName);
                     InputFacade.LoadGame(stream);
                 }
                 catch (SecurityException)
                 {
                     // TODO: má se tu něco dělat?
                 }
+                finally
+                {
+                    stream?.Close();
+                }
             }
         }
 
         private void SaveGameBtn_Click(object sender, EventArgs e)
         {
-            InputFacade.SaveGame();
+            var fileDialog = new SaveFileDialog();
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter stream = null;
+                try
+                {
+                    stream = new StreamWriter(fileDialog.FileName);
+                    InputFacade.SaveGame(stream);
+                }
+                catch (SecurityException)
+                {
+                    // TODO: má se tu něco dělat?
+                }
+                finally
+                {
+                    stream?.Close();
+                }
+            }
         }
 
         private void StartTrackingBtn_Click(object sender, EventArgs e)

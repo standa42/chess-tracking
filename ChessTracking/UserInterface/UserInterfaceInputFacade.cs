@@ -30,9 +30,9 @@ namespace ChessTracking.UserInterface
             GameController.NewGame();
         }
 
-        public void SaveGame()
+        public void SaveGame(StreamWriter stream)
         {
-            GameController.SaveGame();
+            GameController.SaveGame(stream);
         }
 
         public void LoadGame(StreamReader stream)

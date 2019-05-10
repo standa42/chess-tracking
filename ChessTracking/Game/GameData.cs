@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessTracking.Game.Figures;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.Game
@@ -11,12 +10,30 @@ namespace ChessTracking.Game
     public class GameData
     {
         public ChessboardModel Chessboard;
-        public bool IsWhitePlaying { get; set; }
-
-        public GameData(ChessboardModel chessboard, bool isWhitePlaying = true)
+        public PlayerColor PlayerOnMove { get; set; }
+        public PlayerColor? PlayerWon { get; set; }
+        public ChessPosition EnPassantPosition { get; set; }
+        public List<string> RecordOfGame { get; set; }
+        
+        public GameData(ChessboardModel chessboard, PlayerColor playerOnMove, ChessPosition enPassantPosition, PlayerColor? playerWon)
         {
-            this.Chessboard = chessboard;
-            this.IsWhitePlaying = isWhitePlaying;
+            Chessboard = chessboard;
+            PlayerOnMove = playerOnMove;
+            EnPassantPosition = enPassantPosition;
+            PlayerWon = playerWon;
+            RecordOfGame = new List<string>();
+        }
+
+        public string ExportGameToAlgebraicNotation()
+        {
+            var acumulator = new StringBuilder("");
+
+            foreach (var record in RecordOfGame)
+            {
+                acumulator.Append(record + Environment.NewLine);
+            }
+
+            return acumulator.ToString();
         }
 
     }

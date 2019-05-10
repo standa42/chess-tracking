@@ -23,10 +23,10 @@ namespace ChessTracking.MultithreadingMessages
             {
                 var newMatrix = new TrackingFieldState[finalMatrix.GetLength(1), finalMatrix.GetLength(0)];
 
-                int newColumn, newRow = 0;
+                int newRow = 0;
                 for (int oldColumn = finalMatrix.GetLength(1) - 1; oldColumn >= 0; oldColumn--)
                 {
-                    newColumn = 0;
+                    var newColumn = 0;
                     for (int oldRow = 0; oldRow < finalMatrix.GetLength(0); oldRow++)
                     {
                         newMatrix[newRow, newColumn] = finalMatrix[oldRow, oldColumn];
@@ -41,61 +41,31 @@ namespace ChessTracking.MultithreadingMessages
             Figures = finalMatrix;
         }
 
-        public void RotateCounterClockWise(int rightAngleRotations)
+        public bool IsEquivalentTo(TrackingState other)
         {
-            throw new NotImplementedException();
+            return TrackingState.IsEquivalent(this, other);
         }
 
-
-        public static bool operator ==(TrackingState lhs, TrackingState rhs)
+        public static bool IsEquivalent(TrackingState lhs, TrackingState rhs)
         {
-            return Equals(lhs, rhs);
-        }
+            var figures = lhs.Figures;
+            var otherFigures = rhs.Figures;
 
-        public static bool operator !=(TrackingState lhs, TrackingState rhs)
-        {
-            return !Equals(lhs, rhs);
-        }
-
-        public bool Equals(TrackingState other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            bool equal = true;
+            bool equivalent = true;
 
             for (int x = 0; x < 8; x++)
             {
                 for (int y = 0; y < 8; y++)
                 {
-                    if (Figures[x,y] != other.Figures[x,y])
+                    if (figures[x, y] != otherFigures[x, y])
                     {
-                        equal = false;
+                        equivalent = false;
                     }
                 }
             }
 
-            return equal;
+            return equivalent;
         }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            return obj.GetType() == GetType() && Equals((TrackingState)obj);
-        }
+        
     }
 }

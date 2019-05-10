@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessTracking.Game.Figures;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.Game
@@ -29,7 +28,7 @@ namespace ChessTracking.Game
                     {
                         figures[x, y] = TrackingFieldState.None;
                     }
-                    else if (Figures[x, y].IsWhite)
+                    else if (Figures[x, y].Color == PlayerColor.White)
                     {
                         figures[x, y] = TrackingFieldState.White;
                     }
