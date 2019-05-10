@@ -17,7 +17,7 @@ namespace ChessTracking.ControllingElements
         private GameController GameController { get; }
         private FPSCounter FpsCounter { get; }
         private bool TrackningInProgress { get; set; }
-        private int NumberOfCWRotations { get; set; }
+        private int NumberOfCwRotations { get; set; }
         private Queue<TrackingState> AveragingQueue { get; set; }
         private TrackingState LastSentState { get; set; }
 
@@ -33,6 +33,8 @@ namespace ChessTracking.ControllingElements
         public void Reset()
         {
             TrackningInProgress = false;
+            LastSentState = null;
+            NumberOfCwRotations = 0;
             AveragingQueue.Clear();
         }
 
@@ -50,7 +52,7 @@ namespace ChessTracking.ControllingElements
 
             if (TrackningInProgress)
             {
-                trackingState.RotateClockWise(NumberOfCWRotations);
+                trackingState.RotateClockWise(NumberOfCwRotations);
                 OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState));
                 // průměrování
                 var average = Averaging(trackingState);
@@ -81,7 +83,7 @@ namespace ChessTracking.ControllingElements
                     // přeponout podle toho trackinginprogress, popř otočit to co mám v paměti
                     if (rotation.HasValue)
                     {
-                        NumberOfCWRotations = rotation.Value;
+                        NumberOfCwRotations = rotation.Value;
                         RotatedSavedStates();
                         TrackningInProgress = true;
                     }
@@ -93,7 +95,7 @@ namespace ChessTracking.ControllingElements
         {
             foreach (var averageState in AveragingQueue)
             {
-                averageState.RotateClockWise(NumberOfCWRotations);
+                averageState.RotateClockWise(NumberOfCwRotations);
             }
         }
 
