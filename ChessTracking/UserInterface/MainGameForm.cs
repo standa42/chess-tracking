@@ -163,6 +163,6 @@ namespace ChessTracking.UserInterface
         }
 
         #endregion
-
+        
     }
 }

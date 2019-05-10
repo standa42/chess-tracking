@@ -45,6 +45,9 @@
             this.UserLogsListBox = new System.Windows.Forms.ListBox();
             this.VizualizationChoiceComboBox = new System.Windows.Forms.ComboBox();
             this.ResultProcessingTimer = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -53,7 +56,7 @@
             // GameStatePictureBox
             // 
             this.GameStatePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GameStatePictureBox.Location = new System.Drawing.Point(624, 12);
+            this.GameStatePictureBox.Location = new System.Drawing.Point(624, 30);
             this.GameStatePictureBox.Name = "GameStatePictureBox";
             this.GameStatePictureBox.Size = new System.Drawing.Size(300, 300);
             this.GameStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -62,7 +65,7 @@
             // 
             // NewGameBtn
             // 
-            this.NewGameBtn.Location = new System.Drawing.Point(15, 318);
+            this.NewGameBtn.Location = new System.Drawing.Point(15, 336);
             this.NewGameBtn.Name = "NewGameBtn";
             this.NewGameBtn.Size = new System.Drawing.Size(120, 45);
             this.NewGameBtn.TabIndex = 1;
@@ -72,7 +75,7 @@
             // 
             // LoadGameBtn
             // 
-            this.LoadGameBtn.Location = new System.Drawing.Point(15, 369);
+            this.LoadGameBtn.Location = new System.Drawing.Point(15, 387);
             this.LoadGameBtn.Name = "LoadGameBtn";
             this.LoadGameBtn.Size = new System.Drawing.Size(120, 45);
             this.LoadGameBtn.TabIndex = 2;
@@ -82,7 +85,7 @@
             // 
             // SaveGameBtn
             // 
-            this.SaveGameBtn.Location = new System.Drawing.Point(15, 420);
+            this.SaveGameBtn.Location = new System.Drawing.Point(15, 438);
             this.SaveGameBtn.Name = "SaveGameBtn";
             this.SaveGameBtn.Size = new System.Drawing.Size(120, 45);
             this.SaveGameBtn.TabIndex = 3;
@@ -92,7 +95,7 @@
             // 
             // StartTrackingBtn
             // 
-            this.StartTrackingBtn.Location = new System.Drawing.Point(15, 471);
+            this.StartTrackingBtn.Location = new System.Drawing.Point(15, 489);
             this.StartTrackingBtn.Name = "StartTrackingBtn";
             this.StartTrackingBtn.Size = new System.Drawing.Size(120, 45);
             this.StartTrackingBtn.TabIndex = 4;
@@ -102,7 +105,7 @@
             // 
             // Recalibrate
             // 
-            this.Recalibrate.Location = new System.Drawing.Point(15, 522);
+            this.Recalibrate.Location = new System.Drawing.Point(15, 540);
             this.Recalibrate.Name = "Recalibrate";
             this.Recalibrate.Size = new System.Drawing.Size(120, 45);
             this.Recalibrate.TabIndex = 5;
@@ -112,7 +115,7 @@
             // 
             // StopTrackingBtn
             // 
-            this.StopTrackingBtn.Location = new System.Drawing.Point(15, 573);
+            this.StopTrackingBtn.Location = new System.Drawing.Point(15, 591);
             this.StopTrackingBtn.Name = "StopTrackingBtn";
             this.StopTrackingBtn.Size = new System.Drawing.Size(120, 45);
             this.StopTrackingBtn.TabIndex = 6;
@@ -124,15 +127,15 @@
             // 
             this.GameHistoryListBox.FormattingEnabled = true;
             this.GameHistoryListBox.ItemHeight = 16;
-            this.GameHistoryListBox.Location = new System.Drawing.Point(141, 318);
+            this.GameHistoryListBox.Location = new System.Drawing.Point(141, 336);
             this.GameHistoryListBox.Name = "GameHistoryListBox";
-            this.GameHistoryListBox.Size = new System.Drawing.Size(205, 276);
+            this.GameHistoryListBox.Size = new System.Drawing.Size(205, 340);
             this.GameHistoryListBox.TabIndex = 7;
             // 
             // TrackedBoardStatePictureBox
             // 
             this.TrackedBoardStatePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TrackedBoardStatePictureBox.Location = new System.Drawing.Point(318, 12);
+            this.TrackedBoardStatePictureBox.Location = new System.Drawing.Point(318, 30);
             this.TrackedBoardStatePictureBox.Name = "TrackedBoardStatePictureBox";
             this.TrackedBoardStatePictureBox.Size = new System.Drawing.Size(300, 300);
             this.TrackedBoardStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -142,7 +145,7 @@
             // ImmediateBoardStatePictureBox
             // 
             this.ImmediateBoardStatePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ImmediateBoardStatePictureBox.Location = new System.Drawing.Point(12, 12);
+            this.ImmediateBoardStatePictureBox.Location = new System.Drawing.Point(12, 30);
             this.ImmediateBoardStatePictureBox.Name = "ImmediateBoardStatePictureBox";
             this.ImmediateBoardStatePictureBox.Size = new System.Drawing.Size(300, 300);
             this.ImmediateBoardStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -153,15 +156,15 @@
             // 
             this.TrackingLogsListBox.FormattingEnabled = true;
             this.TrackingLogsListBox.ItemHeight = 16;
-            this.TrackingLogsListBox.Location = new System.Drawing.Point(570, 318);
+            this.TrackingLogsListBox.Location = new System.Drawing.Point(570, 336);
             this.TrackingLogsListBox.Name = "TrackingLogsListBox";
-            this.TrackingLogsListBox.Size = new System.Drawing.Size(214, 292);
+            this.TrackingLogsListBox.Size = new System.Drawing.Size(214, 340);
             this.TrackingLogsListBox.TabIndex = 11;
             // 
             // FPSLabel
             // 
             this.FPSLabel.AutoSize = true;
-            this.FPSLabel.Location = new System.Drawing.Point(801, 369);
+            this.FPSLabel.Location = new System.Drawing.Point(790, 388);
             this.FPSLabel.Name = "FPSLabel";
             this.FPSLabel.Size = new System.Drawing.Size(42, 17);
             this.FPSLabel.TabIndex = 12;
@@ -170,9 +173,9 @@
             // HandDetectedBtn
             // 
             this.HandDetectedBtn.Enabled = false;
-            this.HandDetectedBtn.Location = new System.Drawing.Point(804, 318);
+            this.HandDetectedBtn.Location = new System.Drawing.Point(790, 336);
             this.HandDetectedBtn.Name = "HandDetectedBtn";
-            this.HandDetectedBtn.Size = new System.Drawing.Size(120, 45);
+            this.HandDetectedBtn.Size = new System.Drawing.Size(134, 45);
             this.HandDetectedBtn.TabIndex = 13;
             this.HandDetectedBtn.Text = "Hand detected";
             this.HandDetectedBtn.UseVisualStyleBackColor = true;
@@ -181,17 +184,17 @@
             // 
             this.UserLogsListBox.FormattingEnabled = true;
             this.UserLogsListBox.ItemHeight = 16;
-            this.UserLogsListBox.Location = new System.Drawing.Point(352, 318);
+            this.UserLogsListBox.Location = new System.Drawing.Point(352, 336);
             this.UserLogsListBox.Name = "UserLogsListBox";
-            this.UserLogsListBox.Size = new System.Drawing.Size(212, 292);
+            this.UserLogsListBox.Size = new System.Drawing.Size(212, 340);
             this.UserLogsListBox.TabIndex = 14;
             // 
             // VizualizationChoiceComboBox
             // 
             this.VizualizationChoiceComboBox.FormattingEnabled = true;
-            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(804, 390);
+            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(790, 408);
             this.VizualizationChoiceComboBox.Name = "VizualizationChoiceComboBox";
-            this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(120, 24);
+            this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(134, 24);
             this.VizualizationChoiceComboBox.TabIndex = 15;
             this.VizualizationChoiceComboBox.SelectedIndexChanged += new System.EventHandler(this.VizualizationChoiceComboBox_SelectedIndexChanged);
             // 
@@ -201,11 +204,41 @@
             this.ResultProcessingTimer.Interval = 15;
             this.ResultProcessingTimer.Tick += new System.EventHandler(this.ResultProcessingTimer_Tick);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(161, 17);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Immediate tracking state";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(315, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(158, 17);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Averaged tracking state";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(621, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 17);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Game state";
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 1033);
+            this.ClientSize = new System.Drawing.Size(941, 714);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.VizualizationChoiceComboBox);
             this.Controls.Add(this.UserLogsListBox);
             this.Controls.Add(this.HandDetectedBtn);
@@ -249,5 +282,8 @@
         private System.Windows.Forms.ListBox UserLogsListBox;
         private System.Windows.Forms.ComboBox VizualizationChoiceComboBox;
         private System.Windows.Forms.Timer ResultProcessingTimer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

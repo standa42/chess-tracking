@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ChessTracking.Game;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
+using ChessTracking.Utils;
 
 namespace ChessTracking.ControllingElements
 {
@@ -18,8 +19,9 @@ namespace ChessTracking.ControllingElements
         private FPSCounter FpsCounter { get; }
         private bool TrackningInProgress { get; set; }
         private int NumberOfCwRotations { get; set; }
-        private Queue<TrackingState> AveragingQueue { get; set; }
+        private Queue<TimestampObject<TrackingState>> AveragingQueue { get; set; }
         private TrackingState LastSentState { get; set; }
+        private DateTime TimeOffset { get; set; }
 
         public TrackingResultProcessing(UserInterfaceOutputFacade outputFacade, GameController gameController)
         {
@@ -27,7 +29,8 @@ namespace ChessTracking.ControllingElements
             GameController = gameController;
             FpsCounter = new FPSCounter();
             TrackningInProgress = false;
-            AveragingQueue = new Queue<TrackingState>();
+            AveragingQueue = new Queue<TimestampObject<TrackingState>>();
+            TimeOffset = DateTime.Now + TimeSpan.FromSeconds(1.5);
         }
 
         public void Reset()
@@ -36,6 +39,7 @@ namespace ChessTracking.ControllingElements
             LastSentState = null;
             NumberOfCwRotations = 0;
             AveragingQueue.Clear();
+            TimeOffset = DateTime.Now + TimeSpan.FromSeconds(1.5);
         }
 
         public void ProcessResult(ResultMessage resultMessage)
@@ -45,6 +49,8 @@ namespace ChessTracking.ControllingElements
             UpdateFps();
 
             if (resultMessage.HandDetected == "true")
+                return;
+            if (TimeOffset > DateTime.Now)
                 return;
 
             var trackingState = resultMessage.TrackingState;
@@ -56,6 +62,8 @@ namespace ChessTracking.ControllingElements
                 OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState));
                 // průměrování
                 var average = Averaging(trackingState);
+                if (average == null)
+                    return;
                 // poslat průměrování
                 OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average));
                 // ověřit, zda neposíláme znovu stejný stav
@@ -95,32 +103,37 @@ namespace ChessTracking.ControllingElements
         {
             foreach (var averageState in AveragingQueue)
             {
-                averageState.RotateClockWise(NumberOfCwRotations);
+                averageState.StoredObject.RotateClockWise(NumberOfCwRotations);
             }
         }
 
         private TrackingState Averaging(TrackingState trackingState)
         {
-            AveragingQueue.Enqueue(trackingState);
+            AveragingQueue.Enqueue(new TimestampObject<TrackingState>(trackingState));
 
-            if (AveragingQueue.Count < 10)
+            var now = DateTime.Now;
+
+            var temp = AveragingQueue.ToList();
+            temp.RemoveAll(x => Math.Abs((now - x.Timestamp).Seconds) > 3);
+
+            AveragingQueue = new Queue<TimestampObject<TrackingState>>(temp);
+            
+            if (AveragingQueue.Count < 5)
                 return null;
-
-            AveragingQueue.Dequeue();
-
+            
             List<Tuple<TrackingState, int>> aggregation = new List<Tuple<TrackingState, int>>();
 
             foreach (var state in AveragingQueue)
             {
-                if (aggregation.Any(x => x.Item1 == state))
+                if (aggregation.Any(x => x.Item1 == state.StoredObject))
                 {
-                    var old = aggregation.Single(x => x.Item1 == state);
+                    var old = aggregation.Single(x => x.Item1 == state.StoredObject);
                     aggregation.Remove(old);
                     aggregation.Add(new Tuple<TrackingState, int>(old.Item1, old.Item2 + 1));
                 }
                 else
                 {
-                    aggregation.Add(new Tuple<TrackingState, int>(state, 1));
+                    aggregation.Add(new Tuple<TrackingState, int>(state.StoredObject, 1));
                 }
             }
 
