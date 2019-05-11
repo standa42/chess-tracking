@@ -11,11 +11,13 @@ namespace ChessTracking.Game
     {
         public FigureType Type { get; set; }
         public PlayerColor Color { get; set; }
+        public bool Moved;
 
-        public Figure(FigureType type, PlayerColor color)
+        public Figure(FigureType type, PlayerColor color, bool moved = false)
         {
             Type = type;
             Color = color;
+            Moved = moved;
         }
 
         #region Static images of figures
@@ -72,6 +74,21 @@ namespace ChessTracking.Game
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public bool Fullfils(PlayerColor color)
+        {
+            return Color == color;
+        }
+
+        public bool Fullfils(FigureType type)
+        {
+            return Type == type;
+        }
+
+        public bool Fullfils(PlayerColor color, FigureType type)
+        {
+            return Fullfils(color) && Fullfils(type);
         }
     }
 }

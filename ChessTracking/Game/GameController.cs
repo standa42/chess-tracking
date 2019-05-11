@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accord.IO;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
 
@@ -68,7 +69,7 @@ namespace ChessTracking.Game
             var validationResult = GameValidator.ValidateAndPerform(Game, trackingState);
 
             if (validationResult.IsValid)
-            {
+            { 
                 Game = validationResult.NewGameState;
                 // renew record of game
                 // if is ended - stop everything

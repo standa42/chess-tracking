@@ -42,5 +42,22 @@ namespace ChessTracking.Game
             var state = new TrackingState(figures);
             return state;
         }
+
+        public void MoveTo(ChessPosition from, ChessPosition to)
+        {
+            Figures[to.X, to.Y] = Figures[from.X, from.Y];
+            Figures[from.X, from.Y] = null;
+            Figures[to.X, to.Y].Moved = true;
+        }
+
+        public void Delete(ChessPosition position)
+        {
+            Figures[position.X, position.Y] = null;
+        }
+
+        public Figure GetFigureOnPosition(ChessPosition position)
+        {
+            return Figures[position.X, position.Y];
+        }
     }
 }

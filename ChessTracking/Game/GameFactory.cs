@@ -49,7 +49,7 @@ namespace ChessTracking.Game
             figures[6, 6] = new Figure(FigureType.Pawn, PlayerColor.Black);
             figures[7, 6] = new Figure(FigureType.Pawn, PlayerColor.Black);
 
-            var game = new GameData(new ChessboardModel(figures), PlayerColor.White, null, null);
+            var game = new GameData(new ChessboardModel(figures), PlayerColor.White, null, GameWinState.StillPlaying);
 
             return game;
         }

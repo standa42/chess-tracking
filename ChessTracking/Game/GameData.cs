@@ -7,20 +7,21 @@ using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.Game
 {
+    [Serializable]
     public class GameData
     {
         public ChessboardModel Chessboard;
         public PlayerColor PlayerOnMove { get; set; }
-        public PlayerColor? PlayerWon { get; set; }
+        public GameWinState EndState { get; set; }
         public ChessPosition EnPassantPosition { get; set; }
         public List<string> RecordOfGame { get; set; }
         
-        public GameData(ChessboardModel chessboard, PlayerColor playerOnMove, ChessPosition enPassantPosition, PlayerColor? playerWon)
+        public GameData(ChessboardModel chessboard, PlayerColor playerOnMove, ChessPosition enPassantPosition, GameWinState endState)
         {
             Chessboard = chessboard;
             PlayerOnMove = playerOnMove;
             EnPassantPosition = enPassantPosition;
-            PlayerWon = playerWon;
+            EndState = endState;
             RecordOfGame = new List<string>();
         }
 

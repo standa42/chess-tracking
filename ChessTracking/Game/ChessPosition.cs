@@ -32,5 +32,21 @@ namespace ChessTracking.Game
                    x <= 7 &&
                    y <= 7;
         }
+
+        public bool IsEquivalent(ChessPosition other)
+        {
+            return ChessPosition.IsEquivalent(this, other);
+        }
+
+        public static bool IsEquivalent(ChessPosition lhs, ChessPosition rhs)
+        {
+            return lhs.X == rhs.X && lhs.Y == rhs.Y;
+        }
+
+        public string ToChessString()
+        {
+            char letterCoordinate = (char) (X - (int)'a');
+            return $"{letterCoordinate}{Y}";
+        }
     }
 }
