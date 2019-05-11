@@ -89,6 +89,7 @@
     <Compile Include="Game\GameValidator.cs" />
     <Compile Include="Game\PlayerColor.cs" />
     <Compile Include="Game\ValidationResult.cs" />
+    <Compile Include="MultithreadingMessages\ColorCalibrationMessage.cs" />
     <Compile Include="MultithreadingMessages\TrackingState.cs" />
     <Compile Include="MultithreadingMessages\TrackingFieldState.cs" />
     <Compile Include="ProcessingPipeline\ChessboardDoneData.cs" />

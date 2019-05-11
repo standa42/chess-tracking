@@ -28,6 +28,11 @@ namespace ChessTracking.ProcessingPipeline
             }
         }
 
+        private void Process(ColorCalibrationMessage msg)
+        {
+            Pipeline.ChangeColorCalibration(msg.CalibrationConstant);
+        }
+
         private void Process(VisualisationChangeMessage msg)
         {
             Pipeline.ChangeVisualisationState(msg.VisualisationType);

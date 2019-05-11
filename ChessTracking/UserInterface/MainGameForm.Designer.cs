@@ -48,9 +48,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.ColorCalibrationTrackBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ColorCalibrationTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // GameStatePictureBox
@@ -129,7 +131,7 @@
             this.GameHistoryListBox.ItemHeight = 16;
             this.GameHistoryListBox.Location = new System.Drawing.Point(141, 336);
             this.GameHistoryListBox.Name = "GameHistoryListBox";
-            this.GameHistoryListBox.Size = new System.Drawing.Size(205, 340);
+            this.GameHistoryListBox.Size = new System.Drawing.Size(131, 340);
             this.GameHistoryListBox.TabIndex = 7;
             // 
             // TrackedBoardStatePictureBox
@@ -156,7 +158,7 @@
             // 
             this.TrackingLogsListBox.FormattingEnabled = true;
             this.TrackingLogsListBox.ItemHeight = 16;
-            this.TrackingLogsListBox.Location = new System.Drawing.Point(570, 336);
+            this.TrackingLogsListBox.Location = new System.Drawing.Point(496, 336);
             this.TrackingLogsListBox.Name = "TrackingLogsListBox";
             this.TrackingLogsListBox.Size = new System.Drawing.Size(214, 340);
             this.TrackingLogsListBox.TabIndex = 11;
@@ -164,7 +166,7 @@
             // FPSLabel
             // 
             this.FPSLabel.AutoSize = true;
-            this.FPSLabel.Location = new System.Drawing.Point(790, 388);
+            this.FPSLabel.Location = new System.Drawing.Point(716, 387);
             this.FPSLabel.Name = "FPSLabel";
             this.FPSLabel.Size = new System.Drawing.Size(42, 17);
             this.FPSLabel.TabIndex = 12;
@@ -173,7 +175,7 @@
             // HandDetectedBtn
             // 
             this.HandDetectedBtn.Enabled = false;
-            this.HandDetectedBtn.Location = new System.Drawing.Point(790, 336);
+            this.HandDetectedBtn.Location = new System.Drawing.Point(716, 336);
             this.HandDetectedBtn.Name = "HandDetectedBtn";
             this.HandDetectedBtn.Size = new System.Drawing.Size(134, 45);
             this.HandDetectedBtn.TabIndex = 13;
@@ -184,7 +186,7 @@
             // 
             this.UserLogsListBox.FormattingEnabled = true;
             this.UserLogsListBox.ItemHeight = 16;
-            this.UserLogsListBox.Location = new System.Drawing.Point(352, 336);
+            this.UserLogsListBox.Location = new System.Drawing.Point(278, 336);
             this.UserLogsListBox.Name = "UserLogsListBox";
             this.UserLogsListBox.Size = new System.Drawing.Size(212, 340);
             this.UserLogsListBox.TabIndex = 14;
@@ -192,7 +194,7 @@
             // VizualizationChoiceComboBox
             // 
             this.VizualizationChoiceComboBox.FormattingEnabled = true;
-            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(790, 408);
+            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(719, 408);
             this.VizualizationChoiceComboBox.Name = "VizualizationChoiceComboBox";
             this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(134, 24);
             this.VizualizationChoiceComboBox.TabIndex = 15;
@@ -231,11 +233,24 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "Game state";
             // 
+            // ColorCalibrationTrackBar
+            // 
+            this.ColorCalibrationTrackBar.LargeChange = 1;
+            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(868, 336);
+            this.ColorCalibrationTrackBar.Maximum = 40;
+            this.ColorCalibrationTrackBar.Minimum = -40;
+            this.ColorCalibrationTrackBar.Name = "ColorCalibrationTrackBar";
+            this.ColorCalibrationTrackBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.ColorCalibrationTrackBar.Size = new System.Drawing.Size(56, 340);
+            this.ColorCalibrationTrackBar.TabIndex = 19;
+            this.ColorCalibrationTrackBar.ValueChanged += new System.EventHandler(this.ColorCalibrationTrackBar_ValueChanged);
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(941, 714);
+            this.ClientSize = new System.Drawing.Size(979, 714);
+            this.Controls.Add(this.ColorCalibrationTrackBar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -259,6 +274,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ColorCalibrationTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,5 +301,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TrackBar ColorCalibrationTrackBar;
     }
 }

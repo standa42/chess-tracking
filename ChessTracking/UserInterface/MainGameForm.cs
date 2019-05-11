@@ -163,6 +163,12 @@ namespace ChessTracking.UserInterface
         }
 
         #endregion
-        
+
+        private void ColorCalibrationTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            var additiveConstant = ColorCalibrationTrackBar.Value / 100d;
+
+            InputFacade.CalibrateColor(additiveConstant);
+        }
     }
 }

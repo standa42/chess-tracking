@@ -20,6 +20,7 @@ namespace ChessTracking.ProcessingPipeline
     {
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
         public VisualisationType VisualisationType { get; set; }
+
         private Bitmap VisualisationBitmap { get; set; }
         private bool IsTracking { get; set; }
         private PlaneLocalization PlaneLocalization { get; set; }
@@ -40,6 +41,11 @@ namespace ChessTracking.ProcessingPipeline
         public void ChangeVisualisationState(VisualisationType visualisationType)
         {
             VisualisationType = visualisationType;
+        }
+
+        public void ChangeColorCalibration(double additiveConstant)
+        {
+            FiguresLocalization.ChangeColorCalibration(additiveConstant);
         }
 
         public void ProcessIncomingKinectData(KinectResourcesMessage resources)

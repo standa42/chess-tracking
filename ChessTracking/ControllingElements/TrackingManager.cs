@@ -60,6 +60,11 @@ namespace ChessTracking.ControllingElements
             ProcessingCommandsQueue.Add(new VisualisationChangeMessage(newVisualisationType));
         }
 
+        public void CalibrateColor(double additiveConstant)
+        {
+            ProcessingCommandsQueue.Add(new ColorCalibrationMessage(additiveConstant));
+        }
+
         public void ProcessQueue()
         {
             bool messageProcessed = false;

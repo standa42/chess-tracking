@@ -114,7 +114,7 @@ namespace ChessTracking.ControllingElements
             var now = DateTime.Now;
 
             var temp = AveragingQueue.ToList();
-            temp.RemoveAll(x => Math.Abs((now - x.Timestamp).Seconds) > 3);
+            temp.RemoveAll(x => Math.Abs((now - x.Timestamp).Seconds) > 2);
 
             AveragingQueue = new Queue<TimestampObject<TrackingState>>(temp);
             

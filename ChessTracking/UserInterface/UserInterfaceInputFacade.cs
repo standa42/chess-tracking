@@ -65,5 +65,10 @@ namespace ChessTracking.UserInterface
         {
             TrackingManager.ProcessQueue();
         }
+
+        public void CalibrateColor(double additiveConstant)
+        {
+            TrackingManager.CalibrateColor(additiveConstant);
+        }
     }
 }
