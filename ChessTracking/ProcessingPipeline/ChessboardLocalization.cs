@@ -93,7 +93,6 @@ namespace ChessTracking.ProcessingPipeline
                         graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
                     }
                 }
-                colorFiltered.Save(@"D:\Desktop\LocHoughfiltered.jpeg");
 
                 drawnEdges2 = new Image<Bgr, Byte>( /*colorImg.Bitmap*/
                     new Size(cannyEdges.Width, cannyEdges.Height));
