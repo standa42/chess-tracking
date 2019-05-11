@@ -133,8 +133,8 @@ namespace ChessTracking.UserInterface
 
         public void HandDetectionUpdate(string state)
         {
-            HandDetectedBtn.BackColor = state == "true" ? Color.LimeGreen : Color.Gray;
-            HandDetectedBtn.Text = state;
+            HandDetectedBtn.BackColor = state == "true" ? Color.LightCoral : Color.Gray;
+            HandDetectedBtn.Text = state == "true" ? "Scene disrupted" : "";
         }
 
         public void UpdateAveragedBoard(Bitmap bitmap)
@@ -162,13 +162,14 @@ namespace ChessTracking.UserInterface
             }
         }
 
-        #endregion
-
         private void ColorCalibrationTrackBar_ValueChanged(object sender, EventArgs e)
         {
             var additiveConstant = ColorCalibrationTrackBar.Value / 100d;
 
             InputFacade.CalibrateColor(additiveConstant);
         }
+
+
+        #endregion
     }
 }

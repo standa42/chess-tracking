@@ -49,6 +49,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ColorCalibrationTrackBar = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -97,7 +102,7 @@
             // 
             // StartTrackingBtn
             // 
-            this.StartTrackingBtn.Location = new System.Drawing.Point(15, 489);
+            this.StartTrackingBtn.Location = new System.Drawing.Point(12, 533);
             this.StartTrackingBtn.Name = "StartTrackingBtn";
             this.StartTrackingBtn.Size = new System.Drawing.Size(120, 45);
             this.StartTrackingBtn.TabIndex = 4;
@@ -107,7 +112,7 @@
             // 
             // Recalibrate
             // 
-            this.Recalibrate.Location = new System.Drawing.Point(15, 540);
+            this.Recalibrate.Location = new System.Drawing.Point(12, 584);
             this.Recalibrate.Name = "Recalibrate";
             this.Recalibrate.Size = new System.Drawing.Size(120, 45);
             this.Recalibrate.TabIndex = 5;
@@ -117,7 +122,7 @@
             // 
             // StopTrackingBtn
             // 
-            this.StopTrackingBtn.Location = new System.Drawing.Point(15, 591);
+            this.StopTrackingBtn.Location = new System.Drawing.Point(12, 635);
             this.StopTrackingBtn.Name = "StopTrackingBtn";
             this.StopTrackingBtn.Size = new System.Drawing.Size(120, 45);
             this.StopTrackingBtn.TabIndex = 6;
@@ -129,9 +134,9 @@
             // 
             this.GameHistoryListBox.FormattingEnabled = true;
             this.GameHistoryListBox.ItemHeight = 16;
-            this.GameHistoryListBox.Location = new System.Drawing.Point(141, 336);
+            this.GameHistoryListBox.Location = new System.Drawing.Point(141, 357);
             this.GameHistoryListBox.Name = "GameHistoryListBox";
-            this.GameHistoryListBox.Size = new System.Drawing.Size(131, 340);
+            this.GameHistoryListBox.Size = new System.Drawing.Size(131, 324);
             this.GameHistoryListBox.TabIndex = 7;
             // 
             // TrackedBoardStatePictureBox
@@ -158,9 +163,9 @@
             // 
             this.TrackingLogsListBox.FormattingEnabled = true;
             this.TrackingLogsListBox.ItemHeight = 16;
-            this.TrackingLogsListBox.Location = new System.Drawing.Point(496, 336);
+            this.TrackingLogsListBox.Location = new System.Drawing.Point(496, 357);
             this.TrackingLogsListBox.Name = "TrackingLogsListBox";
-            this.TrackingLogsListBox.Size = new System.Drawing.Size(214, 340);
+            this.TrackingLogsListBox.Size = new System.Drawing.Size(214, 324);
             this.TrackingLogsListBox.TabIndex = 11;
             // 
             // FPSLabel
@@ -177,24 +182,23 @@
             this.HandDetectedBtn.Enabled = false;
             this.HandDetectedBtn.Location = new System.Drawing.Point(716, 336);
             this.HandDetectedBtn.Name = "HandDetectedBtn";
-            this.HandDetectedBtn.Size = new System.Drawing.Size(134, 45);
+            this.HandDetectedBtn.Size = new System.Drawing.Size(208, 45);
             this.HandDetectedBtn.TabIndex = 13;
-            this.HandDetectedBtn.Text = "Hand detected";
             this.HandDetectedBtn.UseVisualStyleBackColor = true;
             // 
             // UserLogsListBox
             // 
             this.UserLogsListBox.FormattingEnabled = true;
             this.UserLogsListBox.ItemHeight = 16;
-            this.UserLogsListBox.Location = new System.Drawing.Point(278, 336);
+            this.UserLogsListBox.Location = new System.Drawing.Point(278, 357);
             this.UserLogsListBox.Name = "UserLogsListBox";
-            this.UserLogsListBox.Size = new System.Drawing.Size(212, 340);
+            this.UserLogsListBox.Size = new System.Drawing.Size(212, 324);
             this.UserLogsListBox.TabIndex = 14;
             // 
             // VizualizationChoiceComboBox
             // 
             this.VizualizationChoiceComboBox.FormattingEnabled = true;
-            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(719, 408);
+            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(716, 599);
             this.VizualizationChoiceComboBox.Name = "VizualizationChoiceComboBox";
             this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(134, 24);
             this.VizualizationChoiceComboBox.TabIndex = 15;
@@ -235,21 +239,70 @@
             // 
             // ColorCalibrationTrackBar
             // 
+            this.ColorCalibrationTrackBar.AutoSize = false;
             this.ColorCalibrationTrackBar.LargeChange = 1;
-            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(868, 336);
+            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(716, 644);
             this.ColorCalibrationTrackBar.Maximum = 40;
             this.ColorCalibrationTrackBar.Minimum = -40;
             this.ColorCalibrationTrackBar.Name = "ColorCalibrationTrackBar";
-            this.ColorCalibrationTrackBar.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ColorCalibrationTrackBar.Size = new System.Drawing.Size(56, 340);
+            this.ColorCalibrationTrackBar.Size = new System.Drawing.Size(205, 37);
             this.ColorCalibrationTrackBar.TabIndex = 19;
             this.ColorCalibrationTrackBar.ValueChanged += new System.EventHandler(this.ColorCalibrationTrackBar_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(713, 579);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(132, 17);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Visualisation choice";
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(713, 626);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(154, 19);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Figure color change";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(138, 337);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 17);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Game record";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(275, 337);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 17);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Game log";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(493, 337);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 17);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Tracking log";
             // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 714);
+            this.ClientSize = new System.Drawing.Size(929, 685);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.ColorCalibrationTrackBar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -302,5 +355,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar ColorCalibrationTrackBar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
