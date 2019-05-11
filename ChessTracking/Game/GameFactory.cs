@@ -58,9 +58,21 @@ namespace ChessTracking.Game
         {
             var game = NewGame();
 
-            // TODO perform game read from stream
+            while (!stream.EndOfStream)
+            {
+                if (game.EndState == GameWinState.StillPlaying)
+                {
+                    var validationResult = new ValidationResult(true, game); // get from validator
 
-            return game;
+                    if (validationResult.IsValid)
+                        game = validationResult.NewGameState;
+
+                    if (game.EndState != GameWinState.StillPlaying)
+                        ; // do some stopping of everything -> check if everything is ok
+                }
+            }
+            
+            return game; // TODO: return loadresult if it was valid, update fields, lock buttons if st game is complete, atd..
         }
     }
 }

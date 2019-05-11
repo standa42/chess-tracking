@@ -66,19 +66,19 @@ namespace ChessTracking.Game
 
         public void TryChangeChessboardState(TrackingState trackingState)
         {
-            var validationResult = GameValidator.ValidateAndPerform(Game, trackingState);
+            if (Game.EndState == GameWinState.StillPlaying)
+            {
+                var validationResult = new ValidationResult(true, Game); // get from validator
 
-            if (validationResult.IsValid)
-            { 
-                Game = validationResult.NewGameState;
-                // renew record of game
-                // if is ended - stop everything
+                if (validationResult.IsValid)
+                    Game = validationResult.NewGameState;
+
+                OutputFacade.UpdateRecordState(Game.RecordOfGame);
+                OutputFacade.UpdateBoardState(RenderGameState());
+
+                if (Game.EndState != GameWinState.StillPlaying)
+                    ; // do some stopping of everything
             }
-
-            OutputFacade.UpdateRecordState(Game.RecordOfGame);
-            OutputFacade.UpdateBoardState(RenderGameState());
-           
-
         }
         
     }
