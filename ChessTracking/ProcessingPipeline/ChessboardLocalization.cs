@@ -362,7 +362,6 @@ namespace ChessTracking.ProcessingPipeline
                 }
             }
             RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
-            MakeSomeFiltering(chessboardData.CameraSpacePointsFromDepthData);
 
             return chessboardData;
         }
@@ -373,7 +372,6 @@ namespace ChessTracking.ProcessingPipeline
 
             {
                 RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
-                MakeSomeFiltering(chessboardData.CameraSpacePointsFromDepthData);
                 chessboardData.FirstVectorFinal = firstVectorFinal;
             }
 
@@ -645,54 +643,6 @@ namespace ChessTracking.ProcessingPipeline
 
         }
         
-        private void MakeSomeFiltering(CameraSpacePoint[] cameraSpacePointsFromDepthData)
-        {
-            float[,,] channelsImage = new float[512, 424, 1];
-
-            for (int y = 0; y < 424; y++)
-            {
-                for (int x = 0; x < 512; x++)
-                {
-                    if (!float.IsInfinity(cameraSpacePointsFromDepthData[y * 512 + x].Z))
-                    {
-                        channelsImage[x, y, 0] = cameraSpacePointsFromDepthData[y * 512 + x].Z;
-                    }
-                    else
-                    {
-                        channelsImage[x, y, 0] = -10000;
-                    }
-                }
-            }
-
-            Image<Gray, float> imgToFilter = new Image<Gray, float>(channelsImage);
-
-
-            var filteredImage = imgToFilter;//.ThresholdBinaryInv(new Gray(-0.005f),new Gray(0.03));//.Dilate(2);
-            /*
-            float[,] k = { {-0.2f, -0.2f, -0.2f},
-                {-0.2f, 2.8f, -0.2f},
-                {-0.2f, -0.2f, -0.2f}};
-            ConvolutionKernelF kernel = new ConvolutionKernelF(k);
-            var filteredImage = imgToFilter * kernel;
-
-            */
-            var fiteredData = filteredImage.Data;
-
-            for (int y = 0; y < 424; y++)
-            {
-                for (int x = 0; x < 512; x++)
-                {
-                    if (fiteredData[x, y, 0] > -5000)
-                    {
-                        cameraSpacePointsFromDepthData[y * 512 + x].Z = fiteredData[x, y, 0];
-                    }
-                    else
-                    {
-                        cameraSpacePointsFromDepthData[y * 512 + x].Z = float.PositiveInfinity;
-                    }
-                }
-            }
-        }
         
     }
 }
