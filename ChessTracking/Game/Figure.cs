@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.Game
 {
+    [Serializable]
     public class Figure
     {
         public FigureType Type { get; set; }

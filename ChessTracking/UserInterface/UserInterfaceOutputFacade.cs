@@ -53,5 +53,15 @@ namespace ChessTracking.UserInterface
         {
             MainForm?.UpdateRecordState(records);
         }
+
+        public void AddToUserLog(string line)
+        {
+            MainForm?.AddToUserLog(line);
+        }
+
+        public void AddToTrackingLog(string line)
+        {
+            MainForm?.AddToTrackingLog(line);
+        }
     }
 }

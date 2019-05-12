@@ -85,7 +85,10 @@
     <Compile Include="Game\GameController.cs" />
     <Compile Include="Game\GameData.cs" />
     <Compile Include="Game\GameFactory.cs" />
+    <Compile Include="Game\GameMove.cs" />
+    <Compile Include="Game\GameMoveVector.cs" />
     <Compile Include="Game\GameRenderer.cs" />
+    <Compile Include="Game\GameValidator.cs" />
     <Compile Include="Game\GameWinState.cs" />
     <Compile Include="Game\PlayerColor.cs" />
     <Compile Include="Game\ValidationResult.cs" />
@@ -134,6 +137,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ArrayExtensions.cs" />
+    <Compile Include="Utils\ChessExtensions.cs" />
     <Compile Include="Utils\CloneExtensions.cs" />
     <Compile Include="Utils\TimestampObject.cs" />
     <EmbeddedResource Include="UserInterface\MainGameForm.resx">

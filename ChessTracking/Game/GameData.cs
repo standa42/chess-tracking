@@ -13,14 +13,12 @@ namespace ChessTracking.Game
         public ChessboardModel Chessboard;
         public PlayerColor PlayerOnMove { get; set; }
         public GameWinState EndState { get; set; }
-        public ChessPosition EnPassantPosition { get; set; }
         public List<string> RecordOfGame { get; set; }
         
-        public GameData(ChessboardModel chessboard, PlayerColor playerOnMove, ChessPosition enPassantPosition, GameWinState endState)
+        public GameData(ChessboardModel chessboard, PlayerColor playerOnMove, GameWinState endState)
         {
             Chessboard = chessboard;
             PlayerOnMove = playerOnMove;
-            EnPassantPosition = enPassantPosition;
             EndState = endState;
             RecordOfGame = new List<string>();
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.Game
 {
+    [Serializable]
     public class ChessPosition
     {
         public int X { get; set; }
@@ -47,6 +48,11 @@ namespace ChessTracking.Game
         {
             char letterCoordinate = (char) (X - (int)'a');
             return $"{letterCoordinate}{Y}";
+        }
+
+        public ChessPosition Add(GameMoveVector vector)
+        {
+            return new ChessPosition(this.X + vector.X, this.Y + vector.Y);
         }
     }
 }

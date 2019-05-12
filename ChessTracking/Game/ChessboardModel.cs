@@ -7,6 +7,7 @@ using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.Game
 {
+    [Serializable]
     public class ChessboardModel
     {
         public Figure[,] Figures { get; set; }
@@ -53,6 +54,11 @@ namespace ChessTracking.Game
         public void Delete(ChessPosition position)
         {
             Figures[position.X, position.Y] = null;
+        }
+
+        public void AddFigure(Figure figure, ChessPosition position)
+        {
+            Figures[position.X, position.Y] = figure;
         }
 
         public Figure GetFigureOnPosition(ChessPosition position)

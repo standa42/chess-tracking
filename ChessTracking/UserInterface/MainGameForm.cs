@@ -13,6 +13,8 @@ namespace ChessTracking.UserInterface
     public partial class MainGameForm : Form
     {
         private UserInterfaceInputFacade InputFacade { get; }
+        private List<string> UserLog { get; set; }
+        private List<string> TrackingLog { get; set; }
 
         public MainGameForm()
         {
@@ -22,6 +24,9 @@ namespace ChessTracking.UserInterface
 
             var outputFacade = new UserInterfaceOutputFacade(this, vizualizationForm);
             InputFacade = new UserInterfaceInputFacade(outputFacade);
+
+            UserLog = new List<string>();
+            TrackingLog = new List<string>();
 
             InitializeVisualisationCombobox();
         }
@@ -38,6 +43,13 @@ namespace ChessTracking.UserInterface
         #endregion
 
         #region Input events
+
+        private void ColorCalibrationTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            var additiveConstant = ColorCalibrationTrackBar.Value / 100d;
+
+            InputFacade.CalibrateColor(additiveConstant);
+        }
 
         private void ResultProcessingTimer_Tick(object sender, EventArgs e)
         {
@@ -162,14 +174,33 @@ namespace ChessTracking.UserInterface
             }
         }
 
-        private void ColorCalibrationTrackBar_ValueChanged(object sender, EventArgs e)
+        public void AddToUserLog(string line)
         {
-            var additiveConstant = ColorCalibrationTrackBar.Value / 100d;
+            UserLog.Add(line);
+            if (UserLog != null)
+            {
+                var temp = new List<string>(UserLog);
+                temp.Reverse();
+                UserLogsListBox.DataSource = null;
+                UserLogsListBox.DataSource = temp;
+            }
+        }
 
-            InputFacade.CalibrateColor(additiveConstant);
+        public void AddToTrackingLog(string line)
+        {
+            TrackingLog.Add(line);
+            if (TrackingLog != null)
+            {
+                var temp = new List<string>(TrackingLog);
+                temp.Reverse();
+                TrackingLogsListBox.DataSource = null;
+                TrackingLogsListBox.DataSource = temp;
+            }
         }
 
 
         #endregion
+
+
     }
 }

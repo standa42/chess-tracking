@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accord.IO;
 
 namespace ChessTracking.Game
 {
@@ -49,7 +50,7 @@ namespace ChessTracking.Game
             figures[6, 6] = new Figure(FigureType.Pawn, PlayerColor.Black);
             figures[7, 6] = new Figure(FigureType.Pawn, PlayerColor.Black);
 
-            var game = new GameData(new ChessboardModel(figures), PlayerColor.White, null, GameWinState.StillPlaying);
+            var game = new GameData(new ChessboardModel(figures), PlayerColor.White, GameWinState.StillPlaying);
 
             return game;
         }
@@ -62,7 +63,7 @@ namespace ChessTracking.Game
             {
                 if (game.EndState == GameWinState.StillPlaying)
                 {
-                    var validationResult = new ValidationResult(true, game); // get from validator
+                    var validationResult = GameValidator.ValidateAndPerform(game.DeepClone(), stream.ReadLine()); // get from validator
 
                     if (validationResult.IsValid)
                         game = validationResult.NewGameState;

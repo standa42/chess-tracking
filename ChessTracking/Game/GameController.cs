@@ -68,16 +68,29 @@ namespace ChessTracking.Game
         {
             if (Game.EndState == GameWinState.StillPlaying)
             {
-                var validationResult = new ValidationResult(true, Game); // get from validator
+                var validationResult = GameValidator.ValidateAndPerform(Game.DeepClone(), trackingState); // get from validator
 
                 if (validationResult.IsValid)
                     Game = validationResult.NewGameState;
+                else
+                    OutputFacade.AddToUserLog("ValidationError");
 
                 OutputFacade.UpdateRecordState(Game.RecordOfGame);
                 OutputFacade.UpdateBoardState(RenderGameState());
 
                 if (Game.EndState != GameWinState.StillPlaying)
-                    ; // do some stopping of everything
+                {
+                    // do some stopping of everything}
+                    OutputFacade.AddToUserLog("Game ended");
+                    if (Game.EndState == GameWinState.BlackWin)
+                        OutputFacade.AddToUserLog("Black won");
+                    if (Game.EndState == GameWinState.WhiteWin)
+                        OutputFacade.AddToUserLog("White won");
+                    if (Game.EndState == GameWinState.Draw)
+                        OutputFacade.AddToUserLog("Its a draw");
+                }
+
+                
             }
         }
         
