@@ -19,6 +19,9 @@ namespace ChessTracking.ProcessingPipeline
             Pipeline = new Pipeline(ProcessingOutputQueue);
         }
 
+        /// <summary>
+        /// Get and dispatch messages from user and kinect threads
+        /// </summary>
         public void Start()
         {
             while (!ProcessingCommandsQueue.IsCompleted)
@@ -43,6 +46,10 @@ namespace ChessTracking.ProcessingPipeline
             Pipeline.ProcessIncomingKinectData(msg);
         }
 
+        /// <summary>
+        /// Process command messages
+        /// </summary>
+        /// <param name="msg"></param>
         private void Process(CommandMessage msg)
         {
             switch (msg.MessageType)

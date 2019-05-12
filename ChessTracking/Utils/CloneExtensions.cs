@@ -10,6 +10,11 @@ namespace ChessTracking.Utils
 {
     static class CloneExtensions
     {
+        /// <summary>
+        /// Performs deep clone on Serializable objects
+        /// </summary>
+        /// <param name="obj">Object to copy</param>
+        /// <returns>Deep copy of object</returns>
         public static T DeepClone<T>(T obj)
         {
             using (var ms = new MemoryStream())

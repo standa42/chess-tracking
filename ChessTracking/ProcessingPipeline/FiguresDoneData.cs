@@ -12,6 +12,9 @@ using TrackingState = ChessTracking.MultithreadingMessages.TrackingState;
 
 namespace ChessTracking.ProcessingPipeline
 {
+    /// <summary>
+    /// Output information of figures localization procedure
+    /// </summary>
     class FiguresDoneData
     {
         public byte[] ColorFrameData { get; set; }

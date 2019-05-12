@@ -2,6 +2,9 @@
 
 namespace ChessTracking.ProcessingPipeline.Plane
 {
+    /// <summary>
+    /// Custom camera space point structure with additional flag
+    /// </summary>
     public struct MyCameraSpacePoint
     {
         public float X;

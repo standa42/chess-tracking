@@ -19,7 +19,7 @@ namespace ChessTracking.ControllingElements
         /// <summary>
         /// Notifies counter, that new image arrived
         /// </summary>
-        /// <returns>FPS count if a second elapsed from last information, otherwise null</returns>
+        /// <returns>FPS count if a second elapsed from last information, null otherwise</returns>
         public int? Update()
         {
             Counter++;

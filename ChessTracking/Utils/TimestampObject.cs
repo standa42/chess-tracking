@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.Utils
 {
+    /// <summary>
+    /// Holder for object T containing timestamp
+    /// </summary>
     class TimestampObject<T>
     {
         public DateTime Timestamp { get; set; }

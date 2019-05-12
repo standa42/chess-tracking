@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using ChessTracking.UserInterface;
 
-namespace ChessTracking.Forms
+namespace ChessTracking.UserInterface
 {
     public partial class VizualizationForm : Form
     {
+        /// <summary>
+        /// Reference to main form of application
+        /// </summary>
         public MainGameForm MainForm { get; }
 
         public VizualizationForm(MainGameForm mainForm)
@@ -21,6 +16,10 @@ namespace ChessTracking.Forms
             MainForm = mainForm;
         }
 
+        /// <summary>
+        /// Sets displayed image
+        /// </summary>
+        /// <param name="bitmap"></param>
         public void DisplayVizulization(Bitmap bitmap)
         {
             if (bitmap != null)
@@ -28,11 +27,13 @@ namespace ChessTracking.Forms
                 VizualizationPictureBox.Image = bitmap;
             }
         }
-
+    
+        /// <summary>
+        /// Closes main form if closed
+        /// </summary>
         private void VizualizationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             MainForm.Close();
-            // e.Cancel = true;
         }
     }
 }

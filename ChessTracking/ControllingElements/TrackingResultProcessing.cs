@@ -17,11 +17,36 @@ namespace ChessTracking.ControllingElements
         private UserInterfaceOutputFacade OutputFacade { get; }
         private GameController GameController { get; }
         private FPSCounter FpsCounter { get; }
+
+        /// <summary>
+        /// Indicated whether figures are located
+        /// </summary>
         private bool TrackningInProgress { get; set; }
+
+        /// <summary>
+        /// Defines number of right rotation between tracking state and game representation
+        /// </summary>
         private int NumberOfCwRotations { get; set; }
+
+        /// <summary>
+        /// Queue containing latest tracking states, so they can be averaged
+        /// </summary>
         private Queue<TimestampObject<TrackingState>> AveragingQueue { get; set; }
+
+        /// <summary>
+        /// Last state sent to game component
+        /// </summary>
         private TrackingState LastSentState { get; set; }
+
+        /// <summary>
+        /// Offset of state processing after reset
+        /// </summary>
         private DateTime TimeOffset { get; set; }
+
+        /// <summary>
+        /// Bitmap of chessboard for displaying chessboard tracking state
+        /// </summary>
+        private static Bitmap ChessboardBitmap { get; set; }
 
         public TrackingResultProcessing(UserInterfaceOutputFacade outputFacade, GameController gameController)
         {
@@ -42,6 +67,10 @@ namespace ChessTracking.ControllingElements
             TimeOffset = DateTime.Now + TimeSpan.FromSeconds(1.5);
         }
 
+        /// <summary>
+        /// Process result message, update concrete components, average tracking state optionally notify game
+        /// </summary>
+        /// <param name="resultMessage"></param>
         public void ProcessResult(ResultMessage resultMessage)
         {
             OutputFacade.HandDetected(resultMessage.HandDetected);
@@ -60,16 +89,16 @@ namespace ChessTracking.ControllingElements
             {
                 trackingState.RotateClockWise(NumberOfCwRotations);
                 OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState));
-                // průměrování
+                // averaging
                 var average = Averaging(trackingState);
                 if (average == null)
                     return;
-                // poslat průměrování
+                // send averaging
                 OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average));
-                // ověřit, zda neposíláme znovu stejný stav
+                // check so we aren't sending the same state again
                 if (LastSentState != null && !LastSentState.IsEquivalentTo(average))
                 {
-                    // poslat to do game
+                    // send it to the game
                     GameController.TryChangeChessboardState(average);
                 }
 
@@ -78,17 +107,17 @@ namespace ChessTracking.ControllingElements
             else
             {
                 OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState));
-                // průměrování
+                // averaging
                 var average = Averaging(trackingState);
                 if (average == null)
                     return;
                 else
                 {
-                    // poslat průměrování
+                    // send averaging
                     OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average));
-                    // pokus to poslat do game a získat otočení
+                    // try to get rotation of tracking state
                     var rotation = GameController.InitiateWithTracingInput(average);
-                    // přeponout podle toho trackinginprogress, popř otočit to co mám v paměti
+                    // if rotation is succesfull(figures got matched)
                     if (rotation.HasValue)
                     {
                         NumberOfCwRotations = rotation.Value;
@@ -99,6 +128,9 @@ namespace ChessTracking.ControllingElements
             }
         }
 
+        /// <summary>
+        /// Rotate currently saved states in averaging queue
+        /// </summary>
         private void RotatedSavedStates()
         {
             foreach (var averageState in AveragingQueue)
@@ -107,22 +139,29 @@ namespace ChessTracking.ControllingElements
             }
         }
 
+        /// <summary>
+        /// Performs averaging of currently saved states
+        /// </summary>
+        /// <param name="trackingState">Arrived state</param>
+        /// <returns>Averaged result</returns>
         private TrackingState Averaging(TrackingState trackingState)
         {
             AveragingQueue.Enqueue(new TimestampObject<TrackingState>(trackingState));
 
             var now = DateTime.Now;
 
+            // discard all states older than x seconds
             var temp = AveragingQueue.ToList();
             temp.RemoveAll(x => Math.Abs((now - x.Timestamp).Seconds) > 2);
 
             AveragingQueue = new Queue<TimestampObject<TrackingState>>(temp);
             
+            // don't average if there aren't enough samples
             if (AveragingQueue.Count < 5)
                 return null;
             
+            // choose most common tracking state
             List<Tuple<TrackingState, int>> aggregation = new List<Tuple<TrackingState, int>>();
-
             foreach (var state in AveragingQueue)
             {
                 if (aggregation.Any(x => x.Item1 == state.StoredObject))
@@ -140,6 +179,9 @@ namespace ChessTracking.ControllingElements
             return aggregation.OrderByDescending(x => x.Item2).First().Item1;
         }
 
+        /// <summary>
+        /// Update fps counter
+        /// </summary>
         private void UpdateFps()
         {
             int? fps = FpsCounter.Update();
@@ -148,14 +190,15 @@ namespace ChessTracking.ControllingElements
                 OutputFacade.UpdateFps(fps.Value);
             }
         }
-
-        private static Bitmap ChessboardBitmap { get; set; }
-
+        
         static TrackingResultProcessing()
         {
             ChessboardBitmap = new Bitmap($@"img\ChessboardSmaller4.png");
         }
 
+        /// <summary>
+        /// Render tracking state image for displaying
+        /// </summary>
         private Bitmap GenerateImageForTrackingState(TrackingState trackingState)
         {
             trackingState = new TrackingState(trackingState.Figures);
@@ -170,6 +213,7 @@ namespace ChessTracking.ControllingElements
                 {
                     using (Graphics graphics = Graphics.FromImage(bm))
                     {
+                        // invertion of y coordinate due to differences between chess and bitmap coordinates
                         switch (trackingState.Figures[x, 7 - y])
                         {
                             case TrackingFieldState.White:

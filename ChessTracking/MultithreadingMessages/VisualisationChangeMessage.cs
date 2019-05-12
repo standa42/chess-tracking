@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Message transfering demand to change visualisation state
+    /// </summary>
     class VisualisationChangeMessage : Message
     {
         public VisualisationType VisualisationType { get; set; }

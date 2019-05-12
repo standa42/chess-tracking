@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Description, whether chessboard field contains white/black/none figure
+    /// </summary>
     public enum TrackingFieldState
     {
         None = 0,

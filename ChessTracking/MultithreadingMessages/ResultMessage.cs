@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Message containing result of Kinect tracking
+    /// </summary>
     class ResultMessage : Message
     {
         public Bitmap BitmapToDisplay { get; }

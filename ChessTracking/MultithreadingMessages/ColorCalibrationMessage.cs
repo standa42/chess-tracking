@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Message demanding color calibration change
+    /// </summary>
     class ColorCalibrationMessage : Message
     {
         public double CalibrationConstant { get; set; }

@@ -183,11 +183,7 @@ namespace ChessTracking.ProcessingPipeline.Plane
             return (Math.PI / 180) * degrees;
         }
     }
-
-
-
-
-
+    
     public class MyVector3DStruct
     {
         public double x, y, z;
@@ -288,9 +284,5 @@ namespace ChessTracking.ProcessingPipeline.Plane
             return new MyVector3DStruct(-v.x, -v.y, -v.z);
         }
     }
-
-
-
-
-
+    
 }

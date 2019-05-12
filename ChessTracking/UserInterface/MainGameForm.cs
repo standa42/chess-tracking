@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Forms;
-using ChessTracking.Forms;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.UserInterface
@@ -204,6 +203,7 @@ namespace ChessTracking.UserInterface
 
         #endregion
 
+        #region Disabling display sleep
         [FlagsAttribute]
         public enum EXECUTION_STATE : uint
         {
@@ -214,13 +214,16 @@ namespace ChessTracking.UserInterface
             // Legacy flag, should not be used.
             // ES_USER_PRESENT = 0x00000004
         }
-
-
+        
+        /// <summary>
+        /// Forces screen to stay active
+        /// </summary>
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern uint SetThreadExecutionState(EXECUTION_STATE esFlags);
         private void KeepAlive()
         {
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
         }
+#endregion
     }
 }

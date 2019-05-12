@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
-using ChessTracking.Forms;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.ProcessingElements;
 using ChessTracking.ProcessingPipeline;
@@ -12,13 +11,23 @@ using ChessTracking.UserInterface;
 
 namespace ChessTracking.ControllingElements
 {
+    /// <summary>
+    /// Maintains communication with tracking thread
+    /// </summary>
     class TrackingManager
     {
         public UserInterfaceOutputFacade OutputFacade { get; }
-        public BlockingCollection<Message> ProcessingOutputQueue { get; }
-        private BlockingCollection<Message> ProcessingCommandsQueue { get; }
         private TrackingResultProcessing TrackingResultProcessing { get; }
 
+        /// <summary>
+        /// Queue of messages arriving from tracking thread
+        /// </summary>
+        public BlockingCollection<Message> ProcessingOutputQueue { get; }
+
+        /// <summary>
+        /// Queue pointing to tracking thread
+        /// </summary>
+        private BlockingCollection<Message> ProcessingCommandsQueue { get; }
 
         public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing)
         {
@@ -31,6 +40,9 @@ namespace ChessTracking.ControllingElements
             InitPipelineThread();
         }
 
+        /// <summary>
+        /// Initialization of tracking thread
+        /// </summary>
         private void InitPipelineThread()
         {
             Task.Run(() =>
@@ -65,6 +77,9 @@ namespace ChessTracking.ControllingElements
             ProcessingCommandsQueue.Add(new ColorCalibrationMessage(additiveConstant));
         }
 
+        /// <summary>
+        /// Processing of messages arriving from tracking thread
+        /// </summary>
         public void ProcessQueue()
         {
             bool messageProcessed = false;

@@ -1,4 +1,4 @@
-﻿namespace ChessTracking.Forms
+﻿namespace ChessTracking.UserInterface
 {
     partial class VizualizationForm
     {

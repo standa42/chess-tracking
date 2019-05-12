@@ -62,7 +62,7 @@ namespace ChessTracking.ProcessingPipeline
 
             var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
-            //planeData.MaskedColorImageOfTable._EqualizeHist(); // TODO zjisitit jestli to pomáhá
+            //planeData.MaskedColorImageOfTable._EqualizeHist(); // TODO zjisitit jestli to pomáhá při stabilizaci osvětlení
 
             if (planeData.VisualisationType == VisualisationType.MaskedColorImageOfTable)
                 planeData.Bitmap = colorImg.Bitmap;

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Description of presence of figures on chessboard
+    /// </summary>
     public class TrackingState
     {
+        /// <summary>
+        /// Indication, whether field contains white/black/none figure
+        /// </summary>
         public TrackingFieldState[,] Figures { get; set; }
 
         public TrackingState(TrackingFieldState[,] figures)
@@ -41,11 +47,17 @@ namespace ChessTracking.MultithreadingMessages
             Figures = finalMatrix;
         }
 
+        /// <summary>
+        /// Checks if position on chessboard are the same
+        /// </summary>
         public bool IsEquivalentTo(TrackingState other)
         {
             return TrackingState.IsEquivalent(this, other);
         }
 
+        /// <summary>
+        /// Checks if position on chessboard are the same
+        /// </summary>
         public static bool IsEquivalent(TrackingState lhs, TrackingState rhs)
         {
             var figures = lhs.Figures;

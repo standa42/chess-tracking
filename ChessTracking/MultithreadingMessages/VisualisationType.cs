@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Types of available visualisations of Kinect output
+    /// </summary>
     enum VisualisationType
     {
         RawRGB,

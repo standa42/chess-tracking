@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Message containing commands from tracking thread
+    /// </summary>
     class CommandMessage : Message
     {
         public CommandMessageType MessageType { get; set; }

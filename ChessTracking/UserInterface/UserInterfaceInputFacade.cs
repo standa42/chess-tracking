@@ -61,6 +61,9 @@ namespace ChessTracking.UserInterface
             TrackingResultProcessing.Reset();
         }
 
+        /// <summary>
+        /// Tick to process queue from tracking thread
+        /// </summary>
         public void ProcessQueueTick()
         {
             TrackingManager.ProcessQueue();

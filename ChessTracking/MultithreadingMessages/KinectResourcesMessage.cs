@@ -7,6 +7,9 @@ using Microsoft.Kinect;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Message with data resources from sensor
+    /// </summary>
     class KinectResourcesMessage : Message
     {
         public byte[] ColorFrameData { get; set; }

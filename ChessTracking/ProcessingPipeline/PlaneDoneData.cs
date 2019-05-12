@@ -10,6 +10,9 @@ using Microsoft.Kinect;
 
 namespace ChessTracking.ProcessingPipeline
 {
+    /// <summary>
+    /// Output information of plane localization procedure
+    /// </summary>
     class PlaneDoneData
     {
         public byte[] ColorFrameData { get; set; }

@@ -16,6 +16,9 @@ using ChessTracking.Utils;
 
 namespace ChessTracking.ProcessingPipeline
 {
+    /// <summary>
+    /// Maintains all processing of chessboard tracking
+    /// </summary>
     class Pipeline
     {
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
@@ -48,6 +51,10 @@ namespace ChessTracking.ProcessingPipeline
             FiguresLocalization.ChangeColorCalibration(additiveConstant);
         }
 
+        /// <summary>
+        /// Mantains communication of whole processing of chessboard tracking
+        /// </summary>
+        /// <param name="resources">Data from Kinect</param>
         public void ProcessIncomingKinectData(KinectResourcesMessage resources)
         {
             var rawData = new RawData(resources, VisualisationType);

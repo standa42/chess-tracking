@@ -8,6 +8,9 @@ using Microsoft.Kinect;
 
 namespace ChessTracking.ProcessingPipeline
 {
+    /// <summary>
+    /// Contains all important data from sensor
+    /// </summary>
     class RawData
     {
         public byte[] ColorFrameData { get; set; }

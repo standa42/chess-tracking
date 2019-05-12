@@ -11,6 +11,9 @@ using Microsoft.Kinect;
 
 namespace ChessTracking.ProcessingPipeline
 {
+    /// <summary>
+    /// Output information of chessboard localization procedure
+    /// </summary>
     class ChessboardDoneData
     {
         public byte[] ColorFrameData { get; set; }

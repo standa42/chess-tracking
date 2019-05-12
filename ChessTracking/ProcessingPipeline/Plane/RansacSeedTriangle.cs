@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.ProcessingPipeline.Plane
 {
+    /// <summary>
+    /// Random seed triangles for ransac plane matching algorithm
+    /// </summary>
     public class RansacSeedTriangle
     {
         public int FirstVertexIndex;

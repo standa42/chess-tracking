@@ -19,6 +19,9 @@ namespace ChessTracking.ProcessingElements
         private MultiSourceFrameReader Reader { get; set; }
         private CoordinateMapper CoordinateMapper { get; }
 
+        /// <summary>
+        /// Controls number of messages to tracking thread at one time
+        /// </summary>
         private int CongestionControlConstant { get; } = 2; // originally 3
 
         public BlockingCollection<Message> OutputQueue { get; }
@@ -41,6 +44,9 @@ namespace ChessTracking.ProcessingElements
             KinectSensor.Open();
         }
 
+        /// <summary>
+        /// Procedure invoked by Kinect when new data are available
+        /// </summary>
         private void MultisourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             if (KinectSensor == null || Reader == null)
