@@ -4,74 +4,95 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
+using ZedGraph;
 
 namespace ChessTracking.Game
 {
+    /// <summary>
+    /// Validator of chess game
+    /// </summary>
     static class GameValidator
     {
+        /// <summary>
+        /// Validates and performs move described in text
+        /// </summary>
+        /// <param name="game">Description of game</param>
+        /// <param name="move">Move to process</param>
+        /// <returns>Result of validation</returns>
         public static ValidationResult ValidateAndPerform(GameData game, string move)
         {
-            return null;
-
-            // get moves
-
-            // decode move
-
-            // jsem v šachu?
-
-            // je nepřítel v šachumatu, patu?
-
-            // změn hrajícího hráče
+            return ValidateAndPerform(game, DecodeMove(game, move));
         }
 
+        /// <summary>
+        /// Validates and performs move described by difference between game and trackingState
+        /// </summary>
+        /// <param name="game">Description of game</param>
+        /// <param name="move">Tracking state of game</param>
+        /// <returns>Result of validation</returns>
         public static ValidationResult ValidateAndPerform(GameData game, TrackingState trackingState)
         {
-            // get moves
-            var myMoves = GetAllMoves(game.Chessboard, game.PlayerOnMove);
+            return ValidateAndPerform(game, DecodeMove(game, trackingState));
+        }
 
-            // decode move
-            var myMove = DecodeMove(game, trackingState);
-
+        /// <summary>
+        /// Validates and performs given move 
+        /// </summary>
+        /// <param name="game">Description of game</param>
+        /// <returns>Result of validation</returns>
+        private static ValidationResult ValidateAndPerform(GameData game, GameMove myMove)
+        {
             if (myMove == null)
                 return new ValidationResult(false, null);
 
+            var myMoves = GetAllMoves(game.Chessboard, game.PlayerOnMove);
+
+            // move is in possible moves
             if (myMoves.Any(x => x.IsEquivalent(myMove)))
                 PerformMove(game, myMove);
             else
                 return new ValidationResult(false, null);
 
-            // jsem v šachu?
-            var IamChecked = PlayerIsChecked(game, game.PlayerOnMove);
-            if (IamChecked)
+            // move can't end in beeing checked
+            if (PlayerIsChecked(game, game.PlayerOnMove))
                 return new ValidationResult(false, null);
 
-            // zaznamenej pohyb
-            game.RecordOfGame.Add(RecordMove(game, myMove));
+            game.RecordOfGame.Add(SerializeMoveToAlgebraicNotation(myMove));
 
-            // je nepřítel v šachumatu, patu?
+            // chech whether opponent in in checkmate or stalemate
             if (PlayerHasNoPossibleMoves(game, GetOppositeColor(game.PlayerOnMove)))
             {
                 if (PlayerIsChecked(game, GetOppositeColor(game.PlayerOnMove)))
                     game.EndState = GetWinStateFromPlayerColor(game.PlayerOnMove);
                 else
-                    game.EndState = GameWinState.Draw;
+                    game.EndState = GameState.Draw;
             }
 
-            // změn hrajícího hráče
+            // alternate playing player
             game.PlayerOnMove = GetOppositeColor(game.PlayerOnMove);
 
             return new ValidationResult(true, game);
         }
 
-        private static string RecordMove(GameData game, GameMove move)
+        /// <summary>
+        /// Serializes move into its algebraic notation representation
+        /// </summary>
+        /// <param name="move">Move to serialize</param>
+        /// <returns>Textual representation of move</returns>
+        private static string SerializeMoveToAlgebraicNotation(GameMove move)
         {
+            // TODO: make it member function of Move?
             char separator = move.ToWhom == null ? '-' : 'x';
             return
-                $"{GetCharacterForFigure(move.Who)}{GetCharacterForPosition(move.From.X)}{move.From.Y}{separator}{GetCharacterForPosition(move.To.X)}{move.To.Y}";
+                $"{GetCharacterForFigure(move.Who)}{GetCharacterForPosition(move.From.X)}{move.From.Y + 1}{separator}{GetCharacterForPosition(move.To.X)}{move.To.Y + 1}";
         }
 
+        /// <summary>
+        /// Gets character representation for given figure
+        /// </summary>
         private static char GetCharacterForFigure(FigureType figure)
         {
+            // TODO: move to another file?
             switch (figure)
             {
                 case FigureType.Queen:
@@ -83,7 +104,7 @@ namespace ChessTracking.Game
                 case FigureType.Knight:
                     return 'N';
                 case FigureType.Bishop:
-                    return 'R';
+                    return 'B';
                 case FigureType.Pawn:
                     return 'P';
                 default:
@@ -91,22 +112,79 @@ namespace ChessTracking.Game
             }
         }
 
-        private static char GetCharacterForPosition(int position)
+        /// <summary>
+        /// Gets figure type for given character
+        /// </summary>
+        private static FigureType GetFigureForCharacter(char ch)
         {
-            return (char) ((int) 'a' + position);
+            // TODO: move to another file?
+            switch (ch)
+            {
+                case 'Q':
+                    return FigureType.Queen;
+                case 'K':
+                    return FigureType.King;
+                case 'R':
+                    return FigureType.Rook;
+                case 'N':
+                    return FigureType.Knight;
+                case 'B':
+                    return FigureType.Bishop;
+                case 'P':
+                    return FigureType.Pawn;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(ch), ch, null);
+            }
         }
 
+        /// <summary>
+        /// Gets character represenation of column on chessboard
+        /// </summary>
+        /// <param name="position">Integer represenation of column</param>
+        private static char GetCharacterForPosition(int position)
+        {
+            // TODO: move to another file?
+            return (char)((int)'a' + position);
+        }
+
+        /// <summary>
+        /// Gets integer represenation of column on chessboard
+        /// </summary>
+        /// <param name="ch">Character represenation of column</param>
+        private static int GetPositionForCharacter(char ch)
+        {
+            // TODO: move to another file?
+            return (int)((int)ch - (int)'a');
+        }
+
+        /// <summary>
+        /// Performs given move on chessboard
+        /// </summary>
+        /// <param name="game">Description of game</param>
+        /// <param name="move">Move to perform</param>
         private static void PerformMove(GameData game, GameMove move)
         {
             game.Chessboard.MoveTo(move.From, move.To);
         }
 
+        /// <summary>
+        /// Reverts given move
+        /// </summary>
+        /// <param name="game">Description of game</param>
+        /// <param name="move">Move to revert</param>
+        /// <param name="tempSavedTakenFigure">Saved figure in case, that move was capture</param>
         private static void RevertMove(GameData game, GameMove move, Figure tempSavedTakenFigure)
         {
             game.Chessboard.MoveTo(move.To, move.From);
             game.Chessboard.AddFigure(tempSavedTakenFigure, move.To);
         }
 
+        /// <summary>
+        /// Checks whether player has no possible moves to play
+        /// </summary>
+        /// <param name="game">Description of game</param>
+        /// <param name="playerColor">Color of player</param>
+        /// <returns>Whether player has no possible moves to play</returns>
         private static bool PlayerHasNoPossibleMoves(GameData game, PlayerColor playerColor)
         {
             var possibleMoves = GetAllMoves(game.Chessboard, playerColor);
@@ -124,11 +202,19 @@ namespace ChessTracking.Game
             return true;
         }
 
-        private static GameWinState GetWinStateFromPlayerColor(PlayerColor color)
+        /// <summary>
+        /// Transforms player color to win state of player of this color
+        /// </summary>
+        private static GameState GetWinStateFromPlayerColor(PlayerColor color)
         {
-            return color == PlayerColor.White ? GameWinState.WhiteWin : GameWinState.BlackWin;
+            // TODO: move to different file?
+            return color == PlayerColor.White ? GameState.WhiteWin : GameState.BlackWin;
         }
 
+        /// <summary>
+        /// Checks wheter given player is checked in given game
+        /// </summary>
+        /// <param name="game">Description of game</param>
         private static bool PlayerIsChecked(GameData game, PlayerColor color)
         {
             var myKingPosition = GetKingPosition(game.Chessboard.Figures, color);
@@ -136,11 +222,17 @@ namespace ChessTracking.Game
             return enemyMoves.Any(x => x.To.IsEquivalent(myKingPosition));
         }
 
+        /// <summary>
+        /// Gets oponents color
+        /// </summary>
         private static PlayerColor GetOppositeColor(PlayerColor color)
         {
             return color == PlayerColor.White ? PlayerColor.Black : PlayerColor.White;
         }
 
+        /// <summary>
+        /// Gets king position on chessboard for player of given color
+        /// </summary>
         private static ChessPosition GetKingPosition(Figure[,] figures, PlayerColor playerColor)
         {
             for (int x = 0; x < 8; x++)
@@ -158,11 +250,40 @@ namespace ChessTracking.Game
             return null;
         }
 
+        /// <summary>
+        /// Decodes textual representation of move into object
+        /// </summary>
+        /// <returns>Move if it's valid, null otherwise</returns>
         private static GameMove DecodeMove(GameData game, string move)
         {
-            return null;
+            var figure = GetFigureForCharacter(move[0]);
+            var from = new ChessPosition(GetPositionForCharacter(move[1]), int.Parse(move[2].ToString()) - 1);
+            var isCapture = move[3] == 'x';
+            var to = new ChessPosition(GetPositionForCharacter(move[4]), int.Parse(move[5].ToString()) - 1);
+
+            var fromFigure = game.Chessboard.GetFigureOnPosition(from);
+            var toFigure = game.Chessboard.GetFigureOnPosition(to);
+
+            if (figure != fromFigure.Type)
+                return null;
+            if (isCapture)
+            {
+                if (game.Chessboard.GetFigureOnPosition(to) == null)
+                    return null;
+            }
+            else
+            {
+                if (game.Chessboard.GetFigureOnPosition(to) != null)
+                    return null;
+            }
+
+            return new GameMove(from, to, fromFigure.Type, toFigure?.Type);
         }
 
+        /// <summary>
+        /// Decodes game and tracking state difference into game move object
+        /// </summary>
+        /// <returns>Move if it's valid, null otherwise</returns>
         private static GameMove DecodeMove(GameData game, TrackingState trackingState)
         {
             var trackingStateFigures = trackingState.Figures;
@@ -278,6 +399,9 @@ namespace ChessTracking.Game
             return null;
         }
 
+        /// <summary>
+        /// Get all possible moves for given player
+        /// </summary>
         private static List<GameMove> GetAllMoves(ChessboardModel chessboard, PlayerColor playerColor)
         {
             var acumulator = new List<GameMove>();
@@ -291,6 +415,9 @@ namespace ChessTracking.Game
             return acumulator;
         }
 
+        /// <summary>
+        /// Gets all possible moves of rooks of given player
+        /// </summary>
         private static List<GameMove> GetMovesForRooks(ChessboardModel chessboard, PlayerColor playerColor)
         {
             var acumulator = new List<GameMove>();
@@ -324,6 +451,9 @@ namespace ChessTracking.Game
             return acumulator;
         }
 
+        /// <summary>
+        /// Gets all possible moves of bishops of given player
+        /// </summary>
         private static List<GameMove> GetMovesForBishops(ChessboardModel chessboard, PlayerColor playerColor)
         {
             var acumulator = new List<GameMove>();
@@ -357,6 +487,9 @@ namespace ChessTracking.Game
             return acumulator;
         }
 
+        /// <summary>
+        /// Gets all possible moves of queens of given player
+        /// </summary>
         private static List<GameMove> GetMovesForQueens(ChessboardModel chessboard, PlayerColor playerColor)
         {
             var acumulator = new List<GameMove>();
@@ -398,6 +531,9 @@ namespace ChessTracking.Game
             return acumulator;
         }
 
+        /// <summary>
+        /// Gets all possible moves of pawns of given player
+        /// </summary>
         private static List<GameMove> GetMovesForPawns(ChessboardModel chessboard, PlayerColor playerColor)
         {
             var acumulator = new List<GameMove>();
@@ -432,6 +568,9 @@ namespace ChessTracking.Game
             return acumulator;
         }
 
+        /// <summary>
+        /// Gets all possible moves of knights of given player
+        /// </summary>
         private static List<GameMove> GetMovesForKnights(ChessboardModel chessboard, PlayerColor playerColor)
         {
             var acumulator = new List<GameMove>();
@@ -473,6 +612,9 @@ namespace ChessTracking.Game
             return acumulator;
         }
 
+        /// <summary>
+        /// Gets all possible moves of king of given player
+        /// </summary>
         private static List<GameMove> GetMovesForKing(ChessboardModel chessboard, PlayerColor playerColor)
         {
             var acumulator = new List<GameMove>();
@@ -514,6 +656,12 @@ namespace ChessTracking.Game
             return acumulator;
         }
 
+        /// <summary>
+        /// Gets moves in direction of vector, until figure of playing player is encountered, or positions ain't valid
+        /// </summary>
+        /// <param name="playerColor">Capturing player</param>
+        /// <param name="from">Position to move from</param>
+        /// <param name="vector">Vector to move to</param>
         private static List<GameMove> CanMoveOrAttackIterative(ChessboardModel chessboard, PlayerColor playerColor, ChessPosition from, GameMoveVector vector)
         {
             var acumulator = new List<GameMove>();
@@ -538,6 +686,12 @@ namespace ChessTracking.Game
             }
         }
 
+        /// <summary>
+        /// Gets move, if there is figure of opponent on moving to position, or its empty, null otherwise
+        /// </summary>
+        /// <param name="playerColor">Moving player</param>
+        /// <param name="from">Position to move from</param>
+        /// <param name="to">Position to move to</param>
         private static GameMove CanMoveOrAttack(ChessboardModel chessboard, PlayerColor playerColor, ChessPosition from, ChessPosition to)
         {
             if (!to.IsValid())
@@ -551,6 +705,12 @@ namespace ChessTracking.Game
             return new GameMove(from, to, chessboard.GetFigureOnPosition(from).Type, chessboard.GetFigureOnPosition(to)?.Type);
         }
 
+        /// <summary>
+        /// Gets move, if there is figure of opponent on moving to position, null otherwise
+        /// </summary>
+        /// <param name="playerColor">Capturing player</param>
+        /// <param name="from">Position to capture from</param>
+        /// <param name="to">Position to capture to</param>
         private static GameMove CanAttack(ChessboardModel chessboard, PlayerColor playerColor, ChessPosition from, ChessPosition to)
         {
             if (!to.IsValid())
@@ -566,6 +726,12 @@ namespace ChessTracking.Game
             return new GameMove(from, to, chessboard.GetFigureOnPosition(from).Type, chessboard.GetFigureOnPosition(to)?.Type);
         }
 
+        /// <summary>
+        /// Gets move, if there is no figure in the place moving to, null otherwise
+        /// </summary>
+        /// <param name="playerColor">Moving player</param>
+        /// <param name="from">Position to move from</param>
+        /// <param name="to">Position to move to</param>
         private static GameMove CanMove(ChessboardModel chessboard, PlayerColor playerColor, ChessPosition from, ChessPosition to)
         {
             if (!to.IsValid())

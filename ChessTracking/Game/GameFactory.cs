@@ -8,8 +8,15 @@ using Accord.IO;
 
 namespace ChessTracking.Game
 {
+    /// <summary>
+    /// Creates chess game instances
+    /// </summary>
     public static class GameFactory
     {
+        /// <summary>
+        /// Creates new game of chess
+        /// </summary>
+        /// <returns>Description state of game</returns>
         public static GameData NewGame()
         {
             var figures = new Figure[8, 8];
@@ -50,26 +57,44 @@ namespace ChessTracking.Game
             figures[6, 6] = new Figure(FigureType.Pawn, PlayerColor.Black);
             figures[7, 6] = new Figure(FigureType.Pawn, PlayerColor.Black);
 
-            var game = new GameData(new ChessboardModel(figures), PlayerColor.White, GameWinState.StillPlaying);
+            var game = new GameData(new ChessboardModel(figures), PlayerColor.White, GameState.StillPlaying);
 
             return game;
         }
 
+        /// <summary>
+        /// Loads game of chess from incoming stream
+        /// </summary>
+        /// <param name="stream">Record of loaded game</param>
+        /// <returns>Description state of game</returns>
         public static GameData LoadGame(StreamReader stream)
         {
             var game = NewGame();
 
             while (!stream.EndOfStream)
             {
-                if (game.EndState == GameWinState.StillPlaying)
+                if (game.EndState == GameState.StillPlaying)
                 {
                     var validationResult = GameValidator.ValidateAndPerform(game.DeepClone(), stream.ReadLine()); // get from validator
 
                     if (validationResult.IsValid)
                         game = validationResult.NewGameState;
 
-                    if (game.EndState != GameWinState.StillPlaying)
-                        ; // do some stopping of everything -> check if everything is ok
+                    if (game.EndState != GameState.StillPlaying)
+                    {
+                        if (game.EndState == GameState.BlackWin)
+                        {
+                            game.RecordOfGame.Add("1-0");
+                        }
+                        if (game.EndState == GameState.WhiteWin)
+                        {
+                            game.RecordOfGame.Add("0-1");
+                        }
+                        if (game.EndState == GameState.Draw)
+                        {
+                            game.RecordOfGame.Add("1/2-1/2");
+                        }
+                    }
                 }
             }
             

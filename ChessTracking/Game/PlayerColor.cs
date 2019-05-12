@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.Game
 {
+    /// <summary>
+    /// Enumeration of player colors in chess game
+    /// </summary>
     public enum PlayerColor
     {
         White,

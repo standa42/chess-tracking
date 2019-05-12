@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.Game
 {
-    public enum GameWinState
+    /// <summary>
+    /// Representation of state of game
+    /// </summary>
+    public enum GameState
     {
         WhiteWin,
         BlackWin,

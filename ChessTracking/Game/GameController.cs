@@ -66,28 +66,37 @@ namespace ChessTracking.Game
 
         public void TryChangeChessboardState(TrackingState trackingState)
         {
-            if (Game.EndState == GameWinState.StillPlaying)
+            if (Game.EndState == GameState.StillPlaying)
             {
                 var validationResult = GameValidator.ValidateAndPerform(Game.DeepClone(), trackingState); // get from validator
 
                 if (validationResult.IsValid)
                     Game = validationResult.NewGameState;
                 else
-                    OutputFacade.AddToUserLog("ValidationError");
+                    OutputFacade.AddToUserLog("ValidationError asdf as dfasd fsad fasdf asf asdf as dfsa fsdaf ");
 
                 OutputFacade.UpdateRecordState(Game.RecordOfGame);
                 OutputFacade.UpdateBoardState(RenderGameState());
 
-                if (Game.EndState != GameWinState.StillPlaying)
+                if (Game.EndState != GameState.StillPlaying)
                 {
                     // do some stopping of everything}
                     OutputFacade.AddToUserLog("Game ended");
-                    if (Game.EndState == GameWinState.BlackWin)
+                    if (Game.EndState == GameState.BlackWin)
+                    {
                         OutputFacade.AddToUserLog("Black won");
-                    if (Game.EndState == GameWinState.WhiteWin)
+                        Game.RecordOfGame.Add("1-0");
+                    }
+                    if (Game.EndState == GameState.WhiteWin)
+                    {
                         OutputFacade.AddToUserLog("White won");
-                    if (Game.EndState == GameWinState.Draw)
+                        Game.RecordOfGame.Add("0-1");
+                    }
+                    if (Game.EndState == GameState.Draw)
+                    {
                         OutputFacade.AddToUserLog("Its a draw");
+                        Game.RecordOfGame.Add("1/2-1/2");
+                    }
                 }
 
                 

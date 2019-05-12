@@ -12,10 +12,10 @@ namespace ChessTracking.Game
     {
         public ChessboardModel Chessboard;
         public PlayerColor PlayerOnMove { get; set; }
-        public GameWinState EndState { get; set; }
+        public GameState EndState { get; set; }
         public List<string> RecordOfGame { get; set; }
         
-        public GameData(ChessboardModel chessboard, PlayerColor playerOnMove, GameWinState endState)
+        public GameData(ChessboardModel chessboard, PlayerColor playerOnMove, GameState endState)
         {
             Chessboard = chessboard;
             PlayerOnMove = playerOnMove;

@@ -264,7 +264,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 19);
             this.label5.TabIndex = 21;
-            this.label5.Text = "Figure color change";
+            this.label5.Text = "Figure color calibration";
             // 
             // label6
             // 

@@ -89,7 +89,7 @@
     <Compile Include="Game\GameMoveVector.cs" />
     <Compile Include="Game\GameRenderer.cs" />
     <Compile Include="Game\GameValidator.cs" />
-    <Compile Include="Game\GameWinState.cs" />
+    <Compile Include="Game\GameState.cs" />
     <Compile Include="Game\PlayerColor.cs" />
     <Compile Include="Game\ValidationResult.cs" />
     <Compile Include="MultithreadingMessages\ColorCalibrationMessage.cs" />

@@ -28,5 +28,7 @@ namespace ChessTracking.Game
                 To.IsEquivalent(other.To) &&
                 Who == other.Who;
         }
+
+
     }
 }
