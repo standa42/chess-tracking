@@ -154,6 +154,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -170,6 +171,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="img\BlackBishop.png" />
+    <None Include="img\BlackKing.png" />
+    <None Include="img\BlackKnight.png" />
+    <None Include="img\BlackPawn.png" />
+    <None Include="img\BlackQueen.png" />
+    <None Include="img\BlackRook.png" />
+    <None Include="img\Chessboard.png" />
+    <None Include="img\ChessboardSmaller.png" />
+    <None Include="img\ChessboardSmaller2.png" />
+    <None Include="img\ChessboardSmaller3.png" />
+    <None Include="img\ChessboardSmaller4.png" />
+    <None Include="img\ChessboardSmaller5.png" />
+    <None Include="img\WhiteBishop.png" />
+    <None Include="img\WhiteKing.png" />
+    <None Include="img\WhiteKnight.png" />
+    <None Include="img\WhitePawn.png" />
+    <None Include="img\WhiteQueen.png" />
+    <None Include="img\WhiteRook.png" />
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

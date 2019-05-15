@@ -41,19 +41,19 @@ namespace ChessTracking.Game
 
         static Figure()
         {
-            WhiteQueenBitmap = new Bitmap($@"img\WhiteQueen.png");
-            WhiteKingBitmap = new Bitmap($@"img\WhiteKing.png");
-            WhiteBishopBitmap = new Bitmap($@"img\WhiteBishop.png");
-            WhiteKnightBitmap = new Bitmap($@"img\WhiteKnight.png");
-            WhiteRookBitmap = new Bitmap($@"img\WhiteRook.png");
-            WhitePawnBitmap = new Bitmap($@"img\WhitePawn.png");
+            WhiteQueenBitmap = Properties.Resources.WhiteQueen; 
+            WhiteKingBitmap = Properties.Resources.WhiteKing;
+            WhiteBishopBitmap = Properties.Resources.WhiteBishop;
+            WhiteKnightBitmap = Properties.Resources.WhiteKnight;
+            WhiteRookBitmap = Properties.Resources.WhiteRook;
+            WhitePawnBitmap = Properties.Resources.WhitePawn;
 
-            BlackQueenBitmap = new Bitmap($@"img\BlackQueen.png");
-            BlackKingBitmap = new Bitmap($@"img\BlackKing.png");
-            BlackBishopBitmap = new Bitmap($@"img\BlackBishop.png");
-            BlackKnightBitmap = new Bitmap($@"img\BlackKnight.png");
-            BlackRookBitmap = new Bitmap($@"img\BlackRook.png");
-            BlackPawnBitmap = new Bitmap($@"img\BlackPawn.png");
+            BlackQueenBitmap = Properties.Resources.BlackQueen;
+            BlackKingBitmap = Properties.Resources.BlackKing;
+            BlackBishopBitmap = Properties.Resources.BlackBishop;
+            BlackKnightBitmap = Properties.Resources.BlackKnight;
+            BlackRookBitmap = Properties.Resources.BlackRook;
+            BlackPawnBitmap = Properties.Resources.BlackPawn;
         }
 
         public static Bitmap GetBitmapRepresentation(FigureType type, PlayerColor color)

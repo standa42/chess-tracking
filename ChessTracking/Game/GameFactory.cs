@@ -96,6 +96,10 @@ namespace ChessTracking.Game
                         }
                     }
                 }
+                else
+                {
+                    break;
+                }
             }
             
             return game; // TODO: return loadresult if it was valid, update fields, lock buttons if st game is complete, atd..

@@ -14,7 +14,7 @@ namespace ChessTracking.Game
 
         static GameRenderer()
         {
-            ChessboardBitmap = new Bitmap($@"img\Chessboard.png");
+            ChessboardBitmap = Properties.Resources.Chessboard;
         }
 
         public static Bitmap RenderGameState(GameData game)
