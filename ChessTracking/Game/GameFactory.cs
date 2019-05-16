@@ -84,11 +84,11 @@ namespace ChessTracking.Game
                     {
                         if (game.EndState == GameState.BlackWin)
                         {
-                            game.RecordOfGame.Add("1-0");
+                            game.RecordOfGame.Add("0-1");
                         }
                         if (game.EndState == GameState.WhiteWin)
                         {
-                            game.RecordOfGame.Add("0-1");
+                            game.RecordOfGame.Add("1-0");
                         }
                         if (game.EndState == GameState.Draw)
                         {
