@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -179,10 +180,6 @@
     <None Include="img\BlackRook.png" />
     <None Include="img\Chessboard.png" />
     <None Include="img\ChessboardSmaller.png" />
-    <None Include="img\ChessboardSmaller2.png" />
-    <None Include="img\ChessboardSmaller3.png" />
-    <None Include="img\ChessboardSmaller4.png" />
-    <None Include="img\ChessboardSmaller5.png" />
     <None Include="img\WhiteBishop.png" />
     <None Include="img\WhiteKing.png" />
     <None Include="img\WhiteKnight.png" />

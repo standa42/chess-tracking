@@ -85,12 +85,12 @@ namespace ChessTracking.Game
                     if (Game.EndState == GameState.BlackWin)
                     {
                         OutputFacade.AddToUserLog("Black won");
-                        Game.RecordOfGame.Add("1-0");
+                        Game.RecordOfGame.Add("0-1");
                     }
                     if (Game.EndState == GameState.WhiteWin)
                     {
                         OutputFacade.AddToUserLog("White won");
-                        Game.RecordOfGame.Add("0-1");
+                        Game.RecordOfGame.Add("1-0");
                     }
                     if (Game.EndState == GameState.Draw)
                     {

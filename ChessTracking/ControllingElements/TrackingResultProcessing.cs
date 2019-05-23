@@ -193,7 +193,7 @@ namespace ChessTracking.ControllingElements
         
         static TrackingResultProcessing()
         {
-            ChessboardBitmap = Properties.Resources.ChessboardSmaller4;
+            ChessboardBitmap = Properties.Resources.ChessboardSmaller;
         }
 
         /// <summary>
