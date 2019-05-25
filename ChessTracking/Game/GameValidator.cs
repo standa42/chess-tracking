@@ -164,6 +164,7 @@ namespace ChessTracking.Game
         /// <param name="move">Move to perform</param>
         private static void PerformMove(GameData game, GameMove move)
         {
+            game.Chessboard.GetFigureOnPosition(move.From).Moved = true;
             game.Chessboard.MoveTo(move.From, move.To);
         }
 
@@ -558,7 +559,7 @@ namespace ChessTracking.Game
                         acumulator.Add(CanAttack(chessboard, playerColor, position, position.Add(captureVector2)));
                         var moveOnce = CanMove(chessboard, playerColor, position, position.Add(moveVector));
                         acumulator.Add(moveOnce);
-                        if (moveOnce != null)
+                        if (moveOnce != null && !figure.Moved)
                             acumulator.Add(CanMove(chessboard, playerColor, position, moveOnce.To.Add(moveVector)));
                     }
                 }
