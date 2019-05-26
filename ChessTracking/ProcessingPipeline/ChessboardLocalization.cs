@@ -23,9 +23,9 @@ namespace ChessTracking.ProcessingPipeline
     {
         public Pipeline Pipeline { get; }
 
-        MyVector3DStruct startingPointFinal = new MyVector3DStruct();
-        MyVector3DStruct firstVectorFinal = new MyVector3DStruct();
-        MyVector3DStruct secondVectorFinal = new MyVector3DStruct();
+        private MyVector3DStruct startingPointFinal = new MyVector3DStruct();
+        private MyVector3DStruct firstVectorFinal = new MyVector3DStruct();
+        private MyVector3DStruct secondVectorFinal = new MyVector3DStruct();
 
 
         public ChessboardLocalization(Pipeline pipeline)
@@ -38,16 +38,11 @@ namespace ChessTracking.ProcessingPipeline
             var chessboardData = new ChessboardDoneData(planeData);
 
             {
-                Image<Bgr, Byte> drawnEdges2 = null;
-
                 Image<Gray, Byte> grayImage = planeData.MaskedColorImageOfTable.Convert<Gray, Byte>();
-                //grayImage.Save(@"D:\Desktop\LocGray.jpeg");
                 var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
                 CvInvoke.Threshold(grayImage, binarizedImg, 200, 255, ThresholdType.Otsu);
-                //binarizedImg.Save(@"D:\Desktop\LocOtzu.jpeg");
                 Image<Gray, Byte> cannyEdges = binarizedImg.Canny(700, 1400, 5, true).SmoothGaussian(3)
                     .ThresholdBinary(new Gray(50), new Gray(255));
-                //cannyEdges.Save(@"D:\Desktop\LocCanny.jpeg");
                 var lines = cannyEdges.HoughLinesBinary(
                     0.8f, //Distance resolution in pixel-related units
                     Math.PI / 1500, //Angle resolution measured in radians.
@@ -79,7 +74,6 @@ namespace ChessTracking.ProcessingPipeline
                         graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
                     }
                 }
-                //colorNonFiltered.Save(@"D:\Desktop\LocHoughNonfiltered.jpeg");
                 
 
                 var linesTuple = FilterLinesBasedOnAngle(lines2, 25); //TODO 25
@@ -93,9 +87,6 @@ namespace ChessTracking.ProcessingPipeline
                         graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
                     }
                 }
-
-                drawnEdges2 = new Image<Bgr, Byte>( /*colorImg.Bitmap*/
-                    new Size(cannyEdges.Width, cannyEdges.Height));
 
                 var points = new List<Point2D>();
                 var contractedPoints = new List<Point2D>();
@@ -191,36 +182,10 @@ namespace ChessTracking.ProcessingPipeline
                         break;
                     }
                 }
-
-                var colorD = (Bitmap)planeData.MaskedColorImageOfTable.Bitmap.Clone();
-                using (var graphics = Graphics.FromImage(colorD))
-                {
-                    foreach (var line in linesTuple.Item1.Concat(linesTuple.Item2))
-                    {
-                        graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
-                    }
-                }
-
-
-                Pen yellowPen = new Pen(Color.Yellow, 3);
-                foreach (var contractedPoint in contractedPoints)
-                {
-                    try
-                    {
-                        using (var graphics = Graphics.FromImage(colorD))
-                        {
-                             graphics.DrawRectangle(yellowPen, new Rectangle((int)contractedPoint.X-3, (int)contractedPoint.Y-3, 7 , 7));
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-                //colorD.Save(@"D:\Desktop\LocIntersections.jpeg");
+                
                 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                List<CameraSpacePoint> contractedPointsCSP = new List<CameraSpacePoint>();
+                List<CameraSpacePoint> contractedPointsCsp = new List<CameraSpacePoint>();
 
                 foreach (var contractedPoint in contractedPoints)
                 {
@@ -230,21 +195,21 @@ namespace ChessTracking.ProcessingPipeline
                     {
                         var csp = chessboardData.CameraSpacePointsFromDepthData[
                             (int)depthReference.X + (int)depthReference.Y * 512];
-                        contractedPointsCSP.Add(csp);
+                        contractedPointsCsp.Add(csp);
                     }
                 }
 
 
 
-                var contractedPointsCSPStruct =
-                    contractedPointsCSP.Select(x => new MyVector3DStruct(x.X, x.Y, x.Z)).ToArray();
+                var contractedPointsCspStruct =
+                    contractedPointsCsp.Select(x => new MyVector3DStruct(x.X, x.Y, x.Z)).ToArray();
 
                 double lowestError = double.MaxValue;
                 //int eliminator = 0;
-                foreach (var csp in contractedPointsCSPStruct/*.Where(x => (eliminator++) % 2 == 0)*/)
+                foreach (var csp in contractedPointsCspStruct/*.Where(x => (eliminator++) % 2 == 0)*/)
                 {
                     // take 6 nearest neighbors
-                    var neighbors = contractedPointsCSPStruct.OrderBy(
+                    var neighbors = contractedPointsCspStruct.OrderBy(
                         (MyVector3DStruct x) =>
                         {
                             return
@@ -336,7 +301,7 @@ namespace ChessTracking.ProcessingPipeline
                                                 )
                                             );
 
-                                            var closestPointDistance = contractedPointsCSPStruct.Min(x =>
+                                            var closestPointDistance = contractedPointsCspStruct.Min(x =>
                                                 MyVector3DStruct.Distance(ref currentPoint,
                                                     new MyVector3DStruct(x.x, x.y, x.z)));
 
@@ -612,13 +577,6 @@ namespace ChessTracking.ProcessingPipeline
                 {xVec.x, yVec.x, zVec.x},
                 {xVec.y, yVec.y, zVec.y},
                 {xVec.z, yVec.z, zVec.z}
-                
-                /*
-                {xVec.x, xVec.y, xVec.z},
-                {yVec.x, yVec.y, yVec.z},
-                {zVec.x, zVec.y, zVec.z}
-                */
-                
             };
             var inverseMatrix = matrix.Inverse();
 
@@ -627,17 +585,10 @@ namespace ChessTracking.ProcessingPipeline
                 var nx = (float)(cspFromdd[i].X - startingPointFinal.x);
                 var ny = (float)(cspFromdd[i].Y - startingPointFinal.y);
                 var nz = (float)(cspFromdd[i].Z - startingPointFinal.z);
-
-
+                
                 cspFromdd[i].X = (float)(inverseMatrix[0, 0] * nx + inverseMatrix[0, 1] * ny + inverseMatrix[0, 2] * nz);
                 cspFromdd[i].Y = (float)(inverseMatrix[1, 0] * nx + inverseMatrix[1, 1] * ny + inverseMatrix[1, 2] * nz);
                 cspFromdd[i].Z = (float)(inverseMatrix[2, 0] * nx + inverseMatrix[2, 1] * ny + inverseMatrix[2, 2] * nz);
-
-                /*
-                cspFromdd[i].X = (float)(inverseMatrix[0, 0] * cspFromdd[i].X + inverseMatrix[1, 0] * cspFromdd[i].Y + inverseMatrix[2, 0] * cspFromdd[i].Z);
-                cspFromdd[i].Y = (float)(inverseMatrix[0, 1] * cspFromdd[i].X + inverseMatrix[1, 1] * cspFromdd[i].Y + inverseMatrix[2, 1] * cspFromdd[i].Z);
-                cspFromdd[i].Z = (float)(inverseMatrix[0, 2] * cspFromdd[i].X + inverseMatrix[1, 2] * cspFromdd[i].Y + inverseMatrix[2, 2] * cspFromdd[i].Z);
-                */
             }
 
         }
