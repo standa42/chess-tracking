@@ -33,281 +33,309 @@ namespace ChessTracking.ProcessingPipeline
             this.Pipeline = pipeline;
         }
 
-        public ChessboardDoneData Recalibrate(PlaneDoneData planeData)
+        private Image<Gray, byte> GetGrayImage(Image<Rgb, byte> colorImage)
         {
-            var chessboardData = new ChessboardDoneData(planeData);
+            return colorImage.Convert<Gray, Byte>();
+        }
 
+        private Image<Gray, byte> GetBinarizedImage(Image<Gray, byte> grayImage)
+        {
+            var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
+            CvInvoke.Threshold(grayImage, binarizedImg, 200, 255, ThresholdType.Otsu);
+            return binarizedImg;
+        }
+
+        private Image<Gray, Byte> ApplyCannyDetector(Image<Gray, byte> image)
+        {
+            return image.Canny(700, 1400, 5, true).SmoothGaussian(3).ThresholdBinary(new Gray(50), new Gray(255));
+        }
+
+        private Tuple<LineSegment2D[], LineSegment2D[]> GetFilteredHoughLines(Image<Gray, byte> image)
+        {
+            var lines = image.HoughLinesBinary(
+                0.8f,  //Distance resolution in pixel-related units
+                Math.PI / 1500, //Angle resolution measured in radians.
+                220, //threshold
+                100, //min Line width (90)
+                35 //gap between lines
+            )[0];
+
+            Image<Bgr, Byte> drawnEdges =
+                new Image<Bgr, Byte>(new Size(image.Width, image.Height));
+
+            foreach (LineSegment2D line in lines)
+                CvInvoke.Line(drawnEdges, line.P1, line.P2,
+                    new Bgr(Color.White).MCvScalar, 1);
+
+            var lines2 = drawnEdges.Convert<Gray, byte>().HoughLinesBinary(
+                0.8f, //Distance resolution in pixel-related units
+                Math.PI / 1500, //Angle resolution measured in radians.
+                50, //threshold
+                100, //90                //min Line width
+                10 //gap between lines
+            )[0];
+
+            return FilterLinesBasedOnAngle(lines2, 25);
+        }
+
+        private List<Point2D> GetConcractedPoints(Tuple<LineSegment2D[], LineSegment2D[]> linesTuple)
+        {
+            var points = new List<Point2D>();
+            var contractedPoints = new List<Point2D>();
+            var libraryLines = new Tuple<List<Line2D>, List<Line2D>>(new List<Line2D>(), new List<Line2D>());
+
+            foreach (var lineSegment2D in linesTuple.Item1)
             {
-                Image<Gray, Byte> grayImage = planeData.MaskedColorImageOfTable.Convert<Gray, Byte>();
+                libraryLines.Item1.Add(new Line2D(new Point2D(lineSegment2D.P1.X, lineSegment2D.P1.Y),
+                    new Point2D(lineSegment2D.P2.X, lineSegment2D.P2.Y)));
+            }
 
-                var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
+            foreach (var lineSegment2D in linesTuple.Item2)
+            {
+                libraryLines.Item2.Add(new Line2D(new Point2D(lineSegment2D.P1.X, lineSegment2D.P1.Y),
+                    new Point2D(lineSegment2D.P2.X, lineSegment2D.P2.Y)));
+            }
 
-                CvInvoke.Threshold(grayImage, binarizedImg, 200, 255, ThresholdType.Otsu);
-
-                Image<Gray, Byte> cannyEdges = binarizedImg.Canny(700, 1400, 5, true).SmoothGaussian(3).ThresholdBinary(new Gray(50), new Gray(255));
-
-                var lines = cannyEdges.HoughLinesBinary(
-                                0.8f,  //Distance resolution in pixel-related units
-                                Math.PI / 1500, //Angle resolution measured in radians.
-                                220, //threshold
-                                100, //min Line width (90)
-                                35 //gap between lines
-                             )[0];
-
-                Image<Bgr, Byte> drawnEdges =
-                    new Image<Bgr, Byte>(new Size(cannyEdges.Width, cannyEdges.Height) /*cannyEdges.ToBitmap()*/);
-
-                foreach (LineSegment2D line in lines)
-                    CvInvoke.Line(drawnEdges, line.P1, line.P2,
-                        new Bgr(Color.White).MCvScalar, 1);
-
-                var lines2 = drawnEdges.Convert<Gray, byte>().HoughLinesBinary(
-                                0.8f, //Distance resolution in pixel-related units
-                                Math.PI / 1500, //Angle resolution measured in radians.
-                                50, //threshold
-                                100, //90                //min Line width
-                                10 //gap between lines
-                            )[0];
-                
-                var linesTuple = FilterLinesBasedOnAngle(lines2, 25);
-                
-                var points = new List<Point2D>();
-                var contractedPoints = new List<Point2D>();
-                var libraryLines = new Tuple<List<Line2D>, List<Line2D>>(new List<Line2D>(), new List<Line2D>());
-
-                foreach (var lineSegment2D in linesTuple.Item1)
+            foreach (var line1 in libraryLines.Item1)
+            {
+                foreach (var line2 in libraryLines.Item2)
                 {
-                    libraryLines.Item1.Add(new Line2D(new Point2D(lineSegment2D.P1.X, lineSegment2D.P1.Y),
-                        new Point2D(lineSegment2D.P2.X, lineSegment2D.P2.Y)));
-                }
+                    var accordLine1 =
+                        new LineSegment(new Point((float)line1.StartPoint.X, (float)line1.StartPoint.Y),
+                            new Point((float)line1.EndPoint.X, (float)line1.EndPoint.Y));
+                    var accordLine2 =
+                        new LineSegment(new Point((float)line2.StartPoint.X, (float)line2.StartPoint.Y),
+                            new Point((float)line2.EndPoint.X, (float)line2.EndPoint.Y));
 
-                foreach (var lineSegment2D in linesTuple.Item2)
-                {
-                    libraryLines.Item2.Add(new Line2D(new Point2D(lineSegment2D.P1.X, lineSegment2D.P1.Y),
-                        new Point2D(lineSegment2D.P2.X, lineSegment2D.P2.Y)));
-                }
-
-                foreach (var line1 in libraryLines.Item1)
-                {
-                    foreach (var line2 in libraryLines.Item2)
+                    var accordNullablePoint = accordLine1.GetIntersectionWith(accordLine2);
+                    if (accordNullablePoint != null)
                     {
-                        var accordLine1 =
-                            new LineSegment(new Point((float)line1.StartPoint.X, (float)line1.StartPoint.Y),
-                                new Point((float)line1.EndPoint.X, (float)line1.EndPoint.Y));
-                        var accordLine2 =
-                            new LineSegment(new Point((float)line2.StartPoint.X, (float)line2.StartPoint.Y),
-                                new Point((float)line2.EndPoint.X, (float)line2.EndPoint.Y));
+                        points.Add(new Point2D(accordNullablePoint.Value.X, accordNullablePoint.Value.Y));
+                    }
+                }
+            }
 
-                        var accordNullablePoint = accordLine1.GetIntersectionWith(accordLine2);
-                        if (accordNullablePoint != null)
+            foreach (var line1 in linesTuple.Item1)
+            {
+                points.Add(new Point2D(line1.P1.X, line1.P1.Y));
+                points.Add(new Point2D(line1.P2.X, line1.P2.Y));
+            }
+
+            foreach (var line2 in linesTuple.Item2)
+            {
+                points.Add(new Point2D(line2.P1.X, line2.P1.Y));
+                points.Add(new Point2D(line2.P2.X, line2.P2.Y));
+            }
+
+
+            double distance = 12; //15
+            while (true)
+            {
+                // new list for points to average and add first element from remaining list
+                var pointsToAvg = new List<Point2D>();
+                var referencePoint = points.First();
+                pointsToAvg.Add(referencePoint);
+                points.RemoveAt(0);
+
+                // loop throught remaining list and find close neighbors
+                foreach (var point in points)
+                {
+                    double diffX = (referencePoint.X - point.X);
+                    double diffY = (referencePoint.Y - point.Y);
+
+                    if (Math.Sqrt(diffX * diffX + diffY * diffY) < distance)
+                    {
+                        pointsToAvg.Add(point);
+                    }
+                }
+
+                // remove them all from remaining list
+                foreach (var pointToRemove in pointsToAvg)
+                {
+                    points.Remove(pointToRemove);
+                }
+
+                // compute average and add it to list
+                double x = 0;
+                double y = 0;
+                int count = 0;
+                foreach (var point in pointsToAvg)
+                {
+                    x += point.X;
+                    y += point.Y;
+                    count++;
+                }
+
+                contractedPoints.Add(new Point2D((int)x / count, (int)y / count));
+
+                // if rem. list is empty -> break
+                if (points.Count == 0)
+                {
+                    break;
+                }
+            }
+
+            return contractedPoints;
+        }
+
+        private void ChessboardFittingAlgorithm(List<Point2D> contractedPoints, ChessboardDoneData chessboardData)
+        {
+
+            List<CameraSpacePoint> contractedPointsCsp = new List<CameraSpacePoint>();
+
+            foreach (var contractedPoint in contractedPoints)
+            {
+                var depthReference =
+                    chessboardData.PointsFromColorToDepth[(int)contractedPoint.X + (int)contractedPoint.Y * 1920];
+                if (!float.IsInfinity(depthReference.X))
+                {
+                    var csp = chessboardData.CameraSpacePointsFromDepthData[
+                        (int)depthReference.X + (int)depthReference.Y * 512];
+                    contractedPointsCsp.Add(csp);
+                }
+            }
+
+
+
+            var contractedPointsCspStruct =
+                contractedPointsCsp.Select(x => new MyVector3DStruct(x.X, x.Y, x.Z)).ToArray();
+
+            double lowestError = double.MaxValue;
+            //int eliminator = 0;
+            foreach (var csp in contractedPointsCspStruct/*.Where(x => (eliminator++) % 2 == 0)*/)
+            {
+                // take 6 nearest neighbors
+                var neighbors = contractedPointsCspStruct.OrderBy(
+                    (MyVector3DStruct x) =>
+                    {
+                        return
+                            Math.Sqrt(
+                                (x.x - csp.x) * (x.x - csp.x) + (x.y - csp.y) * (x.y - csp.y) +
+                                (x.z - csp.z) * (x.z - csp.z)
+                            );
+                    }).Take(7).ToArray();
+
+                // take all pairs
+                for (int i = 0; i < neighbors.Length; i++)
+                {
+                    for (int j = i + 1; j < neighbors.Length; j++)
+                    {
+                        var first = neighbors[i];
+                        var second = neighbors[j];
+
+                        var firstPoint = new MyVector3DStruct(first.x, first.y, first.z);
+                        var secondPoint = new MyVector3DStruct(second.x, second.y, second.z);
+
+                        // st. point + 2 vectors
+                        var cspPoint = new MyVector3DStruct(csp.x, csp.y, csp.z);
+                        var firstVector = MyVector3DStruct.Difference(ref firstPoint, ref cspPoint);
+                        var secondVector = MyVector3DStruct.Difference(ref secondPoint, ref cspPoint);
+
+                        // perpendicularity check
+                        double angleBetweenVectors =
+                            MyVector3DStruct.AngleInDeg(ref firstVector, ref secondVector);
+                        if (!(angleBetweenVectors < 91.4 && angleBetweenVectors > 88.6))
                         {
-                            points.Add(new Point2D(accordNullablePoint.Value.X, accordNullablePoint.Value.Y));
+                            break;
                         }
-                    }
-                }
 
-                foreach (var line1 in linesTuple.Item1)
-                {
-                    points.Add(new Point2D(line1.P1.X, line1.P1.Y));
-                    points.Add(new Point2D(line1.P2.X, line1.P2.Y));
-                }
-
-                foreach (var line2 in linesTuple.Item2)
-                {
-                    points.Add(new Point2D(line2.P1.X, line2.P1.Y));
-                    points.Add(new Point2D(line2.P2.X, line2.P2.Y));
-                }
-
-
-                double distance = 12; //15
-                while (true)
-                {
-                    // new list for points to average and add first element from remaining list
-                    var pointsToAvg = new List<Point2D>();
-                    var referencePoint = points.First();
-                    pointsToAvg.Add(referencePoint);
-                    points.RemoveAt(0);
-
-                    // loop throught remaining list and find close neighbors
-                    foreach (var point in points)
-                    {
-                        double diffX = (referencePoint.X - point.X);
-                        double diffY = (referencePoint.Y - point.Y);
-
-                        if (Math.Sqrt(diffX * diffX + diffY * diffY) < distance)
+                        // length check
+                        double ratio = firstVector.Magnitude() / secondVector.Magnitude();
+                        if (!(ratio > 0.85f && ratio < 1.15f))
                         {
-                            pointsToAvg.Add(point);
+                            break;
                         }
-                    }
 
-                    // remove them all from remaining list
-                    foreach (var pointToRemove in pointsToAvg)
-                    {
-                        points.Remove(pointToRemove);
-                    }
-
-                    // compute average and add it to list
-                    double x = 0;
-                    double y = 0;
-                    int count = 0;
-                    foreach (var point in pointsToAvg)
-                    {
-                        x += point.X;
-                        y += point.Y;
-                        count++;
-                    }
-
-                    contractedPoints.Add(new Point2D((int)x / count, (int)y / count));
-
-                    // if rem. list is empty -> break
-                    if (points.Count == 0)
-                    {
-                        break;
-                    }
-                }
-                
-                /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                List<CameraSpacePoint> contractedPointsCsp = new List<CameraSpacePoint>();
-
-                foreach (var contractedPoint in contractedPoints)
-                {
-                    var depthReference =
-                        chessboardData.PointsFromColorToDepth[(int)contractedPoint.X + (int)contractedPoint.Y * 1920];
-                    if (!float.IsInfinity(depthReference.X))
-                    {
-                        var csp = chessboardData.CameraSpacePointsFromDepthData[
-                            (int)depthReference.X + (int)depthReference.Y * 512];
-                        contractedPointsCsp.Add(csp);
-                    }
-                }
-
-
-
-                var contractedPointsCspStruct =
-                    contractedPointsCsp.Select(x => new MyVector3DStruct(x.X, x.Y, x.Z)).ToArray();
-
-                double lowestError = double.MaxValue;
-                //int eliminator = 0;
-                foreach (var csp in contractedPointsCspStruct/*.Where(x => (eliminator++) % 2 == 0)*/)
-                {
-                    // take 6 nearest neighbors
-                    var neighbors = contractedPointsCspStruct.OrderBy(
-                        (MyVector3DStruct x) =>
+                        // ensure right orientation
+                        if (MyVector3DStruct.CrossProduct(ref firstVector, ref secondVector).z < 0)
                         {
-                            return
-                                Math.Sqrt(
-                                    (x.x - csp.x) * (x.x - csp.x) + (x.y - csp.y) * (x.y - csp.y) +
-                                    (x.z - csp.z) * (x.z - csp.z)
-                                );
-                        }).Take(7).ToArray();
+                            var temp = firstVector;
+                            firstVector = secondVector;
+                            secondVector = temp;
+                        }
 
-                    // take all pairs
-                    for (int i = 0; i < neighbors.Length; i++)
-                    {
-                        for (int j = i + 1; j < neighbors.Length; j++)
+                        // length normalization
+                        double averageLength = (firstVector.Magnitude() + secondVector.Magnitude()) / 2;
+
+                        firstVector =
+                            MyVector3DStruct.MultiplyByNumber(MyVector3DStruct.Normalize(ref firstVector),
+                                averageLength);
+                        secondVector =
+                            MyVector3DStruct.MultiplyByNumber(MyVector3DStruct.Normalize(ref secondVector),
+                                averageLength);
+
+                        var negatedFirstVector = MyVector3DStruct.Negate(ref firstVector);
+                        var negatedSecondVector = MyVector3DStruct.Negate(ref secondVector);
+
+                        // locate all possible starting points 
+                        for (int f = 0; f < 9; f++)
                         {
-                            var first = neighbors[i];
-                            var second = neighbors[j];
-
-                            var firstPoint = new MyVector3DStruct(first.x, first.y, first.z);
-                            var secondPoint = new MyVector3DStruct(second.x, second.y, second.z);
-
-                            // st. point + 2 vectors
-                            var cspPoint = new MyVector3DStruct(csp.x, csp.y, csp.z);
-                            var firstVector = MyVector3DStruct.Difference(ref firstPoint, ref cspPoint);
-                            var secondVector = MyVector3DStruct.Difference(ref secondPoint, ref cspPoint);
-
-                            // perpendicularity check
-                            double angleBetweenVectors =
-                                MyVector3DStruct.AngleInDeg(ref firstVector, ref secondVector);
-                            if (!(angleBetweenVectors < 91.4 && angleBetweenVectors > 88.6))
+                            for (int s = 0; s < 9; s++)
                             {
-                                break;
-                            }
-
-                            // length check
-                            double ratio = firstVector.Magnitude() / secondVector.Magnitude();
-                            if (!(ratio > 0.85f && ratio < 1.15f))
-                            {
-                                break;
-                            }
-
-                            // ensure right orientation
-                            if (MyVector3DStruct.CrossProduct(ref firstVector, ref secondVector).z < 0)
-                            {
-                                var temp = firstVector;
-                                firstVector = secondVector;
-                                secondVector = temp;
-                            }
-
-                            // length normalization
-                            double averageLength = (firstVector.Magnitude() + secondVector.Magnitude()) / 2;
-
-                            firstVector =
-                                MyVector3DStruct.MultiplyByNumber(MyVector3DStruct.Normalize(ref firstVector),
-                                    averageLength);
-                            secondVector =
-                                MyVector3DStruct.MultiplyByNumber(MyVector3DStruct.Normalize(ref secondVector),
-                                    averageLength);
-
-                            var negatedFirstVector = MyVector3DStruct.Negate(ref firstVector);
-                            var negatedSecondVector = MyVector3DStruct.Negate(ref secondVector);
-
-                            // locate all possible starting points 
-                            for (int f = 0; f < 9; f++)
-                            {
-                                for (int s = 0; s < 9; s++)
-                                {
-                                    var startingPoint =
+                                var startingPoint =
+                                    MyVector3DStruct.Addition(
                                         MyVector3DStruct.Addition(
+                                            MyVector3DStruct.MultiplyByNumber(negatedFirstVector, f),
+                                            MyVector3DStruct.MultiplyByNumber(negatedSecondVector, s)
+                                        )
+                                        ,
+                                        cspPoint
+                                    );
+
+                                double currentError = 0;
+
+                                // generate all possible chessboards for given starting point
+                                for (int ff = 0; ff < 9; ff++)
+                                {
+                                    for (int ss = 0; ss < 9; ss++)
+                                    {
+                                        var currentPoint = MyVector3DStruct.Addition(
+                                            startingPoint,
                                             MyVector3DStruct.Addition(
-                                                MyVector3DStruct.MultiplyByNumber(negatedFirstVector, f),
-                                                MyVector3DStruct.MultiplyByNumber(negatedSecondVector, s)
+                                                MyVector3DStruct.MultiplyByNumber(firstVector, ff),
+                                                MyVector3DStruct.MultiplyByNumber(secondVector, ss)
                                             )
-                                            ,
-                                            cspPoint
                                         );
 
-                                    double currentError = 0;
+                                        var closestPointDistance = contractedPointsCspStruct.Min(x =>
+                                            MyVector3DStruct.Distance(ref currentPoint,
+                                                new MyVector3DStruct(x.x, x.y, x.z)));
 
-                                    // generate all possible chessboards for given starting point
-                                    for (int ff = 0; ff < 9; ff++)
-                                    {
-                                        for (int ss = 0; ss < 9; ss++)
-                                        {
-                                            var currentPoint = MyVector3DStruct.Addition(
-                                                startingPoint,
-                                                MyVector3DStruct.Addition(
-                                                    MyVector3DStruct.MultiplyByNumber(firstVector, ff),
-                                                    MyVector3DStruct.MultiplyByNumber(secondVector, ss)
-                                                )
-                                            );
+                                        closestPointDistance =
+                                            closestPointDistance > 0.01 ? 1 : closestPointDistance;
 
-                                            var closestPointDistance = contractedPointsCspStruct.Min(x =>
-                                                MyVector3DStruct.Distance(ref currentPoint,
-                                                    new MyVector3DStruct(x.x, x.y, x.z)));
-
-                                            closestPointDistance =
-                                                closestPointDistance > 0.01 ? 1 : closestPointDistance;
-
-                                            currentError += closestPointDistance;
-                                        }
+                                        currentError += closestPointDistance;
                                     }
+                                }
 
-                                    if (currentError < lowestError)
-                                    {
-                                        lowestError = currentError;
-                                        startingPointFinal = startingPoint;
-                                        firstVectorFinal = firstVector;
-                                        secondVectorFinal = secondVector;
-                                    }
+                                if (currentError < lowestError)
+                                {
+                                    lowestError = currentError;
+                                    startingPointFinal = startingPoint;
+                                    firstVectorFinal = firstVector;
+                                    secondVectorFinal = secondVector;
                                 }
                             }
                         }
                     }
                 }
             }
+        }
+
+        public ChessboardDoneData Recalibrate(PlaneDoneData planeData)
+        {
+            var chessboardData = new ChessboardDoneData(planeData);
+
+            var grayImage = GetGrayImage(planeData.MaskedColorImageOfTable);
+            var binarizedImage = GetBinarizedImage(grayImage);
+            var cannyDetectorImage = ApplyCannyDetector(binarizedImage);
+
+            var linesTuple = GetFilteredHoughLines(cannyDetectorImage);
+
+            var contractedPoints = GetConcractedPoints(linesTuple);
+
+            ChessboardFittingAlgorithm(contractedPoints, chessboardData);
+
             RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
 
             return chessboardData;
@@ -317,18 +345,17 @@ namespace ChessTracking.ProcessingPipeline
         {
             var chessboardData = new ChessboardDoneData(planeData);
 
-            {
-                RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
-                chessboardData.FirstVectorFinal = firstVectorFinal;
-            }
+            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
+            chessboardData.FirstVectorFinal = firstVectorFinal;
+
 
             if (chessboardData.VisualisationType == VisualisationType.HighlightedChessboard)
-                chessboardData.Bitmap = 
+                chessboardData.Bitmap =
                     ReturnLocalizedChessboardWithTable(
                         chessboardData.ColorBitmap,
                         chessboardData.MaskOfTable,
                         chessboardData.PointsFromColorToDepth,
-                        chessboardData.CameraSpacePointsFromDepthData, 
+                        chessboardData.CameraSpacePointsFromDepthData,
                         firstVectorFinal);
 
             return chessboardData;
@@ -408,7 +435,7 @@ namespace ChessTracking.ProcessingPipeline
                 }
             }
             bm.UnlockBits(bitmapData);
-            
+
 
             return bm;
         }
@@ -568,14 +595,14 @@ namespace ChessTracking.ProcessingPipeline
                 var nx = (float)(cspFromdd[i].X - startingPointFinal.x);
                 var ny = (float)(cspFromdd[i].Y - startingPointFinal.y);
                 var nz = (float)(cspFromdd[i].Z - startingPointFinal.z);
-                
+
                 cspFromdd[i].X = (float)(inverseMatrix[0, 0] * nx + inverseMatrix[0, 1] * ny + inverseMatrix[0, 2] * nz);
                 cspFromdd[i].Y = (float)(inverseMatrix[1, 0] * nx + inverseMatrix[1, 1] * ny + inverseMatrix[1, 2] * nz);
                 cspFromdd[i].Z = (float)(inverseMatrix[2, 0] * nx + inverseMatrix[2, 1] * ny + inverseMatrix[2, 2] * nz);
             }
 
         }
-        
-        
+
+
     }
 }
