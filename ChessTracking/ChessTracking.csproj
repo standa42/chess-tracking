@@ -76,7 +76,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllingElements\FPSCounter.cs" />
+    <Compile Include="Game\LoadingResult.cs" />
+    <Compile Include="Utils\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
     <Compile Include="Game\ChessboardModel.cs" />

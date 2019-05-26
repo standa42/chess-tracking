@@ -67,7 +67,7 @@ namespace ChessTracking.Game
         /// </summary>
         /// <param name="stream">Record of loaded game</param>
         /// <returns>Description state of game</returns>
-        public static GameData LoadGame(StreamReader stream)
+        public static LoadingResult LoadGame(StreamReader stream)
         {
             var game = NewGame();
 
@@ -75,10 +75,22 @@ namespace ChessTracking.Game
             {
                 if (game.EndState == GameState.StillPlaying)
                 {
-                    var validationResult = GameValidator.ValidateAndPerform(game.DeepClone(), stream.ReadLine()); // get from validator
+                    ValidationResult validationResult;
+
+                    try
+                    {
+                        validationResult = GameValidator.ValidateAndPerform(game.DeepClone(), stream.ReadLine()); // get from validator
+                    }
+                    catch (Exception)
+                    {
+                        return new LoadingResult(game, false);
+                    }
+                    
 
                     if (validationResult.IsValid)
                         game = validationResult.NewGameState;
+                    else
+                        return new LoadingResult(game, false);
 
                     if (game.EndState != GameState.StillPlaying)
                     {
@@ -102,7 +114,7 @@ namespace ChessTracking.Game
                 }
             }
             
-            return game; // TODO: return loadresult if it was valid, update fields, lock buttons if st game is complete, atd..
+            return new LoadingResult(game, true);
         }
     }
 }

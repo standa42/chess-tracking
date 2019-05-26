@@ -36,9 +36,18 @@ namespace ChessTracking.Game
 
         public void LoadGame(StreamReader stream)
         {
-            Game = GameFactory.LoadGame(stream);
+            var loadingResult = GameFactory.LoadGame(stream);
 
-            OutputFacade.UpdateBoardState(RenderGameState());
+            if (loadingResult.LoadingSuccesfull)
+            {
+                Game = loadingResult.Game;
+                OutputFacade.UpdateRecordState(Game.RecordOfGame);
+                OutputFacade.UpdateBoardState(RenderGameState());
+            }
+            else
+            {
+                OutputFacade.UpdateRecordState(new List<string>(){"Game loading failed"});
+            }
         }
 
         public Bitmap RenderGameState()
@@ -73,7 +82,7 @@ namespace ChessTracking.Game
                 if (validationResult.IsValid)
                     Game = validationResult.NewGameState;
                 else
-                    OutputFacade.AddToUserLog("ValidationError asdf as dfasd fsad fasdf asf asdf as dfsa fsdaf ");
+                    OutputFacade.AddToUserLog("ValidationError");
 
                 OutputFacade.UpdateRecordState(Game.RecordOfGame);
                 OutputFacade.UpdateBoardState(RenderGameState());
