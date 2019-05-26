@@ -39,55 +39,38 @@ namespace ChessTracking.ProcessingPipeline
 
             {
                 Image<Gray, Byte> grayImage = planeData.MaskedColorImageOfTable.Convert<Gray, Byte>();
+
                 var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
+
                 CvInvoke.Threshold(grayImage, binarizedImg, 200, 255, ThresholdType.Otsu);
-                Image<Gray, Byte> cannyEdges = binarizedImg.Canny(700, 1400, 5, true).SmoothGaussian(3)
-                    .ThresholdBinary(new Gray(50), new Gray(255));
+
+                Image<Gray, Byte> cannyEdges = binarizedImg.Canny(700, 1400, 5, true).SmoothGaussian(3).ThresholdBinary(new Gray(50), new Gray(255));
+
                 var lines = cannyEdges.HoughLinesBinary(
-                    0.8f, //Distance resolution in pixel-related units
-                    Math.PI / 1500, //Angle resolution measured in radians.
-                    220, //threshold
-                    100, //min Line width (90)
-                    35 //gap between lines
-                )[0];
+                                0.8f,  //Distance resolution in pixel-related units
+                                Math.PI / 1500, //Angle resolution measured in radians.
+                                220, //threshold
+                                100, //min Line width (90)
+                                35 //gap between lines
+                             )[0];
+
                 Image<Bgr, Byte> drawnEdges =
                     new Image<Bgr, Byte>(new Size(cannyEdges.Width, cannyEdges.Height) /*cannyEdges.ToBitmap()*/);
+
                 foreach (LineSegment2D line in lines)
                     CvInvoke.Line(drawnEdges, line.P1, line.P2,
-                        new Bgr( /*Color.Red*/ /*RandomColor()*/ Color.White).MCvScalar, 1);
+                        new Bgr(Color.White).MCvScalar, 1);
 
                 var lines2 = drawnEdges.Convert<Gray, byte>().HoughLinesBinary(
-                    0.8f, //Distance resolution in pixel-related units
-                    Math.PI / 1500, //Angle resolution measured in radians.
-                    50, //threshold
-                    100, //90                //min Line width
-                    10 //gap between lines
-                )[0];
-
-                Pen redPen = new Pen(Color.Red, 3);
-
-                var colorNonFiltered = (Image)planeData.MaskedColorImageOfTable.Bitmap.Clone();
-                using (var graphics = Graphics.FromImage(colorNonFiltered))
-                {
-                    foreach (var line in lines2)
-                    {
-                        graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
-                    }
-                }
+                                0.8f, //Distance resolution in pixel-related units
+                                Math.PI / 1500, //Angle resolution measured in radians.
+                                50, //threshold
+                                100, //90                //min Line width
+                                10 //gap between lines
+                            )[0];
                 
-
-                var linesTuple = FilterLinesBasedOnAngle(lines2, 25); //TODO 25
-
-
-                var colorFiltered = (Image)planeData.MaskedColorImageOfTable.Bitmap.Clone();
-                using (var graphics = Graphics.FromImage(colorFiltered))
-                {
-                    foreach (var line in linesTuple.Item1.Concat(linesTuple.Item2))
-                    {
-                        graphics.DrawLine(redPen, line.P1.X, line.P1.Y, line.P2.X, line.P2.Y);
-                    }
-                }
-
+                var linesTuple = FilterLinesBasedOnAngle(lines2, 25);
+                
                 var points = new List<Point2D>();
                 var contractedPoints = new List<Point2D>();
                 var libraryLines = new Tuple<List<Line2D>, List<Line2D>>(new List<Line2D>(), new List<Line2D>());
