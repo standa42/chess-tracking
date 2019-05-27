@@ -38,7 +38,7 @@ namespace ChessTracking.ProcessingPipeline
             IsTracking = false;
             PlaneLocalization = new PlaneLocalization(this);
             ChessboardLocalization = new ChessboardLocalization(this);
-            FiguresLocalization = new FiguresLocalization(this);
+            FiguresLocalization = new FiguresLocalization();
         }
 
         public void ChangeVisualisationState(VisualisationType visualisationType)

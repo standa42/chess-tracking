@@ -15,14 +15,8 @@ namespace ChessTracking.ProcessingPipeline
 {
     class FiguresLocalization
     {
-        public Pipeline Pipeline { get; }
-        private double ColorCalibrationAdditiveConstant { get; set; } = 0d;
-
-        public FiguresLocalization(Pipeline pipeline)
-        {
-            this.Pipeline = pipeline;
-        }
-
+        private double ColorCalibrationAdditiveConstant { get; set; }
+        
         public FiguresDoneData Recalibrate(ChessboardDoneData chessboardData)
         {
             var figuresData = new FiguresDoneData(chessboardData);

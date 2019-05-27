@@ -26,13 +26,51 @@ namespace ChessTracking.ProcessingPipeline
         private MyVector3DStruct startingPointFinal = new MyVector3DStruct();
         private MyVector3DStruct firstVectorFinal = new MyVector3DStruct();
         private MyVector3DStruct secondVectorFinal = new MyVector3DStruct();
-
-
+        
         public ChessboardLocalization(Pipeline pipeline)
         {
             this.Pipeline = pipeline;
         }
+        
+        public ChessboardDoneData Recalibrate(PlaneDoneData planeData)
+        {
+            var chessboardData = new ChessboardDoneData(planeData);
 
+            var grayImage = GetGrayImage(planeData.MaskedColorImageOfTable);
+            var binarizedImage = GetBinarizedImage(grayImage);
+            var cannyDetectorImage = ApplyCannyDetector(binarizedImage);
+
+            var linesTuple = GetFilteredHoughLines(cannyDetectorImage);
+
+            var contractedPoints = GetConcractedPoints(linesTuple);
+
+            ChessboardFittingAlgorithm(contractedPoints, chessboardData);
+
+            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
+
+            return chessboardData;
+        }
+
+        public ChessboardDoneData Track(PlaneDoneData planeData)
+        {
+            var chessboardData = new ChessboardDoneData(planeData);
+
+            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
+            chessboardData.FirstVectorFinal = firstVectorFinal;
+
+
+            if (chessboardData.VisualisationType == VisualisationType.HighlightedChessboard)
+                chessboardData.Bitmap =
+                    ReturnLocalizedChessboardWithTable(
+                        chessboardData.ColorBitmap,
+                        chessboardData.MaskOfTable,
+                        chessboardData.PointsFromColorToDepth,
+                        chessboardData.CameraSpacePointsFromDepthData,
+                        firstVectorFinal);
+
+            return chessboardData;
+        }
+        
         private Image<Gray, byte> GetGrayImage(Image<Rgb, byte> colorImage)
         {
             return colorImage.Convert<Gray, Byte>();
@@ -322,45 +360,6 @@ namespace ChessTracking.ProcessingPipeline
             }
         }
 
-        public ChessboardDoneData Recalibrate(PlaneDoneData planeData)
-        {
-            var chessboardData = new ChessboardDoneData(planeData);
-
-            var grayImage = GetGrayImage(planeData.MaskedColorImageOfTable);
-            var binarizedImage = GetBinarizedImage(grayImage);
-            var cannyDetectorImage = ApplyCannyDetector(binarizedImage);
-
-            var linesTuple = GetFilteredHoughLines(cannyDetectorImage);
-
-            var contractedPoints = GetConcractedPoints(linesTuple);
-
-            ChessboardFittingAlgorithm(contractedPoints, chessboardData);
-
-            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
-
-            return chessboardData;
-        }
-
-        public ChessboardDoneData Track(PlaneDoneData planeData)
-        {
-            var chessboardData = new ChessboardDoneData(planeData);
-
-            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
-            chessboardData.FirstVectorFinal = firstVectorFinal;
-
-
-            if (chessboardData.VisualisationType == VisualisationType.HighlightedChessboard)
-                chessboardData.Bitmap =
-                    ReturnLocalizedChessboardWithTable(
-                        chessboardData.ColorBitmap,
-                        chessboardData.MaskOfTable,
-                        chessboardData.PointsFromColorToDepth,
-                        chessboardData.CameraSpacePointsFromDepthData,
-                        firstVectorFinal);
-
-            return chessboardData;
-        }
-
         private Bitmap ReturnLocalizedChessboardWithTable(Bitmap colorImg, bool[] resultBools,
             DepthSpacePoint[] pointsFromColorToDepth, CameraSpacePoint[] cameraSpacePointsFromDepthData, MyVector3DStruct magnitudeVector)
         {
@@ -540,7 +539,7 @@ namespace ChessTracking.ProcessingPipeline
             return (degrees);
         }
 
-        int Mod(int x, int m)
+        private int Mod(int x, int m)
         {
             return (x % m + m) % m;
         }
@@ -602,7 +601,6 @@ namespace ChessTracking.ProcessingPipeline
             }
 
         }
-
-
+        
     }
 }
