@@ -45,7 +45,6 @@ namespace ChessTracking.ProcessingPipeline
 
             var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
-            //colorImg.Save(@"D:\Desktop\LocColor.jpeg");
             return planeData;
         }
 
@@ -72,8 +71,6 @@ namespace ChessTracking.ProcessingPipeline
 
         private Image<Rgb, byte> ReturnColorImageOfTable(bool[] resultBools, byte[] colorFrameData, DepthSpacePoint[] pointsFromColorToDepth)
         {
-
-            //Image<Rgb, byte> colorImg = new Image<Rgb, byte>(kinect.ColorFrameDescription.Width, kinect.ColorFrameDescription.Height);
             Image<Rgb, byte> colorImg = new Image<Rgb, byte>(1920, 1080);
 
             Bitmap bm = new Bitmap(1920, 1080, PixelFormat.Format24bppRgb);
@@ -178,12 +175,12 @@ namespace ChessTracking.ProcessingPipeline
         {
             int depthColorChange = 128;
 
-            Bitmap bbb = new Bitmap(512, 424, PixelFormat.Format24bppRgb);
-            BitmapData bbbData = bbb.LockBits(new Rectangle(0, 0, bbb.Width, bbb.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            Bitmap bitmap = new Bitmap(512, 424, PixelFormat.Format24bppRgb);
+            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
 
             unsafe
             {
-                byte* ptr = (byte*)bbbData.Scan0;
+                byte* ptr = (byte*)bitmapData.Scan0;
 
                 // draw pixel according to its type
                 for (int y = 0; y < 424; y++)
@@ -203,12 +200,12 @@ namespace ChessTracking.ProcessingPipeline
                 }
             }
 
-            bbb.UnlockBits(bbbData);
+            bitmap.UnlockBits(bitmapData);
 
             //////////////////
-            Image<Gray, byte> CanniedImage = new Image<Gray, byte>(bbb);
-            CanniedImage = CanniedImage.Canny(1000, 1200, 7, true).SmoothGaussian(3, 3, 1, 1).ThresholdBinary(new Gray(65), new Gray(255));
-            var canniedBytes = CanniedImage.Bytes;
+            Image<Gray, byte> CannyAppliedImage = new Image<Gray, byte>(bitmap);
+            CannyAppliedImage = CannyAppliedImage.Canny(1000, 1200, 7, true).SmoothGaussian(3, 3, 1, 1).ThresholdBinary(new Gray(65), new Gray(255));
+            var canniedBytes = CannyAppliedImage.Bytes;
             return canniedBytes;
         }
     }

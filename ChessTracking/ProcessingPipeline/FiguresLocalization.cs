@@ -100,16 +100,12 @@ namespace ChessTracking.ProcessingPipeline
             for (int i = 0; i < cameraSpacePointsFromDepthData.Length; i++)
             {
                 if (!(float.IsInfinity(cameraSpacePointsFromDepthData[i].Z) || float.IsNaN(cameraSpacePointsFromDepthData[i].Z))
-
                 && cameraSpacePointsFromDepthData[i].X > 0
                 && cameraSpacePointsFromDepthData[i].Y > 0
                 && cameraSpacePointsFromDepthData[i].X < magnitudeVector.Magnitude() * 8
                 && cameraSpacePointsFromDepthData[i].Y < magnitudeVector.Magnitude() * 8
-
                 && infraredData[i] > 1500
-
                 && canniedBytes[i] != 255
-
                 //&& cameraSpacePointsFromDepthData[i].Z < 0.025f
                 && cameraSpacePointsFromDepthData[i].Z < -0.01f
                 && cameraSpacePointsFromDepthData[i].Z > -0.5f
