@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using ChessTracking.MultithreadingMessages;
-using ChessTracking.ProcessingElements;
 using ChessTracking.ProcessingPipeline;
 using ChessTracking.UserInterface;
 

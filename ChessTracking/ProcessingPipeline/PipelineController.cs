@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using ChessTracking.MultithreadingMessages;
-using ChessTracking.ProcessingElements;
 
 namespace ChessTracking.ProcessingPipeline
 {

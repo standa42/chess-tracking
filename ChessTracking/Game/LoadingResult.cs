@@ -16,7 +16,5 @@ namespace ChessTracking.Game
             Game = game;
             LoadingSuccesfull = loadingSuccesfull;
         }
-
-        
     }
 }

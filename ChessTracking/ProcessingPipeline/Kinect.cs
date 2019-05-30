@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Concurrent;
 using ChessTracking.MultithreadingMessages;
 using Microsoft.Kinect;
 
-namespace ChessTracking.ProcessingElements
+namespace ChessTracking.ProcessingPipeline
 {
     class Kinect
     {
@@ -57,7 +52,7 @@ namespace ChessTracking.ProcessingElements
             // acquire frame data
             MultiSourceFrame multiSourceFrame = e.FrameReference.AcquireFrame();
 
-            // If the Frame has expired by the time we process this event, return.
+            // if the Frame has expired by the time we process this event, return.
             if (multiSourceFrame == null)
             {
                 return;
@@ -69,6 +64,7 @@ namespace ChessTracking.ProcessingElements
                 return;
             }
 
+            // declare variables for data from sensor
             ColorFrame colorFrame = null;
             DepthFrame depthFrame = null;
             InfraredFrame infraredFrame = null;
@@ -82,6 +78,7 @@ namespace ChessTracking.ProcessingElements
 
             try
             {
+                // get frames from sensor
                 colorFrame = multiSourceFrame.ColorFrameReference.AcquireFrame();
                 depthFrame = multiSourceFrame.DepthFrameReference.AcquireFrame();
                 infraredFrame = multiSourceFrame.InfraredFrameReference.AcquireFrame();
@@ -134,14 +131,12 @@ namespace ChessTracking.ProcessingElements
                 depthFrame?.Dispose();
                 infraredFrame?.Dispose();
 
-                // invoke observable event
+                // send data futher
                 if (
                     colorFrameData != null &&
                     depthData != null &&
                     infraredData != null &&
-                    cameraSpacePointsFromDepthData != null &&
-                    pointsFromColorToDepth != null &&
-                    pointsFromDepthToColor != null
+                    cameraSpacePointsFromDepthData != null
                     )
                 {
                     OutputQueue.Add(
