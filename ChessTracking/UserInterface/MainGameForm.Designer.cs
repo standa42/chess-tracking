@@ -207,7 +207,7 @@
             // ResultProcessingTimer
             // 
             this.ResultProcessingTimer.Enabled = true;
-            this.ResultProcessingTimer.Interval = 20;
+            this.ResultProcessingTimer.Interval = 30;
             this.ResultProcessingTimer.Tick += new System.EventHandler(this.ResultProcessingTimer_Tick);
             // 
             // label1

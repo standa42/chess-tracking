@@ -1,11 +1,11 @@
 ﻿using System.Collections.Concurrent;
-using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.ImageProcessing.PipelineParts.Stages;
 using ChessTracking.MultithreadingMessages;
 
-namespace ChessTracking.ImageProcessing.PipelineParts
+namespace ChessTracking.ImageProcessing.PipelineParts.General
 {
     /// <summary>
     /// Maintains all processing of chessboard tracking

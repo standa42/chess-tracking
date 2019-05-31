@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
-namespace ChessTracking.ImageProcessing.PipelineParts
+namespace ChessTracking.ImageProcessing.PipelineParts.General
 {
     class PipelineController
     {

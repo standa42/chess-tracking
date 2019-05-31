@@ -8,7 +8,7 @@ using ChessTracking.MultithreadingMessages;
 using Microsoft.Kinect;
 using TrackingState = ChessTracking.MultithreadingMessages.TrackingState;
 
-namespace ChessTracking.ImageProcessing.PipelineParts
+namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
     class FiguresLocalization
     {

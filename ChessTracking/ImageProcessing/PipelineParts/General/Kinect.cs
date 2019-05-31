@@ -3,7 +3,7 @@ using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 using Microsoft.Kinect;
 
-namespace ChessTracking.ImageProcessing.PipelineParts
+namespace ChessTracking.ImageProcessing.PipelineParts.General
 {
     class Kinect
     {

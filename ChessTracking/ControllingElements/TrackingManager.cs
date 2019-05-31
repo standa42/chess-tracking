@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts;
+using ChessTracking.ImageProcessing.PipelineParts.General;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
 

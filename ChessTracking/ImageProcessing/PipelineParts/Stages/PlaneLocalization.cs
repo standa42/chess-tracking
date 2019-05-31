@@ -3,13 +3,14 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.ImageProcessing.PipelineParts.General;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Microsoft.Kinect;
 
-namespace ChessTracking.ImageProcessing.PipelineParts
+namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
     class PlaneLocalization
     {

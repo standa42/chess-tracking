@@ -6,6 +6,7 @@ using System.Linq;
 using Accord.Math;
 using Accord.Math.Geometry;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.ImageProcessing.PipelineParts.General;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
 using Emgu.CV;
@@ -16,7 +17,7 @@ using Microsoft.Kinect;
 using Point = Accord.Point;
 using Point2D = MathNet.Spatial.Euclidean.Point2D;
 
-namespace ChessTracking.ImageProcessing.PipelineParts
+namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
     class ChessboardLocalization
     {
