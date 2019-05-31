@@ -143,6 +143,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                     cameraSpacePointsFromDepthData != null
                     )
                 {
+                    // store data to buffer and notify processing thread
                     Buffer.Store(
                         new KinectData(
                             colorFrameData,

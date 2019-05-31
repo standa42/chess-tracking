@@ -31,34 +31,43 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             ChessboardLocalization = new ChessboardLocalization(this);
             FiguresLocalization = new FiguresLocalization();
         }
-        
-        public void ProcessIncomingKinectData(KinectResourcesMessage resources)
-        {
-            var inputData = new InputData(resources.Data, UserParameters.GetShallowCopy());
 
+        public void Update()
+        {
             if (!IsTracking)
             {
-                Calibration(inputData);
+                Calibration();
                 IsTracking = true;
             }
             else
             {
-                Tracking(inputData);
+                Tracking();
             }
         }
 
-        private void Calibration(InputData inputData)
+        private void Calibration()
         {
+            var data = Buffer.Take();
+
+            var inputData = new InputData(data, UserParameters.GetShallowCopy());
+
             var planeData = PlaneLocalization.Recalibrate(inputData);
             var chessboardData = ChessboardLocalization.Recalibrate(planeData);
             var figuresData = FiguresLocalization.Recalibrate(chessboardData);
         }
 
-        private void Tracking(InputData inputData)
+        private void Tracking()
         {
             Semaphore.Wait();
             Task.Run(() =>
             {
+                var data = Buffer.TryTake();
+
+                if (data == null)
+                    return;
+
+                var inputData = new InputData(data, UserParameters.GetShallowCopy());
+
                 var planeData = PlaneLocalization.Track(inputData);
                 var chessboardData = ChessboardLocalization.Track(planeData);
                 var figuresData = FiguresLocalization.Track(chessboardData);
@@ -68,43 +77,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                 Semaphore.Release();
             });
         }
-
-        public void Update()
-        {
-            if (!IsTracking)
-            {
-                var data = Buffer.Take();
-
-                var inputData = new InputData(data, UserParameters.GetShallowCopy());
-
-                var planeData = PlaneLocalization.Recalibrate(inputData);
-                var chessboardData = ChessboardLocalization.Recalibrate(planeData);
-                var figuresData = FiguresLocalization.Recalibrate(chessboardData);
-                IsTracking = true;
-            }
-            else
-            {
-                Semaphore.Wait();
-                Task.Run(() =>
-                {
-                    var data = Buffer.TryTake();
-
-                    if (data == null)
-                        return;
-
-                    var inputData = new InputData(data, UserParameters.GetShallowCopy());
-
-                    var planeData = PlaneLocalization.Track(inputData);
-                    var chessboardData = ChessboardLocalization.Track(planeData);
-                    var figuresData = FiguresLocalization.Track(chessboardData);
-                    SendResultMessage(
-                        new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.HandDetected)
-                    );
-                    Semaphore.Release();
-                });
-            }
-        }
-
+        
         public void SetBuffer(KinectDataBuffer buffer)
         {
             Buffer = buffer;
