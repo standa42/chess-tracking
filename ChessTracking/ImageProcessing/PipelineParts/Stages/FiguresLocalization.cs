@@ -28,15 +28,15 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             {
                 figuresData.TrackingState =
                     FigureLocalization(
-                        figuresData.CameraSpacePointsFromDepthData,
-                        figuresData.ColorFrameData,
-                        figuresData.PointsFromDepthToColor,
-                        figuresData.InfraredData,
+                        figuresData.RawData.CameraSpacePointsFromDepthData,
+                        figuresData.RawData.ColorFrameData,
+                        figuresData.RawData.PointsFromDepthToColor,
+                        figuresData.RawData.InfraredData,
                         figuresData.FirstVectorFinal,
                         figuresData.CannyDepthData);
                 figuresData.HandDetected =
                     HandDetection(
-                        figuresData.CameraSpacePointsFromDepthData,
+                        figuresData.RawData.CameraSpacePointsFromDepthData,
                         figuresData.FirstVectorFinal
                     );
             }

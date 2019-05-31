@@ -12,15 +12,10 @@ namespace ChessTracking.ImageProcessing.PipelineData
     /// </summary>
     class FiguresDoneData
     {
-        public byte[] ColorFrameData { get; set; }
-        public ushort[] DepthData { get; set; }
-        public ushort[] InfraredData { get; set; }
-        public CameraSpacePoint[] CameraSpacePointsFromDepthData { get; set; }
-        public DepthSpacePoint[] PointsFromColorToDepth { get; set; }
-        public ColorSpacePoint[] PointsFromDepthToColor { get; set; }
+        public RawData RawData { get; set; }
+        public TrackingResultData ResultData { get; set; }
 
         public VisualisationType VisualisationType { get; set; }
-        public Bitmap Bitmap { get; set; }
 
         public Emgu.CV.Image<Rgb, byte> MaskedColorImageOfTable { get; set; }
         public byte[] CannyDepthData { get; set; }
@@ -33,15 +28,10 @@ namespace ChessTracking.ImageProcessing.PipelineData
 
         public FiguresDoneData(ChessboardDoneData chessboardData)
         {
-            this.ColorFrameData = chessboardData.ColorFrameData;
-            this.DepthData = chessboardData.DepthData;
-            this.InfraredData = chessboardData.InfraredData;
-            this.CameraSpacePointsFromDepthData = chessboardData.CameraSpacePointsFromDepthData;
-            this.PointsFromColorToDepth = chessboardData.PointsFromColorToDepth;
-            this.PointsFromDepthToColor = chessboardData.PointsFromDepthToColor;
+            this.RawData = chessboardData.RawData;
+            this.ResultData = chessboardData.ResultData;
 
             this.VisualisationType = chessboardData.VisualisationType;
-            this.Bitmap = chessboardData.Bitmap;
             this.MaskedColorImageOfTable = chessboardData.MaskedColorImageOfTable;
             this.CannyDepthData = chessboardData.CannyDepthData;
             this.FirstVectorFinal = chessboardData.FirstVectorFinal;

@@ -64,7 +64,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
                     var chessboardData = ChessboardLocalization.Track(planeData);
                     var figuresData = FiguresLocalization.Track(chessboardData);
                     SendResultMessage(
-                            new ResultMessage(figuresData.Bitmap, figuresData.TrackingState, figuresData.HandDetected)
+                            new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.TrackingState, figuresData.HandDetected)
                         );
                     Semaphore.Release();
                 });

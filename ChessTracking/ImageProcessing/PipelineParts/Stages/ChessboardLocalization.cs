@@ -45,7 +45,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
 
             ChessboardFittingAlgorithm(contractedPoints, chessboardData);
 
-            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
+            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.RawData.CameraSpacePointsFromDepthData);
 
             return chessboardData;
         }
@@ -54,17 +54,17 @@ namespace ChessTracking.ImageProcessing.PipelineParts
         {
             var chessboardData = new ChessboardDoneData(planeData);
 
-            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.CameraSpacePointsFromDepthData);
+            RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.RawData.CameraSpacePointsFromDepthData);
             chessboardData.FirstVectorFinal = firstVectorFinal;
 
 
             if (chessboardData.VisualisationType == VisualisationType.HighlightedChessboard)
-                chessboardData.Bitmap =
+                chessboardData.ResultData.VisualisationBitmap =
                     ReturnLocalizedChessboardWithTable(
                         chessboardData.ColorBitmap,
                         chessboardData.MaskOfTable,
-                        chessboardData.PointsFromColorToDepth,
-                        chessboardData.CameraSpacePointsFromDepthData,
+                        chessboardData.RawData.PointsFromColorToDepth,
+                        chessboardData.RawData.CameraSpacePointsFromDepthData,
                         firstVectorFinal);
 
             return chessboardData;
@@ -223,10 +223,10 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             foreach (var contractedPoint in contractedPoints)
             {
                 var depthReference =
-                    chessboardData.PointsFromColorToDepth[(int)contractedPoint.X + (int)contractedPoint.Y * 1920];
+                    chessboardData.RawData.PointsFromColorToDepth[(int)contractedPoint.X + (int)contractedPoint.Y * 1920];
                 if (!float.IsInfinity(depthReference.X))
                 {
-                    var csp = chessboardData.CameraSpacePointsFromDepthData[
+                    var csp = chessboardData.RawData.CameraSpacePointsFromDepthData[
                         (int)depthReference.X + (int)depthReference.Y * 512];
                     contractedPointsCsp.Add(csp);
                 }

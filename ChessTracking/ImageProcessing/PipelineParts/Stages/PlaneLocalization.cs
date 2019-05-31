@@ -14,8 +14,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
     class PlaneLocalization
     {
         public Pipeline Pipeline { get; }
-
-        public Tuple<double, double> AnglesOfFirstRotation { get; set; } = null;
+        
         public bool[] LocalizedTableMask { get; private set; }
 
         public PlaneLocalization(Pipeline pipeline)
@@ -27,7 +26,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
         {
             var planeData = new PlaneDoneData(rawData);
 
-            Data data = new Data(planeData.CameraSpacePointsFromDepthData);
+            Data data = new Data(planeData.RawData.CameraSpacePointsFromDepthData);
             data.CutOffMinMaxDepth(PlaneLocalizationConfig.MinDepth, PlaneLocalizationConfig.MaxDepth);
             data.Ransac();
             data.LargestTableArea();
@@ -37,10 +36,10 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             data.LargestTableArea();
             data.LinearRegression();
             data.LargestTableArea();
-            AnglesOfFirstRotation = data.RotationTo2DModified();
+            data.RotationTo2DModified();
             LocalizedTableMask = data.ConvexHullAlgorithmModified();
 
-            var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
+            var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.RawData.ColorFrameData, planeData.RawData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
             return planeData;
         }
@@ -50,18 +49,18 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             var planeData = new PlaneDoneData(rawData);
             
             if (planeData.VisualisationType == VisualisationType.RawRGB)
-                planeData.Bitmap = ReturnColorBitmap(planeData.ColorFrameData);
+                planeData.ResultData.VisualisationBitmap = ReturnColorBitmap(planeData.RawData.ColorFrameData);
 
-            planeData.CannyDepthData = CannyAppliedToDepthData(planeData.CameraSpacePointsFromDepthData);
+            planeData.CannyDepthData = CannyAppliedToDepthData(planeData.RawData.CameraSpacePointsFromDepthData);
             planeData.MaskOfTable = LocalizedTableMask;
-            planeData.ColorBitmap = ReturnColorBitmap(planeData.ColorFrameData);
+            planeData.ColorBitmap = ReturnColorBitmap(planeData.RawData.ColorFrameData);
 
-            var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.ColorFrameData, planeData.PointsFromColorToDepth);
+            var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.RawData.ColorFrameData, planeData.RawData.PointsFromColorToDepth);
             planeData.MaskedColorImageOfTable = colorImg;
             //planeData.MaskedColorImageOfTable._EqualizeHist(); // TODO zjisitit jestli to pomáhá při stabilizaci osvětlení
 
             if (planeData.VisualisationType == VisualisationType.MaskedColorImageOfTable)
-                planeData.Bitmap = colorImg.Bitmap;
+                planeData.ResultData.VisualisationBitmap = colorImg.Bitmap;
             
             return planeData;
         }
