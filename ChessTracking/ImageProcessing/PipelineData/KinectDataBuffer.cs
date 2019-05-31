@@ -18,7 +18,8 @@ namespace ChessTracking.ImageProcessing.PipelineData
 
         public void Store(KinectData data)
         {
-            Data.Add(data);
+            if(IsEmpty())
+                Data.Add(data);
         }
 
         public KinectData TryTake()
