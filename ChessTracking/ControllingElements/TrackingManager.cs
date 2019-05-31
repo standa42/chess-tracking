@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using System.Threading;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.General;
 using ChessTracking.MultithreadingMessages;
@@ -43,11 +44,13 @@ namespace ChessTracking.ControllingElements
         /// </summary>
         private void InitPipelineThread(UserDefinedParametersPrototypeFactory userParameters)
         {
-            Task.Run(() =>
+            var thread = new Thread(() =>
             {
                 var processingController = new PipelineController(ProcessingCommandsQueue, ProcessingOutputQueue, userParameters);
                 processingController.Start();
             });
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         public void StartTracking()
