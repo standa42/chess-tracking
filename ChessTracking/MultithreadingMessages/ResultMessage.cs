@@ -14,9 +14,9 @@ namespace ChessTracking.MultithreadingMessages
     {
         public Bitmap BitmapToDisplay { get; }
         public TrackingState TrackingState { get; }
-        public string HandDetected { get; }
+        public bool HandDetected { get; }
 
-        public ResultMessage(Bitmap bitmapToDisplay, TrackingState trackingState, string handDetected)
+        public ResultMessage(Bitmap bitmapToDisplay, TrackingState trackingState, bool handDetected)
         {
             this.BitmapToDisplay = bitmapToDisplay;
             TrackingState = trackingState;

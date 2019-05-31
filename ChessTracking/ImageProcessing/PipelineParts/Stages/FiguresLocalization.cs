@@ -43,7 +43,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             return figuresData;
         }
         
-        private string HandDetection(CameraSpacePoint[] cameraSpacePointsFromDepthData, MyVector3DStruct magnitudeVector)
+        private bool HandDetection(CameraSpacePoint[] cameraSpacePointsFromDepthData, MyVector3DStruct magnitudeVector)
         {
             int counter = 0;
 
@@ -63,7 +63,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
                 }
             }
 
-            return counter > 20 ? "true" : "false";
+            return counter > 20 ? true : false;
         }
 
         private TrackingState FigureLocalization(

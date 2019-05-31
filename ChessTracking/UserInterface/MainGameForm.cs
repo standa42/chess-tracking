@@ -150,10 +150,10 @@ namespace ChessTracking.UserInterface
             }
         }
 
-        public void HandDetectionUpdate(string state)
+        public void HandDetectionUpdate(bool handDetected)
         {
-            HandDetectedBtn.BackColor = state == "true" ? Color.LightCoral : Color.Gray;
-            HandDetectedBtn.Text = state == "true" ? "Scene disrupted" : "";
+            HandDetectedBtn.BackColor = handDetected ? Color.LightCoral : Color.Gray;
+            HandDetectedBtn.Text = handDetected ? "Scene disrupted" : "";
         }
 
         public void UpdateAveragedBoard(Bitmap bitmap)

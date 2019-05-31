@@ -38,7 +38,7 @@ namespace ChessTracking.UserInterface
             MainForm?.UpdateFps(fps);
         }
 
-        public void HandDetected(string detection)
+        public void HandDetected(bool detection)
         {
             MainForm?.HandDetectionUpdate(detection);
         }
