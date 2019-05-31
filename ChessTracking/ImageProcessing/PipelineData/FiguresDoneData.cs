@@ -22,9 +22,6 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public MyVector3DStruct FirstVectorFinal;
         public Bitmap ColorBitmap { get; set; }
         public bool[] MaskOfTable { get; set; }
-        public string HandDetected { get; set; }
-
-        public TrackingState TrackingState { get; set; }
 
         public FiguresDoneData(ChessboardDoneData chessboardData)
         {

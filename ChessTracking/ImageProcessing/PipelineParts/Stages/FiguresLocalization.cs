@@ -26,7 +26,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             var figuresData = new FiguresDoneData(chessboardData);
 
             {
-                figuresData.TrackingState =
+                figuresData.ResultData.TrackingState =
                     FigureLocalization(
                         figuresData.RawData.CameraSpacePointsFromDepthData,
                         figuresData.RawData.ColorFrameData,
@@ -34,7 +34,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
                         figuresData.RawData.InfraredData,
                         figuresData.FirstVectorFinal,
                         figuresData.CannyDepthData);
-                figuresData.HandDetected =
+                figuresData.ResultData.HandDetected =
                     HandDetection(
                         figuresData.RawData.CameraSpacePointsFromDepthData,
                         figuresData.FirstVectorFinal
