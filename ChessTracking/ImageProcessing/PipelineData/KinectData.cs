@@ -5,7 +5,7 @@ namespace ChessTracking.ImageProcessing.PipelineData
     /// <summary>
     /// Contains all important data from sensor
     /// </summary>
-    class RawData
+    class KinectData
     {
         public byte[] ColorFrameData { get; set; }
         public ushort[] DepthData { get; set; }
@@ -14,7 +14,7 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public DepthSpacePoint[] PointsFromColorToDepth { get; set; }
         public ColorSpacePoint[] PointsFromDepthToColor { get; set; }
 
-        public RawData(
+        public KinectData(
             byte[] colorFrameData,
             ushort[] depthData,
             ushort[] infraredData,

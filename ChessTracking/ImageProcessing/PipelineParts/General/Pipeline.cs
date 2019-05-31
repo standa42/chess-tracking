@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
+using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.ImageProcessing.PipelineParts
@@ -40,41 +41,42 @@ namespace ChessTracking.ImageProcessing.PipelineParts
         {
             FiguresLocalization.ChangeColorCalibration(additiveConstant);
         }
-
-        /// <summary>
-        /// Mantains communication of whole processing of chessboard tracking
-        /// </summary>
-        /// <param name="resources">Data from Kinect</param>
+        
         public void ProcessIncomingKinectData(KinectResourcesMessage resources)
         {
             var rawData = resources.Data;
+
             if (!IsTracking)
             {
-                var planeData = PlaneLocalization.Recalibrate(rawData);
-                var chessboardData = ChessboardLocalization.Recalibrate(planeData);
-                var figuresData = FiguresLocalization.Recalibrate(chessboardData);
+                Calibration(rawData);
                 IsTracking = true;
             }
             else
             {
-                Semaphore.Wait();
-                Task.Run(() =>
-                {
-                    var planeData = PlaneLocalization.Track(rawData);
-                    var chessboardData = ChessboardLocalization.Track(planeData);
-                    var figuresData = FiguresLocalization.Track(chessboardData);
-                    SendResultMessage(
-                            new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.HandDetected)
-                        );
-                    Semaphore.Release();
-                });
+                Tracking(rawData);
             }
-
         }
-        
-        public void SetVisualisationBitmap(Bitmap bm)
+
+        private void Calibration(KinectData kinectData)
         {
-            VisualisationBitmap = bm;
+            var planeData = PlaneLocalization.Recalibrate(kinectData);
+            var chessboardData = ChessboardLocalization.Recalibrate(planeData);
+            var figuresData = FiguresLocalization.Recalibrate(chessboardData);
+        }
+
+        private void Tracking(KinectData kinectData)
+        {
+            Semaphore.Wait();
+            Task.Run(() =>
+            {
+                var planeData = PlaneLocalization.Track(kinectData);
+                var chessboardData = ChessboardLocalization.Track(planeData);
+                var figuresData = FiguresLocalization.Track(chessboardData);
+                SendResultMessage(
+                    new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.HandDetected)
+                );
+                Semaphore.Release();
+            });
         }
 
         public void Recalibrate()

@@ -142,7 +142,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
                 {
                     OutputQueue.Add(
                         new KinectResourcesMessage(
-                            new RawData(
+                            new KinectData(
                             colorFrameData,
                             depthData,
                             infraredData,

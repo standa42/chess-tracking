@@ -7,11 +7,11 @@ namespace ChessTracking.MultithreadingMessages
     /// </summary>
     class KinectResourcesMessage : Message
     {
-        public RawData Data;
+        public KinectData Data;
 
-        public KinectResourcesMessage(RawData rawData)
+        public KinectResourcesMessage(KinectData kinectData)
         {
-            Data = rawData;
+            Data = kinectData;
         }
     }
 }

@@ -12,28 +12,21 @@ namespace ChessTracking.ImageProcessing.PipelineData
     /// </summary>
     class FiguresDoneData
     {
-        public RawData RawData { get; set; }
+        public KinectData KinectData { get; set; }
         public TrackingResultData ResultData { get; set; }
+        public PlaneTrackingData PlaneData { get; set; }
+        public ChessboardTrackingData ChessboardData { get; set; }
 
         public VisualisationType VisualisationType { get; set; }
-
-        public Emgu.CV.Image<Rgb, byte> MaskedColorImageOfTable { get; set; }
-        public byte[] CannyDepthData { get; set; }
-        public MyVector3DStruct FirstVectorFinal;
-        public Bitmap ColorBitmap { get; set; }
-        public bool[] MaskOfTable { get; set; }
-
+        
         public FiguresDoneData(ChessboardDoneData chessboardData)
         {
-            this.RawData = chessboardData.RawData;
+            this.KinectData = chessboardData.KinectData;
             this.ResultData = chessboardData.ResultData;
+            this.PlaneData = chessboardData.PlaneData;
+            this.ChessboardData = chessboardData.ChessboardData;
 
             this.VisualisationType = chessboardData.VisualisationType;
-            this.MaskedColorImageOfTable = chessboardData.MaskedColorImageOfTable;
-            this.CannyDepthData = chessboardData.CannyDepthData;
-            this.FirstVectorFinal = chessboardData.FirstVectorFinal;
-            this.MaskOfTable = chessboardData.MaskOfTable;
-            this.ColorBitmap = chessboardData.ColorBitmap;
         }
     }
 }
