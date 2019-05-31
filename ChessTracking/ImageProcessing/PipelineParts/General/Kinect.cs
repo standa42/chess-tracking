@@ -65,7 +65,6 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             // Continue only if buffer is empty
             if (!Buffer.IsEmpty())
             {
-                OutputQueue.Add(new KinectUpdateMessage());
                 return;
             }
 
@@ -156,18 +155,6 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                     );
 
                     OutputQueue.Add(new KinectUpdateMessage());
-                    //OutputQueue.Add(
-                    //    new KinectResourcesMessage(
-                    //        new KinectData(
-                    //        colorFrameData,
-                    //        depthData,
-                    //        infraredData,
-                    //        cameraSpacePointsFromDepthData,
-                    //        pointsFromColorToDepth,
-                    //        pointsFromDepthToColor
-                    //        )
-                    //    )
-                    //);
                 }
 
             }
