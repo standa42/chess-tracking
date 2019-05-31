@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Forms;
+using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.UserInterface
@@ -13,8 +14,9 @@ namespace ChessTracking.UserInterface
     public partial class MainGameForm : Form
     {
         private UserInterfaceInputFacade InputFacade { get; }
-        private List<string> UserLog { get; set; }
-        private List<string> TrackingLog { get; set; }
+        private List<string> UserLog { get; }
+        private List<string> TrackingLog { get; }
+        private UserDefinedParametersFactory UserParameters { get; }
 
         public MainGameForm()
         {
@@ -24,8 +26,10 @@ namespace ChessTracking.UserInterface
             
             KeepAlive();
 
+            UserParameters = new UserDefinedParametersFactory();
+
             var outputFacade = new UserInterfaceOutputFacade(this, vizualizationForm);
-            InputFacade = new UserInterfaceInputFacade(outputFacade);
+            InputFacade = new UserInterfaceInputFacade(outputFacade, UserParameters);
 
             UserLog = new List<string>();
             TrackingLog = new List<string>();
@@ -50,7 +54,9 @@ namespace ChessTracking.UserInterface
         {
             var additiveConstant = ColorCalibrationTrackBar.Value / 100d;
 
-            InputFacade.CalibrateColor(additiveConstant);
+            var temp = UserParameters.Prototype;
+            temp.ColorCalibrationAdditiveConstant = additiveConstant;
+            UserParameters.Prototype = temp;
         }
 
         private void ResultProcessingTimer_Tick(object sender, EventArgs e)
@@ -61,7 +67,10 @@ namespace ChessTracking.UserInterface
         private void VizualizationChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var chosenType = ((VisualisationType) VizualizationChoiceComboBox.SelectedIndex);
-            InputFacade.ChangeVisualisation(chosenType);
+
+            var temp = UserParameters.Prototype;
+            temp.VisualisationType = chosenType;
+            UserParameters.Prototype = temp;
         }
 
         private void NewGameBtn_Click(object sender, EventArgs e)

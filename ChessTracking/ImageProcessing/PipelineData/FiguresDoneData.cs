@@ -16,8 +16,7 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public TrackingResultData ResultData { get; set; }
         public PlaneTrackingData PlaneData { get; set; }
         public ChessboardTrackingData ChessboardData { get; set; }
-
-        public VisualisationType VisualisationType { get; set; }
+        public UserDefinedParameters UserParameters { get; set; }
         
         public FiguresDoneData(ChessboardDoneData chessboardData)
         {
@@ -25,8 +24,7 @@ namespace ChessTracking.ImageProcessing.PipelineData
             this.ResultData = chessboardData.ResultData;
             this.PlaneData = chessboardData.PlaneData;
             this.ChessboardData = chessboardData.ChessboardData;
-
-            this.VisualisationType = chessboardData.VisualisationType;
+            this.UserParameters = chessboardData.UserParameters;
         }
     }
 }

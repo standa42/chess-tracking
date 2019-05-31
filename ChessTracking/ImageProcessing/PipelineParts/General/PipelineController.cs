@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.ImageProcessing.PipelineParts
@@ -10,12 +11,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
         public Kinect Kinect;
         public Pipeline Pipeline;
+        
 
-        public PipelineController(BlockingCollection<Message> processingCommandsQueue, BlockingCollection<Message> processingOutputQueue)
+        public PipelineController(BlockingCollection<Message> processingCommandsQueue, BlockingCollection<Message> processingOutputQueue, UserDefinedParametersFactory userParameters)
         {
             ProcessingCommandsQueue = processingCommandsQueue;
             ProcessingOutputQueue = processingOutputQueue;
-            Pipeline = new Pipeline(ProcessingOutputQueue);
+            Pipeline = new Pipeline(ProcessingOutputQueue, userParameters);
         }
 
         /// <summary>
@@ -28,16 +30,6 @@ namespace ChessTracking.ImageProcessing.PipelineParts
                 dynamic message = ProcessingCommandsQueue.Take();
                 Process(message);
             }
-        }
-
-        private void Process(ColorCalibrationMessage msg)
-        {
-            Pipeline.ChangeColorCalibration(msg.CalibrationConstant);
-        }
-
-        private void Process(VisualisationChangeMessage msg)
-        {
-            Pipeline.ChangeVisualisationState(msg.VisualisationType);
         }
 
         private void Process(KinectResourcesMessage msg)

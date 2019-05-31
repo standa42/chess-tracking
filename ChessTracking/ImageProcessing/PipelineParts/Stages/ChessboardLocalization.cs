@@ -58,7 +58,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             chessboardData.ChessboardData.FirstVectorFinal = firstVectorFinal;
 
 
-            if (chessboardData.VisualisationType == VisualisationType.HighlightedChessboard)
+            if (chessboardData.UserParameters.VisualisationType == VisualisationType.HighlightedChessboard)
                 chessboardData.ResultData.VisualisationBitmap =
                     ReturnLocalizedChessboardWithTable(
                         chessboardData.PlaneData.ColorBitmap,

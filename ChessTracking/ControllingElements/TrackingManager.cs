@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
@@ -28,7 +29,7 @@ namespace ChessTracking.ControllingElements
         /// </summary>
         private BlockingCollection<Message> ProcessingCommandsQueue { get; }
 
-        public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing)
+        public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing, UserDefinedParametersFactory userParameters)
         {
             this.OutputFacade = outputFacade;
             TrackingResultProcessing = trackingResultProcessing;
@@ -36,17 +37,17 @@ namespace ChessTracking.ControllingElements
             ProcessingCommandsQueue = new BlockingCollection<Message>();
             ProcessingOutputQueue = new BlockingCollection<Message>();
 
-            InitPipelineThread();
+            InitPipelineThread(userParameters);
         }
 
         /// <summary>
         /// Initialization of tracking thread
         /// </summary>
-        private void InitPipelineThread()
+        private void InitPipelineThread(UserDefinedParametersFactory userParameters)
         {
             Task.Run(() =>
             {
-                var processingController = new PipelineController(ProcessingCommandsQueue, ProcessingOutputQueue);
+                var processingController = new PipelineController(ProcessingCommandsQueue, ProcessingOutputQueue, userParameters);
                 processingController.Start();
             });
         }
@@ -65,17 +66,7 @@ namespace ChessTracking.ControllingElements
         {
             ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.Recalibrate));
         }
-
-        public void ChangeVisualisation(VisualisationType newVisualisationType)
-        {
-            ProcessingCommandsQueue.Add(new VisualisationChangeMessage(newVisualisationType));
-        }
-
-        public void CalibrateColor(double additiveConstant)
-        {
-            ProcessingCommandsQueue.Add(new ColorCalibrationMessage(additiveConstant));
-        }
-
+        
         /// <summary>
         /// Processing of messages arriving from tracking thread
         /// </summary>

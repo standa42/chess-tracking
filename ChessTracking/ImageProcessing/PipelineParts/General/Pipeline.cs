@@ -13,63 +13,52 @@ namespace ChessTracking.ImageProcessing.PipelineParts
     class Pipeline
     {
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
-        public VisualisationType VisualisationType { get; set; }
-
-        private Bitmap VisualisationBitmap { get; set; }
+        
         private bool IsTracking { get; set; }
         private PlaneLocalization PlaneLocalization { get; set; }
         private ChessboardLocalization ChessboardLocalization { get; set; }
         private FiguresLocalization FiguresLocalization { get; set; }
         private SemaphoreSlim Semaphore { get; } = new SemaphoreSlim(2);
+        private UserDefinedParametersFactory UserParameters { get; set; }
 
-        public Pipeline(BlockingCollection<Message> processingOutputQueue)
+        public Pipeline(BlockingCollection<Message> processingOutputQueue, UserDefinedParametersFactory userParameters)
         {
             ProcessingOutputQueue = processingOutputQueue;
-            VisualisationType = VisualisationType.RawRGB;
+            UserParameters = userParameters;
             IsTracking = false;
             PlaneLocalization = new PlaneLocalization(this);
             ChessboardLocalization = new ChessboardLocalization(this);
             FiguresLocalization = new FiguresLocalization();
         }
-
-        public void ChangeVisualisationState(VisualisationType visualisationType)
-        {
-            VisualisationType = visualisationType;
-        }
-
-        public void ChangeColorCalibration(double additiveConstant)
-        {
-            FiguresLocalization.ChangeColorCalibration(additiveConstant);
-        }
         
         public void ProcessIncomingKinectData(KinectResourcesMessage resources)
         {
-            var rawData = resources.Data;
+            var inputData = new InputData(resources.Data, UserParameters.Prototype);
 
             if (!IsTracking)
             {
-                Calibration(rawData);
+                Calibration(inputData);
                 IsTracking = true;
             }
             else
             {
-                Tracking(rawData);
+                Tracking(inputData);
             }
         }
 
-        private void Calibration(KinectData kinectData)
+        private void Calibration(InputData inputData)
         {
-            var planeData = PlaneLocalization.Recalibrate(kinectData);
+            var planeData = PlaneLocalization.Recalibrate(inputData);
             var chessboardData = ChessboardLocalization.Recalibrate(planeData);
             var figuresData = FiguresLocalization.Recalibrate(chessboardData);
         }
 
-        private void Tracking(KinectData kinectData)
+        private void Tracking(InputData inputData)
         {
             Semaphore.Wait();
             Task.Run(() =>
             {
-                var planeData = PlaneLocalization.Track(kinectData);
+                var planeData = PlaneLocalization.Track(inputData);
                 var chessboardData = ChessboardLocalization.Track(planeData);
                 var figuresData = FiguresLocalization.Track(chessboardData);
                 SendResultMessage(

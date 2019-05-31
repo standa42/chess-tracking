@@ -12,8 +12,6 @@ namespace ChessTracking.ImageProcessing.PipelineParts
 {
     class FiguresLocalization
     {
-        private double ColorCalibrationAdditiveConstant { get; set; }
-        
         public FiguresDoneData Recalibrate(ChessboardDoneData chessboardData)
         {
             var figuresData = new FiguresDoneData(chessboardData);
@@ -33,7 +31,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts
                         figuresData.KinectData.PointsFromDepthToColor,
                         figuresData.KinectData.InfraredData,
                         figuresData.ChessboardData.FirstVectorFinal,
-                        figuresData.PlaneData.CannyDepthData);
+                        figuresData.PlaneData.CannyDepthData,
+                        figuresData.UserParameters.ColorCalibrationAdditiveConstant);
                 figuresData.ResultData.HandDetected =
                     HandDetection(
                         figuresData.KinectData.CameraSpacePointsFromDepthData,
@@ -43,12 +42,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
 
             return figuresData;
         }
-
-        public void ChangeColorCalibration(double additiveConstant)
-        {
-            ColorCalibrationAdditiveConstant = additiveConstant;
-        }
-
+        
         private string HandDetection(CameraSpacePoint[] cameraSpacePointsFromDepthData, MyVector3DStruct magnitudeVector)
         {
             int counter = 0;
@@ -78,7 +72,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             ColorSpacePoint[] pointsFromDepthToColor,
             ushort[] infraredData,
             MyVector3DStruct magnitudeVector,
-            byte[] canniedBytes)
+            byte[] canniedBytes,
+            double ColorCalibrationAdditiveConstant)
         {
             // Collection of pixel colors for each field on chessboard
 

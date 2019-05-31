@@ -22,9 +22,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             this.Pipeline = pipeline;
         }
 
-        public PlaneDoneData Recalibrate(KinectData kinectData)
+        public PlaneDoneData Recalibrate(InputData inputData)
         {
-            var planeData = new PlaneDoneData(kinectData);
+            var planeData = new PlaneDoneData(inputData);
 
             Data data = new Data(planeData.KinectData.CameraSpacePointsFromDepthData);
             data.CutOffMinMaxDepth(PlaneLocalizationConfig.MinDepth, PlaneLocalizationConfig.MaxDepth);
@@ -44,11 +44,11 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             return planeData;
         }
 
-        public PlaneDoneData Track(KinectData kinectData)
+        public PlaneDoneData Track(InputData inputData)
         {
-            var planeData = new PlaneDoneData(kinectData);
+            var planeData = new PlaneDoneData(inputData);
             
-            if (planeData.VisualisationType == VisualisationType.RawRGB)
+            if (planeData.UserParameters.VisualisationType == VisualisationType.RawRGB)
                 planeData.ResultData.VisualisationBitmap = ReturnColorBitmap(planeData.KinectData.ColorFrameData);
 
             planeData.PlaneData.CannyDepthData = CannyAppliedToDepthData(planeData.KinectData.CameraSpacePointsFromDepthData);
@@ -59,7 +59,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
             planeData.PlaneData.MaskedColorImageOfTable = colorImg;
             //planeData.MaskedColorImageOfTable._EqualizeHist(); // TODO zjisitit jestli to pomáhá při stabilizaci osvětlení
 
-            if (planeData.VisualisationType == VisualisationType.MaskedColorImageOfTable)
+            if (planeData.UserParameters.VisualisationType == VisualisationType.MaskedColorImageOfTable)
                 planeData.ResultData.VisualisationBitmap = colorImg.Bitmap;
             
             return planeData;

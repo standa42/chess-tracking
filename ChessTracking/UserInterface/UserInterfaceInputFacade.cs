@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.ControllingElements;
 using ChessTracking.Game;
+using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.UserInterface
@@ -17,12 +18,12 @@ namespace ChessTracking.UserInterface
         private TrackingResultProcessing TrackingResultProcessing { get; }
         private GameController GameController { get; }
 
-        public UserInterfaceInputFacade(UserInterfaceOutputFacade outputFacade)
+        public UserInterfaceInputFacade(UserInterfaceOutputFacade outputFacade, UserDefinedParametersFactory userParameters)
         {
             OutputFacade = outputFacade;
             GameController = new GameController(outputFacade);
             TrackingResultProcessing = new TrackingResultProcessing(outputFacade, GameController);
-            TrackingManager = new TrackingManager(OutputFacade, TrackingResultProcessing);
+            TrackingManager = new TrackingManager(OutputFacade, TrackingResultProcessing, userParameters);
         }
 
         public void NewGame()
@@ -38,11 +39,6 @@ namespace ChessTracking.UserInterface
         public void LoadGame(StreamReader stream)
         {
             GameController.LoadGame(stream);
-        }
-
-        public void ChangeVisualisation(VisualisationType type)
-        {
-            TrackingManager.ChangeVisualisation(type);
         }
 
         public void StartTracking()
@@ -67,11 +63,6 @@ namespace ChessTracking.UserInterface
         public void ProcessQueueTick()
         {
             TrackingManager.ProcessQueue();
-        }
-
-        public void CalibrateColor(double additiveConstant)
-        {
-            TrackingManager.CalibrateColor(additiveConstant);
         }
     }
 }

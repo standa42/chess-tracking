@@ -13,15 +13,14 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public KinectData KinectData { get; set; }
         public TrackingResultData ResultData { get; set; }
         public PlaneTrackingData PlaneData { get; set; }
-
-        public VisualisationType VisualisationType { get; set; }
+        public UserDefinedParameters UserParameters { get; set; }
         
-        public PlaneDoneData(KinectData kinectData)
+        public PlaneDoneData(InputData inputData)
         {
-            this.KinectData = kinectData;
+            this.KinectData = inputData.KinectData;
+            this.UserParameters = inputData.UserParameters;
             this.ResultData = new TrackingResultData();
             this.PlaneData = new PlaneTrackingData();
         }
-
     }
 }
