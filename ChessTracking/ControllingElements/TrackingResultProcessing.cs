@@ -164,9 +164,9 @@ namespace ChessTracking.ControllingElements
             List<Tuple<TrackingState, int>> aggregation = new List<Tuple<TrackingState, int>>();
             foreach (var state in AveragingQueue)
             {
-                if (aggregation.Any(x => x.Item1 == state.StoredObject))
+                if (aggregation.Any(x => x.Item1.IsEquivalentTo(state.StoredObject)))
                 {
-                    var old = aggregation.Single(x => x.Item1 == state.StoredObject);
+                    var old = aggregation.Single(x => x.Item1.IsEquivalentTo(state.StoredObject));
                     aggregation.Remove(old);
                     aggregation.Add(new Tuple<TrackingState, int>(old.Item1, old.Item2 + 1));
                 }
