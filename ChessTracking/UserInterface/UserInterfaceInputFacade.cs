@@ -18,7 +18,7 @@ namespace ChessTracking.UserInterface
         private TrackingResultProcessing TrackingResultProcessing { get; }
         private GameController GameController { get; }
 
-        public UserInterfaceInputFacade(UserInterfaceOutputFacade outputFacade, UserDefinedParametersFactory userParameters)
+        public UserInterfaceInputFacade(UserInterfaceOutputFacade outputFacade, UserDefinedParametersPrototypeFactory userParameters)
         {
             OutputFacade = outputFacade;
             GameController = new GameController(outputFacade);

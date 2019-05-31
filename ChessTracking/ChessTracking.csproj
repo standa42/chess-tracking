@@ -82,7 +82,7 @@
     <Compile Include="ImageProcessing\PipelineData\PlaneTrackingData.cs" />
     <Compile Include="ImageProcessing\PipelineData\TrackingResultData.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParameters.cs" />
-    <Compile Include="ImageProcessing\PipelineData\UserDefinedParametersFactory.cs" />
+    <Compile Include="ImageProcessing\PipelineData\UserDefinedParametersPrototypeFactory.cs" />
     <Compile Include="Utils\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />

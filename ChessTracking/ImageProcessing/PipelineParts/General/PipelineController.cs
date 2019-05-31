@@ -13,7 +13,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
         public Pipeline Pipeline;
         
 
-        public PipelineController(BlockingCollection<Message> processingCommandsQueue, BlockingCollection<Message> processingOutputQueue, UserDefinedParametersFactory userParameters)
+        public PipelineController(BlockingCollection<Message> processingCommandsQueue, BlockingCollection<Message> processingOutputQueue, UserDefinedParametersPrototypeFactory userParameters)
         {
             ProcessingCommandsQueue = processingCommandsQueue;
             ProcessingOutputQueue = processingOutputQueue;

@@ -29,7 +29,7 @@ namespace ChessTracking.ControllingElements
         /// </summary>
         private BlockingCollection<Message> ProcessingCommandsQueue { get; }
 
-        public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing, UserDefinedParametersFactory userParameters)
+        public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing, UserDefinedParametersPrototypeFactory userParameters)
         {
             this.OutputFacade = outputFacade;
             TrackingResultProcessing = trackingResultProcessing;
@@ -43,7 +43,7 @@ namespace ChessTracking.ControllingElements
         /// <summary>
         /// Initialization of tracking thread
         /// </summary>
-        private void InitPipelineThread(UserDefinedParametersFactory userParameters)
+        private void InitPipelineThread(UserDefinedParametersPrototypeFactory userParameters)
         {
             Task.Run(() =>
             {

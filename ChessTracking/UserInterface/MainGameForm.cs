@@ -16,7 +16,7 @@ namespace ChessTracking.UserInterface
         private UserInterfaceInputFacade InputFacade { get; }
         private List<string> UserLog { get; }
         private List<string> TrackingLog { get; }
-        private UserDefinedParametersFactory UserParameters { get; }
+        private UserDefinedParametersPrototypeFactory UserParameters { get; }
 
         public MainGameForm()
         {
@@ -26,7 +26,7 @@ namespace ChessTracking.UserInterface
             
             KeepAlive();
 
-            UserParameters = new UserDefinedParametersFactory();
+            UserParameters = new UserDefinedParametersPrototypeFactory();
 
             var outputFacade = new UserInterfaceOutputFacade(this, vizualizationForm);
             InputFacade = new UserInterfaceInputFacade(outputFacade, UserParameters);
@@ -54,9 +54,7 @@ namespace ChessTracking.UserInterface
         {
             var additiveConstant = ColorCalibrationTrackBar.Value / 100d;
 
-            var temp = UserParameters.Prototype;
-            temp.ColorCalibrationAdditiveConstant = additiveConstant;
-            UserParameters.Prototype = temp;
+            UserParameters.ChangePrototype(x => x.ColorCalibrationAdditiveConstant = additiveConstant);
         }
 
         private void ResultProcessingTimer_Tick(object sender, EventArgs e)
@@ -68,9 +66,7 @@ namespace ChessTracking.UserInterface
         {
             var chosenType = ((VisualisationType) VizualizationChoiceComboBox.SelectedIndex);
 
-            var temp = UserParameters.Prototype;
-            temp.VisualisationType = chosenType;
-            UserParameters.Prototype = temp;
+            UserParameters.ChangePrototype(x => x.VisualisationType = chosenType);
         }
 
         private void NewGameBtn_Click(object sender, EventArgs e)

@@ -19,9 +19,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts
         private ChessboardLocalization ChessboardLocalization { get; set; }
         private FiguresLocalization FiguresLocalization { get; set; }
         private SemaphoreSlim Semaphore { get; } = new SemaphoreSlim(2);
-        private UserDefinedParametersFactory UserParameters { get; set; }
+        private UserDefinedParametersPrototypeFactory UserParameters { get; set; }
 
-        public Pipeline(BlockingCollection<Message> processingOutputQueue, UserDefinedParametersFactory userParameters)
+        public Pipeline(BlockingCollection<Message> processingOutputQueue, UserDefinedParametersPrototypeFactory userParameters)
         {
             ProcessingOutputQueue = processingOutputQueue;
             UserParameters = userParameters;
@@ -33,7 +33,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts
         
         public void ProcessIncomingKinectData(KinectResourcesMessage resources)
         {
-            var inputData = new InputData(resources.Data, UserParameters.Prototype);
+            var inputData = new InputData(resources.Data, UserParameters.GetShallowCopy());
 
             if (!IsTracking)
             {
