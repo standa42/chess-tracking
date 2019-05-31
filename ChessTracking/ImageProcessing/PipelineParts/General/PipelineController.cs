@@ -9,10 +9,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
     {
         public BlockingCollection<Message> ProcessingCommandsQueue { get; }
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
-        public Kinect Kinect;
         public Pipeline Pipeline;
         
-
         public PipelineController(BlockingCollection<Message> processingCommandsQueue, BlockingCollection<Message> processingOutputQueue, UserDefinedParametersPrototypeFactory userParameters)
         {
             ProcessingCommandsQueue = processingCommandsQueue;
@@ -46,11 +44,12 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             switch (msg.MessageType)
             {
                 case CommandMessageType.StartTracking:
-                    Kinect = new Kinect(ProcessingCommandsQueue);
+                    Pipeline.Recalibrate();
+                    //Kinect = new Kinect(ProcessingCommandsQueue);
                     break;
                 case CommandMessageType.StopTracking:
-                    Kinect.Dispose();
-                    Kinect = null;
+                    //Kinect.Dispose();
+                    //Kinect = null;
                     break;
                 case CommandMessageType.Recalibrate:
                     Pipeline.Recalibrate();

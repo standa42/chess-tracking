@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using ChessTracking.ImageProcessing.PipelineData;
-using ChessTracking.ImageProcessing.PipelineParts;
 using ChessTracking.ImageProcessing.PipelineParts.General;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
@@ -19,6 +15,7 @@ namespace ChessTracking.ControllingElements
     {
         public UserInterfaceOutputFacade OutputFacade { get; }
         private TrackingResultProcessing TrackingResultProcessing { get; }
+        private Kinect Kinect { get; set; }
 
         /// <summary>
         /// Queue of messages arriving from tracking thread
@@ -56,11 +53,14 @@ namespace ChessTracking.ControllingElements
         public void StartTracking()
         {
             ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.StartTracking));
+            Kinect = new Kinect(ProcessingCommandsQueue);
         }
 
         public void StopTracking()
         {
             ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.StopTracking));
+            Kinect.Dispose();
+            Kinect = null;
         }
 
         public void Recalibrate()
