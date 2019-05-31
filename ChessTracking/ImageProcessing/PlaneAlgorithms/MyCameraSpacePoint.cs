@@ -1,6 +1,6 @@
 ﻿using Microsoft.Kinect;
 
-namespace ChessTracking.ProcessingPipeline.Plane
+namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 {
     /// <summary>
     /// Custom camera space point structure with additional flag

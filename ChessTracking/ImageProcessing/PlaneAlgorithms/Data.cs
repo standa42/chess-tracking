@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.Kinect;
-using System.Drawing;
 using System.Runtime.CompilerServices;
-using MathNet.Numerics.LinearRegression;
+using System.Threading.Tasks;
 using MathNet.Numerics.LinearAlgebra.Double;
+using MathNet.Numerics.LinearRegression;
+using Microsoft.Kinect;
 
-namespace ChessTracking.ProcessingPipeline.Plane
+namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 {
 
     public class Data
@@ -247,8 +246,8 @@ namespace ChessTracking.ProcessingPipeline.Plane
         /// </summary>
         public void LargestTableArea()
         {
-            List<Root> roots = new List<Root>();
-            roots.Add(new Root(0, 0, 0)); // empty root for filling the list
+            List<Root> roots = new List<Root> {new Root(0, 0, 0)};
+            // empty root for filling the list
             int[] rootOvnershipMarkers = new int[DepthData.Length];
 
             for (int y = 1; y < PlaneLocalizationConfig.DepthImageHeight; y += 20)

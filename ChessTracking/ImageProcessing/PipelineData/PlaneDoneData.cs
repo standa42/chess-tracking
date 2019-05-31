@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using ChessTracking.MultithreadingMessages;
 using Emgu.CV.Structure;
 using Microsoft.Kinect;
 
-namespace ChessTracking.ProcessingPipeline
+namespace ChessTracking.ImageProcessing.PipelineData
 {
     /// <summary>
     /// Output information of plane localization procedure
@@ -38,8 +33,6 @@ namespace ChessTracking.ProcessingPipeline
             this.CameraSpacePointsFromDepthData = rawData.CameraSpacePointsFromDepthData;
             this.PointsFromColorToDepth = rawData.PointsFromColorToDepth;
             this.PointsFromDepthToColor = rawData.PointsFromDepthToColor;
-
-            this.VisualisationType = rawData.VisualisationType;
         }
 
     }

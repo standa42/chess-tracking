@@ -20,11 +20,10 @@
  */
 
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ChessTracking.ProcessingPipeline.Plane
+namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 {
 
     public class ConvexHull

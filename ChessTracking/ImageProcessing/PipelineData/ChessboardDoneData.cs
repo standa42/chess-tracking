@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
-using ChessTracking.ProcessingPipeline.Plane;
 using Emgu.CV.Structure;
 using Microsoft.Kinect;
 
-namespace ChessTracking.ProcessingPipeline
+namespace ChessTracking.ImageProcessing.PipelineData
 {
     /// <summary>
     /// Output information of chessboard localization procedure

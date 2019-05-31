@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Kinect;
+﻿using ChessTracking.ImageProcessing.PipelineData;
 
 namespace ChessTracking.MultithreadingMessages
 {
@@ -12,28 +7,11 @@ namespace ChessTracking.MultithreadingMessages
     /// </summary>
     class KinectResourcesMessage : Message
     {
-        public byte[] ColorFrameData { get; set; }
-        public ushort[] DepthData { get; set; }
-        public ushort[] InfraredData { get; set; }
-        public CameraSpacePoint[] CameraSpacePointsFromDepthData { get; set; }
-        public DepthSpacePoint[] PointsFromColorToDepth { get; set; }
-        public ColorSpacePoint[] PointsFromDepthToColor { get; set; }
+        public RawData Data;
 
-        public KinectResourcesMessage(
-            byte[] colorFrameData,
-            ushort[] depthData,
-            ushort[] infraredData,
-            CameraSpacePoint[] cameraSpacePointsFromDepthData,
-            DepthSpacePoint[] pointsFromColorToDepth,
-            ColorSpacePoint[] pointsFromDepthToColor
-        )
+        public KinectResourcesMessage(RawData rawData)
         {
-            this.ColorFrameData = colorFrameData;
-            this.DepthData = depthData;
-            this.InfraredData = infraredData;
-            this.CameraSpacePointsFromDepthData = cameraSpacePointsFromDepthData;
-            this.PointsFromColorToDepth = pointsFromColorToDepth;
-            this.PointsFromDepthToColor = pointsFromDepthToColor;
+            Data = rawData;
         }
     }
 }

@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Concurrent;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Net.Configuration;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ChessTracking.MultithreadingMessages;
-using ChessTracking.Utils;
 
-namespace ChessTracking.ProcessingPipeline
+namespace ChessTracking.ImageProcessing.PipelineParts
 {
     /// <summary>
     /// Maintains all processing of chessboard tracking
@@ -57,7 +47,7 @@ namespace ChessTracking.ProcessingPipeline
         /// <param name="resources">Data from Kinect</param>
         public void ProcessIncomingKinectData(KinectResourcesMessage resources)
         {
-            var rawData = new RawData(resources, VisualisationType);
+            var rawData = resources.Data;
             if (!IsTracking)
             {
                 var planeData = PlaneLocalization.Recalibrate(rawData);

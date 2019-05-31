@@ -22,7 +22,7 @@
 
 using System;
 
-namespace ChessTracking.ProcessingPipeline.Plane
+namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 {
     public struct ConvexHullPoints : IComparable<ConvexHullPoints>
     {

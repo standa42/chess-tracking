@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChessTracking.ProcessingPipeline.Plane
+namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 {
     /// <summary>
     /// Class containing configuration for plane localization objects and algorithms

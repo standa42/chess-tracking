@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Accord.Math;
 using Accord.Math.Geometry;
+using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
-using ChessTracking.ProcessingPipeline.Plane;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
@@ -17,7 +16,7 @@ using Microsoft.Kinect;
 using Point = Accord.Point;
 using Point2D = MathNet.Spatial.Euclidean.Point2D;
 
-namespace ChessTracking.ProcessingPipeline
+namespace ChessTracking.ImageProcessing.PipelineParts
 {
     class ChessboardLocalization
     {

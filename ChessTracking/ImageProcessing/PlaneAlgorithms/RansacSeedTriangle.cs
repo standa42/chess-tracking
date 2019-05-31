@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChessTracking.ProcessingPipeline.Plane
+﻿namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 {
     /// <summary>
     /// Random seed triangles for ransac plane matching algorithm

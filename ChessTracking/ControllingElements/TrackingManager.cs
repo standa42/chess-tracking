@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using ChessTracking.ImageProcessing.PipelineParts;
 using ChessTracking.MultithreadingMessages;
-using ChessTracking.ProcessingPipeline;
 using ChessTracking.UserInterface;
 
 namespace ChessTracking.ControllingElements

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Concurrent;
+using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 using Microsoft.Kinect;
 
-namespace ChessTracking.ProcessingPipeline
+namespace ChessTracking.ImageProcessing.PipelineParts
 {
     class Kinect
     {
@@ -141,6 +142,7 @@ namespace ChessTracking.ProcessingPipeline
                 {
                     OutputQueue.Add(
                         new KinectResourcesMessage(
+                            new RawData(
                             colorFrameData,
                             depthData,
                             infraredData,
@@ -148,7 +150,8 @@ namespace ChessTracking.ProcessingPipeline
                             pointsFromColorToDepth,
                             pointsFromDepthToColor
                             )
-                        );
+                        )
+                    );
                 }
 
             }
