@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
-    /// <summary>
-    /// Types of commands for tracking thread
-    /// </summary>
-    enum CommandMessageType
+    class KinectUpdateMessage : Message
     {
-        StartTracking,
-        StopTracking,
-        Recalibrate
     }
 }

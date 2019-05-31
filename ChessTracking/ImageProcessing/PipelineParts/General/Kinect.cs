@@ -15,6 +15,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private MultiSourceFrameReader Reader { get; set; }
         private CoordinateMapper CoordinateMapper { get; }
 
+        private KinectDataBuffer Buffer { get; }
+
         /// <summary>
         /// Controls number of messages to tracking thread at one time
         /// </summary>
@@ -22,9 +24,10 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
 
         public BlockingCollection<Message> OutputQueue { get; }
 
-        public Kinect(BlockingCollection<Message> processingCommandsQueue)
+        public Kinect(BlockingCollection<Message> processingCommandsQueue, KinectDataBuffer buffer)
         {
             OutputQueue = processingCommandsQueue;
+            Buffer = buffer;
 
             KinectSensor = KinectSensor.GetDefault();
 
@@ -59,9 +62,10 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                 return;
             }
 
-            // congestion control -> don't send resources to pipeline if there are some of them in queue already
-            if (OutputQueue.Count >= CongestionControlConstant)
+            // Continue only if buffer is empty
+            if (!Buffer.IsEmpty())
             {
+                OutputQueue.Add(new KinectUpdateMessage());
                 return;
             }
 
@@ -140,18 +144,30 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                     cameraSpacePointsFromDepthData != null
                     )
                 {
-                    OutputQueue.Add(
-                        new KinectResourcesMessage(
-                            new KinectData(
+                    Buffer.Store(
+                        new KinectData(
                             colorFrameData,
                             depthData,
                             infraredData,
                             cameraSpacePointsFromDepthData,
                             pointsFromColorToDepth,
                             pointsFromDepthToColor
-                            )
                         )
                     );
+
+                    OutputQueue.Add(new KinectUpdateMessage());
+                    //OutputQueue.Add(
+                    //    new KinectResourcesMessage(
+                    //        new KinectData(
+                    //        colorFrameData,
+                    //        depthData,
+                    //        infraredData,
+                    //        cameraSpacePointsFromDepthData,
+                    //        pointsFromColorToDepth,
+                    //        pointsFromDepthToColor
+                    //        )
+                    //    )
+                    //);
                 }
 
             }

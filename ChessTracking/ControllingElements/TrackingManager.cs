@@ -32,8 +32,8 @@ namespace ChessTracking.ControllingElements
             this.OutputFacade = outputFacade;
             TrackingResultProcessing = trackingResultProcessing;
 
-            ProcessingCommandsQueue = new BlockingCollection<Message>();
-            ProcessingOutputQueue = new BlockingCollection<Message>();
+            ProcessingCommandsQueue = new BlockingCollection<Message>(new ConcurrentQueue<Message>());
+            ProcessingOutputQueue = new BlockingCollection<Message>(new ConcurrentQueue<Message>());
 
             InitPipelineThread(userParameters);
         }
@@ -52,20 +52,21 @@ namespace ChessTracking.ControllingElements
 
         public void StartTracking()
         {
-            ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.StartTracking));
-            Kinect = new Kinect(ProcessingCommandsQueue);
+            var buffer = new KinectDataBuffer();
+
+            ProcessingCommandsQueue.Add(new StartTrackingMessage(buffer));
+            Kinect = new Kinect(ProcessingCommandsQueue, buffer);
         }
 
         public void StopTracking()
         {
-            ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.StopTracking));
             Kinect.Dispose();
             Kinect = null;
         }
 
         public void Recalibrate()
         {
-            ProcessingCommandsQueue.Add(new CommandMessage(CommandMessageType.Recalibrate));
+            ProcessingCommandsQueue.Add(new RecalibrateMessage());
         }
         
         /// <summary>

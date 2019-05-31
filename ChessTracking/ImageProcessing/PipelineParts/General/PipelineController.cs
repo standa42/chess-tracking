@@ -30,34 +30,21 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             }
         }
 
-        private void Process(KinectResourcesMessage msg)
+        private void Process(KinectUpdateMessage msg)
         {
-            Pipeline.ProcessIncomingKinectData(msg);
+            Pipeline.Update();
         }
 
-        /// <summary>
-        /// Process command messages
-        /// </summary>
-        /// <param name="msg"></param>
-        private void Process(CommandMessage msg)
+        private void Process(StartTrackingMessage msg)
         {
-            switch (msg.MessageType)
-            {
-                case CommandMessageType.StartTracking:
-                    Pipeline.Recalibrate();
-                    //Kinect = new Kinect(ProcessingCommandsQueue);
-                    break;
-                case CommandMessageType.StopTracking:
-                    //Kinect.Dispose();
-                    //Kinect = null;
-                    break;
-                case CommandMessageType.Recalibrate:
-                    Pipeline.Recalibrate();
-                    break;
-                default:
-                    throw new InvalidOperationException($"Unexpected message type in {nameof(PipelineController)}");
-            }
+            Pipeline.SetBuffer(msg.Buffer);
+            Pipeline.Recalibrate();
         }
-        
+
+        private void Process(RecalibrateMessage msg)
+        {
+            Pipeline.Recalibrate();
+        }
+
     }
 }
