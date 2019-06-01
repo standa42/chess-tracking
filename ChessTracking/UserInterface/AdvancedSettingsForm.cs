@@ -27,5 +27,17 @@ namespace ChessTracking.UserInterface
         {
             MainForm?.AdvancedFormClosing();
         }
+
+        private void MilimetersClippedTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            MilimetersClippedValueLabel.Text = MilimetersClippedTrackBar.Value.ToString();
+            UserParameters.ChangePrototype(x => x.MilimetersClippedFromFigure = MilimetersClippedTrackBar.Value);
+        }
+
+        private void PointsIndicatingFigureTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            PointsIndicatingFigureValueLabel.Text = PointsIndicatingFigureTrackBar.Value.ToString();
+            UserParameters.ChangePrototype(x => x.NumberOfPointsIndicatingFigure = PointsIndicatingFigureTrackBar.Value);
+        }
     }
 }

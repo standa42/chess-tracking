@@ -32,7 +32,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                         figuresData.KinectData.InfraredData,
                         figuresData.ChessboardData.FirstVectorFinal,
                         figuresData.PlaneData.CannyDepthData,
-                        figuresData.UserParameters.ColorCalibrationAdditiveConstant);
+                        figuresData.UserParameters);
                 figuresData.ResultData.HandDetected =
                     HandDetection(
                         figuresData.KinectData.CameraSpacePointsFromDepthData,
@@ -73,7 +73,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             ushort[] infraredData,
             MyVector3DStruct magnitudeVector,
             byte[] canniedBytes,
-            double ColorCalibrationAdditiveConstant)
+            UserDefinedParameters userParameters)
         {
             // Collection of pixel colors for each field on chessboard
 
@@ -99,7 +99,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                 && infraredData[i] > 1500
                 && canniedBytes[i] != 255
                 //&& cameraSpacePointsFromDepthData[i].Z < 0.025f
-                && cameraSpacePointsFromDepthData[i].Z < -0.01f
+                && cameraSpacePointsFromDepthData[i].Z < -(userParameters.MilimetersClippedFromFigure/1000d)
                 && cameraSpacePointsFromDepthData[i].Z > -0.5f
                 )
                 {
@@ -130,7 +130,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             {
                 for (int y = 0; y < 8; y++)
                 {
-                        if (fields[x, y].Count < 5)
+                        if (fields[x, y].Count < userParameters.NumberOfPointsIndicatingFigure)
                         {
                             figures[x, y] = TrackingFieldState.None;
                         }
@@ -138,7 +138,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                         {
                             var averageBrightness = fields[x, y].Sum(f => Color.FromArgb(f.R, f.G, f.B).GetBrightness()) / fields[x,y].Count;
 
-                            figures[x, y] = averageBrightness > 0.5 + ColorCalibrationAdditiveConstant
+                            figures[x, y] = averageBrightness > 0.5 + userParameters.ColorCalibrationAdditiveConstant
                                 ? TrackingFieldState.White
                                 : TrackingFieldState.Black;
                         }

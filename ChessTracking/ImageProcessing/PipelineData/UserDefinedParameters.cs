@@ -11,6 +11,8 @@ namespace ChessTracking.ImageProcessing.PipelineData
     {
         public VisualisationType VisualisationType { get; set; } = VisualisationType.RawRGB;
         public double ColorCalibrationAdditiveConstant { get; set; } = 0;
+        public int MilimetersClippedFromFigure { get; set; } = 10;
+        public int NumberOfPointsIndicatingFigure { get; set; } = 5;
 
         public UserDefinedParameters GetShallowCopy()
         {
