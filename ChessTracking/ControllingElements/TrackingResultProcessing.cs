@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.Game;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
@@ -17,6 +18,7 @@ namespace ChessTracking.ControllingElements
         private UserInterfaceOutputFacade OutputFacade { get; }
         private GameController GameController { get; }
         private FPSCounter FpsCounter { get; }
+        private IProgramState ProgramState { get; }
 
         /// <summary>
         /// Indicated whether figures are located
@@ -48,10 +50,11 @@ namespace ChessTracking.ControllingElements
         /// </summary>
         private static Bitmap ChessboardBitmap { get; set; }
 
-        public TrackingResultProcessing(UserInterfaceOutputFacade outputFacade, GameController gameController)
+        public TrackingResultProcessing(UserInterfaceOutputFacade outputFacade, GameController gameController, IProgramState programState)
         {
             OutputFacade = outputFacade;
             GameController = gameController;
+            ProgramState = programState;
             FpsCounter = new FPSCounter();
             TrackningInProgress = false;
             AveragingQueue = new Queue<TimestampObject<TrackingState>>();
@@ -120,6 +123,7 @@ namespace ChessTracking.ControllingElements
                     // if rotation is succesfull(figures got matched)
                     if (rotation.HasValue)
                     {
+                        ProgramState.GameRecognized();
                         NumberOfCwRotations = rotation.Value;
                         RotatedSavedStates();
                         TrackningInProgress = true;

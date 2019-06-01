@@ -8,5 +8,11 @@ namespace ChessTracking.ControllingElements.ProgramState.States
         {
 
         }
+
+        public override void GameLoaded()
+        {
+            StateContext.OutputFacade.GameRunningLockState();
+            StateContext.InternalState = new GameRunningState(StateContext);
+        }
     }
 }

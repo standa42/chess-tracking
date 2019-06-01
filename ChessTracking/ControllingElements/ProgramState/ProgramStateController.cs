@@ -11,11 +11,11 @@ namespace ChessTracking.ControllingElements.ProgramState
 {
     class ProgramStateController : IProgramState
     {
-        private StateContext StateContext { get; }
-
-        public ProgramStateController(UserInterfaceOutputFacade outputFacade, GameController gameController)
+        private StateContext StateContext { get; set; }
+        
+        public void SetInitialContext(UserInterfaceOutputFacade outputFacade, GameController gameController, TrackingManager trackingManager, TrackingResultProcessing trackingResultProcessing)
         {
-            StateContext = new StateContext(null, outputFacade, gameController);
+            StateContext = new StateContext(null, outputFacade, gameController, trackingManager, trackingResultProcessing);
             var initialState = new NoGameRunningState(StateContext);
             StateContext.InternalState = initialState;
         }
@@ -58,6 +58,11 @@ namespace ChessTracking.ControllingElements.ProgramState
         public void TrackingStartSuccessful()
         {
             StateContext.InternalState.TrackingStartSuccessful();
+        }
+
+        public void GameRecognized()
+        {
+            StateContext.InternalState.GameRecognized();
         }
     }
 }

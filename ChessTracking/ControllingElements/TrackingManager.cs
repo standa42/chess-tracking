@@ -2,9 +2,11 @@
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using System.Threading;
+using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.General;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.MultithreadingMessages.FromProcessing;
 using ChessTracking.UserInterface;
 
 namespace ChessTracking.ControllingElements
@@ -17,6 +19,7 @@ namespace ChessTracking.ControllingElements
         public UserInterfaceOutputFacade OutputFacade { get; }
         private TrackingResultProcessing TrackingResultProcessing { get; }
         private Kinect Kinect { get; set; }
+        private IProgramState ProgramState { get; }
 
         /// <summary>
         /// Queue of messages arriving from tracking thread
@@ -28,10 +31,11 @@ namespace ChessTracking.ControllingElements
         /// </summary>
         private BlockingCollection<Message> ProcessingCommandsQueue { get; }
 
-        public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing, UserDefinedParametersPrototypeFactory userParameters)
+        public TrackingManager(UserInterfaceOutputFacade outputFacade, TrackingResultProcessing trackingResultProcessing, UserDefinedParametersPrototypeFactory userParameters, IProgramState programState)
         {
-            this.OutputFacade = outputFacade;
+            OutputFacade = outputFacade;
             TrackingResultProcessing = trackingResultProcessing;
+            ProgramState = programState;
 
             ProcessingCommandsQueue = new BlockingCollection<Message>(new ConcurrentQueue<Message>());
             ProcessingOutputQueue = new BlockingCollection<Message>(new ConcurrentQueue<Message>());
@@ -46,10 +50,10 @@ namespace ChessTracking.ControllingElements
         {
             var thread = new Thread(() =>
             {
-                var processingController = new PipelineController(ProcessingCommandsQueue, ProcessingOutputQueue, userParameters);
+                var processingController =
+                    new PipelineController(ProcessingCommandsQueue, ProcessingOutputQueue, userParameters);
                 processingController.Start();
-            });
-            thread.IsBackground = true;
+            }) {IsBackground = true};
             thread.Start();
         }
 
@@ -57,6 +61,7 @@ namespace ChessTracking.ControllingElements
         {
             var buffer = new KinectDataBuffer();
 
+            ProgramState.StartedTracking();
             ProcessingCommandsQueue.Add(new StartTrackingMessage(buffer));
             Kinect = new Kinect(ProcessingCommandsQueue, buffer);
         }
@@ -65,10 +70,12 @@ namespace ChessTracking.ControllingElements
         {
             Kinect.Dispose();
             Kinect = null;
+            ProgramState.StoppedTracking();
         }
 
         public void Recalibrate()
         {
+            ProgramState.Recalibrating();
             ProcessingCommandsQueue.Add(new RecalibrateMessage());
         }
         
@@ -84,9 +91,10 @@ namespace ChessTracking.ControllingElements
                 messageProcessed = ProcessingOutputQueue.TryTake(out var message);
 
                 if (message is ResultMessage resultMessage)
-                {
                     TrackingResultProcessing.ProcessResult(resultMessage);
-                }
+
+                if (message is TrackingStartSuccessfulMessage)
+                    ProgramState.TrackingStartSuccessful();
 
                 if (messageProcessed && message == null)
                 {

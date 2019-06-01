@@ -13,12 +13,16 @@ namespace ChessTracking.ControllingElements.ProgramState
         public IProgramState InternalState { get; set; }
         public UserInterfaceOutputFacade OutputFacade { get; }
         public GameController GameController { get; }
+        public TrackingManager TrackingManager { get; }
+        public TrackingResultProcessing TrackingResultProcessing { get; }
 
-        public StateContext(IProgramState internalState, UserInterfaceOutputFacade outputFacade, GameController gameController)
+        public StateContext(IProgramState internalState, UserInterfaceOutputFacade outputFacade, GameController gameController, TrackingManager trackingManager, TrackingResultProcessing trackingResultProcessing)
         {
             InternalState = internalState;
             OutputFacade = outputFacade;
             GameController = gameController;
+            TrackingManager = trackingManager;
+            TrackingResultProcessing = trackingResultProcessing;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.Stages;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.MultithreadingMessages.FromProcessing;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.General
 {
@@ -65,6 +66,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             var planeData = PlaneLocalization.Recalibrate(inputData);
             var chessboardData = ChessboardLocalization.Recalibrate(planeData);
             var figuresData = FiguresLocalization.Recalibrate(chessboardData);
+
+            SendResultMessage(new TrackingStartSuccessfulMessage());
         }
 
         private void Tracking()

@@ -84,6 +84,7 @@
     <Compile Include="ControllingElements\ProgramState\States\NoGameRunningState.cs" />
     <Compile Include="ControllingElements\ProgramState\ProgramStateController.cs" />
     <Compile Include="ControllingElements\ProgramState\StateContext.cs" />
+    <Compile Include="ControllingElements\ProgramState\States\TrackingGameState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\TrackingState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\TrackingStartedState.cs" />
     <Compile Include="Game\LoadingResult.cs" />
@@ -94,9 +95,10 @@
     <Compile Include="ImageProcessing\PipelineData\TrackingResultData.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParameters.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParametersPrototypeFactory.cs" />
-    <Compile Include="MultithreadingMessages\KinectUpdateMessage.cs" />
-    <Compile Include="MultithreadingMessages\RecalibrateMessage.cs" />
-    <Compile Include="MultithreadingMessages\StartTrackingMessage.cs" />
+    <Compile Include="MultithreadingMessages\FromProcessing\TrackingStartSuccessfulMessage.cs" />
+    <Compile Include="MultithreadingMessages\ToProcessing\KinectUpdateMessage.cs" />
+    <Compile Include="MultithreadingMessages\ToProcessing\RecalibrateMessage.cs" />
+    <Compile Include="MultithreadingMessages\ToProcessing\StartTrackingMessage.cs" />
     <Compile Include="Utils\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
@@ -145,9 +147,8 @@
     <Compile Include="UserInterface\VizualizationForm.Designer.cs">
       <DependentUpon>VizualizationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MultithreadingMessages\KinectResourcesMessage.cs" />
     <Compile Include="MultithreadingMessages\Message.cs" />
-    <Compile Include="MultithreadingMessages\ResultMessage.cs" />
+    <Compile Include="MultithreadingMessages\FromProcessing\ResultMessage.cs" />
     <Compile Include="MultithreadingMessages\VisualisationType.cs" />
     <Compile Include="ImageProcessing\PipelineParts\General\Kinect.cs" />
     <Compile Include="ImageProcessing\PipelineParts\General\Pipeline.cs" />

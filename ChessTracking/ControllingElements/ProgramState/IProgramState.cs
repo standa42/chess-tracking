@@ -23,5 +23,7 @@ namespace ChessTracking.ControllingElements.ProgramState
         void ErrorInTracking();
 
         void TrackingStartSuccessful();
+
+        void GameRecognized();
     }
 }

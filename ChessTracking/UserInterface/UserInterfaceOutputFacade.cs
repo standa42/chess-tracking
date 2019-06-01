@@ -62,5 +62,30 @@ namespace ChessTracking.UserInterface
         {
             MainForm?.AddToTrackingLog(line);
         }
+
+        public void Clear()
+        {
+            MainForm?.Clear();
+        }
+
+        public void GameRunningLockState()
+        {
+            MainForm?.GameRunningLockState();
+        }
+
+        public void InitialUiLockState()
+        {
+            MainForm?.InitialUiLockState();
+        }
+
+        public void StartedTrackingLockState()
+        {
+            MainForm?.StartedTrackingLockState();
+        }
+
+        public void TrackingLockState()
+        {
+            MainForm?.TrackingLockState();
+        }
     }
 }

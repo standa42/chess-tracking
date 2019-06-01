@@ -9,49 +9,54 @@ namespace ChessTracking.ControllingElements.ProgramState
 {
     abstract class ProgramState : IProgramState
     {
-        private StateContext StateContext { get; }
+        protected StateContext StateContext { get; }
 
         protected ProgramState(StateContext stateContext)
         {
             StateContext = stateContext;
         }
 
-        public void GameLoaded()
+        public virtual void GameLoaded()
         {
             throw new NotImplementedException();
         }
 
-        public void GameEnded()
+        public virtual void GameEnded()
         {
             throw new NotImplementedException();
         }
 
-        public void StartedTracking()
+        public virtual void StartedTracking()
         {
             throw new NotImplementedException();
         }
 
-        public void StoppedTracking()
+        public virtual void StoppedTracking()
         {
             throw new NotImplementedException();
         }
 
-        public void Recalibrating()
+        public virtual void Recalibrating()
         {
             throw new NotImplementedException();
         }
 
-        public void GameFinished()
+        public virtual void GameFinished()
         {
             throw new NotImplementedException();
         }
 
-        public void ErrorInTracking()
+        public virtual void ErrorInTracking()
         {
             throw new NotImplementedException();
         }
 
-        public void TrackingStartSuccessful()
+        public virtual void TrackingStartSuccessful()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void GameRecognized()
         {
             throw new NotImplementedException();
         }

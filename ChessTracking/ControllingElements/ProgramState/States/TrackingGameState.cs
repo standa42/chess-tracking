@@ -1,19 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ChessTracking.ControllingElements.ProgramState.States
 {
-    class TrackingState : ProgramState
+    class TrackingGameState : ProgramState
     {
-        public TrackingState(StateContext stateContext) : base(stateContext)
+        public TrackingGameState(StateContext stateContext) : base(stateContext)
         {
 
-        }
-
-        public override void GameRecognized()
-        {
-            StateContext.OutputFacade.TrackingLockState();
-            StateContext.OutputFacade.AddToTrackingLog("Game Recognized");
-            StateContext.InternalState = new TrackingGameState(StateContext);
         }
 
         public override void Recalibrating()

@@ -8,5 +8,12 @@ namespace ChessTracking.ControllingElements.ProgramState.States
         {
 
         }
+
+        public override void TrackingStartSuccessful()
+        {
+            StateContext.OutputFacade.TrackingLockState();
+            StateContext.OutputFacade.AddToTrackingLog("Start of tracking was successful");
+            StateContext.InternalState = new TrackingState(StateContext);
+        }
     }
 }

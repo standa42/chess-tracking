@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accord.IO;
+using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
 
@@ -16,16 +17,19 @@ namespace ChessTracking.Game
     {
         private UserInterfaceOutputFacade OutputFacade { get; }
         private GameData Game { get; set; }
+        private IProgramState ProgramState { get; }
 
-        public GameController(UserInterfaceOutputFacade outputFacade)
+        public GameController(UserInterfaceOutputFacade outputFacade, IProgramState programState)
         {
             OutputFacade = outputFacade;
+            ProgramState = programState;
         }
 
         public void NewGame()
         {
             Game = GameFactory.NewGame();
 
+            ProgramState.GameLoaded();
             OutputFacade.UpdateBoardState(RenderGameState());
         }
 
@@ -41,6 +45,8 @@ namespace ChessTracking.Game
             if (loadingResult.LoadingSuccesfull)
             {
                 Game = loadingResult.Game;
+
+                ProgramState.GameLoaded();
                 OutputFacade.UpdateRecordState(Game.RecordOfGame);
                 OutputFacade.UpdateBoardState(RenderGameState());
             }
@@ -48,6 +54,12 @@ namespace ChessTracking.Game
             {
                 OutputFacade.UpdateRecordState(new List<string>(){"Game loading failed"});
             }
+        }
+
+        public void EndGame()
+        {
+            Game = null;
+            ProgramState.GameEnded();
         }
 
         public Bitmap RenderGameState()

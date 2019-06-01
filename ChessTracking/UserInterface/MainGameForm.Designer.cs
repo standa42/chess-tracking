@@ -54,6 +54,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.EndGameBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -72,9 +73,9 @@
             // 
             // NewGameBtn
             // 
-            this.NewGameBtn.Location = new System.Drawing.Point(15, 336);
+            this.NewGameBtn.Location = new System.Drawing.Point(12, 357);
             this.NewGameBtn.Name = "NewGameBtn";
-            this.NewGameBtn.Size = new System.Drawing.Size(120, 45);
+            this.NewGameBtn.Size = new System.Drawing.Size(120, 40);
             this.NewGameBtn.TabIndex = 1;
             this.NewGameBtn.Text = "New game";
             this.NewGameBtn.UseVisualStyleBackColor = true;
@@ -82,9 +83,9 @@
             // 
             // LoadGameBtn
             // 
-            this.LoadGameBtn.Location = new System.Drawing.Point(15, 387);
+            this.LoadGameBtn.Location = new System.Drawing.Point(12, 403);
             this.LoadGameBtn.Name = "LoadGameBtn";
-            this.LoadGameBtn.Size = new System.Drawing.Size(120, 45);
+            this.LoadGameBtn.Size = new System.Drawing.Size(120, 40);
             this.LoadGameBtn.TabIndex = 2;
             this.LoadGameBtn.Text = "Load game";
             this.LoadGameBtn.UseVisualStyleBackColor = true;
@@ -92,9 +93,9 @@
             // 
             // SaveGameBtn
             // 
-            this.SaveGameBtn.Location = new System.Drawing.Point(15, 438);
+            this.SaveGameBtn.Location = new System.Drawing.Point(12, 449);
             this.SaveGameBtn.Name = "SaveGameBtn";
-            this.SaveGameBtn.Size = new System.Drawing.Size(120, 45);
+            this.SaveGameBtn.Size = new System.Drawing.Size(120, 40);
             this.SaveGameBtn.TabIndex = 3;
             this.SaveGameBtn.Text = "Save game";
             this.SaveGameBtn.UseVisualStyleBackColor = true;
@@ -102,9 +103,9 @@
             // 
             // StartTrackingBtn
             // 
-            this.StartTrackingBtn.Location = new System.Drawing.Point(12, 533);
+            this.StartTrackingBtn.Location = new System.Drawing.Point(12, 556);
             this.StartTrackingBtn.Name = "StartTrackingBtn";
-            this.StartTrackingBtn.Size = new System.Drawing.Size(120, 45);
+            this.StartTrackingBtn.Size = new System.Drawing.Size(120, 40);
             this.StartTrackingBtn.TabIndex = 4;
             this.StartTrackingBtn.Text = "Start tracking";
             this.StartTrackingBtn.UseVisualStyleBackColor = true;
@@ -112,9 +113,9 @@
             // 
             // Recalibrate
             // 
-            this.Recalibrate.Location = new System.Drawing.Point(12, 584);
+            this.Recalibrate.Location = new System.Drawing.Point(12, 599);
             this.Recalibrate.Name = "Recalibrate";
-            this.Recalibrate.Size = new System.Drawing.Size(120, 45);
+            this.Recalibrate.Size = new System.Drawing.Size(120, 40);
             this.Recalibrate.TabIndex = 5;
             this.Recalibrate.Text = "Recalibrate";
             this.Recalibrate.UseVisualStyleBackColor = true;
@@ -122,9 +123,9 @@
             // 
             // StopTrackingBtn
             // 
-            this.StopTrackingBtn.Location = new System.Drawing.Point(12, 635);
+            this.StopTrackingBtn.Location = new System.Drawing.Point(12, 641);
             this.StopTrackingBtn.Name = "StopTrackingBtn";
-            this.StopTrackingBtn.Size = new System.Drawing.Size(120, 45);
+            this.StopTrackingBtn.Size = new System.Drawing.Size(120, 40);
             this.StopTrackingBtn.TabIndex = 6;
             this.StopTrackingBtn.Text = "Stop tracking";
             this.StopTrackingBtn.UseVisualStyleBackColor = true;
@@ -293,11 +294,22 @@
             this.label8.TabIndex = 24;
             this.label8.Text = "Tracking log";
             // 
+            // EndGameBtn
+            // 
+            this.EndGameBtn.Location = new System.Drawing.Point(12, 495);
+            this.EndGameBtn.Name = "EndGameBtn";
+            this.EndGameBtn.Size = new System.Drawing.Size(120, 40);
+            this.EndGameBtn.TabIndex = 25;
+            this.EndGameBtn.Text = "End game";
+            this.EndGameBtn.UseVisualStyleBackColor = true;
+            this.EndGameBtn.Click += new System.EventHandler(this.EndGameBtn_Click);
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 685);
+            this.Controls.Add(this.EndGameBtn);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -360,5 +372,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button EndGameBtn;
     }
 }

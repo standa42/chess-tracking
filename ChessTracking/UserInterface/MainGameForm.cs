@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Forms;
+using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
@@ -23,7 +24,7 @@ namespace ChessTracking.UserInterface
             InitializeComponent();
             var vizualizationForm = new VizualizationForm(this);
             vizualizationForm.Show();
-            
+
             KeepAlive();
 
             UserParameters = new UserDefinedParametersPrototypeFactory();
@@ -35,6 +36,10 @@ namespace ChessTracking.UserInterface
             TrackingLog = new List<string>();
 
             InitializeVisualisationCombobox();
+            Buttons = new List<Button>()
+                { NewGameBtn, LoadGameBtn, SaveGameBtn,
+                  EndGameBtn, StartTrackingBtn, Recalibrate, StopTrackingBtn };
+            InitialUiLockState();
         }
 
         #region Init
@@ -43,7 +48,7 @@ namespace ChessTracking.UserInterface
         {
             var values = Enum.GetValues(typeof(VisualisationType)).Cast<VisualisationType>().Cast<int>();
             VizualizationChoiceComboBox.DataSource = values;
-            VizualizationChoiceComboBox.SelectedIndex = (int)VisualisationType.RawRGB; 
+            VizualizationChoiceComboBox.SelectedIndex = (int)VisualisationType.RawRGB;
         }
 
         #endregion
@@ -64,7 +69,7 @@ namespace ChessTracking.UserInterface
 
         private void VizualizationChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var chosenType = ((VisualisationType) VizualizationChoiceComboBox.SelectedIndex);
+            var chosenType = ((VisualisationType)VizualizationChoiceComboBox.SelectedIndex);
 
             UserParameters.ChangePrototype(x => x.VisualisationType = chosenType);
         }
@@ -133,8 +138,13 @@ namespace ChessTracking.UserInterface
             InputFacade.StopTracking();
         }
 
+        private void EndGameBtn_Click(object sender, EventArgs e)
+        {
+            InputFacade.EndGame();
+        }
+
         #endregion
-        
+
         #region Form updates
 
         public void UpdateFps(int fps)
@@ -205,6 +215,61 @@ namespace ChessTracking.UserInterface
             }
         }
 
+        public void Clear()
+        {
+            var temp = new List<string>();
+
+            UserLog.Clear();
+            TrackingLog.Clear();
+
+            UserLogsListBox.DataSource = null;
+            UserLogsListBox.DataSource = temp;
+
+            TrackingLogsListBox.DataSource = null;
+            TrackingLogsListBox.DataSource = temp;
+
+            GameHistoryListBox.DataSource = null;
+            GameHistoryListBox.DataSource = temp;
+
+            HandDetectedBtn.BackColor = Color.Gray;
+            HandDetectedBtn.Text = "";
+
+            ImmediateBoardStatePictureBox.Image = null;
+            TrackedBoardStatePictureBox.Image = null;
+            GameStatePictureBox.Image = null;
+        }
+
+        #endregion
+
+        #region UI Locking
+
+        private List<Button> Buttons { get; }
+
+        private void EnableOnlyListedButtons(List<Button> listedButtons)
+        {
+            foreach (var button in Buttons)
+                button.Enabled = listedButtons.Contains(button);
+        }
+
+        public void InitialUiLockState()
+        {
+            EnableOnlyListedButtons(new List<Button>() {NewGameBtn, LoadGameBtn});
+        }
+
+        public void GameRunningLockState()
+        {
+            EnableOnlyListedButtons(new List<Button>() {SaveGameBtn, EndGameBtn, StartTrackingBtn});
+        }
+
+        public void StartedTrackingLockState()
+        {
+            EnableOnlyListedButtons(new List<Button>() {});
+        }
+
+        public void TrackingLockState()
+        {
+            EnableOnlyListedButtons(new List<Button>() {SaveGameBtn, Recalibrate, StopTrackingBtn});
+        }
 
         #endregion
 
@@ -219,7 +284,7 @@ namespace ChessTracking.UserInterface
             // Legacy flag, should not be used.
             // ES_USER_PRESENT = 0x00000004
         }
-        
+
         /// <summary>
         /// Forces screen to stay active
         /// </summary>
@@ -229,6 +294,8 @@ namespace ChessTracking.UserInterface
         {
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
         }
-#endregion
+        #endregion
+
+
     }
 }

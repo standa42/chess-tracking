@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.ControllingElements;
+using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.Game;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
@@ -17,13 +18,19 @@ namespace ChessTracking.UserInterface
         private TrackingManager TrackingManager { get; }
         private TrackingResultProcessing TrackingResultProcessing { get; }
         private GameController GameController { get; }
+        private IProgramState ProgramState { get; }
 
         public UserInterfaceInputFacade(UserInterfaceOutputFacade outputFacade, UserDefinedParametersPrototypeFactory userParameters)
         {
+            var programStateController = new ProgramStateController();
+            ProgramState = programStateController;
+
             OutputFacade = outputFacade;
-            GameController = new GameController(outputFacade);
-            TrackingResultProcessing = new TrackingResultProcessing(outputFacade, GameController);
-            TrackingManager = new TrackingManager(OutputFacade, TrackingResultProcessing, userParameters);
+            GameController = new GameController(outputFacade, ProgramState);
+            TrackingResultProcessing = new TrackingResultProcessing(outputFacade, GameController, ProgramState);
+            TrackingManager = new TrackingManager(OutputFacade, TrackingResultProcessing, userParameters, ProgramState);
+
+            programStateController.SetInitialContext(outputFacade, GameController, TrackingManager, TrackingResultProcessing);
         }
 
         public void NewGame()
@@ -41,6 +48,11 @@ namespace ChessTracking.UserInterface
             GameController.LoadGame(stream);
         }
 
+        public void EndGame()
+        {
+            GameController.EndGame();
+        }
+
         public void StartTracking()
         {
             TrackingManager.StartTracking();
@@ -49,6 +61,7 @@ namespace ChessTracking.UserInterface
         public void StopTracking()
         {
             TrackingManager.StopTracking();
+            TrackingResultProcessing.Reset();
         }
 
         public void Recalibrate()
