@@ -38,7 +38,6 @@
             this.Name = "AdvancedSettingsForm";
             this.Text = "AdvancedSettingsForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedSettingsForm_FormClosing);
-            this.Load += new System.EventHandler(this.AdvancedSettingsForm_Load);
             this.ResumeLayout(false);
 
         }

@@ -23,11 +23,6 @@ namespace ChessTracking.UserInterface
             InitializeComponent();
         }
 
-        private void AdvancedSettingsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void AdvancedSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             MainForm?.AdvancedFormClosing();
