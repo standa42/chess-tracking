@@ -76,6 +76,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllingElements\ProgramState\States\ErrorInTrackingState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\GameFinishedState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\GameRunningState.cs" />
     <Compile Include="ControllingElements\ProgramState\IProgramState.cs" />
