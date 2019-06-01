@@ -20,7 +20,7 @@ namespace ChessTracking.ControllingElements.ProgramState
 
         void GameFinished();
 
-        void ErrorInTracking();
+        void ErrorInTracking(string message);
 
         void TrackingStartSuccessful();
 

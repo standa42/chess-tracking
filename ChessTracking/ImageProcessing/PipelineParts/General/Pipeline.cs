@@ -17,6 +17,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
         
         private bool IsTracking { get; set; }
+        private bool TrackingCanceled { get; set; }
         private PlaneLocalization PlaneLocalization { get; set; }
         private ChessboardLocalization ChessboardLocalization { get; set; }
         private FiguresLocalization FiguresLocalization { get; set; }
@@ -42,14 +43,26 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         public void Recalibrate()
         {
             IsTracking = false;
+            TrackingCanceled = false;
         }
 
         public void Update()
         {
+            if (TrackingCanceled)
+                return;
+
             if (!IsTracking)
             {
-                Calibration();
-                IsTracking = true;
+                try
+                {
+                    Calibration();
+                    IsTracking = true;
+                }
+                catch (Exception)
+                {
+                    TrackingCanceled = true;
+                    SendResultMessage(new TrackingError("Calibration threw an exception"));
+                }
             }
             else
             {

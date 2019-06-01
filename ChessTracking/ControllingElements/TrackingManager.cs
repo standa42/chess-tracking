@@ -68,6 +68,7 @@ namespace ChessTracking.ControllingElements
 
         public void StopTracking()
         {
+            TrackingResultProcessing.Reset();
             Kinect.Dispose();
             Kinect = null;
             ProgramState.StoppedTracking();
@@ -75,6 +76,7 @@ namespace ChessTracking.ControllingElements
 
         public void Recalibrate()
         {
+            TrackingResultProcessing.Reset();
             ProgramState.Recalibrating();
             ProcessingCommandsQueue.Add(new RecalibrateMessage());
         }
@@ -95,6 +97,13 @@ namespace ChessTracking.ControllingElements
 
                 if (message is TrackingStartSuccessfulMessage)
                     ProgramState.TrackingStartSuccessful();
+
+                if (message is TrackingError error)
+                {
+                    ProgramState.ErrorInTracking(error.Message);
+                    StopTracking();
+                }
+                    
 
                 if (messageProcessed && message == null)
                 {

@@ -36,6 +36,7 @@ namespace ChessTracking.Game
         public void SaveGame(StreamWriter stream)
         {
             stream.Write(Game.ExportGameToAlgebraicNotation());
+            OutputFacade.AddToTrackingLog("Game saved");
         }
 
         public void LoadGame(StreamReader stream)

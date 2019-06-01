@@ -50,9 +50,9 @@ namespace ChessTracking.ControllingElements.ProgramState
             StateContext.InternalState.GameFinished();
         }
 
-        public void ErrorInTracking()
+        public void ErrorInTracking(string message)
         {
-            StateContext.InternalState.ErrorInTracking();
+            StateContext.InternalState.ErrorInTracking(message);
         }
 
         public void TrackingStartSuccessful()

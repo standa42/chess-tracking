@@ -95,6 +95,7 @@
     <Compile Include="ImageProcessing\PipelineData\TrackingResultData.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParameters.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParametersPrototypeFactory.cs" />
+    <Compile Include="MultithreadingMessages\FromProcessing\TrackingError.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\TrackingStartSuccessfulMessage.cs" />
     <Compile Include="MultithreadingMessages\ToProcessing\KinectUpdateMessage.cs" />
     <Compile Include="MultithreadingMessages\ToProcessing\RecalibrateMessage.cs" />

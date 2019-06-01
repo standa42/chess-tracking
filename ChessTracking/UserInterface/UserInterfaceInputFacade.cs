@@ -61,13 +61,11 @@ namespace ChessTracking.UserInterface
         public void StopTracking()
         {
             TrackingManager.StopTracking();
-            TrackingResultProcessing.Reset();
         }
 
         public void Recalibrate()
         {
             TrackingManager.Recalibrate();
-            TrackingResultProcessing.Reset();
         }
 
         /// <summary>

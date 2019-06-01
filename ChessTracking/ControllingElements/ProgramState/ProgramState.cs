@@ -46,9 +46,9 @@ namespace ChessTracking.ControllingElements.ProgramState
             throw new NotImplementedException();
         }
 
-        public virtual void ErrorInTracking()
+        public virtual void ErrorInTracking(string message)
         {
-            throw new NotImplementedException();
+            StateContext.OutputFacade.AddToTrackingLog(message);
         }
 
         public virtual void TrackingStartSuccessful()
