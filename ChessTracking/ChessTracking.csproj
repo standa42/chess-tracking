@@ -76,10 +76,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllingElements\ProgramState\IProgramState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\ErrorInTrackingState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\GameFinishedState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\GameRunningState.cs" />
-    <Compile Include="ControllingElements\ProgramState\IProgramState.cs" />
+    <Compile Include="ControllingElements\ProgramState\ProgramState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\NoGameRunningState.cs" />
     <Compile Include="ControllingElements\ProgramState\ProgramStateController.cs" />
     <Compile Include="ControllingElements\ProgramState\StateContext.cs" />
