@@ -40,7 +40,19 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             DepthFrameDescription = KinectSensor.DepthFrameSource.FrameDescription;
             InfraredFrameDescription = KinectSensor.InfraredFrameSource.FrameDescription;
 
+            this.KinectSensor.IsAvailableChanged += this.Sensor_IsAvailableChanged;
+
             KinectSensor.Open();
+        }
+
+        private void Sensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)
+        {
+            // KinectSensor.IsAvailable);
+        }
+
+        public bool IsSensorAvailable()
+        {
+            return KinectSensor.IsAvailable;
         }
 
         /// <summary>
