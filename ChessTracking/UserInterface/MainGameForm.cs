@@ -15,9 +15,9 @@ namespace ChessTracking.UserInterface
     public partial class MainGameForm : Form
     {
         private UserInterfaceInputFacade InputFacade { get; }
-        private List<string> UserLog { get; }
         private List<string> TrackingLog { get; }
         private UserDefinedParametersPrototypeFactory UserParameters { get; }
+        private AdvancedSettingsForm AdvancedSettingsForm { get; set; }
 
         public MainGameForm()
         {
@@ -31,8 +31,7 @@ namespace ChessTracking.UserInterface
 
             var outputFacade = new UserInterfaceOutputFacade(this, vizualizationForm);
             InputFacade = new UserInterfaceInputFacade(outputFacade, UserParameters);
-
-            UserLog = new List<string>();
+            
             TrackingLog = new List<string>();
 
             InitializeVisualisationCombobox();
@@ -124,6 +123,7 @@ namespace ChessTracking.UserInterface
                 catch (SecurityException)
                 {
                     // TODO: má se tu něco dělat?
+                    AddToTrackingLog("Game saving failed");
                 }
                 finally
                 {
@@ -150,6 +150,16 @@ namespace ChessTracking.UserInterface
         private void EndGameBtn_Click(object sender, EventArgs e)
         {
             InputFacade.EndGame();
+        }
+
+        private void AdvancedSettingsBtn_Click(object sender, EventArgs e)
+        {
+            if (AdvancedSettingsForm == null)
+            {
+                AdvancedSettingsBtn.Enabled = false;
+                AdvancedSettingsForm = new AdvancedSettingsForm(this, UserParameters);
+                AdvancedSettingsForm.Show();
+            }
         }
 
         #endregion
@@ -215,8 +225,7 @@ namespace ChessTracking.UserInterface
         public void Clear()
         {
             var temp = new List<string>();
-
-            UserLog.Clear();
+            
             TrackingLog.Clear();
 
             TrackingLogsListBox.DataSource = null;
@@ -252,6 +261,12 @@ namespace ChessTracking.UserInterface
                 ValidationStateBtn.BackColor = Color.LightCoral;
                 ValidationStateBtn.Text = "Invalid State";
             }
+        }
+
+        public void AdvancedFormClosing()
+        {
+            AdvancedSettingsForm = null;
+            AdvancedSettingsBtn.Enabled = true;
         }
 
         #endregion
@@ -328,8 +343,9 @@ namespace ChessTracking.UserInterface
         {
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
         }
+
         #endregion
 
-
+        
     }
 }

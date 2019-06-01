@@ -55,6 +55,7 @@
             this.EndGameBtn = new System.Windows.Forms.Button();
             this.ClockLabel = new System.Windows.Forms.Label();
             this.ValidationStateBtn = new System.Windows.Forms.Button();
+            this.AdvancedSettingsBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -191,7 +192,7 @@
             // VizualizationChoiceComboBox
             // 
             this.VizualizationChoiceComboBox.FormattingEnabled = true;
-            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(716, 599);
+            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(716, 557);
             this.VizualizationChoiceComboBox.Name = "VizualizationChoiceComboBox";
             this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(200, 24);
             this.VizualizationChoiceComboBox.TabIndex = 15;
@@ -234,7 +235,7 @@
             // 
             this.ColorCalibrationTrackBar.AutoSize = false;
             this.ColorCalibrationTrackBar.LargeChange = 1;
-            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(716, 644);
+            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(716, 602);
             this.ColorCalibrationTrackBar.Maximum = 40;
             this.ColorCalibrationTrackBar.Minimum = -40;
             this.ColorCalibrationTrackBar.Name = "ColorCalibrationTrackBar";
@@ -245,7 +246,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(713, 579);
+            this.label4.Location = new System.Drawing.Point(713, 537);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(132, 17);
             this.label4.TabIndex = 20;
@@ -253,7 +254,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(713, 626);
+            this.label5.Location = new System.Drawing.Point(713, 584);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 19);
             this.label5.TabIndex = 21;
@@ -306,11 +307,22 @@
             this.ValidationStateBtn.Text = "Validation State";
             this.ValidationStateBtn.UseVisualStyleBackColor = true;
             // 
+            // AdvancedSettingsBtn
+            // 
+            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(716, 641);
+            this.AdvancedSettingsBtn.Name = "AdvancedSettingsBtn";
+            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(200, 40);
+            this.AdvancedSettingsBtn.TabIndex = 28;
+            this.AdvancedSettingsBtn.Text = "Advanced settings";
+            this.AdvancedSettingsBtn.UseVisualStyleBackColor = true;
+            this.AdvancedSettingsBtn.Click += new System.EventHandler(this.AdvancedSettingsBtn_Click);
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 685);
+            this.Controls.Add(this.AdvancedSettingsBtn);
             this.Controls.Add(this.ValidationStateBtn);
             this.Controls.Add(this.ClockLabel);
             this.Controls.Add(this.EndGameBtn);
@@ -375,5 +387,6 @@
         private System.Windows.Forms.Button EndGameBtn;
         private System.Windows.Forms.Label ClockLabel;
         private System.Windows.Forms.Button ValidationStateBtn;
+        private System.Windows.Forms.Button AdvancedSettingsBtn;
     }
 }

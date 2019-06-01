@@ -103,6 +103,12 @@
     <Compile Include="MultithreadingMessages\ToProcessing\KinectUpdateMessage.cs" />
     <Compile Include="MultithreadingMessages\ToProcessing\RecalibrateMessage.cs" />
     <Compile Include="MultithreadingMessages\ToProcessing\StartTrackingMessage.cs" />
+    <Compile Include="UserInterface\AdvancedSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\AdvancedSettingsForm.Designer.cs">
+      <DependentUpon>AdvancedSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
@@ -163,6 +169,9 @@
     <Compile Include="Utils\ChessExtensions.cs" />
     <Compile Include="Utils\CloneExtensions.cs" />
     <Compile Include="Utils\TimestampObject.cs" />
+    <EmbeddedResource Include="UserInterface\AdvancedSettingsForm.resx">
+      <DependentUpon>AdvancedSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\MainGameForm.resx">
       <DependentUpon>MainGameForm.cs</DependentUpon>
     </EmbeddedResource>
