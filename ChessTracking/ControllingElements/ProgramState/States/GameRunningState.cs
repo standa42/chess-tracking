@@ -23,5 +23,6 @@ namespace ChessTracking.ControllingElements.ProgramState.States
             StateContext.OutputFacade.AddToTrackingLog("Tracking calibration started, please wait");
             StateContext.InternalState = new TrackingStartedState(StateContext);
         }
+
     }
 }

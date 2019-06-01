@@ -271,6 +271,11 @@ namespace ChessTracking.UserInterface
             EnableOnlyListedButtons(new List<Button>() {SaveGameBtn, Recalibrate, StopTrackingBtn});
         }
 
+        public void GameFinishedLockState()
+        {
+            EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, EndGameBtn });
+        }
+
         #endregion
 
         #region Disabling display sleep

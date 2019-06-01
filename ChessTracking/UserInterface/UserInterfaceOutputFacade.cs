@@ -87,5 +87,10 @@ namespace ChessTracking.UserInterface
         {
             MainForm?.TrackingLockState();
         }
+
+        public void GameFinishedLockState()
+        {
+            MainForm?.GameFinishedLockState();
+        }
     }
 }

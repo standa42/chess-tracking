@@ -47,13 +47,17 @@ namespace ChessTracking.Game
             {
                 Game = loadingResult.Game;
 
-                ProgramState.GameLoaded();
+                if(Game.EndState == GameState.StillPlaying)
+                    ProgramState.GameLoaded();
+                else
+                    ProgramState.GameFinished();
+
                 OutputFacade.UpdateRecordState(Game.RecordOfGame);
                 OutputFacade.UpdateBoardState(RenderGameState());
             }
             else
             {
-                OutputFacade.UpdateRecordState(new List<string>(){"Game loading failed"});
+                OutputFacade.AddToTrackingLog("Game loading failed");
             }
         }
 
@@ -95,33 +99,34 @@ namespace ChessTracking.Game
                 if (validationResult.IsValid)
                     Game = validationResult.NewGameState;
                 else
-                    OutputFacade.AddToUserLog("ValidationError");
-
-                OutputFacade.UpdateRecordState(Game.RecordOfGame);
-                OutputFacade.UpdateBoardState(RenderGameState());
-
+                    //OutputFacade.AddToUserLog("ValidationError");
+                
                 if (Game.EndState != GameState.StillPlaying)
                 {
                     // do some stopping of everything}
-                    OutputFacade.AddToUserLog("Game ended");
+                    ProgramState.GameFinished();
+                    OutputFacade.AddToTrackingLog("Game ended");
                     if (Game.EndState == GameState.BlackWin)
                     {
-                        OutputFacade.AddToUserLog("Black won");
+                        OutputFacade.AddToTrackingLog("Black won");
                         Game.RecordOfGame.Add("0-1");
                     }
                     if (Game.EndState == GameState.WhiteWin)
                     {
-                        OutputFacade.AddToUserLog("White won");
+                        OutputFacade.AddToTrackingLog("White won");
                         Game.RecordOfGame.Add("1-0");
                     }
                     if (Game.EndState == GameState.Draw)
                     {
-                        OutputFacade.AddToUserLog("Its a draw");
+                        OutputFacade.AddToTrackingLog("Its a draw");
                         Game.RecordOfGame.Add("1/2-1/2");
                     }
                 }
 
-                
+                OutputFacade.UpdateRecordState(Game.RecordOfGame);
+                OutputFacade.UpdateBoardState(RenderGameState());
+
+
             }
         }
         

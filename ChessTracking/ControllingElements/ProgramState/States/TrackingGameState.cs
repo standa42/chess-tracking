@@ -26,5 +26,12 @@ namespace ChessTracking.ControllingElements.ProgramState.States
             StateContext.OutputFacade.AddToTrackingLog("Tracking stoped");
             StateContext.InternalState = new GameRunningState(StateContext);
         }
+
+        public override void GameFinished()
+        {
+            StateContext.OutputFacade.GameFinishedLockState();
+            StateContext.TrackingManager.StopTracking();
+            StateContext.InternalState = new GameFinishedState(StateContext);
+        }
     }
 }

@@ -8,5 +8,12 @@ namespace ChessTracking.ControllingElements.ProgramState.States
         {
 
         }
+
+        public override void GameEnded()
+        {
+            StateContext.OutputFacade.Clear();
+            StateContext.OutputFacade.InitialUiLockState();
+            StateContext.InternalState = new NoGameRunningState(StateContext);
+        }
     }
 }
