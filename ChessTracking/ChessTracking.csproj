@@ -76,6 +76,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllingElements\ProgramState\States\GameFinishedState.cs" />
+    <Compile Include="ControllingElements\ProgramState\States\GameRunningState.cs" />
+    <Compile Include="ControllingElements\ProgramState\IProgramState.cs" />
+    <Compile Include="ControllingElements\ProgramState\States\NoGameRunningState.cs" />
+    <Compile Include="ControllingElements\ProgramState\ProgramStateController.cs" />
+    <Compile Include="ControllingElements\ProgramState\StateContext.cs" />
+    <Compile Include="ControllingElements\ProgramState\States\TrackingState.cs" />
+    <Compile Include="ControllingElements\ProgramState\States\TrackingStartedState.cs" />
     <Compile Include="Game\LoadingResult.cs" />
     <Compile Include="ImageProcessing\PipelineData\ChessboardTrackingData.cs" />
     <Compile Include="ImageProcessing\PipelineData\InputData.cs" />
