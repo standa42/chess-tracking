@@ -53,11 +53,6 @@ namespace ChessTracking.UserInterface
             MainForm?.UpdateRecordState(records);
         }
 
-        public void AddToUserLog(string line)
-        {
-            MainForm?.AddToUserLog(line);
-        }
-
         public void AddToTrackingLog(string line)
         {
             MainForm?.AddToTrackingLog(line);
@@ -91,6 +86,11 @@ namespace ChessTracking.UserInterface
         public void GameFinishedLockState()
         {
             MainForm?.GameFinishedLockState();
+        }
+
+        public void UpdateValidationState(bool? isValid)
+        {
+            MainForm?.UpdateValidationState(isValid);
         }
     }
 }

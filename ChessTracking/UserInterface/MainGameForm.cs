@@ -64,7 +64,15 @@ namespace ChessTracking.UserInterface
 
         private void ResultProcessingTimer_Tick(object sender, EventArgs e)
         {
+            UpdateClock();
             InputFacade.ProcessQueueTick();
+        }
+
+        private void UpdateClock()
+        {
+            string time = DateTime.Now.ToLongTimeString();
+            if (ClockLabel.Text != time)
+                ClockLabel.Text = time;
         }
 
         private void VizualizationChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,6 +101,7 @@ namespace ChessTracking.UserInterface
                 catch (SecurityException)
                 {
                     // TODO: má se tu něco dělat?
+                    AddToTrackingLog("Game loading failed");
                 }
                 finally
                 {
@@ -191,21 +200,9 @@ namespace ChessTracking.UserInterface
             }
         }
 
-        public void AddToUserLog(string line)
-        {
-            UserLog.Add(line);
-            if (UserLog != null)
-            {
-                var temp = new List<string>(UserLog);
-                temp.Reverse();
-                UserLogsListBox.DataSource = null;
-                UserLogsListBox.DataSource = temp;
-            }
-        }
-
         public void AddToTrackingLog(string line)
         {
-            TrackingLog.Add(line);
+            TrackingLog.Add(DateTime.Now.ToLongTimeString() + " - " + line);
             if (TrackingLog != null)
             {
                 var temp = new List<string>(TrackingLog);
@@ -222,9 +219,6 @@ namespace ChessTracking.UserInterface
             UserLog.Clear();
             TrackingLog.Clear();
 
-            UserLogsListBox.DataSource = null;
-            UserLogsListBox.DataSource = temp;
-
             TrackingLogsListBox.DataSource = null;
             TrackingLogsListBox.DataSource = temp;
 
@@ -237,6 +231,27 @@ namespace ChessTracking.UserInterface
             ImmediateBoardStatePictureBox.Image = null;
             TrackedBoardStatePictureBox.Image = null;
             GameStatePictureBox.Image = null;
+        }
+
+        public void UpdateValidationState(bool? isValid)
+        {
+            if (!isValid.HasValue)
+            {
+                ValidationStateBtn.BackColor = Color.LightGray;
+                ValidationStateBtn.Text = "Validation State";
+            }
+
+            if (isValid.HasValue && isValid.Value)
+            {
+                ValidationStateBtn.BackColor = Color.LightGreen;
+                ValidationStateBtn.Text = "Valid State";
+            }
+
+            if (isValid.HasValue && !isValid.Value)
+            {
+                ValidationStateBtn.BackColor = Color.LightCoral;
+                ValidationStateBtn.Text = "Invalid State";
+            }
         }
 
         #endregion
@@ -253,27 +268,41 @@ namespace ChessTracking.UserInterface
 
         public void InitialUiLockState()
         {
-            EnableOnlyListedButtons(new List<Button>() {NewGameBtn, LoadGameBtn});
+            EnableOnlyListedButtons(new List<Button>() { NewGameBtn, LoadGameBtn });
+            FPSLabel.Visible = false;
+            ValidationStateBtn.Visible = false;
+            HandDetectedBtn.Visible = false;
         }
 
         public void GameRunningLockState()
         {
-            EnableOnlyListedButtons(new List<Button>() {SaveGameBtn, EndGameBtn, StartTrackingBtn});
+            EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, EndGameBtn, StartTrackingBtn });
+            UpdateValidationState(null);
+            FPSLabel.Visible = false;
+            ValidationStateBtn.Visible = false;
+            HandDetectedBtn.Visible = false;
         }
 
         public void StartedTrackingLockState()
         {
-            EnableOnlyListedButtons(new List<Button>() {});
+            EnableOnlyListedButtons(new List<Button>() { });
+            FPSLabel.Visible = true;
+            ValidationStateBtn.Visible = true;
+            HandDetectedBtn.Visible = true;
         }
 
         public void TrackingLockState()
         {
-            EnableOnlyListedButtons(new List<Button>() {SaveGameBtn, Recalibrate, StopTrackingBtn});
+            EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, Recalibrate, StopTrackingBtn });
         }
 
         public void GameFinishedLockState()
         {
             EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, EndGameBtn });
+            UpdateValidationState(null);
+            FPSLabel.Visible = false;
+            ValidationStateBtn.Visible = false;
+            HandDetectedBtn.Visible = false;
         }
 
         #endregion

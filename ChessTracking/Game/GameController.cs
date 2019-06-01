@@ -82,6 +82,7 @@ namespace ChessTracking.Game
             {
                 if (TrackingState.IsEquivalent(chessboardState, trackingState))
                 {
+                    OutputFacade.UpdateValidationState(true);
                     return i;
                 }
                 trackingState.RotateClockWise(1);
@@ -98,13 +99,16 @@ namespace ChessTracking.Game
 
                 if (validationResult.IsValid)
                     Game = validationResult.NewGameState;
+
+                if(trackingState.IsEquivalentTo(Game.Chessboard.GetTrackingStates()))
+                    OutputFacade.UpdateValidationState(true);
                 else
-                    //OutputFacade.AddToUserLog("ValidationError");
-                
+                    OutputFacade.UpdateValidationState(validationResult.IsValid);
+
                 if (Game.EndState != GameState.StillPlaying)
                 {
-                    // do some stopping of everything}
                     ProgramState.GameFinished();
+                    // do some stopping of everything}
                     OutputFacade.AddToTrackingLog("Game ended");
                     if (Game.EndState == GameState.BlackWin)
                     {

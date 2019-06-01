@@ -66,12 +66,13 @@ namespace ChessTracking.ControllingElements
             Kinect = new Kinect(ProcessingCommandsQueue, buffer);
         }
 
-        public void StopTracking()
+        public void StopTracking(bool gameFinished = false)
         {
             TrackingResultProcessing.Reset();
             Kinect.Dispose();
             Kinect = null;
-            ProgramState.StoppedTracking();
+            if(!gameFinished)
+                ProgramState.StoppedTracking();
         }
 
         public void Recalibrate()
