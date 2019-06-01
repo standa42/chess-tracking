@@ -7,6 +7,7 @@ using Accord.Math;
 using Accord.Math.Geometry;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.General;
+using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
 using Emgu.CV;
@@ -19,7 +20,7 @@ using Point2D = MathNet.Spatial.Euclidean.Point2D;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
-    class ChessboardLocalization
+    class ChessboardLocalization : IChessboardLocalization
     {
         public Pipeline Pipeline { get; }
 
@@ -32,7 +33,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             this.Pipeline = pipeline;
         }
         
-        public ChessboardDoneData Recalibrate(PlaneDoneData planeData)
+        public ChessboardDoneData Calibrate(PlaneDoneData planeData)
         {
             var chessboardData = new ChessboardDoneData(planeData);
 

@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.General;
+using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
 using Emgu.CV;
@@ -12,7 +13,7 @@ using Microsoft.Kinect;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
-    class PlaneLocalization
+    class PlaneLocalization : IPlaneLocalization
     {
         public Pipeline Pipeline { get; }
         
@@ -23,7 +24,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             this.Pipeline = pipeline;
         }
 
-        public PlaneDoneData Recalibrate(InputData inputData)
+        public PlaneDoneData Calibrate(InputData inputData)
         {
             var planeData = new PlaneDoneData(inputData);
 

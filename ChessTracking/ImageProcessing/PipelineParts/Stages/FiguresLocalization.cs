@@ -12,7 +12,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
     class FiguresLocalization
     {
-        public FiguresDoneData Recalibrate(ChessboardDoneData chessboardData)
+        public FiguresDoneData Calibrate(ChessboardDoneData chessboardData)
         {
             var figuresData = new FiguresDoneData(chessboardData);
 

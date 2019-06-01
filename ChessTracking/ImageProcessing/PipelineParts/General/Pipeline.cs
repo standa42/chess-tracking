@@ -76,9 +76,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
 
             var inputData = new InputData(data, UserParameters.GetShallowCopy());
 
-            var planeData = PlaneLocalization.Recalibrate(inputData);
-            var chessboardData = ChessboardLocalization.Recalibrate(planeData);
-            var figuresData = FiguresLocalization.Recalibrate(chessboardData);
+            var planeData = PlaneLocalization.Calibrate(inputData);
+            var chessboardData = ChessboardLocalization.Calibrate(planeData);
+            var figuresData = FiguresLocalization.Calibrate(chessboardData);
 
             SendResultMessage(new TrackingStartSuccessfulMessage());
         }

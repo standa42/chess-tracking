@@ -95,6 +95,9 @@
     <Compile Include="ImageProcessing\PipelineData\TrackingResultData.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParameters.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParametersPrototypeFactory.cs" />
+    <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IChessboardLocalization.cs" />
+    <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IFiguresLocalization.cs" />
+    <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IPlaneLocalization.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\TrackingError.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\TrackingStartSuccessfulMessage.cs" />
     <Compile Include="MultithreadingMessages\ToProcessing\KinectUpdateMessage.cs" />
@@ -207,9 +210,7 @@
     <None Include="img\WhiteRook.png" />
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImageProcessing\PipelineParts\StagesInterfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets" Condition="Exists('..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
