@@ -23,6 +23,7 @@ namespace ChessTracking.ControllingElements.ProgramState.States
         public override void StartedTracking()
         {
             StateContext.OutputFacade.StartedTrackingLockState();
+            StateContext.OutputFacade.AddToTrackingLog("------------------------------------------------------");
             StateContext.OutputFacade.AddToTrackingLog("Tracking calibration started, please wait");
             StateContext.InternalState = new TrackingStartedState(StateContext);
         }
