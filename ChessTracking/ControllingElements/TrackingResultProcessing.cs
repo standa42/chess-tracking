@@ -100,7 +100,7 @@ namespace ChessTracking.ControllingElements
                 if (average == null)
                     return;
                 // send averaging
-                OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average));
+                OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average,GameController.GetTrackingState()));
                 // check so we aren't sending the same state again
                 if (LastSentState != null && !LastSentState.IsEquivalentTo(average))
                 {
@@ -206,13 +206,14 @@ namespace ChessTracking.ControllingElements
         /// <summary>
         /// Render tracking state image for displaying
         /// </summary>
-        private Bitmap GenerateImageForTrackingState(TrackingState trackingState)
+        private Bitmap GenerateImageForTrackingState(TrackingState trackingState, TrackingState gameTrackingState = null)
         {
             trackingState = new TrackingState(trackingState.Figures);
 
             var bm = (Bitmap)ChessboardBitmap.Clone();
             SolidBrush blackBrush = new SolidBrush(Color.Black);
             SolidBrush whiteBrush = new SolidBrush(Color.White);
+            SolidBrush redBrush = new SolidBrush(Color.Red);
 
             for (int x = 0; x < 8; x++)
             {
@@ -233,6 +234,11 @@ namespace ChessTracking.ControllingElements
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
+                        }
+
+                        if (gameTrackingState != null && gameTrackingState.Figures[x,7 - y] != trackingState.Figures[x,7-y])
+                        {
+                            graphics.FillRectangle(redBrush, new Rectangle(x * 40 + 12, y * 40 + 12, 16, 16));
                         }
                     }
                 }

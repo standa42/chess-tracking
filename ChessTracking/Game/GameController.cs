@@ -72,6 +72,11 @@ namespace ChessTracking.Game
             return GameRenderer.RenderGameState(Game);
         }
 
+        public TrackingState GetTrackingState()
+        {
+            return Game?.Chessboard?.GetTrackingStates();
+        }
+
         public int? InitiateWithTracingInput(TrackingState trackingState)
         {
             var figures = Game.Chessboard.GetTrackingStates().Figures;
