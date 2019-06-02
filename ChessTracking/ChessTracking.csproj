@@ -93,6 +93,7 @@
     <Compile Include="ImageProcessing\FiguresAlgorithms\IFiguresLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\FiguresAlgorithms\IHandDetectionAlgorithm.cs" />
     <Compile Include="ImageProcessing\PipelineData\ChessboardTrackingData.cs" />
+    <Compile Include="ImageProcessing\PipelineData\Point2DWithColor.cs" />
     <Compile Include="ImageProcessing\PipelineData\InputData.cs" />
     <Compile Include="ImageProcessing\PipelineData\KinectDataBuffer.cs" />
     <Compile Include="ImageProcessing\PipelineData\PlaneTrackingData.cs" />

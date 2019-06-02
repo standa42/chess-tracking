@@ -1,4 +1,5 @@
-﻿using ChessTracking.ImageProcessing.PipelineData;
+﻿using System.Drawing;
+using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.ImageProcessing.FiguresAlgorithms
@@ -8,6 +9,6 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
     /// </summary>
     interface IFiguresLocalizationAlgorithm
     {
-        TrackingState LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes,  UserDefinedParameters userParameters);
+        TrackingState LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes,  UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap ColorBitmap);
     }
 }

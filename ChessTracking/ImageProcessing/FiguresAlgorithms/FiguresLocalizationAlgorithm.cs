@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
@@ -9,7 +10,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
 {
     class FiguresLocalizationAlgorithm : IFiguresLocalizationAlgorithm
     {
-        public TrackingState LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters)
+        public TrackingState LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap colorBitmap)
         {
             // Collection of pixel colors for each field on chessboard
             var colorsOfPointsOverIndividualFields = InitializeColorCollection();
@@ -18,6 +19,8 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
 
             var trackingState = DetectPresenceAndColorOfFiguresOnFields(colorsOfPointsOverIndividualFields, userParameters);
             
+            resultData.VisualisationBitmap = RenderLabelsToFigures(colorsOfPointsOverIndividualFields, trackingState, resultData.VisualisationBitmap);
+
             return trackingState;
         }
 
@@ -29,7 +32,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
         /// <param name="inputColorsData">Colors of points over individual fields</param>
         /// <param name="userParameters">User defined parameters</param>
         /// <returns>Tracking state of chessboard</returns>
-        private TrackingState DetectPresenceAndColorOfFiguresOnFields(List<Color>[,] inputColorsData, UserDefinedParameters userParameters)
+        private TrackingState DetectPresenceAndColorOfFiguresOnFields(List<Point2DWithColor>[,] inputColorsData, UserDefinedParameters userParameters)
         {
             var figures = new TrackingFieldState[8, 8];
 
@@ -40,11 +43,11 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
                         figures[x, y] = TrackingFieldState.None;
                     else
                     {
-                        var averageBrightnessInField = 
-                            inputColorsData[x, y].Sum(f => Color.FromArgb(f.R, f.G, f.B).GetBrightness()) 
+                        var averageBrightnessInField =
+                            inputColorsData[x, y].Sum(f => Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).GetBrightness())
                             / inputColorsData[x, y].Count;
 
-                        figures[x, y] = 
+                        figures[x, y] =
                             averageBrightnessInField > 0.5 + userParameters.ColorCalibrationAdditiveConstant
                             ? TrackingFieldState.White
                             : TrackingFieldState.Black;
@@ -57,7 +60,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
         /// <summary>
         /// Detects points over individual fields of chessboard satisfying required conditions
         /// </summary>
-        private List<Color>[,] FillArrayWithData(List<Color>[,] array, KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters)
+        private List<Point2DWithColor>[,] FillArrayWithData(List<Point2DWithColor>[,] array, KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters)
         {
             var csp = kinectData.CameraSpacePointsFromDepthData;
             var infraredData = kinectData.InfraredData;
@@ -101,7 +104,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
 
                         if (x >= 0 && y >= 0 && x < 8 && y < 8)
                         {
-                            array[x, y].Add(Color.FromArgb(r, g, b));
+                            array[x, y].Add(new Point2DWithColor(Color.FromArgb(r, g, b), (int)reference.X, (int)reference.Y));
                         }
                     }
                 }
@@ -110,16 +113,53 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
             return array;
         }
 
-        private List<Color>[,] InitializeColorCollection()
+        private List<Point2DWithColor>[,] InitializeColorCollection()
         {
-            var collection = new List<Color>[8, 8];
+            var collection = new List<Point2DWithColor>[8, 8];
 
             // Populate array with lists
             for (int x = 0; x < 8; x++)
                 for (int y = 0; y < 8; y++)
-                    collection[x, y] = new List<Color>();
+                    collection[x, y] = new List<Point2DWithColor>();
 
             return collection;
+        }
+
+        /// <summary>
+        /// Generates bitmap with figures labeled by recognized color
+        /// </summary>
+        private Bitmap RenderLabelsToFigures(List<Point2DWithColor>[,] points, TrackingState trackingState, Bitmap colorBitmap)
+        {
+            var bm = (Bitmap)colorBitmap.Clone();
+
+            Brush whiteBrush = new SolidBrush(Color.White);
+            Brush blackBrush = new SolidBrush(Color.Black);
+            Pen whitePen = new Pen(Color.White, 2);
+            Pen blackPen = new Pen(Color.Black, 2);
+
+            using (Graphics gr = Graphics.FromImage(bm))
+            {
+                for (int x = 0; x < 8; x++)
+                    for (int y = 0; y < 8; y++)
+                    {
+                        if (trackingState.Figures[x,y] != TrackingFieldState.None)
+                        {
+                            // locate point to draw (mean of coordinates of points of figure)
+                            var xCoordinatesSum = points[x, y].Sum(p => p.X);
+                            var yCoordinatesSum = points[x, y].Sum(p => p.Y);
+                            var xMean = xCoordinatesSum / points[x, y].Count;
+                            var yMean = yCoordinatesSum / points[x, y].Count;
+
+                            // draw
+                            var isWhite = trackingState.Figures[x, y] == TrackingFieldState.White;
+
+                            gr.FillEllipse(isWhite ? whiteBrush : blackBrush, xMean - 7, yMean - 7, 14, 14);
+                            gr.DrawEllipse(isWhite ? blackPen : whitePen, xMean - 7, yMean - 7, 14, 14);
+                        }
+                    }
+            }
+
+            return bm;
         }
     }
 }

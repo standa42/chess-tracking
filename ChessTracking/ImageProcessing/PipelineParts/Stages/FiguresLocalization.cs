@@ -31,7 +31,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                     figuresData.KinectData,
                     figuresData.ChessboardData.FieldSize,
                     figuresData.PlaneData.CannyDepthData,
-                    figuresData.UserParameters);
+                    figuresData.UserParameters,
+                    figuresData.ResultData,
+                    figuresData.PlaneData.ColorBitmap);
 
             var handDetected =
                 HandDetectionAlgorithm.HandDetected(

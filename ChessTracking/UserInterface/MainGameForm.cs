@@ -296,6 +296,7 @@ namespace ChessTracking.UserInterface
             FPSLabel.Visible = false;
             ValidationStateBtn.Visible = false;
             HandDetectedBtn.Visible = false;
+            StartTrackingBtn.Focus();
         }
 
         public void StartedTrackingLockState()
