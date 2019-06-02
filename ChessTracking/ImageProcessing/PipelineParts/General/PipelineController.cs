@@ -38,12 +38,12 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private void Process(StartTrackingMessage msg)
         {
             Pipeline.SetBuffer(msg.Buffer);
-            Pipeline.Recalibrate();
+            Pipeline.ResetCalibration();
         }
 
         private void Process(RecalibrateMessage msg)
         {
-            Pipeline.Recalibrate();
+            Pipeline.ResetCalibration();
         }
 
     }

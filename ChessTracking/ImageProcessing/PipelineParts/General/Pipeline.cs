@@ -23,7 +23,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private IChessboardLocalization ChessboardLocalization { get; }
         private IFiguresLocalization FiguresLocalization { get; }
 
+        /// <summary>
+        /// Indicates calibration/tracking state
+        /// </summary>
         private bool IsTracking { get; set; }
+        /// <summary>
+        /// Indicated, whether there was exception in calibration causing end of tracking
+        /// </summary>
         private bool TrackingCanceled { get; set; }
         private SemaphoreSlim Semaphore { get; } = new SemaphoreSlim(1);
         
@@ -42,12 +48,15 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             Buffer = buffer;
         }
 
-        public void Recalibrate()
+        public void ResetCalibration()
         {
             IsTracking = false;
             TrackingCanceled = false;
         }
 
+        /// <summary>
+        /// Entry point of pipeline processing, decides whether calibrate or track
+        /// </summary>
         public void Update()
         {
             if (TrackingCanceled)
@@ -95,6 +104,10 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                 {
                     TrackingImplementation();
                 }
+                catch (Exception)
+                {
+                    // ignored
+                }
                 finally
                 {
                     Semaphore.Release();
@@ -114,6 +127,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             var planeData = PlaneLocalization.Track(inputData);
             var chessboardData = ChessboardLocalization.Track(planeData);
             var figuresData = FiguresLocalization.Track(chessboardData);
+
             SendResultMessageToUserThread(
                 new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.SceneDisrupted)
             );
