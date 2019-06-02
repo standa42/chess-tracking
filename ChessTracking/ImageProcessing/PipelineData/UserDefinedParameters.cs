@@ -11,6 +11,7 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public double ColorCalibrationAdditiveConstant { get; set; } = 0;
         public int MilimetersClippedFromFigure { get; set; } = 10;
         public int NumberOfPointsIndicatingFigure { get; set; } = 5;
+        public int MinimalTimeBetweenTrackingTasksInMiliseconds { get; set; } = 220;
 
         public UserDefinedParameters GetShallowCopy()
         {

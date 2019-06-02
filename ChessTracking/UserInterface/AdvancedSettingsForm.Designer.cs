@@ -34,8 +34,12 @@
             this.PointsIndicatingFigureLabel = new System.Windows.Forms.Label();
             this.PointsIndicatingFigureValueLabel = new System.Windows.Forms.Label();
             this.PointsIndicatingFigureTrackBar = new System.Windows.Forms.TrackBar();
+            this.MilisecondsTasksTrackBar = new System.Windows.Forms.TrackBar();
+            this.MilisecondsTasksValueLabel = new System.Windows.Forms.Label();
+            this.MilisecondsTasksLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MilimetersClippedTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointsIndicatingFigureTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MilisecondsTasksTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // MilimetersClippedFromFigureLabel
@@ -97,11 +101,45 @@
             this.PointsIndicatingFigureTrackBar.Value = 5;
             this.PointsIndicatingFigureTrackBar.ValueChanged += new System.EventHandler(this.PointsIndicatingFigureTrackBar_ValueChanged);
             // 
+            // MilisecondsTasksTrackBar
+            // 
+            this.MilisecondsTasksTrackBar.AutoSize = false;
+            this.MilisecondsTasksTrackBar.LargeChange = 25;
+            this.MilisecondsTasksTrackBar.Location = new System.Drawing.Point(15, 133);
+            this.MilisecondsTasksTrackBar.Maximum = 1000;
+            this.MilisecondsTasksTrackBar.Name = "MilisecondsTasksTrackBar";
+            this.MilisecondsTasksTrackBar.Size = new System.Drawing.Size(219, 27);
+            this.MilisecondsTasksTrackBar.SmallChange = 5;
+            this.MilisecondsTasksTrackBar.TabIndex = 8;
+            this.MilisecondsTasksTrackBar.Value = 220;
+            this.MilisecondsTasksTrackBar.ValueChanged += new System.EventHandler(this.MilisecondsTasksTrackBar_ValueChanged);
+            // 
+            // MilisecondsTasksValueLabel
+            // 
+            this.MilisecondsTasksValueLabel.AutoSize = true;
+            this.MilisecondsTasksValueLabel.Location = new System.Drawing.Point(251, 113);
+            this.MilisecondsTasksValueLabel.Name = "MilisecondsTasksValueLabel";
+            this.MilisecondsTasksValueLabel.Size = new System.Drawing.Size(32, 17);
+            this.MilisecondsTasksValueLabel.TabIndex = 7;
+            this.MilisecondsTasksValueLabel.Text = "220";
+            // 
+            // MilisecondsTasksLabel
+            // 
+            this.MilisecondsTasksLabel.AutoSize = true;
+            this.MilisecondsTasksLabel.Location = new System.Drawing.Point(12, 113);
+            this.MilisecondsTasksLabel.Name = "MilisecondsTasksLabel";
+            this.MilisecondsTasksLabel.Size = new System.Drawing.Size(233, 17);
+            this.MilisecondsTasksLabel.TabIndex = 6;
+            this.MilisecondsTasksLabel.Text = "Minimum ms between tracking tasks";
+            // 
             // AdvancedSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 498);
+            this.Controls.Add(this.MilisecondsTasksTrackBar);
+            this.Controls.Add(this.MilisecondsTasksValueLabel);
+            this.Controls.Add(this.MilisecondsTasksLabel);
             this.Controls.Add(this.PointsIndicatingFigureTrackBar);
             this.Controls.Add(this.PointsIndicatingFigureValueLabel);
             this.Controls.Add(this.PointsIndicatingFigureLabel);
@@ -113,6 +151,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedSettingsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.MilimetersClippedTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointsIndicatingFigureTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MilisecondsTasksTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +165,8 @@
         private System.Windows.Forms.Label PointsIndicatingFigureLabel;
         private System.Windows.Forms.Label PointsIndicatingFigureValueLabel;
         private System.Windows.Forms.TrackBar PointsIndicatingFigureTrackBar;
+        private System.Windows.Forms.TrackBar MilisecondsTasksTrackBar;
+        private System.Windows.Forms.Label MilisecondsTasksValueLabel;
+        private System.Windows.Forms.Label MilisecondsTasksLabel;
     }
 }

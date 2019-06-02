@@ -16,13 +16,14 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
     class Pipeline
     {
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
-        private UserDefinedParametersPrototypeFactory UserParameters { get; }
+        private UserDefinedParametersPrototypeFactory UserParametersFactory { get; }
         private KinectDataBuffer Buffer { get; set; }
 
         private IPlaneLocalization PlaneLocalization { get; }
         private IChessboardLocalization ChessboardLocalization { get; }
         private IFiguresLocalization FiguresLocalization { get; }
 
+        private UserDefinedParameters UserParameters { get; set; }
         private DateTime LastReleasedTrackingTask { get; set; } = DateTime.MinValue;
 
         /// <summary>
@@ -35,10 +36,11 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private bool TrackingCanceled { get; set; }
         private SemaphoreSlim Semaphore { get; } = new SemaphoreSlim(1);
         
-        public Pipeline(BlockingCollection<Message> processingOutputQueue, UserDefinedParametersPrototypeFactory userParameters)
+        public Pipeline(BlockingCollection<Message> processingOutputQueue, UserDefinedParametersPrototypeFactory userParametersFactory)
         {
             ProcessingOutputQueue = processingOutputQueue;
-            UserParameters = userParameters;
+            UserParametersFactory = userParametersFactory;
+            UserParameters = userParametersFactory.GetShallowCopy();
             IsTracking = false;
             PlaneLocalization = new PlaneLocalization(this);
             ChessboardLocalization = new ChessboardLocalization(this);
@@ -93,8 +95,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
 
             if(data == null)
                 throw new TimeoutException();
-
-            var inputData = new InputData(data, UserParameters.GetShallowCopy());
+            
+            UserParameters = UserParametersFactory.GetShallowCopy();
+            var inputData = new InputData(data, UserParameters);
 
             var planeData = PlaneLocalization.Calibrate(inputData);
             var chessboardData = ChessboardLocalization.Calibrate(planeData);
@@ -135,7 +138,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             if (data == null)
                 return;
 
-            var inputData = new InputData(data, UserParameters.GetShallowCopy());
+            UserParameters = UserParametersFactory.GetShallowCopy();
+            var inputData = new InputData(data, UserParameters);
 
             var planeData = PlaneLocalization.Track(inputData);
             var chessboardData = ChessboardLocalization.Track(planeData);
@@ -152,8 +156,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private void PipelineSlowdown()
         {
             var milisecondsSinceLastTaskRelease = (DateTime.Now - LastReleasedTrackingTask).Milliseconds;
-            if (milisecondsSinceLastTaskRelease < 220)
-                Thread.Sleep(220 - milisecondsSinceLastTaskRelease);
+            if (milisecondsSinceLastTaskRelease < UserParameters.MinimalTimeBetweenTrackingTasksInMiliseconds)
+                Thread.Sleep(UserParameters.MinimalTimeBetweenTrackingTasksInMiliseconds - milisecondsSinceLastTaskRelease);
         }
 
         private void SendResultMessageToUserThread(Message msg)

@@ -39,5 +39,11 @@ namespace ChessTracking.UserInterface
             PointsIndicatingFigureValueLabel.Text = PointsIndicatingFigureTrackBar.Value.ToString();
             UserParameters.ChangePrototype(x => x.NumberOfPointsIndicatingFigure = PointsIndicatingFigureTrackBar.Value);
         }
+
+        private void MilisecondsTasksTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            MilisecondsTasksValueLabel.Text = MilisecondsTasksTrackBar.Value.ToString();
+            UserParameters.ChangePrototype(x => x.MinimalTimeBetweenTrackingTasksInMiliseconds = MilisecondsTasksTrackBar.Value);
+        }
     }
 }

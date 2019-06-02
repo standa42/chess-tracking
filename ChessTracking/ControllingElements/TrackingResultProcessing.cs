@@ -164,7 +164,7 @@ namespace ChessTracking.ControllingElements
             AveragingQueue = new Queue<TimestampObject<TrackingState>>(temp);
             
             // don't average if there aren't enough samples
-            if (AveragingQueue.Count < 5)
+            if (AveragingQueue.Count <= 3)
                 return null;
             
             // choose most common tracking state
