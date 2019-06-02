@@ -61,6 +61,9 @@ namespace ChessTracking.ControllingElements
             TimeOffset = DateTime.Now + TimeSpan.FromSeconds(1.5);
         }
 
+        /// <summary>
+        /// Resets processing, causing it to also ignore incoming data for a moment
+        /// </summary>
         public void Reset()
         {
             TrackningInProgress = false;

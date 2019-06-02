@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.ControllingElements.ProgramState
 {
+    /// <summary>
+    /// Ancestor of all states of program
+    /// </summary>
     abstract class ProgramState : IProgramState
     {
         protected StateContext StateContext { get; }

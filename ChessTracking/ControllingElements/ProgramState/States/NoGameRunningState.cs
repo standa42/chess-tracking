@@ -2,6 +2,9 @@
 
 namespace ChessTracking.ControllingElements.ProgramState.States
 {
+    /// <summary>
+    /// Initial state of program - no game is loaded
+    /// </summary>
     class NoGameRunningState : ProgramState
     {
         public NoGameRunningState(StateContext stateContext) : base(stateContext)

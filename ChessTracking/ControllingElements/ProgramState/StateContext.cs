@@ -8,6 +8,9 @@ using ChessTracking.UserInterface;
 
 namespace ChessTracking.ControllingElements.ProgramState
 {
+    /// <summary>
+    /// Data available to program states
+    /// </summary>
     class StateContext
     {
         public IProgramState InternalState { get; set; }

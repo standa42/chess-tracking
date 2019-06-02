@@ -2,6 +2,9 @@
 
 namespace ChessTracking.ControllingElements.ProgramState.States
 {
+    /// <summary>
+    /// State where chessboard is tracked, but game isn't recognized yet
+    /// </summary>
     class TrackingState : ProgramState
     {
         public TrackingState(StateContext stateContext) : base(stateContext)

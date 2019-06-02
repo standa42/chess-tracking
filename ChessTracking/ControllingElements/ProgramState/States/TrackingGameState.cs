@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.ControllingElements.ProgramState.States
 {
+    /// <summary>
+    /// State of tracking both chessboard and on going game
+    /// </summary>
     class TrackingGameState : ProgramState
     {
         public TrackingGameState(StateContext stateContext) : base(stateContext)

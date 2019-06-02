@@ -2,6 +2,9 @@
 
 namespace ChessTracking.ControllingElements.ProgramState.States
 {
+    /// <summary>
+    /// State representing, that tracking started - continues after calibration is done
+    /// </summary>
     class TrackingStartedState : ProgramState
     {
         public TrackingStartedState(StateContext stateContext) : base(stateContext)

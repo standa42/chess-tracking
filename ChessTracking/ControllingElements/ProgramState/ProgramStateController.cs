@@ -9,6 +9,9 @@ using ChessTracking.UserInterface;
 
 namespace ChessTracking.ControllingElements.ProgramState
 {
+    /// <summary>
+    /// Controller creating state context, transparently calls actually set state
+    /// </summary>
     class ProgramStateController : IProgramState
     {
         private StateContext StateContext { get; set; }
