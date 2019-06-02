@@ -88,7 +88,9 @@
     <Compile Include="ControllingElements\ProgramState\States\TrackingState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\TrackingStartedState.cs" />
     <Compile Include="Game\LoadingResult.cs" />
+    <Compile Include="ImageProcessing\FiguresAlgorithms\FiguresLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\FiguresAlgorithms\HandDetectionAlgorithm.cs" />
+    <Compile Include="ImageProcessing\FiguresAlgorithms\IFiguresLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\FiguresAlgorithms\IHandDetectionAlgorithm.cs" />
     <Compile Include="ImageProcessing\PipelineData\ChessboardTrackingData.cs" />
     <Compile Include="ImageProcessing\PipelineData\InputData.cs" />
