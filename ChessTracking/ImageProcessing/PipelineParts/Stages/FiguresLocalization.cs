@@ -15,16 +15,16 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             FiguresLocalizationAlgorithm = new FiguresLocalizationAlgorithm();
         }
 
-        public FiguresDoneData Calibrate(ChessboardDoneData chessboardData)
+        public FiguresTrackingCompleteData Calibrate(ChessboardTrackingCompleteData chessboardData)
         {
-            var figuresData = new FiguresDoneData(chessboardData);
+            var figuresData = new FiguresTrackingCompleteData(chessboardData);
 
             return figuresData;
         }
 
-        public FiguresDoneData Track(ChessboardDoneData chessboardData)
+        public FiguresTrackingCompleteData Track(ChessboardTrackingCompleteData chessboardData)
         {
-            var figuresData = new FiguresDoneData(chessboardData);
+            var figuresData = new FiguresTrackingCompleteData(chessboardData);
 
             figuresData.ResultData.TrackingState =
                 FiguresLocalizationAlgorithm.LocateFigures(

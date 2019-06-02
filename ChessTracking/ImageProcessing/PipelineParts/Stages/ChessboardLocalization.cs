@@ -33,9 +33,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             this.Pipeline = pipeline;
         }
         
-        public ChessboardDoneData Calibrate(PlaneDoneData planeData)
+        public ChessboardTrackingCompleteData Calibrate(PlaneTrackingCompleteData planeData)
         {
-            var chessboardData = new ChessboardDoneData(planeData);
+            var chessboardData = new ChessboardTrackingCompleteData(planeData);
 
             var grayImage = GetGrayImage(planeData.PlaneData.MaskedColorImageOfTable);
             var binarizedImage = GetBinarizedImage(grayImage);
@@ -52,9 +52,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             return chessboardData;
         }
 
-        public ChessboardDoneData Track(PlaneDoneData planeData)
+        public ChessboardTrackingCompleteData Track(PlaneTrackingCompleteData planeData)
         {
-            var chessboardData = new ChessboardDoneData(planeData);
+            var chessboardData = new ChessboardTrackingCompleteData(planeData);
 
             RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.KinectData.CameraSpacePointsFromDepthData);
             chessboardData.ChessboardData.FieldSize = firstVectorFinal.Magnitude();
@@ -217,7 +217,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             return contractedPoints;
         }
 
-        private void ChessboardFittingAlgorithm(List<Point2D> contractedPoints, ChessboardDoneData chessboardData)
+        private void ChessboardFittingAlgorithm(List<Point2D> contractedPoints, ChessboardTrackingCompleteData chessboardData)
         {
 
             List<CameraSpacePoint> contractedPointsCsp = new List<CameraSpacePoint>();

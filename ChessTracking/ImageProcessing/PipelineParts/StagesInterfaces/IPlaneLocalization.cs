@@ -17,13 +17,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces
         /// </summary>
         /// <param name="inputData">Data from kinect sensor</param>
         /// <returns>Data with calibrated plane</returns>
-        PlaneDoneData Calibrate(InputData inputData);
+        PlaneTrackingCompleteData Calibrate(InputData inputData);
 
         /// <summary>
         /// Method called while tracking given scene
         /// </summary>
         /// <param name="inputData">Data from kinect sensor</param>
         /// <returns>Data with tracked plane</returns>
-        PlaneDoneData Track(InputData inputData);
+        PlaneTrackingCompleteData Track(InputData inputData);
     }
 }

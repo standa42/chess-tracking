@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChessTracking.MultithreadingMessages;
+﻿using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.ImageProcessing.PipelineData
 {
+    /// <summary>
+    /// Parameters of algorithms changeable by user through user interface
+    /// </summary>
     class UserDefinedParameters
     {
         public VisualisationType VisualisationType { get; set; } = VisualisationType.RawRGB;

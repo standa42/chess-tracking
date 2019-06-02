@@ -1,19 +1,21 @@
 ﻿namespace ChessTracking.ImageProcessing.PipelineData
 {
     /// <summary>
-    /// Data arriving into pipeline
+    /// Output information of plane localization procedure
     /// </summary>
-    class InputData
+    class PlaneTrackingCompleteData
     {
         public KinectData KinectData { get; set; }
         public TrackingResultData ResultData { get; set; }
+        public PlaneTrackingData PlaneData { get; set; }
         public UserDefinedParameters UserParameters { get; set; }
         
-        public InputData(KinectData kinectData, UserDefinedParameters userParameters)
+        public PlaneTrackingCompleteData(InputData inputData)
         {
-            KinectData = kinectData;
-            UserParameters = userParameters;
+            KinectData = inputData.KinectData;
+            UserParameters = inputData.UserParameters;
             ResultData = new TrackingResultData();
+            PlaneData = new PlaneTrackingData();
         }
     }
 }

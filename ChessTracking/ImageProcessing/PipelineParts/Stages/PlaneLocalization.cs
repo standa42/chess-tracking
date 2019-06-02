@@ -24,9 +24,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             this.Pipeline = pipeline;
         }
 
-        public PlaneDoneData Calibrate(InputData inputData)
+        public PlaneTrackingCompleteData Calibrate(InputData inputData)
         {
-            var planeData = new PlaneDoneData(inputData);
+            var planeData = new PlaneTrackingCompleteData(inputData);
 
             Data data = new Data(planeData.KinectData.CameraSpacePointsFromDepthData);
             data.CutOffMinMaxDepth(PlaneLocalizationConfig.MinDepth, PlaneLocalizationConfig.MaxDepth);
@@ -46,9 +46,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             return planeData;
         }
 
-        public PlaneDoneData Track(InputData inputData)
+        public PlaneTrackingCompleteData Track(InputData inputData)
         {
-            var planeData = new PlaneDoneData(inputData);
+            var planeData = new PlaneTrackingCompleteData(inputData);
             
             if (planeData.UserParameters.VisualisationType == VisualisationType.RawRGB)
                 planeData.ResultData.VisualisationBitmap = ReturnColorBitmap(planeData.KinectData.ColorFrameData);

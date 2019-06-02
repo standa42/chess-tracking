@@ -12,13 +12,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces
         /// </summary>
         /// <param name="chessboardData">Data from previous stages of calibration, especially chessboard calibration</param>
         /// <returns>Data with calibration informations about figures</returns>
-        FiguresDoneData Calibrate(ChessboardDoneData chessboardData);
+        FiguresTrackingCompleteData Calibrate(ChessboardTrackingCompleteData chessboardData);
 
         /// <summary>
         /// Method called while tracking given scene
         /// </summary>
         /// <param name="chessboardData">Data from previous stages of tracking, especially chessboard tracking</param>
         /// <returns>Data with tracked figures</returns>
-        FiguresDoneData Track(ChessboardDoneData chessboardData);
+        FiguresTrackingCompleteData Track(ChessboardTrackingCompleteData chessboardData);
     }
 }

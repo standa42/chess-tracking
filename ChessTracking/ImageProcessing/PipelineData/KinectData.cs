@@ -23,12 +23,12 @@ namespace ChessTracking.ImageProcessing.PipelineData
             ColorSpacePoint[] pointsFromDepthToColor
         )
         {
-            this.ColorFrameData = colorFrameData;
-            this.DepthData = depthData;
-            this.InfraredData = infraredData;
-            this.CameraSpacePointsFromDepthData = cameraSpacePointsFromDepthData;
-            this.PointsFromColorToDepth = pointsFromColorToDepth;
-            this.PointsFromDepthToColor = pointsFromDepthToColor;
+            ColorFrameData = colorFrameData;
+            DepthData = depthData;
+            InfraredData = infraredData;
+            CameraSpacePointsFromDepthData = cameraSpacePointsFromDepthData;
+            PointsFromColorToDepth = pointsFromColorToDepth;
+            PointsFromDepthToColor = pointsFromDepthToColor;
         }
     }
 }

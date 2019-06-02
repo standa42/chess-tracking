@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using ChessTracking.MultithreadingMessages;
 
 namespace ChessTracking.ImageProcessing.PipelineData
 {
+    /// <summary>
+    /// Results of tracking
+    /// </summary>
     class TrackingResultData
     {
         public TrackingState TrackingState { get; set; }
