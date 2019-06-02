@@ -36,6 +36,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             InfraredFrameDescription = KinectSensor.InfraredFrameSource.FrameDescription;
 
             KinectSensor.Open();
+
+            // initial message for pipeline, causes it to wait for input and throw exception if nothing arrives
+            OutputQueue.Add(new KinectUpdateMessage());
         }
         
 
