@@ -23,6 +23,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private IChessboardLocalization ChessboardLocalization { get; }
         private IFiguresLocalization FiguresLocalization { get; }
 
+        private DateTime LastReleasedTrackingTask { get; set; } = DateTime.MinValue;
+
         /// <summary>
         /// Indicates calibration/tracking state
         /// </summary>
@@ -103,7 +105,11 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
 
         private void Tracking()
         {
+            PipelineSlowdown();
+
             Semaphore.Wait();
+
+            LastReleasedTrackingTask = DateTime.Now;
 
             Task.Run(() =>
             {
@@ -138,6 +144,16 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             SendResultMessageToUserThread(
                 new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.SceneDisrupted)
             );
+        }
+
+        /// <summary>
+        /// If next release of task is too soon, sleep for reasonable time
+        /// </summary>
+        private void PipelineSlowdown()
+        {
+            var milisecondsSinceLastTaskRelease = (DateTime.Now - LastReleasedTrackingTask).Milliseconds;
+            if (milisecondsSinceLastTaskRelease < 220)
+                Thread.Sleep(220 - milisecondsSinceLastTaskRelease);
         }
 
         private void SendResultMessageToUserThread(Message msg)
