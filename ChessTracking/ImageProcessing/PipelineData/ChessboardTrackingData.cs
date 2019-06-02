@@ -9,6 +9,6 @@ namespace ChessTracking.ImageProcessing.PipelineData
 {
     class ChessboardTrackingData
     {
-        public MyVector3DStruct FirstVectorFinal { get; set; }
+        public double FieldSize { get; set; }
     }
 }

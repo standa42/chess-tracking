@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using ChessTracking.ImageProcessing.FiguresAlgorithms;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
+using MathNet.Numerics;
 using Microsoft.Kinect;
 using TrackingState = ChessTracking.MultithreadingMessages.TrackingState;
 
@@ -12,6 +14,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
     class FiguresLocalization
     {
+        private IHandDetectionAlgorithm HandDetectionAlgorithm { get; }
+
+        public FiguresLocalization()
+        {
+            HandDetectionAlgorithm = new HandDetectionAlgorithm();
+        }
+
         public FiguresDoneData Calibrate(ChessboardDoneData chessboardData)
         {
             var figuresData = new FiguresDoneData(chessboardData);
@@ -23,60 +32,36 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
         {
             var figuresData = new FiguresDoneData(chessboardData);
 
-            {
-                figuresData.ResultData.TrackingState =
-                    FigureLocalization(
-                        figuresData.KinectData.CameraSpacePointsFromDepthData,
-                        figuresData.KinectData.ColorFrameData,
-                        figuresData.KinectData.PointsFromDepthToColor,
-                        figuresData.KinectData.InfraredData,
-                        figuresData.ChessboardData.FirstVectorFinal,
-                        figuresData.PlaneData.CannyDepthData,
-                        figuresData.UserParameters);
-                figuresData.ResultData.HandDetected =
-                    HandDetection(
-                        figuresData.KinectData.CameraSpacePointsFromDepthData,
-                        figuresData.ChessboardData.FirstVectorFinal
-                    );
-            }
+            figuresData.ResultData.TrackingState =
+                FigureLocalization(
+                    figuresData.KinectData,
+                    figuresData.ChessboardData.FieldSize,
+                    figuresData.PlaneData.CannyDepthData,
+                    figuresData.UserParameters);
+
+            var handDetected =
+                HandDetectionAlgorithm.HandDetected(
+                    figuresData.KinectData.CameraSpacePointsFromDepthData,
+                    figuresData.ChessboardData.FieldSize
+                );
+            figuresData.ResultData.HandDetected = handDetected || figuresData.ResultData.HandDetected;
+
 
             return figuresData;
         }
-        
-        private bool HandDetection(CameraSpacePoint[] cameraSpacePointsFromDepthData, MyVector3DStruct magnitudeVector)
-        {
-            int counter = 0;
-
-            for (int i = 0; i < cameraSpacePointsFromDepthData.Length; i++)
-            {
-                if (
-                    !(float.IsInfinity(cameraSpacePointsFromDepthData[i].Z) || float.IsNaN(cameraSpacePointsFromDepthData[i].Z))
-                    && cameraSpacePointsFromDepthData[i].X > (-magnitudeVector.Magnitude() * (7 / 10f))
-                    && cameraSpacePointsFromDepthData[i].Y > (-magnitudeVector.Magnitude() * (7 / 10f))
-                    && cameraSpacePointsFromDepthData[i].X < magnitudeVector.Magnitude() * 8 + (magnitudeVector.Magnitude() * (7 / 10f))
-                    && cameraSpacePointsFromDepthData[i].Y < magnitudeVector.Magnitude() * 8 + (magnitudeVector.Magnitude() * (7 / 10f))
-                    && cameraSpacePointsFromDepthData[i].Z < -0.095f
-                    && cameraSpacePointsFromDepthData[i].Z > -0.2f
-                )
-                {
-                    counter++;
-                }
-            }
-
-            return counter > 20 ? true : false;
-        }
 
         private TrackingState FigureLocalization(
-            CameraSpacePoint[] cameraSpacePointsFromDepthData,
-            byte[] colorFrameData,
-            ColorSpacePoint[] pointsFromDepthToColor,
-            ushort[] infraredData,
-            MyVector3DStruct magnitudeVector,
+            KinectData kinectData,
+            double fieldSize,
             byte[] canniedBytes,
             UserDefinedParameters userParameters)
         {
-            // Collection of pixel colors for each field on chessboard
+            var cameraSpacePointsFromDepthData = kinectData.CameraSpacePointsFromDepthData;
+            var infraredData = kinectData.InfraredData;
+            var colorFrameData = kinectData.ColorFrameData;
+            var pointsFromDepthToColor = kinectData.PointsFromDepthToColor;
 
+            // Collection of pixel colors for each field on chessboard
             var fields = new List<Color>[8, 8];
 
             // Populate it
@@ -94,12 +79,12 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                 if (!(float.IsInfinity(cameraSpacePointsFromDepthData[i].Z) || float.IsNaN(cameraSpacePointsFromDepthData[i].Z))
                 && cameraSpacePointsFromDepthData[i].X > 0
                 && cameraSpacePointsFromDepthData[i].Y > 0
-                && cameraSpacePointsFromDepthData[i].X < magnitudeVector.Magnitude() * 8
-                && cameraSpacePointsFromDepthData[i].Y < magnitudeVector.Magnitude() * 8
+                && cameraSpacePointsFromDepthData[i].X < fieldSize * 8
+                && cameraSpacePointsFromDepthData[i].Y < fieldSize * 8
                 && infraredData[i] > 1500
                 && canniedBytes[i] != 255
                 //&& cameraSpacePointsFromDepthData[i].Z < 0.025f
-                && cameraSpacePointsFromDepthData[i].Z < -(userParameters.MilimetersClippedFromFigure/1000d)
+                && cameraSpacePointsFromDepthData[i].Z < -(userParameters.MilimetersClippedFromFigure / 1000d)
                 && cameraSpacePointsFromDepthData[i].Z > -0.5f
                 )
                 {
@@ -111,12 +96,12 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                         var g = colorFrameData[((int)reference.X + (int)reference.Y * 1920) * 4 + 1];
                         var b = colorFrameData[((int)reference.X + (int)reference.Y * 1920) * 4 + 2];
 
-                        int x = (int)Math.Floor(cameraSpacePointsFromDepthData[i].X / magnitudeVector.Magnitude());
-                        int y = (int)Math.Floor(cameraSpacePointsFromDepthData[i].Y / magnitudeVector.Magnitude());
+                        int x = (int)Math.Floor(cameraSpacePointsFromDepthData[i].X / fieldSize);
+                        int y = (int)Math.Floor(cameraSpacePointsFromDepthData[i].Y / fieldSize);
 
                         if (x >= 0 && y >= 0 && x < 8 && y < 8)
                         {
-                            fields[x, y].Add(Color.FromArgb(r,g,b));
+                            fields[x, y].Add(Color.FromArgb(r, g, b));
                         }
 
                     }
@@ -130,26 +115,26 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             {
                 for (int y = 0; y < 8; y++)
                 {
-                        if (fields[x, y].Count < userParameters.NumberOfPointsIndicatingFigure)
-                        {
-                            figures[x, y] = TrackingFieldState.None;
-                        }
-                        else
-                        {
-                            var averageBrightness = fields[x, y].Sum(f => Color.FromArgb(f.R, f.G, f.B).GetBrightness()) / fields[x,y].Count;
+                    if (fields[x, y].Count < userParameters.NumberOfPointsIndicatingFigure)
+                    {
+                        figures[x, y] = TrackingFieldState.None;
+                    }
+                    else
+                    {
+                        var averageBrightnessInField = fields[x, y].Sum(f => Color.FromArgb(f.R, f.G, f.B).GetBrightness()) / fields[x, y].Count;
 
-                            figures[x, y] = averageBrightness > 0.5 + userParameters.ColorCalibrationAdditiveConstant
-                                ? TrackingFieldState.White
-                                : TrackingFieldState.Black;
-                        }
+                        figures[x, y] = averageBrightnessInField > 0.5 + userParameters.ColorCalibrationAdditiveConstant
+                            ? TrackingFieldState.White
+                            : TrackingFieldState.Black;
+                    }
 
-                    
+
                 }
             }
 
             return new TrackingState(figures);
         }
-        
+
 
     }
 }

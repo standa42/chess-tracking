@@ -57,7 +57,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             var chessboardData = new ChessboardDoneData(planeData);
 
             RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.KinectData.CameraSpacePointsFromDepthData);
-            chessboardData.ChessboardData.FirstVectorFinal = firstVectorFinal;
+            chessboardData.ChessboardData.FieldSize = firstVectorFinal.Magnitude();
 
 
             if (chessboardData.UserParameters.VisualisationType == VisualisationType.HighlightedChessboard)
