@@ -7,10 +7,23 @@ using ChessTracking.ImageProcessing.PipelineData;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces
 {
+    /// <summary>
+    /// Wraps up whole functionality that looks for position of chessboard
+    /// </summary>
     interface IChessboardLocalization
     {
+        /// <summary>
+        /// Method called while calibrating to the given scene
+        /// </summary>
+        /// <param name="planeData">Data from previous stages of calibration, especially plane calibration</param>
+        /// <returns>Data with calibrated chessboard position</returns>
         ChessboardDoneData Calibrate(PlaneDoneData planeData);
 
+        /// <summary>
+        /// Method called while tracking given scene
+        /// </summary>
+        /// <param name="planeData">Data from previous stages of tracking, especially plane tracking</param>
+        /// <returns>Data with tracked chessboard</returns>
         ChessboardDoneData Track(PlaneDoneData planeData);
     }
 }

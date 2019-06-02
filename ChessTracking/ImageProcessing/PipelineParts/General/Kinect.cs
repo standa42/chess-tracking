@@ -16,12 +16,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private CoordinateMapper CoordinateMapper { get; }
 
         private KinectDataBuffer Buffer { get; }
-
-        /// <summary>
-        /// Controls number of messages to tracking thread at one time
-        /// </summary>
-        private int CongestionControlConstant { get; } = 2; // originally 3
-
+        
         public BlockingCollection<Message> OutputQueue { get; }
 
         public Kinect(BlockingCollection<Message> processingCommandsQueue, KinectDataBuffer buffer)
@@ -40,20 +35,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             DepthFrameDescription = KinectSensor.DepthFrameSource.FrameDescription;
             InfraredFrameDescription = KinectSensor.InfraredFrameSource.FrameDescription;
 
-            this.KinectSensor.IsAvailableChanged += this.Sensor_IsAvailableChanged;
-
             KinectSensor.Open();
         }
-
-        private void Sensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)
-        {
-            // KinectSensor.IsAvailable);
-        }
-
-        public bool IsSensorAvailable()
-        {
-            return KinectSensor.IsAvailable;
-        }
+        
 
         /// <summary>
         /// Procedure invoked by Kinect when new data are available

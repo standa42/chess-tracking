@@ -1,9 +1,10 @@
 ﻿using ChessTracking.ImageProcessing.FiguresAlgorithms;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
-    class FiguresLocalization
+    class FiguresLocalization : IFiguresLocalization
     {
         private IHandDetectionAlgorithm HandDetectionAlgorithm { get; }
         private IFiguresLocalizationAlgorithm FiguresLocalizationAlgorithm { get; }
@@ -37,7 +38,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                     figuresData.KinectData.CameraSpacePointsFromDepthData,
                     figuresData.ChessboardData.FieldSize
                 );
-            figuresData.ResultData.HandDetected = handDetected || figuresData.ResultData.HandDetected;
+            figuresData.ResultData.SceneDisrupted = handDetected || figuresData.ResultData.SceneDisrupted;
             
             return figuresData;
         }

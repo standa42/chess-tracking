@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.Stages;
+using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.FromProcessing;
 
@@ -15,16 +16,17 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
     class Pipeline
     {
         public BlockingCollection<Message> ProcessingOutputQueue { get; }
-        
-        private bool IsTracking { get; set; }
-        private bool TrackingCanceled { get; set; }
-        private PlaneLocalization PlaneLocalization { get; set; }
-        private ChessboardLocalization ChessboardLocalization { get; set; }
-        private FiguresLocalization FiguresLocalization { get; set; }
-        private SemaphoreSlim Semaphore { get; } = new SemaphoreSlim(1);
-        private UserDefinedParametersPrototypeFactory UserParameters { get; set; }
+        private UserDefinedParametersPrototypeFactory UserParameters { get; }
         private KinectDataBuffer Buffer { get; set; }
 
+        private IPlaneLocalization PlaneLocalization { get; }
+        private IChessboardLocalization ChessboardLocalization { get; }
+        private IFiguresLocalization FiguresLocalization { get; }
+
+        private bool IsTracking { get; set; }
+        private bool TrackingCanceled { get; set; }
+        private SemaphoreSlim Semaphore { get; } = new SemaphoreSlim(1);
+        
         public Pipeline(BlockingCollection<Message> processingOutputQueue, UserDefinedParametersPrototypeFactory userParameters)
         {
             ProcessingOutputQueue = processingOutputQueue;
@@ -61,7 +63,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                 catch (Exception)
                 {
                     TrackingCanceled = true;
-                    SendResultMessage(new TrackingError("Calibration threw an exception"));
+                    SendResultMessageToUserThread(new TrackingError("Calibration threw an exception"));
                 }
             }
             else
@@ -80,7 +82,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             var chessboardData = ChessboardLocalization.Calibrate(planeData);
             var figuresData = FiguresLocalization.Calibrate(chessboardData);
 
-            SendResultMessage(new TrackingStartSuccessfulMessage());
+            SendResultMessageToUserThread(new TrackingStartSuccessfulMessage());
         }
 
         private void Tracking()
@@ -112,12 +114,12 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             var planeData = PlaneLocalization.Track(inputData);
             var chessboardData = ChessboardLocalization.Track(planeData);
             var figuresData = FiguresLocalization.Track(chessboardData);
-            SendResultMessage(
-                new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.HandDetected)
+            SendResultMessageToUserThread(
+                new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.SceneDisrupted)
             );
         }
 
-        private void SendResultMessage(Message msg)
+        private void SendResultMessageToUserThread(Message msg)
         {
             ProcessingOutputQueue.Add(msg);
         }

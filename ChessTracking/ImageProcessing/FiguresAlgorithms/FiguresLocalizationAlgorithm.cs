@@ -16,12 +16,20 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
 
             colorsOfPointsOverIndividualFields = FillArrayWithData(colorsOfPointsOverIndividualFields, kinectData, fieldSize, canniedBytes, userParameters);
 
-            var trackingState = InferPresenceAndColorOfFiguresOnFields(colorsOfPointsOverIndividualFields, userParameters);
+            var trackingState = DetectPresenceAndColorOfFiguresOnFields(colorsOfPointsOverIndividualFields, userParameters);
             
             return trackingState;
         }
 
-        private TrackingState InferPresenceAndColorOfFiguresOnFields(List<Color>[,] inputColorsData, UserDefinedParameters userParameters)
+        /// <summary>
+        /// Decides which fields contain figure and decides its color
+        /// -> if there are more points over field than threshold, the figure is considered as present
+        /// -> color is decided by thresholding average fitness of points over field
+        /// </summary>
+        /// <param name="inputColorsData">Colors of points over individual fields</param>
+        /// <param name="userParameters">User defined parameters</param>
+        /// <returns>Tracking state of chessboard</returns>
+        private TrackingState DetectPresenceAndColorOfFiguresOnFields(List<Color>[,] inputColorsData, UserDefinedParameters userParameters)
         {
             var figures = new TrackingFieldState[8, 8];
 
@@ -46,6 +54,9 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
             return new TrackingState(figures);
         }
 
+        /// <summary>
+        /// Detects points over individual fields of chessboard satisfying required conditions
+        /// </summary>
         private List<Color>[,] FillArrayWithData(List<Color>[,] array, KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters)
         {
             var csp = kinectData.CameraSpacePointsFromDepthData;

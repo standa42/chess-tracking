@@ -11,7 +11,7 @@ namespace ChessTracking.ImageProcessing.PipelineData
     class TrackingResultData
     {
         public TrackingState TrackingState { get; set; }
-        public bool HandDetected { get; set; }
+        public bool SceneDisrupted { get; set; }
         public Bitmap VisualisationBitmap { get; set; }
     }
 }
