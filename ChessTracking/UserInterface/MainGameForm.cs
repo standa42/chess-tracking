@@ -310,6 +310,7 @@ namespace ChessTracking.UserInterface
         public void TrackingLockState()
         {
             EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, Recalibrate, StopTrackingBtn });
+            Recalibrate.Focus();
         }
 
         public void GameFinishedLockState()
@@ -319,6 +320,7 @@ namespace ChessTracking.UserInterface
             FPSLabel.Visible = false;
             ValidationStateBtn.Visible = false;
             HandDetectedBtn.Visible = false;
+            EndGameBtn.Focus();
         }
 
         #endregion
