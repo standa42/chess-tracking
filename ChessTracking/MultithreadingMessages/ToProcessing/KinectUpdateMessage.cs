@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Message indication update in kinect data
+    /// </summary>
     class KinectUpdateMessage : Message
     {
     }

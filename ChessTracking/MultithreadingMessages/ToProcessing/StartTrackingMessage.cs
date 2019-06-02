@@ -7,6 +7,9 @@ using ChessTracking.ImageProcessing.PipelineData;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Command for pipeline to start tracking
+    /// </summary>
     class StartTrackingMessage : Message
     {
         public KinectDataBuffer Buffer { get; set; }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages
 {
+    /// <summary>
+    /// Ancestor to all messages for interthread communication
+    /// </summary>
     abstract class Message
     {
     }
