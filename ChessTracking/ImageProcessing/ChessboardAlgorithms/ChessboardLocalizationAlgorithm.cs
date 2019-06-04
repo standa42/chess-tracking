@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Threading.Tasks;
 using Accord.Math;
 using Accord.Math.Geometry;
 using ChessTracking.ImageProcessing.PipelineData;
@@ -217,9 +218,9 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
             double lowestError = double.MaxValue;
             Chessboard3DReprezentation BoardRepresentation = null;
             //int eliminator = 0;
-            foreach (var csp in contractedPointsCspStruct/*.Where(x => (eliminator++) % 2 == 0)*/)
+            Parallel.ForEach( contractedPointsCspStruct/*.Where(x => (eliminator++) % 2 == 0)*/,csp =>
             {
-                // take 6 nearest neighbors
+                // take _ nearest neighbors
                 var neighbors = contractedPointsCspStruct.OrderBy(
                     (MyVector3DStruct x) =>
                     {
@@ -332,7 +333,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                         }
                     }
                 }
-            }
+            });
 
             return BoardRepresentation;
         }
@@ -433,12 +434,23 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
             return new Tuple<LineSegment2D[], LineSegment2D[]>(resultLines1.ToArray(), resultLines2.ToArray());
         }
 
+        /// <summary>
+        /// Conversion from radians to degrees
+        /// </summary>
+        /// <param name="radians">value in radians</param>
+        /// <returns>value in degrees</returns>
         public static double ConvertRadiansToDegrees(double radians)
         {
             double degrees = (180 / Math.PI) * radians;
             return (degrees);
         }
 
+        /// <summary>
+        /// Mathematical modulo operation - for all numbers, including negative, returns number 0..m-1
+        /// </summary>
+        /// <param name="x">input number</param>
+        /// <param name="m">modulo coeficient</param>
+        /// <returns>moduled result</returns>
         private int Mod(int x, int m)
         {
             return (x % m + m) % m;
