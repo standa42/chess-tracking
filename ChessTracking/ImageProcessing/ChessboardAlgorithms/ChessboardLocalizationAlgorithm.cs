@@ -318,7 +318,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                                                 new MyVector3DStruct(x.x, x.y, x.z)));
 
                                         closestPointDistance =
-                                            closestPointDistance > 0.01 ? 1 : closestPointDistance;
+                                            closestPointDistance > 0.01 ? 0.01 : closestPointDistance;
 
                                         currentError += closestPointDistance;
                                     }
