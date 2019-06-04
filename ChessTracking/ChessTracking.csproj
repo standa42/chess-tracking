@@ -225,7 +225,9 @@
     <None Include="img\WhiteRook.png" />
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ImageProcessing\ChessboardAlgorithms\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets" Condition="Exists('..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

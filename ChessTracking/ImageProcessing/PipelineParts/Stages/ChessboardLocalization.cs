@@ -22,15 +22,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {
     class ChessboardLocalization : IChessboardLocalization
     {
-        public Pipeline Pipeline { get; }
 
         private MyVector3DStruct startingPointFinal = new MyVector3DStruct();
         private MyVector3DStruct firstVectorFinal = new MyVector3DStruct();
         private MyVector3DStruct secondVectorFinal = new MyVector3DStruct();
         
-        public ChessboardLocalization(Pipeline pipeline)
+        public ChessboardLocalization()
         {
-            this.Pipeline = pipeline;
         }
         
         public ChessboardTrackingCompleteData Calibrate(PlaneTrackingCompleteData planeData)
@@ -57,8 +55,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             var chessboardData = new ChessboardTrackingCompleteData(planeData);
 
             RotateSpaceToChessboard(startingPointFinal, firstVectorFinal, secondVectorFinal, chessboardData.KinectData.CameraSpacePointsFromDepthData);
-            chessboardData.ChessboardData.FieldSize = firstVectorFinal.Magnitude();
 
+            chessboardData.ChessboardData.FieldSize = firstVectorFinal.Magnitude();
 
             if (chessboardData.UserParameters.VisualisationType == VisualisationType.HighlightedChessboard)
                 chessboardData.ResultData.VisualisationBitmap =

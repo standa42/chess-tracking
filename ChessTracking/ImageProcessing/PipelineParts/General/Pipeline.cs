@@ -43,7 +43,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             UserParameters = userParametersFactory.GetShallowCopy();
             IsTracking = false;
             PlaneLocalization = new PlaneLocalization(this);
-            ChessboardLocalization = new ChessboardLocalization(this);
+            ChessboardLocalization = new ChessboardLocalization();
             FiguresLocalization = new FiguresLocalization();
         }
 
