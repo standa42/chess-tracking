@@ -54,8 +54,16 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
             return image.Canny(700, 1400, 5, true).SmoothGaussian(3).ThresholdBinary(new Gray(50), new Gray(255));
         }
 
+        /// <summary>
+        /// Extracts 2 groups of lines from given image
+        /// -> 2 stages of hough transform to get better result lines
+        /// -> lines are filtered to two larges groups based on angle in image
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         private Tuple<LineSegment2D[], LineSegment2D[]> GetFilteredHoughLines(Image<Gray, byte> image)
         {
+            // first stage hough transform
             var lines = image.HoughLinesBinary(
                 0.8f,  //Distance resolution in pixel-related units
                 Math.PI / 1500, //Angle resolution measured in radians.
@@ -64,6 +72,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                 35 //gap between lines
             )[0];
 
+            // render image with lines from first stage
             Image<Bgr, Byte> drawnEdges =
                 new Image<Bgr, Byte>(new Size(image.Width, image.Height));
 
@@ -71,12 +80,13 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                 CvInvoke.Line(drawnEdges, line.P1, line.P2,
                     new Bgr(Color.White).MCvScalar, 1);
 
+            // apply second hough transform
             var lines2 = drawnEdges.Convert<Gray, byte>().HoughLinesBinary(
-                0.8f, //Distance resolution in pixel-related units
-                Math.PI / 1500, //Angle resolution measured in radians.
-                50, //threshold
-                100, //90                //min Line width
-                10 //gap between lines
+                0.8f,
+                Math.PI / 1500,
+                50,
+                100,
+                10
             )[0];
 
             return FilterLinesBasedOnAngle(lines2, 25);
