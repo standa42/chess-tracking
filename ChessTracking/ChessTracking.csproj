@@ -89,6 +89,11 @@
     <Compile Include="ControllingElements\ProgramState\States\TrackingState.cs" />
     <Compile Include="ControllingElements\ProgramState\States\TrackingStartedState.cs" />
     <Compile Include="Game\LoadingResult.cs" />
+    <Compile Include="ImageProcessing\ChessboardAlgorithms\Chessboard3DReprezentation.cs" />
+    <Compile Include="ImageProcessing\ChessboardAlgorithms\ChessboardLocalizationAlgorithm.cs" />
+    <Compile Include="ImageProcessing\ChessboardAlgorithms\IChessboardLocalizationAlgorithm.cs" />
+    <Compile Include="ImageProcessing\ChessboardAlgorithms\IRotateSpaceToChessboard.cs" />
+    <Compile Include="ImageProcessing\ChessboardAlgorithms\RotateSpaceToChessboard.cs" />
     <Compile Include="ImageProcessing\FiguresAlgorithms\FiguresLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\FiguresAlgorithms\HandDetectionAlgorithm.cs" />
     <Compile Include="ImageProcessing\FiguresAlgorithms\IFiguresLocalizationAlgorithm.cs" />
@@ -225,9 +230,7 @@
     <None Include="img\WhiteRook.png" />
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImageProcessing\ChessboardAlgorithms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets" Condition="Exists('..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
