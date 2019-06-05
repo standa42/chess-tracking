@@ -46,7 +46,7 @@ namespace ChessTracking.UserInterface
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue400, Primary.LightBlue600, Primary.Red100, Accent.Pink100, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue300, Primary.Blue500, Primary.Red100, Accent.Pink100, TextShade.WHITE);
            
         }
 
