@@ -332,12 +332,12 @@
             this.GameHistoryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.GameHistoryListBox.FullRowSelect = true;
             this.GameHistoryListBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.GameHistoryListBox.Location = new System.Drawing.Point(176, 472);
+            this.GameHistoryListBox.Location = new System.Drawing.Point(175, 472);
             this.GameHistoryListBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.GameHistoryListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.GameHistoryListBox.Name = "GameHistoryListBox";
             this.GameHistoryListBox.OwnerDraw = true;
-            this.GameHistoryListBox.Size = new System.Drawing.Size(138, 400);
+            this.GameHistoryListBox.Size = new System.Drawing.Size(156, 400);
             this.GameHistoryListBox.TabIndex = 45;
             this.GameHistoryListBox.UseCompatibleStateImageBehavior = false;
             this.GameHistoryListBox.View = System.Windows.Forms.View.Details;
@@ -345,7 +345,7 @@
             // Record
             // 
             this.Record.Text = "Record";
-            this.Record.Width = 90;
+            this.Record.Width = 110;
             // 
             // TrackingLogsListBox
             // 
@@ -356,13 +356,13 @@
             this.TrackingLogsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.TrackingLogsListBox.FullRowSelect = true;
             this.TrackingLogsListBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.TrackingLogsListBox.Location = new System.Drawing.Point(320, 472);
+            this.TrackingLogsListBox.Location = new System.Drawing.Point(337, 472);
             this.TrackingLogsListBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.TrackingLogsListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.TrackingLogsListBox.Name = "TrackingLogsListBox";
             this.TrackingLogsListBox.OwnerDraw = true;
             this.TrackingLogsListBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TrackingLogsListBox.Size = new System.Drawing.Size(519, 400);
+            this.TrackingLogsListBox.Size = new System.Drawing.Size(502, 400);
             this.TrackingLogsListBox.TabIndex = 22;
             this.TrackingLogsListBox.UseCompatibleStateImageBehavior = false;
             this.TrackingLogsListBox.View = System.Windows.Forms.View.Details;
