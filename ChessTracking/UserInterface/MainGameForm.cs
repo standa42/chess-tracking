@@ -83,7 +83,7 @@ namespace ChessTracking.UserInterface
             if (TrackingLogsListBox.Columns[0].Text.Split(' ')[2] != time)
             {
                 //ClockLabel.Text = time;
-                TrackingLogsListBox.Columns[0].Text = "Tracking log - " + time;
+                TrackingLogsListBox.Columns[0].Text = "Tracking log – " + time;
             }
 
         }
@@ -249,7 +249,7 @@ namespace ChessTracking.UserInterface
 
         public void AddToTrackingLog(string line)
         {
-            TrackingLog.Add(DateTime.Now.ToLongTimeString() + " - " + line);
+            TrackingLog.Add(DateTime.Now.ToLongTimeString() + " – " + line);
             if (TrackingLog != null)
             {
                 var temp = new List<string>(TrackingLog);
