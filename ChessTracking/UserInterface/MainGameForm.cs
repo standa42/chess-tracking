@@ -46,7 +46,8 @@ namespace ChessTracking.UserInterface
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue400, Primary.LightBlue600, Primary.Red100, Accent.Pink100, TextShade.WHITE);
+           
         }
 
         #region Init
@@ -193,7 +194,7 @@ namespace ChessTracking.UserInterface
 
         public void HandDetectionUpdate(bool handDetected)
         {
-            SceneDisruptionBtn.BackColor = handDetected ? Color.LightCoral : Color.Gray;
+            SceneDisruptionBtn.BackColor = handDetected ? Color.LightCoral : SystemColors.ControlLight;
             SceneDisruptionBtn.Text = handDetected ? "Scene disrupted" : "";
         }
 
@@ -250,7 +251,7 @@ namespace ChessTracking.UserInterface
             GameHistoryListBox.Items.Clear();
             GameHistoryListBox.Items.AddRange(temp.Select(x => new ListViewItem(x)).ToArray());
 
-            SceneDisruptionBtn.BackColor = Color.Gray;
+            SceneDisruptionBtn.BackColor = SystemColors.ControlLight;
             SceneDisruptionBtn.Text = "";
 
             ImmediateBoardStatePictureBox.Image = null;
@@ -262,7 +263,7 @@ namespace ChessTracking.UserInterface
         {
             if (!isValid.HasValue)
             {
-                ValidationStateBtn.BackColor = Color.LightGray;
+                ValidationStateBtn.BackColor = SystemColors.ControlLight;
                 ValidationStateBtn.Text = "Validation State";
             }
 

@@ -51,13 +51,13 @@
             this.Record = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TrackingLogsListBox = new MaterialSkin.Controls.MaterialListView();
             this.TrackingLogColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ValidationStateBtn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.SceneDisruptionBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.WhosPlayingLabel = new MaterialSkin.Controls.MaterialLabel();
             this.FPSLabel = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.AdvancedSettingsBtn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.SceneDisruptionBtn = new MaterialSkin.Controls.MaterialLabel();
+            this.ValidationStateBtn = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -98,11 +98,11 @@
             // 
             // VizualizationChoiceComboBox
             // 
-            this.VizualizationChoiceComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.VizualizationChoiceComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.VizualizationChoiceComboBox.FormattingEnabled = true;
-            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(739, 636);
+            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(718, 719);
             this.VizualizationChoiceComboBox.Name = "VizualizationChoiceComboBox";
-            this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(190, 30);
+            this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(190, 28);
             this.VizualizationChoiceComboBox.TabIndex = 15;
             this.VizualizationChoiceComboBox.SelectedIndexChanged += new System.EventHandler(this.VizualizationChoiceComboBox_SelectedIndexChanged);
             // 
@@ -116,7 +116,7 @@
             // 
             this.ColorCalibrationTrackBar.AutoSize = false;
             this.ColorCalibrationTrackBar.LargeChange = 1;
-            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(752, 708);
+            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(731, 791);
             this.ColorCalibrationTrackBar.Maximum = 40;
             this.ColorCalibrationTrackBar.Minimum = -40;
             this.ColorCalibrationTrackBar.Name = "ColorCalibrationTrackBar";
@@ -128,7 +128,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(739, 712);
+            this.pictureBox1.Location = new System.Drawing.Point(718, 795);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(17, 17);
             this.pictureBox1.TabIndex = 29;
@@ -138,7 +138,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlText;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(923, 712);
+            this.pictureBox2.Location = new System.Drawing.Point(902, 795);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(17, 17);
             this.pictureBox2.TabIndex = 30;
@@ -148,12 +148,12 @@
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel1.Location = new System.Drawing.Point(11, 91);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(221, 24);
+            this.materialLabel1.Size = new System.Drawing.Size(192, 20);
             this.materialLabel1.TabIndex = 32;
             this.materialLabel1.Text = "Immediate tracking state";
             // 
@@ -185,114 +185,128 @@
             // 
             // NewGameBtn
             // 
-            this.NewGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.NewGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.NewGameBtn.Depth = 0;
             this.NewGameBtn.Icon = null;
-            this.NewGameBtn.Location = new System.Drawing.Point(14, 455);
+            this.NewGameBtn.Location = new System.Drawing.Point(13, 439);
             this.NewGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.NewGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.NewGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.NewGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.NewGameBtn.Name = "NewGameBtn";
             this.NewGameBtn.Primary = false;
             this.NewGameBtn.Size = new System.Drawing.Size(155, 40);
             this.NewGameBtn.TabIndex = 35;
             this.NewGameBtn.Text = "New game";
-            this.NewGameBtn.UseVisualStyleBackColor = true;
+            this.NewGameBtn.UseVisualStyleBackColor = false;
             this.NewGameBtn.Click += new System.EventHandler(this.NewGameBtn_Click);
             // 
             // LoadGameBtn
             // 
-            this.LoadGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.LoadGameBtn.Depth = 0;
             this.LoadGameBtn.Icon = null;
-            this.LoadGameBtn.Location = new System.Drawing.Point(15, 496);
+            this.LoadGameBtn.Location = new System.Drawing.Point(14, 480);
             this.LoadGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.LoadGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.LoadGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.LoadGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.LoadGameBtn.Name = "LoadGameBtn";
             this.LoadGameBtn.Primary = false;
             this.LoadGameBtn.Size = new System.Drawing.Size(155, 40);
             this.LoadGameBtn.TabIndex = 36;
             this.LoadGameBtn.Text = "Load game";
-            this.LoadGameBtn.UseVisualStyleBackColor = true;
+            this.LoadGameBtn.UseVisualStyleBackColor = false;
             this.LoadGameBtn.Click += new System.EventHandler(this.LoadGameBtn_Click);
             // 
             // SaveGameBtn
             // 
-            this.SaveGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SaveGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.SaveGameBtn.Depth = 0;
             this.SaveGameBtn.Icon = null;
-            this.SaveGameBtn.Location = new System.Drawing.Point(15, 537);
+            this.SaveGameBtn.Location = new System.Drawing.Point(14, 521);
             this.SaveGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.SaveGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.SaveGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.SaveGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.SaveGameBtn.Name = "SaveGameBtn";
             this.SaveGameBtn.Primary = false;
             this.SaveGameBtn.Size = new System.Drawing.Size(155, 40);
             this.SaveGameBtn.TabIndex = 37;
             this.SaveGameBtn.Text = "Save game";
-            this.SaveGameBtn.UseVisualStyleBackColor = true;
+            this.SaveGameBtn.UseVisualStyleBackColor = false;
             this.SaveGameBtn.Click += new System.EventHandler(this.SaveGameBtn_Click);
             // 
             // EndGameBtn
             // 
-            this.EndGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.EndGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.EndGameBtn.Depth = 0;
             this.EndGameBtn.Icon = null;
-            this.EndGameBtn.Location = new System.Drawing.Point(14, 578);
+            this.EndGameBtn.Location = new System.Drawing.Point(13, 562);
             this.EndGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.EndGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.EndGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.EndGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.EndGameBtn.Name = "EndGameBtn";
             this.EndGameBtn.Primary = false;
             this.EndGameBtn.Size = new System.Drawing.Size(155, 40);
             this.EndGameBtn.TabIndex = 38;
             this.EndGameBtn.Text = "End game";
-            this.EndGameBtn.UseVisualStyleBackColor = true;
+            this.EndGameBtn.UseVisualStyleBackColor = false;
             this.EndGameBtn.Click += new System.EventHandler(this.EndGameBtn_Click);
             // 
             // StartTrackingBtn
             // 
-            this.StartTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StartTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
             this.StartTrackingBtn.Depth = 0;
             this.StartTrackingBtn.Icon = null;
-            this.StartTrackingBtn.Location = new System.Drawing.Point(15, 626);
+            this.StartTrackingBtn.Location = new System.Drawing.Point(13, 640);
             this.StartTrackingBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.StartTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.StartTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.StartTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.StartTrackingBtn.Name = "StartTrackingBtn";
             this.StartTrackingBtn.Primary = false;
             this.StartTrackingBtn.Size = new System.Drawing.Size(155, 40);
             this.StartTrackingBtn.TabIndex = 39;
             this.StartTrackingBtn.Text = "Start tracking";
-            this.StartTrackingBtn.UseVisualStyleBackColor = true;
+            this.StartTrackingBtn.UseVisualStyleBackColor = false;
             this.StartTrackingBtn.Click += new System.EventHandler(this.StartTrackingBtn_Click);
             // 
             // Recalibrate
             // 
-            this.Recalibrate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Recalibrate.BackColor = System.Drawing.SystemColors.Control;
             this.Recalibrate.Depth = 0;
             this.Recalibrate.Icon = null;
-            this.Recalibrate.Location = new System.Drawing.Point(15, 667);
+            this.Recalibrate.Location = new System.Drawing.Point(13, 681);
             this.Recalibrate.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Recalibrate.MaximumSize = new System.Drawing.Size(155, 40);
+            this.Recalibrate.MinimumSize = new System.Drawing.Size(155, 40);
             this.Recalibrate.MouseState = MaterialSkin.MouseState.HOVER;
             this.Recalibrate.Name = "Recalibrate";
             this.Recalibrate.Primary = false;
             this.Recalibrate.Size = new System.Drawing.Size(155, 40);
             this.Recalibrate.TabIndex = 40;
             this.Recalibrate.Text = "Recalibrate";
-            this.Recalibrate.UseVisualStyleBackColor = true;
+            this.Recalibrate.UseVisualStyleBackColor = false;
             this.Recalibrate.Click += new System.EventHandler(this.RecalibrateBtn_Click);
             // 
             // StopTrackingBtn
             // 
-            this.StopTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StopTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
             this.StopTrackingBtn.Depth = 0;
             this.StopTrackingBtn.Icon = null;
-            this.StopTrackingBtn.Location = new System.Drawing.Point(15, 708);
+            this.StopTrackingBtn.Location = new System.Drawing.Point(13, 722);
             this.StopTrackingBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.StopTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.StopTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.StopTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.StopTrackingBtn.Name = "StopTrackingBtn";
             this.StopTrackingBtn.Primary = false;
             this.StopTrackingBtn.Size = new System.Drawing.Size(155, 40);
             this.StopTrackingBtn.TabIndex = 41;
             this.StopTrackingBtn.Text = "Stop tracking";
-            this.StopTrackingBtn.UseVisualStyleBackColor = true;
+            this.StopTrackingBtn.UseVisualStyleBackColor = false;
             this.StopTrackingBtn.Click += new System.EventHandler(this.StopTrackingBtn_Click);
             // 
             // GameHistoryListBox
@@ -309,7 +323,7 @@
             this.GameHistoryListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.GameHistoryListBox.Name = "GameHistoryListBox";
             this.GameHistoryListBox.OwnerDraw = true;
-            this.GameHistoryListBox.Size = new System.Drawing.Size(138, 395);
+            this.GameHistoryListBox.Size = new System.Drawing.Size(138, 400);
             this.GameHistoryListBox.TabIndex = 45;
             this.GameHistoryListBox.UseCompatibleStateImageBehavior = false;
             this.GameHistoryListBox.View = System.Windows.Forms.View.Details;
@@ -317,10 +331,11 @@
             // Record
             // 
             this.Record.Text = "Record";
-            this.Record.Width = 125;
+            this.Record.Width = 100;
             // 
             // TrackingLogsListBox
             // 
+            this.TrackingLogsListBox.AutoArrange = false;
             this.TrackingLogsListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TrackingLogsListBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TrackingLogColumn});
@@ -333,45 +348,16 @@
             this.TrackingLogsListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.TrackingLogsListBox.Name = "TrackingLogsListBox";
             this.TrackingLogsListBox.OwnerDraw = true;
-            this.TrackingLogsListBox.Size = new System.Drawing.Size(409, 395);
-            this.TrackingLogsListBox.TabIndex = 46;
+            this.TrackingLogsListBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TrackingLogsListBox.Size = new System.Drawing.Size(606, 241);
+            this.TrackingLogsListBox.TabIndex = 22;
             this.TrackingLogsListBox.UseCompatibleStateImageBehavior = false;
             this.TrackingLogsListBox.View = System.Windows.Forms.View.Details;
             // 
             // TrackingLogColumn
             // 
             this.TrackingLogColumn.Text = "Tracking log - 00:00:00";
-            this.TrackingLogColumn.Width = 500;
-            // 
-            // ValidationStateBtn
-            // 
-            this.ValidationStateBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ValidationStateBtn.Depth = 0;
-            this.ValidationStateBtn.Icon = null;
-            this.ValidationStateBtn.Location = new System.Drawing.Point(739, 439);
-            this.ValidationStateBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ValidationStateBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ValidationStateBtn.Name = "ValidationStateBtn";
-            this.ValidationStateBtn.Primary = false;
-            this.ValidationStateBtn.Size = new System.Drawing.Size(190, 46);
-            this.ValidationStateBtn.TabIndex = 47;
-            this.ValidationStateBtn.Text = "Validation State";
-            this.ValidationStateBtn.UseVisualStyleBackColor = true;
-            // 
-            // SceneDisruptionBtn
-            // 
-            this.SceneDisruptionBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SceneDisruptionBtn.Depth = 0;
-            this.SceneDisruptionBtn.Icon = null;
-            this.SceneDisruptionBtn.Location = new System.Drawing.Point(739, 487);
-            this.SceneDisruptionBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.SceneDisruptionBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.SceneDisruptionBtn.Name = "SceneDisruptionBtn";
-            this.SceneDisruptionBtn.Primary = false;
-            this.SceneDisruptionBtn.Size = new System.Drawing.Size(190, 49);
-            this.SceneDisruptionBtn.TabIndex = 48;
-            this.SceneDisruptionBtn.Text = "Scene Disruption";
-            this.SceneDisruptionBtn.UseVisualStyleBackColor = true;
+            this.TrackingLogColumn.Width = 450;
             // 
             // WhosPlayingLabel
             // 
@@ -379,7 +365,7 @@
             this.WhosPlayingLabel.Depth = 0;
             this.WhosPlayingLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.WhosPlayingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.WhosPlayingLabel.Location = new System.Drawing.Point(739, 542);
+            this.WhosPlayingLabel.Location = new System.Drawing.Point(320, 787);
             this.WhosPlayingLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.WhosPlayingLabel.Name = "WhosPlayingLabel";
             this.WhosPlayingLabel.Size = new System.Drawing.Size(50, 24);
@@ -392,7 +378,7 @@
             this.FPSLabel.Depth = 0;
             this.FPSLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.FPSLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.FPSLabel.Location = new System.Drawing.Point(739, 570);
+            this.FPSLabel.Location = new System.Drawing.Point(320, 813);
             this.FPSLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.FPSLabel.Name = "FPSLabel";
             this.FPSLabel.Size = new System.Drawing.Size(54, 24);
@@ -405,7 +391,7 @@
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel6.Location = new System.Drawing.Point(739, 603);
+            this.materialLabel6.Location = new System.Drawing.Point(718, 686);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(180, 24);
@@ -418,7 +404,7 @@
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel7.Location = new System.Drawing.Point(739, 674);
+            this.materialLabel7.Location = new System.Drawing.Point(718, 757);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(205, 24);
@@ -427,32 +413,62 @@
             // 
             // AdvancedSettingsBtn
             // 
-            this.AdvancedSettingsBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AdvancedSettingsBtn.BackColor = System.Drawing.SystemColors.Control;
             this.AdvancedSettingsBtn.Depth = 0;
             this.AdvancedSettingsBtn.Icon = null;
-            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(739, 754);
+            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(13, 799);
             this.AdvancedSettingsBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.AdvancedSettingsBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.AdvancedSettingsBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.AdvancedSettingsBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.AdvancedSettingsBtn.Name = "AdvancedSettingsBtn";
             this.AdvancedSettingsBtn.Primary = false;
-            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(190, 40);
+            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(155, 40);
             this.AdvancedSettingsBtn.TabIndex = 53;
             this.AdvancedSettingsBtn.Text = "Advanced settings";
-            this.AdvancedSettingsBtn.UseVisualStyleBackColor = true;
+            this.AdvancedSettingsBtn.UseVisualStyleBackColor = false;
             this.AdvancedSettingsBtn.Click += new System.EventHandler(this.AdvancedSettingsBtn_Click);
+            // 
+            // SceneDisruptionBtn
+            // 
+            this.SceneDisruptionBtn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.SceneDisruptionBtn.Depth = 0;
+            this.SceneDisruptionBtn.Font = new System.Drawing.Font("Roboto", 11F);
+            this.SceneDisruptionBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.SceneDisruptionBtn.Location = new System.Drawing.Point(320, 735);
+            this.SceneDisruptionBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.SceneDisruptionBtn.Name = "SceneDisruptionBtn";
+            this.SceneDisruptionBtn.Size = new System.Drawing.Size(201, 46);
+            this.SceneDisruptionBtn.TabIndex = 54;
+            this.SceneDisruptionBtn.Text = "Scene Disruption";
+            this.SceneDisruptionBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ValidationStateBtn
+            // 
+            this.ValidationStateBtn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ValidationStateBtn.Depth = 0;
+            this.ValidationStateBtn.Font = new System.Drawing.Font("Roboto", 11F);
+            this.ValidationStateBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ValidationStateBtn.Location = new System.Drawing.Point(320, 686);
+            this.ValidationStateBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ValidationStateBtn.Name = "ValidationStateBtn";
+            this.ValidationStateBtn.Size = new System.Drawing.Size(201, 46);
+            this.ValidationStateBtn.TabIndex = 55;
+            this.ValidationStateBtn.Text = "Validation State";
+            this.ValidationStateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 888);
+            this.ClientSize = new System.Drawing.Size(935, 851);
+            this.Controls.Add(this.ValidationStateBtn);
+            this.Controls.Add(this.SceneDisruptionBtn);
             this.Controls.Add(this.AdvancedSettingsBtn);
             this.Controls.Add(this.materialLabel7);
             this.Controls.Add(this.materialLabel6);
             this.Controls.Add(this.FPSLabel);
             this.Controls.Add(this.WhosPlayingLabel);
-            this.Controls.Add(this.SceneDisruptionBtn);
-            this.Controls.Add(this.ValidationStateBtn);
             this.Controls.Add(this.TrackingLogsListBox);
             this.Controls.Add(this.GameHistoryListBox);
             this.Controls.Add(this.StopTrackingBtn);
@@ -509,12 +525,12 @@
         private System.Windows.Forms.ColumnHeader Record;
         private MaterialSkin.Controls.MaterialListView TrackingLogsListBox;
         private System.Windows.Forms.ColumnHeader TrackingLogColumn;
-        private MaterialSkin.Controls.MaterialFlatButton ValidationStateBtn;
-        private MaterialSkin.Controls.MaterialFlatButton SceneDisruptionBtn;
         private MaterialSkin.Controls.MaterialLabel WhosPlayingLabel;
         private MaterialSkin.Controls.MaterialLabel FPSLabel;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialFlatButton AdvancedSettingsBtn;
+        private MaterialSkin.Controls.MaterialLabel SceneDisruptionBtn;
+        private MaterialSkin.Controls.MaterialLabel ValidationStateBtn;
     }
 }
