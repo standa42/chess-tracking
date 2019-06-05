@@ -148,12 +148,12 @@
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel1.Location = new System.Drawing.Point(11, 91);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(192, 20);
+            this.materialLabel1.Size = new System.Drawing.Size(221, 24);
             this.materialLabel1.TabIndex = 32;
             this.materialLabel1.Text = "Immediate tracking state";
             // 
@@ -185,6 +185,8 @@
             // 
             // NewGameBtn
             // 
+            this.NewGameBtn.AutoSize = true;
+            this.NewGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.NewGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.NewGameBtn.Depth = 0;
             this.NewGameBtn.Icon = null;
@@ -203,6 +205,8 @@
             // 
             // LoadGameBtn
             // 
+            this.LoadGameBtn.AutoSize = true;
+            this.LoadGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LoadGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.LoadGameBtn.Depth = 0;
             this.LoadGameBtn.Icon = null;
@@ -221,6 +225,8 @@
             // 
             // SaveGameBtn
             // 
+            this.SaveGameBtn.AutoSize = true;
+            this.SaveGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.SaveGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.SaveGameBtn.Depth = 0;
             this.SaveGameBtn.Icon = null;
@@ -239,6 +245,8 @@
             // 
             // EndGameBtn
             // 
+            this.EndGameBtn.AutoSize = true;
+            this.EndGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.EndGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.EndGameBtn.Depth = 0;
             this.EndGameBtn.Icon = null;
@@ -257,6 +265,8 @@
             // 
             // StartTrackingBtn
             // 
+            this.StartTrackingBtn.AutoSize = true;
+            this.StartTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.StartTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
             this.StartTrackingBtn.Depth = 0;
             this.StartTrackingBtn.Icon = null;
@@ -275,6 +285,8 @@
             // 
             // Recalibrate
             // 
+            this.Recalibrate.AutoSize = true;
+            this.Recalibrate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Recalibrate.BackColor = System.Drawing.SystemColors.Control;
             this.Recalibrate.Depth = 0;
             this.Recalibrate.Icon = null;
@@ -293,6 +305,8 @@
             // 
             // StopTrackingBtn
             // 
+            this.StopTrackingBtn.AutoSize = true;
+            this.StopTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.StopTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
             this.StopTrackingBtn.Depth = 0;
             this.StopTrackingBtn.Icon = null;
@@ -357,7 +371,7 @@
             // TrackingLogColumn
             // 
             this.TrackingLogColumn.Text = "Tracking log - 00:00:00";
-            this.TrackingLogColumn.Width = 450;
+            this.TrackingLogColumn.Width = 420;
             // 
             // WhosPlayingLabel
             // 
@@ -413,6 +427,8 @@
             // 
             // AdvancedSettingsBtn
             // 
+            this.AdvancedSettingsBtn.AutoSize = true;
+            this.AdvancedSettingsBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AdvancedSettingsBtn.BackColor = System.Drawing.SystemColors.Control;
             this.AdvancedSettingsBtn.Depth = 0;
             this.AdvancedSettingsBtn.Icon = null;
