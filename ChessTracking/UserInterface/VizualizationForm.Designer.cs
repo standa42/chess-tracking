@@ -48,7 +48,7 @@
             this.ClientSize = new System.Drawing.Size(957, 616);
             this.Controls.Add(this.VizualizationPictureBox);
             this.Name = "VizualizationForm";
-            this.Text = "VizualizationForm";
+            this.Text = "Vizualization";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VizualizationForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.VizualizationPictureBox)).EndInit();
             this.ResumeLayout(false);
