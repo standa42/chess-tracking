@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChessTracking.ImageProcessing.PipelineData;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace ChessTracking.UserInterface
 {
-    partial class AdvancedSettingsForm : Form
+    partial class AdvancedSettingsForm : MaterialForm
     {
         private MainGameForm MainForm { get; }
         private UserDefinedParametersPrototypeFactory UserParameters { get; }
@@ -21,6 +23,11 @@ namespace ChessTracking.UserInterface
             MainForm = mainForm;
             UserParameters = userParameters;
             InitializeComponent();
+            
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
         private void AdvancedSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
