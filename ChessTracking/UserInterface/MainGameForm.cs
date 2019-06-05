@@ -41,7 +41,9 @@ namespace ChessTracking.UserInterface
             InitializeVisualisationCombobox();
             Buttons = new List<Button>()
                 { NewGameBtn, LoadGameBtn, SaveGameBtn,
-                  EndGameBtn, StartTrackingBtn, Recalibrate, StopTrackingBtn };
+                  EndGameBtn, StartTrackingBtn, Recalibrate, StopTrackingBtn,
+                  MovementBtn1, MovementBtn2 ,MovementBtn3, MovementBtn4
+                };
             InitialUiLockState();
 
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -175,7 +177,7 @@ namespace ChessTracking.UserInterface
                 AdvancedSettingsForm.Show();
             }
         }
-        
+
         private void MovementBtn1_Click(object sender, EventArgs e)
         {
             InputFacade.SendChessboardMovement(ChessboardMovement.Vector1Plus);
@@ -357,7 +359,7 @@ namespace ChessTracking.UserInterface
 
         public void TrackingLockState()
         {
-            EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, Recalibrate, StopTrackingBtn });
+            EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, Recalibrate, StopTrackingBtn, MovementBtn3, MovementBtn1, MovementBtn2, MovementBtn4 });
             Recalibrate.Focus();
         }
 
@@ -399,6 +401,6 @@ namespace ChessTracking.UserInterface
 
         #endregion
 
-        
+
     }
 }
