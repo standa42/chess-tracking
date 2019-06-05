@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.MultithreadingMessages.ToProcessing;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.General
 {
@@ -44,6 +45,11 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         private void Process(RecalibrateMessage msg)
         {
             Pipeline.ResetCalibration();
+        }
+
+        private void Process(ChessboardMovementMessage msg)
+        {
+            Pipeline.MoveChessboard(msg.Movement);
         }
 
     }

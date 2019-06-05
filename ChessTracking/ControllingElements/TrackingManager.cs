@@ -7,6 +7,7 @@ using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.General;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.FromProcessing;
+using ChessTracking.MultithreadingMessages.ToProcessing;
 using ChessTracking.UserInterface;
 
 namespace ChessTracking.ControllingElements
@@ -80,6 +81,11 @@ namespace ChessTracking.ControllingElements
             TrackingResultProcessing.Reset();
             ProgramState.Recalibrating();
             ProcessingCommandsQueue.Add(new RecalibrateMessage());
+        }
+
+        public void SendChessboardMovement(ChessboardMovement movement)
+        {
+            ProcessingCommandsQueue.Add(new ChessboardMovementMessage(movement));
         }
         
         /// <summary>

@@ -58,6 +58,11 @@
             this.AdvancedSettingsBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.SceneDisruptionBtn = new MaterialSkin.Controls.MaterialLabel();
             this.ValidationStateBtn = new MaterialSkin.Controls.MaterialLabel();
+            this.MovementBtn1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.MovementBtn2 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.MovementBtn3 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.MovementBtn4 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -472,11 +477,101 @@
             this.ValidationStateBtn.Text = "Validation State";
             this.ValidationStateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // MovementBtn1
+            // 
+            this.MovementBtn1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MovementBtn1.Depth = 0;
+            this.MovementBtn1.Icon = null;
+            this.MovementBtn1.Location = new System.Drawing.Point(855, 684);
+            this.MovementBtn1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MovementBtn1.MaximumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn1.MinimumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MovementBtn1.Name = "MovementBtn1";
+            this.MovementBtn1.Primary = false;
+            this.MovementBtn1.Size = new System.Drawing.Size(40, 40);
+            this.MovementBtn1.TabIndex = 56;
+            this.MovementBtn1.Text = "X";
+            this.MovementBtn1.UseVisualStyleBackColor = true;
+            this.MovementBtn1.Click += new System.EventHandler(this.MovementBtn1_Click);
+            // 
+            // MovementBtn2
+            // 
+            this.MovementBtn2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MovementBtn2.Depth = 0;
+            this.MovementBtn2.Icon = null;
+            this.MovementBtn2.Location = new System.Drawing.Point(903, 684);
+            this.MovementBtn2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MovementBtn2.MaximumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn2.MinimumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MovementBtn2.Name = "MovementBtn2";
+            this.MovementBtn2.Primary = false;
+            this.MovementBtn2.Size = new System.Drawing.Size(40, 40);
+            this.MovementBtn2.TabIndex = 57;
+            this.MovementBtn2.Text = "X";
+            this.MovementBtn2.UseVisualStyleBackColor = true;
+            this.MovementBtn2.Click += new System.EventHandler(this.MovementBtn2_Click);
+            // 
+            // MovementBtn3
+            // 
+            this.MovementBtn3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MovementBtn3.Depth = 0;
+            this.MovementBtn3.Icon = null;
+            this.MovementBtn3.Location = new System.Drawing.Point(951, 684);
+            this.MovementBtn3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MovementBtn3.MaximumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn3.MinimumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MovementBtn3.Name = "MovementBtn3";
+            this.MovementBtn3.Primary = false;
+            this.MovementBtn3.Size = new System.Drawing.Size(40, 40);
+            this.MovementBtn3.TabIndex = 58;
+            this.MovementBtn3.Text = "X";
+            this.MovementBtn3.UseVisualStyleBackColor = true;
+            this.MovementBtn3.Click += new System.EventHandler(this.MovementBtn3_Click);
+            // 
+            // MovementBtn4
+            // 
+            this.MovementBtn4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MovementBtn4.Depth = 0;
+            this.MovementBtn4.Icon = null;
+            this.MovementBtn4.Location = new System.Drawing.Point(999, 684);
+            this.MovementBtn4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MovementBtn4.MaximumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn4.MinimumSize = new System.Drawing.Size(40, 40);
+            this.MovementBtn4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MovementBtn4.Name = "MovementBtn4";
+            this.MovementBtn4.Primary = false;
+            this.MovementBtn4.Size = new System.Drawing.Size(40, 40);
+            this.MovementBtn4.TabIndex = 59;
+            this.MovementBtn4.Text = "X";
+            this.MovementBtn4.UseVisualStyleBackColor = true;
+            this.MovementBtn4.Click += new System.EventHandler(this.MovementBtn4_Click);
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel4.Location = new System.Drawing.Point(841, 654);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(206, 24);
+            this.materialLabel4.TabIndex = 60;
+            this.materialLabel4.Text = "Chessboard movement";
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1058, 880);
+            this.Controls.Add(this.materialLabel4);
+            this.Controls.Add(this.MovementBtn4);
+            this.Controls.Add(this.MovementBtn3);
+            this.Controls.Add(this.MovementBtn2);
+            this.Controls.Add(this.MovementBtn1);
             this.Controls.Add(this.ValidationStateBtn);
             this.Controls.Add(this.SceneDisruptionBtn);
             this.Controls.Add(this.AdvancedSettingsBtn);
@@ -547,5 +642,10 @@
         private MaterialSkin.Controls.MaterialFlatButton AdvancedSettingsBtn;
         private MaterialSkin.Controls.MaterialLabel SceneDisruptionBtn;
         private MaterialSkin.Controls.MaterialLabel ValidationStateBtn;
+        private MaterialSkin.Controls.MaterialFlatButton MovementBtn1;
+        private MaterialSkin.Controls.MaterialFlatButton MovementBtn2;
+        private MaterialSkin.Controls.MaterialFlatButton MovementBtn3;
+        private MaterialSkin.Controls.MaterialFlatButton MovementBtn4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
     }
 }

@@ -10,6 +10,7 @@ using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.Game;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.MultithreadingMessages.ToProcessing;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
@@ -34,7 +35,7 @@ namespace ChessTracking.UserInterface
 
             var outputFacade = new UserInterfaceOutputFacade(this, vizualizationForm);
             InputFacade = new UserInterfaceInputFacade(outputFacade, UserParameters);
-            
+
             TrackingLog = new List<string>();
 
             InitializeVisualisationCombobox();
@@ -47,7 +48,7 @@ namespace ChessTracking.UserInterface
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue400, Primary.Blue600, Primary.Red100, Accent.Pink100, TextShade.WHITE);
-           
+
         }
 
         #region Init
@@ -84,7 +85,7 @@ namespace ChessTracking.UserInterface
                 //ClockLabel.Text = time;
                 TrackingLogsListBox.Columns[0].Text = "Tracking log - " + time;
             }
-                
+
         }
 
         private void VizualizationChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -174,6 +175,26 @@ namespace ChessTracking.UserInterface
                 AdvancedSettingsForm.Show();
             }
         }
+        
+        private void MovementBtn1_Click(object sender, EventArgs e)
+        {
+            InputFacade.SendChessboardMovement(ChessboardMovement.Vector1Plus);
+        }
+
+        private void MovementBtn2_Click(object sender, EventArgs e)
+        {
+            InputFacade.SendChessboardMovement(ChessboardMovement.Vector1Minus);
+        }
+
+        private void MovementBtn3_Click(object sender, EventArgs e)
+        {
+            InputFacade.SendChessboardMovement(ChessboardMovement.Vector2Plus);
+        }
+
+        private void MovementBtn4_Click(object sender, EventArgs e)
+        {
+            InputFacade.SendChessboardMovement(ChessboardMovement.Vector2Minus);
+        }
 
         #endregion
 
@@ -242,9 +263,9 @@ namespace ChessTracking.UserInterface
         public void Clear()
         {
             var temp = new List<string>();
-            
+
             TrackingLog.Clear();
-            
+
             TrackingLogsListBox.Items.Clear();
             TrackingLogsListBox.Items.AddRange(temp.Select(x => new ListViewItem(x)).ToArray());
 
@@ -377,5 +398,7 @@ namespace ChessTracking.UserInterface
 
 
         #endregion
+
+        
     }
 }

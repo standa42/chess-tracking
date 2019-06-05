@@ -7,6 +7,7 @@ using ChessTracking.ImageProcessing.PipelineParts.Stages;
 using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.FromProcessing;
+using ChessTracking.MultithreadingMessages.ToProcessing;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.General
 {
@@ -56,6 +57,11 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         {
             IsTracking = false;
             TrackingCanceled = false;
+        }
+
+        public void MoveChessboard(ChessboardMovement movement)
+        {
+            ChessboardLocalization.MoveChessboard(movement);
         }
 
         /// <summary>

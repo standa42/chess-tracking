@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.MultithreadingMessages.ToProcessing;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces
 {
@@ -25,5 +26,11 @@ namespace ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces
         /// <param name="planeData">Data from previous stages of tracking, especially plane tracking</param>
         /// <returns>Data with tracked chessboard</returns>
         ChessboardTrackingCompleteData Track(PlaneTrackingCompleteData planeData);
+
+        /// <summary>
+        /// Moves model chessboard by one edge vector of one chessboard field
+        /// </summary>
+        /// <param name="direction">direction in which to move</param>
+        void MoveChessboard(ChessboardMovement direction);
     }
 }

@@ -9,6 +9,7 @@ using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.Game;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.MultithreadingMessages.ToProcessing;
 
 namespace ChessTracking.UserInterface
 {
@@ -74,6 +75,11 @@ namespace ChessTracking.UserInterface
         public void ProcessQueueTick()
         {
             TrackingManager.ProcessQueue();
+        }
+
+        public void SendChessboardMovement(ChessboardMovement movement)
+        {
+            TrackingManager.SendChessboardMovement(movement);
         }
     }
 }
