@@ -230,7 +230,7 @@
             // TrackingLogColumn
             // 
             this.TrackingLogColumn.Text = "Tracking log - 00:00:00";
-            this.TrackingLogColumn.Width = 380;
+            this.TrackingLogColumn.Width = 365;
             // 
             // WhosPlayingLabel
             // 

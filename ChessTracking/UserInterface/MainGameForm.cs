@@ -228,7 +228,7 @@ namespace ChessTracking.UserInterface
 
         public void AddToTrackingLog(string line)
         {
-            TrackingLog.Add(DateTime.Now.ToLongTimeString() + " - " + line);
+            TrackingLog.Add(DateTime.Now.ToLongTimeString() + " – " + line);
             if (TrackingLog != null)
             {
                 var temp = new List<string>(TrackingLog);
