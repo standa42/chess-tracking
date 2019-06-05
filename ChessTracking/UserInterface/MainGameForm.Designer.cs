@@ -334,7 +334,7 @@
             this.LoadGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LoadGameBtn.Depth = 0;
             this.LoadGameBtn.Icon = null;
-            this.LoadGameBtn.Location = new System.Drawing.Point(14, 518);
+            this.LoadGameBtn.Location = new System.Drawing.Point(14, 513);
             this.LoadGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.LoadGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.LoadGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
@@ -351,7 +351,7 @@
             this.SaveGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.SaveGameBtn.Depth = 0;
             this.SaveGameBtn.Icon = null;
-            this.SaveGameBtn.Location = new System.Drawing.Point(14, 564);
+            this.SaveGameBtn.Location = new System.Drawing.Point(14, 554);
             this.SaveGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.SaveGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.SaveGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
@@ -368,7 +368,7 @@
             this.EndGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.EndGameBtn.Depth = 0;
             this.EndGameBtn.Icon = null;
-            this.EndGameBtn.Location = new System.Drawing.Point(14, 610);
+            this.EndGameBtn.Location = new System.Drawing.Point(14, 595);
             this.EndGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.EndGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.EndGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
@@ -385,7 +385,7 @@
             this.StartTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.StartTrackingBtn.Depth = 0;
             this.StartTrackingBtn.Icon = null;
-            this.StartTrackingBtn.Location = new System.Drawing.Point(12, 672);
+            this.StartTrackingBtn.Location = new System.Drawing.Point(12, 668);
             this.StartTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.StartTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.StartTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
@@ -402,7 +402,7 @@
             this.Recalibrate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Recalibrate.Depth = 0;
             this.Recalibrate.Icon = null;
-            this.Recalibrate.Location = new System.Drawing.Point(12, 718);
+            this.Recalibrate.Location = new System.Drawing.Point(12, 709);
             this.Recalibrate.MaximumSize = new System.Drawing.Size(155, 40);
             this.Recalibrate.MinimumSize = new System.Drawing.Size(155, 40);
             this.Recalibrate.MouseState = MaterialSkin.MouseState.HOVER;
@@ -419,7 +419,7 @@
             this.StopTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.StopTrackingBtn.Depth = 0;
             this.StopTrackingBtn.Icon = null;
-            this.StopTrackingBtn.Location = new System.Drawing.Point(12, 764);
+            this.StopTrackingBtn.Location = new System.Drawing.Point(12, 750);
             this.StopTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.StopTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
             this.StopTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
