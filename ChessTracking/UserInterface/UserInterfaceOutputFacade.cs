@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChessTracking.Game;
 
 namespace ChessTracking.UserInterface
 {
@@ -91,6 +92,11 @@ namespace ChessTracking.UserInterface
         public void UpdateValidationState(bool? isValid)
         {
             MainForm?.UpdateValidationState(isValid);
+        }
+
+        public void UpdateWhosPlaying(PlayerColor color)
+        {
+            MainForm?.UpdateWhosPlaying(color);
         }
     }
 }

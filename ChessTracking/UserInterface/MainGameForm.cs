@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Forms;
 using ChessTracking.ControllingElements.ProgramState;
+using ChessTracking.Game;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 
@@ -271,6 +272,12 @@ namespace ChessTracking.UserInterface
             AdvancedSettingsBtn.Enabled = true;
         }
 
+        public void UpdateWhosPlaying(PlayerColor color)
+        {
+            WhosPlayingLabel.Text = color == PlayerColor.White ? "White is playing" : "Black is playing";
+            WhosPlayingLabel.ForeColor = Color.Black;
+        }
+
         #endregion
 
         #region UI Locking
@@ -289,6 +296,7 @@ namespace ChessTracking.UserInterface
             FPSLabel.Visible = false;
             ValidationStateBtn.Visible = false;
             HandDetectedBtn.Visible = false;
+            WhosPlayingLabel.Visible = false;
         }
 
         public void GameRunningLockState()
@@ -297,6 +305,8 @@ namespace ChessTracking.UserInterface
             UpdateValidationState(null);
             FPSLabel.Visible = false;
             ValidationStateBtn.Visible = false;
+            WhosPlayingLabel.Text = "   ";
+            WhosPlayingLabel.Visible = false;
             HandDetectedBtn.Visible = false;
             StartTrackingBtn.Focus();
         }
@@ -306,6 +316,7 @@ namespace ChessTracking.UserInterface
             EnableOnlyListedButtons(new List<Button>() { });
             FPSLabel.Visible = true;
             ValidationStateBtn.Visible = true;
+            WhosPlayingLabel.Visible = true;
             HandDetectedBtn.Visible = true;
         }
 
@@ -321,6 +332,7 @@ namespace ChessTracking.UserInterface
             UpdateValidationState(null);
             FPSLabel.Visible = false;
             ValidationStateBtn.Visible = false;
+            WhosPlayingLabel.Visible = false;
             HandDetectedBtn.Visible = false;
             EndGameBtn.Focus();
         }

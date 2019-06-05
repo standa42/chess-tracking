@@ -31,6 +31,7 @@ namespace ChessTracking.Game
 
             ProgramState.GameLoaded();
             OutputFacade.UpdateBoardState(RenderGameState());
+            OutputFacade.UpdateWhosPlaying(Game.PlayerOnMove);
         }
 
         public void SaveGame(StreamWriter stream)
@@ -54,6 +55,7 @@ namespace ChessTracking.Game
 
                 OutputFacade.UpdateRecordState(Game.RecordOfGame);
                 OutputFacade.UpdateBoardState(RenderGameState());
+                OutputFacade.UpdateWhosPlaying(Game.PlayerOnMove);
             }
             else
             {
@@ -134,8 +136,7 @@ namespace ChessTracking.Game
 
                 OutputFacade.UpdateRecordState(Game.RecordOfGame);
                 OutputFacade.UpdateBoardState(RenderGameState());
-
-
+                OutputFacade.UpdateWhosPlaying(Game.PlayerOnMove);
             }
         }
         

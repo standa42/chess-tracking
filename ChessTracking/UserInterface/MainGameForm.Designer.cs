@@ -58,6 +58,7 @@
             this.AdvancedSettingsBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.WhosPlayingLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -177,7 +178,7 @@
             // FPSLabel
             // 
             this.FPSLabel.AutoSize = true;
-            this.FPSLabel.Location = new System.Drawing.Point(713, 461);
+            this.FPSLabel.Location = new System.Drawing.Point(713, 485);
             this.FPSLabel.Name = "FPSLabel";
             this.FPSLabel.Size = new System.Drawing.Size(42, 17);
             this.FPSLabel.TabIndex = 12;
@@ -341,11 +342,22 @@
             this.pictureBox2.TabIndex = 30;
             this.pictureBox2.TabStop = false;
             // 
+            // WhosPlayingLabel
+            // 
+            this.WhosPlayingLabel.AutoSize = true;
+            this.WhosPlayingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.WhosPlayingLabel.Location = new System.Drawing.Point(713, 461);
+            this.WhosPlayingLabel.Name = "WhosPlayingLabel";
+            this.WhosPlayingLabel.Size = new System.Drawing.Size(40, 17);
+            this.WhosPlayingLabel.TabIndex = 31;
+            this.WhosPlayingLabel.Text = "        ";
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 685);
+            this.Controls.Add(this.WhosPlayingLabel);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.AdvancedSettingsBtn);
@@ -418,5 +430,6 @@
         private System.Windows.Forms.Button AdvancedSettingsBtn;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label WhosPlayingLabel;
     }
 }
