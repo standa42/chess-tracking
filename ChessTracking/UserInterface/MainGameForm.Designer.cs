@@ -40,13 +40,6 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.NewGameBtn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.LoadGameBtn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.SaveGameBtn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.EndGameBtn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.StartTrackingBtn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Recalibrate = new MaterialSkin.Controls.MaterialFlatButton();
-            this.StopTrackingBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.GameHistoryListBox = new MaterialSkin.Controls.MaterialListView();
             this.Record = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TrackingLogsListBox = new MaterialSkin.Controls.MaterialListView();
@@ -55,9 +48,16 @@
             this.FPSLabel = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            this.AdvancedSettingsBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.SceneDisruptionBtn = new MaterialSkin.Controls.MaterialLabel();
             this.ValidationStateBtn = new MaterialSkin.Controls.MaterialLabel();
+            this.NewGameBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.LoadGameBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.SaveGameBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.EndGameBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.StartTrackingBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Recalibrate = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.StopTrackingBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.AdvancedSettingsBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             ((System.ComponentModel.ISupportInitialize)(this.GameStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackedBoardStatePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmediateBoardStatePictureBox)).BeginInit();
@@ -183,146 +183,6 @@
             this.materialLabel3.TabIndex = 34;
             this.materialLabel3.Text = "Game state";
             // 
-            // NewGameBtn
-            // 
-            this.NewGameBtn.AutoSize = true;
-            this.NewGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.NewGameBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.NewGameBtn.Depth = 0;
-            this.NewGameBtn.Icon = null;
-            this.NewGameBtn.Location = new System.Drawing.Point(13, 472);
-            this.NewGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.NewGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
-            this.NewGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
-            this.NewGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.NewGameBtn.Name = "NewGameBtn";
-            this.NewGameBtn.Primary = false;
-            this.NewGameBtn.Size = new System.Drawing.Size(155, 40);
-            this.NewGameBtn.TabIndex = 35;
-            this.NewGameBtn.Text = "New game";
-            this.NewGameBtn.UseVisualStyleBackColor = false;
-            this.NewGameBtn.Click += new System.EventHandler(this.NewGameBtn_Click);
-            // 
-            // LoadGameBtn
-            // 
-            this.LoadGameBtn.AutoSize = true;
-            this.LoadGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadGameBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.LoadGameBtn.Depth = 0;
-            this.LoadGameBtn.Icon = null;
-            this.LoadGameBtn.Location = new System.Drawing.Point(14, 513);
-            this.LoadGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.LoadGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
-            this.LoadGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
-            this.LoadGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LoadGameBtn.Name = "LoadGameBtn";
-            this.LoadGameBtn.Primary = false;
-            this.LoadGameBtn.Size = new System.Drawing.Size(155, 40);
-            this.LoadGameBtn.TabIndex = 36;
-            this.LoadGameBtn.Text = "Load game";
-            this.LoadGameBtn.UseVisualStyleBackColor = false;
-            this.LoadGameBtn.Click += new System.EventHandler(this.LoadGameBtn_Click);
-            // 
-            // SaveGameBtn
-            // 
-            this.SaveGameBtn.AutoSize = true;
-            this.SaveGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SaveGameBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.SaveGameBtn.Depth = 0;
-            this.SaveGameBtn.Icon = null;
-            this.SaveGameBtn.Location = new System.Drawing.Point(14, 554);
-            this.SaveGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.SaveGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
-            this.SaveGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
-            this.SaveGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.SaveGameBtn.Name = "SaveGameBtn";
-            this.SaveGameBtn.Primary = false;
-            this.SaveGameBtn.Size = new System.Drawing.Size(155, 40);
-            this.SaveGameBtn.TabIndex = 37;
-            this.SaveGameBtn.Text = "Save game";
-            this.SaveGameBtn.UseVisualStyleBackColor = false;
-            this.SaveGameBtn.Click += new System.EventHandler(this.SaveGameBtn_Click);
-            // 
-            // EndGameBtn
-            // 
-            this.EndGameBtn.AutoSize = true;
-            this.EndGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.EndGameBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.EndGameBtn.Depth = 0;
-            this.EndGameBtn.Icon = null;
-            this.EndGameBtn.Location = new System.Drawing.Point(13, 595);
-            this.EndGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.EndGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
-            this.EndGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
-            this.EndGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.EndGameBtn.Name = "EndGameBtn";
-            this.EndGameBtn.Primary = false;
-            this.EndGameBtn.Size = new System.Drawing.Size(155, 40);
-            this.EndGameBtn.TabIndex = 38;
-            this.EndGameBtn.Text = "End game";
-            this.EndGameBtn.UseVisualStyleBackColor = false;
-            this.EndGameBtn.Click += new System.EventHandler(this.EndGameBtn_Click);
-            // 
-            // StartTrackingBtn
-            // 
-            this.StartTrackingBtn.AutoSize = true;
-            this.StartTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.StartTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.StartTrackingBtn.Depth = 0;
-            this.StartTrackingBtn.Icon = null;
-            this.StartTrackingBtn.Location = new System.Drawing.Point(13, 673);
-            this.StartTrackingBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.StartTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
-            this.StartTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
-            this.StartTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.StartTrackingBtn.Name = "StartTrackingBtn";
-            this.StartTrackingBtn.Primary = false;
-            this.StartTrackingBtn.Size = new System.Drawing.Size(155, 40);
-            this.StartTrackingBtn.TabIndex = 39;
-            this.StartTrackingBtn.Text = "Start tracking";
-            this.StartTrackingBtn.UseVisualStyleBackColor = false;
-            this.StartTrackingBtn.Click += new System.EventHandler(this.StartTrackingBtn_Click);
-            // 
-            // Recalibrate
-            // 
-            this.Recalibrate.AutoSize = true;
-            this.Recalibrate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Recalibrate.BackColor = System.Drawing.SystemColors.Control;
-            this.Recalibrate.Depth = 0;
-            this.Recalibrate.Icon = null;
-            this.Recalibrate.Location = new System.Drawing.Point(13, 714);
-            this.Recalibrate.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.Recalibrate.MaximumSize = new System.Drawing.Size(155, 40);
-            this.Recalibrate.MinimumSize = new System.Drawing.Size(155, 40);
-            this.Recalibrate.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Recalibrate.Name = "Recalibrate";
-            this.Recalibrate.Primary = false;
-            this.Recalibrate.Size = new System.Drawing.Size(155, 40);
-            this.Recalibrate.TabIndex = 40;
-            this.Recalibrate.Text = "Recalibrate";
-            this.Recalibrate.UseVisualStyleBackColor = false;
-            this.Recalibrate.Click += new System.EventHandler(this.RecalibrateBtn_Click);
-            // 
-            // StopTrackingBtn
-            // 
-            this.StopTrackingBtn.AutoSize = true;
-            this.StopTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.StopTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.StopTrackingBtn.Depth = 0;
-            this.StopTrackingBtn.Icon = null;
-            this.StopTrackingBtn.Location = new System.Drawing.Point(13, 755);
-            this.StopTrackingBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.StopTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
-            this.StopTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
-            this.StopTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.StopTrackingBtn.Name = "StopTrackingBtn";
-            this.StopTrackingBtn.Primary = false;
-            this.StopTrackingBtn.Size = new System.Drawing.Size(155, 40);
-            this.StopTrackingBtn.TabIndex = 41;
-            this.StopTrackingBtn.Text = "Stop tracking";
-            this.StopTrackingBtn.UseVisualStyleBackColor = false;
-            this.StopTrackingBtn.Click += new System.EventHandler(this.StopTrackingBtn_Click);
-            // 
             // GameHistoryListBox
             // 
             this.GameHistoryListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -424,26 +284,6 @@
             this.materialLabel7.TabIndex = 52;
             this.materialLabel7.Text = "Figure color calibration";
             // 
-            // AdvancedSettingsBtn
-            // 
-            this.AdvancedSettingsBtn.AutoSize = true;
-            this.AdvancedSettingsBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AdvancedSettingsBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.AdvancedSettingsBtn.Depth = 0;
-            this.AdvancedSettingsBtn.Icon = null;
-            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(13, 832);
-            this.AdvancedSettingsBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.AdvancedSettingsBtn.MaximumSize = new System.Drawing.Size(155, 40);
-            this.AdvancedSettingsBtn.MinimumSize = new System.Drawing.Size(155, 40);
-            this.AdvancedSettingsBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.AdvancedSettingsBtn.Name = "AdvancedSettingsBtn";
-            this.AdvancedSettingsBtn.Primary = false;
-            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(155, 40);
-            this.AdvancedSettingsBtn.TabIndex = 53;
-            this.AdvancedSettingsBtn.Text = "Advanced settings";
-            this.AdvancedSettingsBtn.UseVisualStyleBackColor = false;
-            this.AdvancedSettingsBtn.Click += new System.EventHandler(this.AdvancedSettingsBtn_Click);
-            // 
             // SceneDisruptionBtn
             // 
             this.SceneDisruptionBtn.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -472,20 +312,148 @@
             this.ValidationStateBtn.Text = "Validation State";
             this.ValidationStateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // NewGameBtn
+            // 
+            this.NewGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.NewGameBtn.Depth = 0;
+            this.NewGameBtn.Icon = null;
+            this.NewGameBtn.Location = new System.Drawing.Point(14, 472);
+            this.NewGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.NewGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
+            this.NewGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.NewGameBtn.Name = "NewGameBtn";
+            this.NewGameBtn.Primary = true;
+            this.NewGameBtn.Size = new System.Drawing.Size(155, 40);
+            this.NewGameBtn.TabIndex = 56;
+            this.NewGameBtn.Text = "New game";
+            this.NewGameBtn.UseVisualStyleBackColor = true;
+            this.NewGameBtn.Click += new System.EventHandler(this.NewGameBtn_Click);
+            // 
+            // LoadGameBtn
+            // 
+            this.LoadGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadGameBtn.Depth = 0;
+            this.LoadGameBtn.Icon = null;
+            this.LoadGameBtn.Location = new System.Drawing.Point(14, 518);
+            this.LoadGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.LoadGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
+            this.LoadGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LoadGameBtn.Name = "LoadGameBtn";
+            this.LoadGameBtn.Primary = true;
+            this.LoadGameBtn.Size = new System.Drawing.Size(155, 40);
+            this.LoadGameBtn.TabIndex = 57;
+            this.LoadGameBtn.Text = "Load game";
+            this.LoadGameBtn.UseVisualStyleBackColor = true;
+            this.LoadGameBtn.Click += new System.EventHandler(this.LoadGameBtn_Click);
+            // 
+            // SaveGameBtn
+            // 
+            this.SaveGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SaveGameBtn.Depth = 0;
+            this.SaveGameBtn.Icon = null;
+            this.SaveGameBtn.Location = new System.Drawing.Point(14, 564);
+            this.SaveGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.SaveGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
+            this.SaveGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.SaveGameBtn.Name = "SaveGameBtn";
+            this.SaveGameBtn.Primary = true;
+            this.SaveGameBtn.Size = new System.Drawing.Size(155, 40);
+            this.SaveGameBtn.TabIndex = 58;
+            this.SaveGameBtn.Text = "Save game";
+            this.SaveGameBtn.UseVisualStyleBackColor = true;
+            this.SaveGameBtn.Click += new System.EventHandler(this.SaveGameBtn_Click);
+            // 
+            // EndGameBtn
+            // 
+            this.EndGameBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.EndGameBtn.Depth = 0;
+            this.EndGameBtn.Icon = null;
+            this.EndGameBtn.Location = new System.Drawing.Point(14, 610);
+            this.EndGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.EndGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
+            this.EndGameBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.EndGameBtn.Name = "EndGameBtn";
+            this.EndGameBtn.Primary = true;
+            this.EndGameBtn.Size = new System.Drawing.Size(155, 40);
+            this.EndGameBtn.TabIndex = 59;
+            this.EndGameBtn.Text = "End game";
+            this.EndGameBtn.UseVisualStyleBackColor = true;
+            this.EndGameBtn.Click += new System.EventHandler(this.EndGameBtn_Click);
+            // 
+            // StartTrackingBtn
+            // 
+            this.StartTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StartTrackingBtn.Depth = 0;
+            this.StartTrackingBtn.Icon = null;
+            this.StartTrackingBtn.Location = new System.Drawing.Point(12, 672);
+            this.StartTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.StartTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
+            this.StartTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.StartTrackingBtn.Name = "StartTrackingBtn";
+            this.StartTrackingBtn.Primary = true;
+            this.StartTrackingBtn.Size = new System.Drawing.Size(155, 40);
+            this.StartTrackingBtn.TabIndex = 60;
+            this.StartTrackingBtn.Text = "Start tracking";
+            this.StartTrackingBtn.UseVisualStyleBackColor = true;
+            this.StartTrackingBtn.Click += new System.EventHandler(this.StartTrackingBtn_Click);
+            // 
+            // Recalibrate
+            // 
+            this.Recalibrate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Recalibrate.Depth = 0;
+            this.Recalibrate.Icon = null;
+            this.Recalibrate.Location = new System.Drawing.Point(12, 718);
+            this.Recalibrate.MaximumSize = new System.Drawing.Size(155, 40);
+            this.Recalibrate.MinimumSize = new System.Drawing.Size(155, 40);
+            this.Recalibrate.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Recalibrate.Name = "Recalibrate";
+            this.Recalibrate.Primary = true;
+            this.Recalibrate.Size = new System.Drawing.Size(155, 40);
+            this.Recalibrate.TabIndex = 61;
+            this.Recalibrate.Text = "Recalibrate";
+            this.Recalibrate.UseVisualStyleBackColor = true;
+            this.Recalibrate.Click += new System.EventHandler(this.RecalibrateBtn_Click);
+            // 
+            // StopTrackingBtn
+            // 
+            this.StopTrackingBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StopTrackingBtn.Depth = 0;
+            this.StopTrackingBtn.Icon = null;
+            this.StopTrackingBtn.Location = new System.Drawing.Point(12, 764);
+            this.StopTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
+            this.StopTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
+            this.StopTrackingBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.StopTrackingBtn.Name = "StopTrackingBtn";
+            this.StopTrackingBtn.Primary = true;
+            this.StopTrackingBtn.Size = new System.Drawing.Size(155, 40);
+            this.StopTrackingBtn.TabIndex = 62;
+            this.StopTrackingBtn.Text = "Stop tracking";
+            this.StopTrackingBtn.UseVisualStyleBackColor = true;
+            this.StopTrackingBtn.Click += new System.EventHandler(this.StopTrackingBtn_Click);
+            // 
+            // AdvancedSettingsBtn
+            // 
+            this.AdvancedSettingsBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AdvancedSettingsBtn.Depth = 0;
+            this.AdvancedSettingsBtn.Icon = null;
+            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(12, 822);
+            this.AdvancedSettingsBtn.MaximumSize = new System.Drawing.Size(155, 50);
+            this.AdvancedSettingsBtn.MinimumSize = new System.Drawing.Size(155, 50);
+            this.AdvancedSettingsBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AdvancedSettingsBtn.Name = "AdvancedSettingsBtn";
+            this.AdvancedSettingsBtn.Primary = true;
+            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(155, 50);
+            this.AdvancedSettingsBtn.TabIndex = 63;
+            this.AdvancedSettingsBtn.Text = "Advanced settings";
+            this.AdvancedSettingsBtn.UseVisualStyleBackColor = true;
+            this.AdvancedSettingsBtn.Click += new System.EventHandler(this.AdvancedSettingsBtn_Click);
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1058, 880);
-            this.Controls.Add(this.ValidationStateBtn);
-            this.Controls.Add(this.SceneDisruptionBtn);
             this.Controls.Add(this.AdvancedSettingsBtn);
-            this.Controls.Add(this.materialLabel7);
-            this.Controls.Add(this.materialLabel6);
-            this.Controls.Add(this.FPSLabel);
-            this.Controls.Add(this.WhosPlayingLabel);
-            this.Controls.Add(this.TrackingLogsListBox);
-            this.Controls.Add(this.GameHistoryListBox);
             this.Controls.Add(this.StopTrackingBtn);
             this.Controls.Add(this.Recalibrate);
             this.Controls.Add(this.StartTrackingBtn);
@@ -493,6 +461,14 @@
             this.Controls.Add(this.SaveGameBtn);
             this.Controls.Add(this.LoadGameBtn);
             this.Controls.Add(this.NewGameBtn);
+            this.Controls.Add(this.ValidationStateBtn);
+            this.Controls.Add(this.SceneDisruptionBtn);
+            this.Controls.Add(this.materialLabel7);
+            this.Controls.Add(this.materialLabel6);
+            this.Controls.Add(this.FPSLabel);
+            this.Controls.Add(this.WhosPlayingLabel);
+            this.Controls.Add(this.TrackingLogsListBox);
+            this.Controls.Add(this.GameHistoryListBox);
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
@@ -529,13 +505,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialFlatButton NewGameBtn;
-        private MaterialSkin.Controls.MaterialFlatButton LoadGameBtn;
-        private MaterialSkin.Controls.MaterialFlatButton SaveGameBtn;
-        private MaterialSkin.Controls.MaterialFlatButton EndGameBtn;
-        private MaterialSkin.Controls.MaterialFlatButton StartTrackingBtn;
-        private MaterialSkin.Controls.MaterialFlatButton Recalibrate;
-        private MaterialSkin.Controls.MaterialFlatButton StopTrackingBtn;
         private MaterialSkin.Controls.MaterialListView GameHistoryListBox;
         private System.Windows.Forms.ColumnHeader Record;
         private MaterialSkin.Controls.MaterialListView TrackingLogsListBox;
@@ -544,8 +513,15 @@
         private MaterialSkin.Controls.MaterialLabel FPSLabel;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
-        private MaterialSkin.Controls.MaterialFlatButton AdvancedSettingsBtn;
         private MaterialSkin.Controls.MaterialLabel SceneDisruptionBtn;
         private MaterialSkin.Controls.MaterialLabel ValidationStateBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton NewGameBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton LoadGameBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton SaveGameBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton EndGameBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton StartTrackingBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton Recalibrate;
+        private MaterialSkin.Controls.MaterialRaisedButton StopTrackingBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton AdvancedSettingsBtn;
     }
 }
