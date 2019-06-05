@@ -330,7 +330,7 @@
             // 
             // GameHistoryListBox
             // 
-            this.GameHistoryListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GameHistoryListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GameHistoryListBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Record});
             this.GameHistoryListBox.Depth = 0;
@@ -342,7 +342,7 @@
             this.GameHistoryListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.GameHistoryListBox.Name = "GameHistoryListBox";
             this.GameHistoryListBox.OwnerDraw = true;
-            this.GameHistoryListBox.Size = new System.Drawing.Size(156, 400);
+            this.GameHistoryListBox.Size = new System.Drawing.Size(168, 400);
             this.GameHistoryListBox.TabIndex = 45;
             this.GameHistoryListBox.UseCompatibleStateImageBehavior = false;
             this.GameHistoryListBox.View = System.Windows.Forms.View.Details;
@@ -350,24 +350,24 @@
             // Record
             // 
             this.Record.Text = "Record";
-            this.Record.Width = 110;
+            this.Record.Width = 105;
             // 
             // TrackingLogsListBox
             // 
-            this.TrackingLogsListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TrackingLogsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TrackingLogsListBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TrackingLogColumn});
             this.TrackingLogsListBox.Depth = 0;
             this.TrackingLogsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.TrackingLogsListBox.FullRowSelect = true;
             this.TrackingLogsListBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.TrackingLogsListBox.Location = new System.Drawing.Point(337, 472);
+            this.TrackingLogsListBox.Location = new System.Drawing.Point(349, 472);
             this.TrackingLogsListBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.TrackingLogsListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.TrackingLogsListBox.Name = "TrackingLogsListBox";
             this.TrackingLogsListBox.OwnerDraw = true;
             this.TrackingLogsListBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TrackingLogsListBox.Size = new System.Drawing.Size(502, 400);
+            this.TrackingLogsListBox.Size = new System.Drawing.Size(490, 400);
             this.TrackingLogsListBox.TabIndex = 22;
             this.TrackingLogsListBox.UseCompatibleStateImageBehavior = false;
             this.TrackingLogsListBox.View = System.Windows.Forms.View.Details;
@@ -375,7 +375,7 @@
             // TrackingLogColumn
             // 
             this.TrackingLogColumn.Text = "Tracking log - 00:00:00";
-            this.TrackingLogColumn.Width = 380;
+            this.TrackingLogColumn.Width = 340;
             // 
             // WhosPlayingLabel
             // 
