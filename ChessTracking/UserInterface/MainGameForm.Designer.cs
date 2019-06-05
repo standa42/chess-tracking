@@ -69,9 +69,9 @@
             // GameStatePictureBox
             // 
             this.GameStatePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GameStatePictureBox.Location = new System.Drawing.Point(626, 118);
+            this.GameStatePictureBox.Location = new System.Drawing.Point(706, 118);
             this.GameStatePictureBox.Name = "GameStatePictureBox";
-            this.GameStatePictureBox.Size = new System.Drawing.Size(300, 300);
+            this.GameStatePictureBox.Size = new System.Drawing.Size(340, 340);
             this.GameStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GameStatePictureBox.TabIndex = 0;
             this.GameStatePictureBox.TabStop = false;
@@ -79,9 +79,9 @@
             // TrackedBoardStatePictureBox
             // 
             this.TrackedBoardStatePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TrackedBoardStatePictureBox.Location = new System.Drawing.Point(320, 118);
+            this.TrackedBoardStatePictureBox.Location = new System.Drawing.Point(360, 118);
             this.TrackedBoardStatePictureBox.Name = "TrackedBoardStatePictureBox";
-            this.TrackedBoardStatePictureBox.Size = new System.Drawing.Size(300, 300);
+            this.TrackedBoardStatePictureBox.Size = new System.Drawing.Size(340, 340);
             this.TrackedBoardStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.TrackedBoardStatePictureBox.TabIndex = 9;
             this.TrackedBoardStatePictureBox.TabStop = false;
@@ -91,7 +91,7 @@
             this.ImmediateBoardStatePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ImmediateBoardStatePictureBox.Location = new System.Drawing.Point(14, 118);
             this.ImmediateBoardStatePictureBox.Name = "ImmediateBoardStatePictureBox";
-            this.ImmediateBoardStatePictureBox.Size = new System.Drawing.Size(300, 300);
+            this.ImmediateBoardStatePictureBox.Size = new System.Drawing.Size(340, 340);
             this.ImmediateBoardStatePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImmediateBoardStatePictureBox.TabIndex = 10;
             this.ImmediateBoardStatePictureBox.TabStop = false;
@@ -100,7 +100,7 @@
             // 
             this.VizualizationChoiceComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.VizualizationChoiceComboBox.FormattingEnabled = true;
-            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(718, 719);
+            this.VizualizationChoiceComboBox.Location = new System.Drawing.Point(845, 763);
             this.VizualizationChoiceComboBox.Name = "VizualizationChoiceComboBox";
             this.VizualizationChoiceComboBox.Size = new System.Drawing.Size(190, 28);
             this.VizualizationChoiceComboBox.TabIndex = 15;
@@ -116,7 +116,7 @@
             // 
             this.ColorCalibrationTrackBar.AutoSize = false;
             this.ColorCalibrationTrackBar.LargeChange = 1;
-            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(731, 791);
+            this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(858, 835);
             this.ColorCalibrationTrackBar.Maximum = 40;
             this.ColorCalibrationTrackBar.Minimum = -40;
             this.ColorCalibrationTrackBar.Name = "ColorCalibrationTrackBar";
@@ -128,7 +128,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(718, 795);
+            this.pictureBox1.Location = new System.Drawing.Point(845, 839);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(17, 17);
             this.pictureBox1.TabIndex = 29;
@@ -138,7 +138,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlText;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(902, 795);
+            this.pictureBox2.Location = new System.Drawing.Point(1029, 839);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(17, 17);
             this.pictureBox2.TabIndex = 30;
@@ -163,7 +163,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(316, 91);
+            this.materialLabel2.Location = new System.Drawing.Point(356, 91);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(209, 24);
@@ -176,7 +176,7 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(622, 91);
+            this.materialLabel3.Location = new System.Drawing.Point(702, 91);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(107, 24);
@@ -190,7 +190,7 @@
             this.NewGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.NewGameBtn.Depth = 0;
             this.NewGameBtn.Icon = null;
-            this.NewGameBtn.Location = new System.Drawing.Point(13, 439);
+            this.NewGameBtn.Location = new System.Drawing.Point(13, 472);
             this.NewGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NewGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.NewGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
@@ -210,7 +210,7 @@
             this.LoadGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.LoadGameBtn.Depth = 0;
             this.LoadGameBtn.Icon = null;
-            this.LoadGameBtn.Location = new System.Drawing.Point(14, 480);
+            this.LoadGameBtn.Location = new System.Drawing.Point(14, 513);
             this.LoadGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.LoadGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.LoadGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
@@ -230,7 +230,7 @@
             this.SaveGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.SaveGameBtn.Depth = 0;
             this.SaveGameBtn.Icon = null;
-            this.SaveGameBtn.Location = new System.Drawing.Point(14, 521);
+            this.SaveGameBtn.Location = new System.Drawing.Point(14, 554);
             this.SaveGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.SaveGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.SaveGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
@@ -250,7 +250,7 @@
             this.EndGameBtn.BackColor = System.Drawing.SystemColors.Control;
             this.EndGameBtn.Depth = 0;
             this.EndGameBtn.Icon = null;
-            this.EndGameBtn.Location = new System.Drawing.Point(13, 562);
+            this.EndGameBtn.Location = new System.Drawing.Point(13, 595);
             this.EndGameBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.EndGameBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.EndGameBtn.MinimumSize = new System.Drawing.Size(155, 40);
@@ -270,7 +270,7 @@
             this.StartTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
             this.StartTrackingBtn.Depth = 0;
             this.StartTrackingBtn.Icon = null;
-            this.StartTrackingBtn.Location = new System.Drawing.Point(13, 640);
+            this.StartTrackingBtn.Location = new System.Drawing.Point(13, 673);
             this.StartTrackingBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.StartTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.StartTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
@@ -290,7 +290,7 @@
             this.Recalibrate.BackColor = System.Drawing.SystemColors.Control;
             this.Recalibrate.Depth = 0;
             this.Recalibrate.Icon = null;
-            this.Recalibrate.Location = new System.Drawing.Point(13, 681);
+            this.Recalibrate.Location = new System.Drawing.Point(13, 714);
             this.Recalibrate.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Recalibrate.MaximumSize = new System.Drawing.Size(155, 40);
             this.Recalibrate.MinimumSize = new System.Drawing.Size(155, 40);
@@ -310,7 +310,7 @@
             this.StopTrackingBtn.BackColor = System.Drawing.SystemColors.Control;
             this.StopTrackingBtn.Depth = 0;
             this.StopTrackingBtn.Icon = null;
-            this.StopTrackingBtn.Location = new System.Drawing.Point(13, 722);
+            this.StopTrackingBtn.Location = new System.Drawing.Point(13, 755);
             this.StopTrackingBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.StopTrackingBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.StopTrackingBtn.MinimumSize = new System.Drawing.Size(155, 40);
@@ -332,7 +332,7 @@
             this.GameHistoryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.GameHistoryListBox.FullRowSelect = true;
             this.GameHistoryListBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.GameHistoryListBox.Location = new System.Drawing.Point(176, 439);
+            this.GameHistoryListBox.Location = new System.Drawing.Point(176, 472);
             this.GameHistoryListBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.GameHistoryListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.GameHistoryListBox.Name = "GameHistoryListBox";
@@ -345,11 +345,10 @@
             // Record
             // 
             this.Record.Text = "Record";
-            this.Record.Width = 100;
+            this.Record.Width = 90;
             // 
             // TrackingLogsListBox
             // 
-            this.TrackingLogsListBox.AutoArrange = false;
             this.TrackingLogsListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TrackingLogsListBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TrackingLogColumn});
@@ -357,13 +356,13 @@
             this.TrackingLogsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.TrackingLogsListBox.FullRowSelect = true;
             this.TrackingLogsListBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.TrackingLogsListBox.Location = new System.Drawing.Point(320, 439);
+            this.TrackingLogsListBox.Location = new System.Drawing.Point(320, 472);
             this.TrackingLogsListBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.TrackingLogsListBox.MouseState = MaterialSkin.MouseState.OUT;
             this.TrackingLogsListBox.Name = "TrackingLogsListBox";
             this.TrackingLogsListBox.OwnerDraw = true;
             this.TrackingLogsListBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TrackingLogsListBox.Size = new System.Drawing.Size(606, 241);
+            this.TrackingLogsListBox.Size = new System.Drawing.Size(519, 400);
             this.TrackingLogsListBox.TabIndex = 22;
             this.TrackingLogsListBox.UseCompatibleStateImageBehavior = false;
             this.TrackingLogsListBox.View = System.Windows.Forms.View.Details;
@@ -371,7 +370,7 @@
             // TrackingLogColumn
             // 
             this.TrackingLogColumn.Text = "Tracking log - 00:00:00";
-            this.TrackingLogColumn.Width = 420;
+            this.TrackingLogColumn.Width = 380;
             // 
             // WhosPlayingLabel
             // 
@@ -379,7 +378,7 @@
             this.WhosPlayingLabel.Depth = 0;
             this.WhosPlayingLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.WhosPlayingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.WhosPlayingLabel.Location = new System.Drawing.Point(320, 787);
+            this.WhosPlayingLabel.Location = new System.Drawing.Point(845, 573);
             this.WhosPlayingLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.WhosPlayingLabel.Name = "WhosPlayingLabel";
             this.WhosPlayingLabel.Size = new System.Drawing.Size(50, 24);
@@ -392,7 +391,7 @@
             this.FPSLabel.Depth = 0;
             this.FPSLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.FPSLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.FPSLabel.Location = new System.Drawing.Point(320, 813);
+            this.FPSLabel.Location = new System.Drawing.Point(845, 599);
             this.FPSLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.FPSLabel.Name = "FPSLabel";
             this.FPSLabel.Size = new System.Drawing.Size(54, 24);
@@ -405,7 +404,7 @@
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel6.Location = new System.Drawing.Point(718, 686);
+            this.materialLabel6.Location = new System.Drawing.Point(845, 730);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(180, 24);
@@ -418,7 +417,7 @@
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel7.Location = new System.Drawing.Point(718, 757);
+            this.materialLabel7.Location = new System.Drawing.Point(845, 801);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(205, 24);
@@ -432,7 +431,7 @@
             this.AdvancedSettingsBtn.BackColor = System.Drawing.SystemColors.Control;
             this.AdvancedSettingsBtn.Depth = 0;
             this.AdvancedSettingsBtn.Icon = null;
-            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(13, 799);
+            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(13, 832);
             this.AdvancedSettingsBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.AdvancedSettingsBtn.MaximumSize = new System.Drawing.Size(155, 40);
             this.AdvancedSettingsBtn.MinimumSize = new System.Drawing.Size(155, 40);
@@ -451,7 +450,7 @@
             this.SceneDisruptionBtn.Depth = 0;
             this.SceneDisruptionBtn.Font = new System.Drawing.Font("Roboto", 11F);
             this.SceneDisruptionBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.SceneDisruptionBtn.Location = new System.Drawing.Point(320, 735);
+            this.SceneDisruptionBtn.Location = new System.Drawing.Point(845, 521);
             this.SceneDisruptionBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.SceneDisruptionBtn.Name = "SceneDisruptionBtn";
             this.SceneDisruptionBtn.Size = new System.Drawing.Size(201, 46);
@@ -465,7 +464,7 @@
             this.ValidationStateBtn.Depth = 0;
             this.ValidationStateBtn.Font = new System.Drawing.Font("Roboto", 11F);
             this.ValidationStateBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ValidationStateBtn.Location = new System.Drawing.Point(320, 686);
+            this.ValidationStateBtn.Location = new System.Drawing.Point(845, 472);
             this.ValidationStateBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.ValidationStateBtn.Name = "ValidationStateBtn";
             this.ValidationStateBtn.Size = new System.Drawing.Size(201, 46);
@@ -477,7 +476,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 851);
+            this.ClientSize = new System.Drawing.Size(1058, 880);
             this.Controls.Add(this.ValidationStateBtn);
             this.Controls.Add(this.SceneDisruptionBtn);
             this.Controls.Add(this.AdvancedSettingsBtn);
