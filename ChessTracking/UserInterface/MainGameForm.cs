@@ -205,8 +205,10 @@ namespace ChessTracking.UserInterface
         {
             if (records != null)
             {
+                int counter = 1;
+                var recordsWithIndexInThem = records.Select(x => (counter++) + ". " + x).ToList();
                 GameHistoryListBox.DataSource = null;
-                GameHistoryListBox.DataSource = records;
+                GameHistoryListBox.DataSource = recordsWithIndexInThem;
             }
         }
 
