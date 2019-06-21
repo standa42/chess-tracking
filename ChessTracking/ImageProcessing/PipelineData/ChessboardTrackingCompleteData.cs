@@ -10,6 +10,7 @@
         public PlaneTrackingData PlaneData { get; set; }
         public ChessboardTrackingData ChessboardData { get; set; }
         public UserDefinedParameters UserParameters { get; set; }
+        public SceneCalibrationSnapshot Snapshot { get; set; }
         
         public ChessboardTrackingCompleteData(PlaneTrackingCompleteData planeData)
         {

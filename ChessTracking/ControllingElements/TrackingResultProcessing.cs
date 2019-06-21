@@ -83,6 +83,8 @@ namespace ChessTracking.ControllingElements
             OutputFacade.DisplayVizuaization(resultMessage.BitmapToDisplay);
             UpdateFps();
 
+            if (resultMessage.TrackingState == null)
+                return;
             if (resultMessage.HandDetected)
                 return;
             if (TimeOffset > DateTime.Now)

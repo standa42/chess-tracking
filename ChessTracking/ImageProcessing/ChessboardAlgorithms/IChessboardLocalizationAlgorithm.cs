@@ -4,6 +4,6 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 {
     interface IChessboardLocalizationAlgorithm
     {
-        Chessboard3DReprezentation LocateChessboard(ChessboardTrackingCompleteData chessboardData);
+        (Chessboard3DReprezentation boardReprezentation, SceneCalibrationSnapshot snapshot) LocateChessboard(ChessboardTrackingCompleteData chessboardData);
     }
 }

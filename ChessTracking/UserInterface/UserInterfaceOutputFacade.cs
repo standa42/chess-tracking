@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.Game;
+using ChessTracking.ImageProcessing.PipelineData;
 
 namespace ChessTracking.UserInterface
 {
@@ -97,6 +98,11 @@ namespace ChessTracking.UserInterface
         public void UpdateWhosPlaying(PlayerColor color)
         {
             MainForm?.UpdateWhosPlaying(color);
+        }
+
+        public void UpdateCalibrationSnapshot(SceneCalibrationSnapshot snapshot)
+        {
+            MainForm?.UpdateCalibrationSnapshot(snapshot);
         }
     }
 }

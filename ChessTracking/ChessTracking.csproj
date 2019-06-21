@@ -107,12 +107,14 @@
     <Compile Include="ImageProcessing\PipelineData\InputData.cs" />
     <Compile Include="ImageProcessing\PipelineData\KinectDataBuffer.cs" />
     <Compile Include="ImageProcessing\PipelineData\PlaneTrackingData.cs" />
+    <Compile Include="ImageProcessing\PipelineData\SceneCalibrationSnapshot.cs" />
     <Compile Include="ImageProcessing\PipelineData\TrackingResultData.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParameters.cs" />
     <Compile Include="ImageProcessing\PipelineData\UserDefinedParametersPrototypeFactory.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IChessboardLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IFiguresLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IPlaneLocalization.cs" />
+    <Compile Include="MultithreadingMessages\FromProcessing\SceneCalibrationSnapshotMessage.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\TrackingError.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\TrackingStartSuccessfulMessage.cs" />
     <Compile Include="MultithreadingMessages\ToProcessing\ChessboardMovement.cs" />
@@ -125,6 +127,12 @@
     </Compile>
     <Compile Include="UserInterface\AdvancedSettingsForm.Designer.cs">
       <DependentUpon>AdvancedSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\CalibrationSnapshotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\CalibrationSnapshotForm.Designer.cs">
+      <DependentUpon>CalibrationSnapshotForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
@@ -188,6 +196,9 @@
     <Compile Include="Utils\TimestampObject.cs" />
     <EmbeddedResource Include="UserInterface\AdvancedSettingsForm.resx">
       <DependentUpon>AdvancedSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\CalibrationSnapshotForm.resx">
+      <DependentUpon>CalibrationSnapshotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\MainGameForm.resx">
       <DependentUpon>MainGameForm.cs</DependentUpon>

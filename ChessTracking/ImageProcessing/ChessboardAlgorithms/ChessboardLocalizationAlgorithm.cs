@@ -23,7 +23,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 {
     class ChessboardLocalizationAlgorithm : IChessboardLocalizationAlgorithm
     {
-        public Chessboard3DReprezentation LocateChessboard(ChessboardTrackingCompleteData chessboardData)
+        public (Chessboard3DReprezentation boardReprezentation, SceneCalibrationSnapshot snapshot) LocateChessboard(ChessboardTrackingCompleteData chessboardData)
         {
             var grayImage = GetGrayImage(chessboardData.PlaneData.MaskedColorImageOfTable);
             var binarizedImage = GetBinarizedImage(grayImage);
@@ -35,7 +35,14 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 
             var boardRepresentation = ChessboardFittingAlgorithm(contractedPoints, chessboardData);
 
-            return boardRepresentation;
+            var snapshot = new SceneCalibrationSnapshot()
+            {
+                BinarizationImage = (Bitmap)binarizedImage.Convert<Rgb, byte>().Bitmap.Clone(),
+                CannyImage = (Bitmap)cannyDetectorImage.Convert<Rgb, byte>().Bitmap.Clone(),
+                GrayImage = (Bitmap)grayImage.Convert<Rgb, byte>().Bitmap.Clone(),
+                MaskedColorImage = (Bitmap)chessboardData.PlaneData.MaskedColorImageOfTable.Convert<Rgb,byte>().Bitmap.Clone()
+            };
+            return (boardRepresentation, snapshot);
         }
 
         private Image<Gray, byte> GetGrayImage(Image<Rgb, byte> colorImage)
@@ -46,7 +53,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
         private Image<Gray, byte> GetBinarizedImage(Image<Gray, byte> grayImage)
         {
             var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
-            CvInvoke.Threshold(grayImage, binarizedImg, 200, 255, ThresholdType.Otsu);
+            CvInvoke.Threshold(grayImage, binarizedImg, 120, 255, ThresholdType.Binary | ThresholdType.Otsu);
             return binarizedImg;
         }
 

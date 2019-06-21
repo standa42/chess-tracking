@@ -22,7 +22,9 @@ namespace ChessTracking.UserInterface
         private List<string> TrackingLog { get; }
         private UserDefinedParametersPrototypeFactory UserParameters { get; }
         private AdvancedSettingsForm AdvancedSettingsForm { get; set; }
-
+        private CalibrationSnapshotForm SnapshotForm { get; set; }
+        private SceneCalibrationSnapshot Snapshot { get; set; }
+        
         public MainGameForm()
         {
             InitializeComponent();
@@ -178,6 +180,16 @@ namespace ChessTracking.UserInterface
             }
         }
 
+        private void CalibrationSnapshotsButton_Click(object sender, EventArgs e)
+        {
+            if (SnapshotForm == null)
+            {
+                CalibrationSnapshotsButton.Enabled = false;
+                SnapshotForm = new CalibrationSnapshotForm(this, this.Snapshot);
+                SnapshotForm.Show();
+            }
+        }
+
         private void MovementBtn1_Click(object sender, EventArgs e)
         {
             InputFacade.SendChessboardMovement(ChessboardMovement.Vector1Plus);
@@ -315,6 +327,18 @@ namespace ChessTracking.UserInterface
             WhosPlayingLabel.ForeColor = Color.Black;
         }
 
+        public void UpdateCalibrationSnapshot(SceneCalibrationSnapshot snapshot)
+        {
+            this.Snapshot = snapshot;
+            SnapshotForm?.Update(snapshot);
+        }
+
+        public void SceneSnapshotFormClosing()
+        {
+            SnapshotForm = null;
+            CalibrationSnapshotsButton.Enabled = true;
+        }
+
         #endregion
 
         #region UI Locking
@@ -399,8 +423,9 @@ namespace ChessTracking.UserInterface
         }
 
 
+
         #endregion
 
-
+        
     }
 }

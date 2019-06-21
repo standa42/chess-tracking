@@ -51,7 +51,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
         {
             var chessboardData = new ChessboardTrackingCompleteData(planeData);
 
-            BoardReprezentation = ChessboardAlgorithm.LocateChessboard(chessboardData);
+            SceneCalibrationSnapshot snapshot;
+            (BoardReprezentation, snapshot) = ChessboardAlgorithm.LocateChessboard(chessboardData);
+            chessboardData.Snapshot = snapshot;
 
             RotationAlgorithm.Rotate(BoardReprezentation, chessboardData.KinectData.CameraSpacePointsFromDepthData);
 

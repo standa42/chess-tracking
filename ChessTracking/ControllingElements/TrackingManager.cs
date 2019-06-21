@@ -110,6 +110,11 @@ namespace ChessTracking.ControllingElements
                     ProgramState.ErrorInTracking(error.Message);
                     StopTracking();
                 }
+
+                if (message is SceneCalibrationSnapshotMessage snapshot)
+                {
+                    OutputFacade.UpdateCalibrationSnapshot(snapshot.Snapshot);
+                }
                     
 
                 if (messageProcessed && message == null)
