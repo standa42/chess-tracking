@@ -37,9 +37,14 @@
             this.PointsIndicatingFigureValueLabel = new MaterialSkin.Controls.MaterialLabel();
             this.MilisecondsTasksLabel = new MaterialSkin.Controls.MaterialLabel();
             this.MilisecondsTasksValueLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.BinarizationThresholdLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.BinarizationThresholdTrackbar = new System.Windows.Forms.TrackBar();
+            this.BinarizationThresholdValueLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.OtzuToggleButton = new MaterialSkin.Controls.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.MilimetersClippedTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointsIndicatingFigureTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MilisecondsTasksTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BinarizationThresholdTrackbar)).BeginInit();
             this.SuspendLayout();
             // 
             // MilimetersClippedTrackBar
@@ -156,11 +161,71 @@
             this.MilisecondsTasksValueLabel.TabIndex = 14;
             this.MilisecondsTasksValueLabel.Text = "220";
             // 
+            // BinarizationThresholdLabel
+            // 
+            this.BinarizationThresholdLabel.AutoSize = true;
+            this.BinarizationThresholdLabel.Depth = 0;
+            this.BinarizationThresholdLabel.Font = new System.Drawing.Font("Roboto", 11F);
+            this.BinarizationThresholdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BinarizationThresholdLabel.Location = new System.Drawing.Point(12, 312);
+            this.BinarizationThresholdLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BinarizationThresholdLabel.Name = "BinarizationThresholdLabel";
+            this.BinarizationThresholdLabel.Size = new System.Drawing.Size(193, 24);
+            this.BinarizationThresholdLabel.TabIndex = 15;
+            this.BinarizationThresholdLabel.Text = "Binarization threshold";
+            // 
+            // BinarizationThresholdTrackbar
+            // 
+            this.BinarizationThresholdTrackbar.AutoSize = false;
+            this.BinarizationThresholdTrackbar.LargeChange = 10;
+            this.BinarizationThresholdTrackbar.Location = new System.Drawing.Point(18, 339);
+            this.BinarizationThresholdTrackbar.Maximum = 255;
+            this.BinarizationThresholdTrackbar.Name = "BinarizationThresholdTrackbar";
+            this.BinarizationThresholdTrackbar.Size = new System.Drawing.Size(306, 41);
+            this.BinarizationThresholdTrackbar.TabIndex = 16;
+            this.BinarizationThresholdTrackbar.Value = 120;
+            this.BinarizationThresholdTrackbar.ValueChanged += new System.EventHandler(this.BinarizationThresholdTrackbar_ValueChanged);
+            // 
+            // BinarizationThresholdValueLabel
+            // 
+            this.BinarizationThresholdValueLabel.AutoSize = true;
+            this.BinarizationThresholdValueLabel.Depth = 0;
+            this.BinarizationThresholdValueLabel.Font = new System.Drawing.Font("Roboto", 11F);
+            this.BinarizationThresholdValueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BinarizationThresholdValueLabel.Location = new System.Drawing.Point(211, 312);
+            this.BinarizationThresholdValueLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BinarizationThresholdValueLabel.Name = "BinarizationThresholdValueLabel";
+            this.BinarizationThresholdValueLabel.Size = new System.Drawing.Size(43, 24);
+            this.BinarizationThresholdValueLabel.TabIndex = 17;
+            this.BinarizationThresholdValueLabel.Text = "220";
+            // 
+            // OtzuToggleButton
+            // 
+            this.OtzuToggleButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.OtzuToggleButton.Depth = 0;
+            this.OtzuToggleButton.Icon = null;
+            this.OtzuToggleButton.Location = new System.Drawing.Point(18, 387);
+            this.OtzuToggleButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.OtzuToggleButton.MaximumSize = new System.Drawing.Size(306, 36);
+            this.OtzuToggleButton.MinimumSize = new System.Drawing.Size(306, 36);
+            this.OtzuToggleButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.OtzuToggleButton.Name = "OtzuToggleButton";
+            this.OtzuToggleButton.Primary = false;
+            this.OtzuToggleButton.Size = new System.Drawing.Size(306, 36);
+            this.OtzuToggleButton.TabIndex = 18;
+            this.OtzuToggleButton.Text = "Disable Otzu";
+            this.OtzuToggleButton.UseVisualStyleBackColor = true;
+            this.OtzuToggleButton.Click += new System.EventHandler(this.OtzuToggleButton_Click);
+            // 
             // AdvancedSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 339);
+            this.ClientSize = new System.Drawing.Size(416, 450);
+            this.Controls.Add(this.OtzuToggleButton);
+            this.Controls.Add(this.BinarizationThresholdValueLabel);
+            this.Controls.Add(this.BinarizationThresholdTrackbar);
+            this.Controls.Add(this.BinarizationThresholdLabel);
             this.Controls.Add(this.MilisecondsTasksValueLabel);
             this.Controls.Add(this.MilisecondsTasksLabel);
             this.Controls.Add(this.PointsIndicatingFigureValueLabel);
@@ -176,6 +241,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MilimetersClippedTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointsIndicatingFigureTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MilisecondsTasksTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BinarizationThresholdTrackbar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +257,9 @@
         private MaterialSkin.Controls.MaterialLabel PointsIndicatingFigureValueLabel;
         private MaterialSkin.Controls.MaterialLabel MilisecondsTasksLabel;
         private MaterialSkin.Controls.MaterialLabel MilisecondsTasksValueLabel;
+        private MaterialSkin.Controls.MaterialLabel BinarizationThresholdLabel;
+        private System.Windows.Forms.TrackBar BinarizationThresholdTrackbar;
+        private MaterialSkin.Controls.MaterialLabel BinarizationThresholdValueLabel;
+        private MaterialSkin.Controls.MaterialFlatButton OtzuToggleButton;
     }
 }

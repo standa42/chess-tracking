@@ -26,7 +26,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
         public (Chessboard3DReprezentation boardReprezentation, SceneCalibrationSnapshot snapshot) LocateChessboard(ChessboardTrackingCompleteData chessboardData)
         {
             var grayImage = GetGrayImage(chessboardData.PlaneData.MaskedColorImageOfTable);
-            var binarizedImage = GetBinarizedImage(grayImage);
+            var binarizedImage = GetBinarizedImage(grayImage, chessboardData.UserParameters.OtzuActiveInBinarization, chessboardData.UserParameters.BinarizationThreshold);
             var cannyDetectorImage = ApplyCannyDetector(binarizedImage);
 
             var linesTuple = GetFilteredHoughLines(cannyDetectorImage);
@@ -50,10 +50,13 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
             return colorImage.Convert<Gray, Byte>();
         }
 
-        private Image<Gray, byte> GetBinarizedImage(Image<Gray, byte> grayImage)
+        private Image<Gray, byte> GetBinarizedImage(Image<Gray, byte> grayImage, bool otzuActive, int binaryThreshold)
         {
             var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
-            CvInvoke.Threshold(grayImage, binarizedImg, 120, 255, ThresholdType.Binary | ThresholdType.Otsu);
+
+            var threshType = otzuActive ? ThresholdType.Binary | ThresholdType.Otsu : ThresholdType.Binary;
+            CvInvoke.Threshold(grayImage, binarizedImg, binaryThreshold, 255, threshType);
+
             return binarizedImg;
         }
 

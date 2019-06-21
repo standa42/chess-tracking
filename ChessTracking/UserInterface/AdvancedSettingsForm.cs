@@ -51,5 +51,25 @@ namespace ChessTracking.UserInterface
             MilisecondsTasksValueLabel.Text = MilisecondsTasksTrackBar.Value.ToString();
             UserParameters.ChangePrototype(x => x.MinimalTimeBetweenTrackingTasksInMiliseconds = MilisecondsTasksTrackBar.Value);
         }
+
+        private void OtzuToggleButton_Click(object sender, EventArgs e)
+        {
+            if (OtzuToggleButton.Text == "Disable Otzu")
+            {
+                OtzuToggleButton.Text = "Enable Otzu";
+                UserParameters.ChangePrototype(x => x.OtzuActiveInBinarization = false);
+            }
+            else
+            {
+                OtzuToggleButton.Text = "Disable Otzu";
+                UserParameters.ChangePrototype(x => x.OtzuActiveInBinarization = true);
+            }
+        }
+
+        private void BinarizationThresholdTrackbar_ValueChanged(object sender, EventArgs e)
+        {
+            BinarizationThresholdValueLabel.Text = BinarizationThresholdTrackbar.Value.ToString();
+            UserParameters.ChangePrototype(x => x.BinarizationThreshold = BinarizationThresholdTrackbar.Value);
+        }
     }
 }
