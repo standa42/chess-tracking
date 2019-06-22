@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using ChessTracking.ImageProcessing.ChessboardAlgorithms;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
+using ChessTracking.MultithreadingMessages.FromProcessing;
 using ChessTracking.MultithreadingMessages.ToProcessing;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.Stages
@@ -47,13 +49,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             }
         }
 
-        public ChessboardTrackingCompleteData Calibrate(PlaneTrackingCompleteData planeData)
+        public ChessboardTrackingCompleteData Calibrate(PlaneTrackingCompleteData planeData, BlockingCollection<Message> outputQueue)
         {
             var chessboardData = new ChessboardTrackingCompleteData(planeData);
 
             SceneCalibrationSnapshot snapshot;
             (BoardReprezentation, snapshot) = ChessboardAlgorithm.LocateChessboard(chessboardData);
-            chessboardData.Snapshot = snapshot;
+            outputQueue.Add(new SceneCalibrationSnapshotMessage(snapshot));
 
             RotationAlgorithm.Rotate(BoardReprezentation, chessboardData.KinectData.CameraSpacePointsFromDepthData);
 

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.ToProcessing;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces
@@ -18,7 +20,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces
         /// </summary>
         /// <param name="planeData">Data from previous stages of calibration, especially plane calibration</param>
         /// <returns>Data with calibrated chessboard position</returns>
-        ChessboardTrackingCompleteData Calibrate(PlaneTrackingCompleteData planeData);
+        ChessboardTrackingCompleteData Calibrate(PlaneTrackingCompleteData planeData, BlockingCollection<Message> outputQueue);
 
         /// <summary>
         /// Method called while tracking given scene

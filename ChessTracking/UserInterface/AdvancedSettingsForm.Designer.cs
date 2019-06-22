@@ -201,6 +201,7 @@
             // 
             // OtzuToggleButton
             // 
+            this.OtzuToggleButton.AutoSize = true;
             this.OtzuToggleButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.OtzuToggleButton.Depth = 0;
             this.OtzuToggleButton.Icon = null;

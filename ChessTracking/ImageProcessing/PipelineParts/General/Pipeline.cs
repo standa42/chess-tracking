@@ -109,12 +109,8 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             var inputData = new InputData(data, UserParameters);
 
             var planeData = PlaneLocalization.Calibrate(inputData);
-            var chessboardData = ChessboardLocalization.Calibrate(planeData);
-
-            SendResultMessageToUserThread(
-                new SceneCalibrationSnapshotMessage(chessboardData.Snapshot)
-            );
-
+            var chessboardData = ChessboardLocalization.Calibrate(planeData, ProcessingOutputQueue);
+            
             var figuresData = FiguresLocalization.Calibrate(chessboardData);
 
             SendResultMessageToUserThread(new TrackingStartSuccessfulMessage());
