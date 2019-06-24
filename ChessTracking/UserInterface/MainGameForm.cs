@@ -351,34 +351,30 @@ namespace ChessTracking.UserInterface
                 button.Enabled = listedButtons.Contains(button);
         }
 
+        private void ChangeVisibility(List<Control> listedControls, bool visible)
+        {
+            foreach (var control in listedControls)
+                control.Visible = visible;
+        }
+
         public void InitialUiLockState()
         {
             EnableOnlyListedButtons(new List<Button>() { NewGameBtn, LoadGameBtn });
-            FPSLabel.Visible = false;
-            ValidationStateBtn.Visible = false;
-            SceneDisruptionBtn.Visible = false;
-            WhosPlayingLabel.Visible = false;
+            ChangeVisibility(new List<Control>(){ FPSLabel, ValidationStateBtn, SceneDisruptionBtn, WhosPlayingLabel }, false );
         }
 
         public void GameRunningLockState()
         {
             EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, EndGameBtn, StartTrackingBtn });
             UpdateValidationState(null);
-            FPSLabel.Visible = false;
-            ValidationStateBtn.Visible = false;
+            ChangeVisibility(new List<Control>() { FPSLabel, ValidationStateBtn, SceneDisruptionBtn, WhosPlayingLabel }, false);
             WhosPlayingLabel.Text = "   ";
-            WhosPlayingLabel.Visible = false;
-            SceneDisruptionBtn.Visible = false;
-            StartTrackingBtn.Focus();
         }
 
         public void StartedTrackingLockState()
         {
             EnableOnlyListedButtons(new List<Button>() { });
-            FPSLabel.Visible = true;
-            ValidationStateBtn.Visible = true;
-            WhosPlayingLabel.Visible = true;
-            SceneDisruptionBtn.Visible = true;
+            ChangeVisibility(new List<Control>() { FPSLabel, ValidationStateBtn, SceneDisruptionBtn, WhosPlayingLabel }, true);
         }
 
         public void TrackingLockState()
@@ -391,11 +387,7 @@ namespace ChessTracking.UserInterface
         {
             EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, EndGameBtn });
             UpdateValidationState(null);
-            FPSLabel.Visible = false;
-            ValidationStateBtn.Visible = false;
-            WhosPlayingLabel.Visible = false;
-            SceneDisruptionBtn.Visible = false;
-            EndGameBtn.Focus();
+            ChangeVisibility(new List<Control>() { FPSLabel, ValidationStateBtn, SceneDisruptionBtn, WhosPlayingLabel }, false);
         }
 
         #endregion
