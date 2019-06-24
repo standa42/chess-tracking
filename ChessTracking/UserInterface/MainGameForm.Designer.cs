@@ -123,8 +123,8 @@
             this.ColorCalibrationTrackBar.AutoSize = false;
             this.ColorCalibrationTrackBar.LargeChange = 1;
             this.ColorCalibrationTrackBar.Location = new System.Drawing.Point(857, 844);
-            this.ColorCalibrationTrackBar.Maximum = 40;
-            this.ColorCalibrationTrackBar.Minimum = -40;
+            this.ColorCalibrationTrackBar.Maximum = 150;
+            this.ColorCalibrationTrackBar.Minimum = -150;
             this.ColorCalibrationTrackBar.Name = "ColorCalibrationTrackBar";
             this.ColorCalibrationTrackBar.Size = new System.Drawing.Size(174, 37);
             this.ColorCalibrationTrackBar.TabIndex = 19;
