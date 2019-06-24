@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
+using ChessTracking.Utils;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
@@ -47,8 +49,15 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
         {
             var binarizedImg = new Image<Gray, byte>(grayImage.Width, grayImage.Height);
 
-            var threshType = otzuActive ? ThresholdType.Binary | ThresholdType.Otsu : ThresholdType.Binary;
-            CvInvoke.Threshold(grayImage, binarizedImg, binaryThreshold, 255, threshType);
+            if (otzuActive)
+            {
+                var computedOtzuThreshold = CustomOtsuBinarization.GetOtsuThreshold(grayImage.Bitmap, maskedValue: 255);
+                CvInvoke.Threshold(grayImage, binarizedImg, computedOtzuThreshold, 255, ThresholdType.Binary);
+            }
+            else
+            {
+                CvInvoke.Threshold(grayImage, binarizedImg, binaryThreshold, 255, ThresholdType.Binary);
+            }
 
             return binarizedImg;
         }
@@ -93,6 +102,5 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 
             return LinesIntoGroups.FilterLinesBasedOnAngle(lines2, 25);
         }
-        
     }
 }

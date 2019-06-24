@@ -137,6 +137,8 @@
     <Compile Include="UserInterface\CalibrationSnapshotForm.Designer.cs">
       <DependentUpon>CalibrationSnapshotForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\BitmapExtenstions.cs" />
+    <Compile Include="Utils\CustomOtsuBinarization.cs" />
     <Compile Include="Utils\FPSCounter.cs" />
     <Compile Include="ControllingElements\TrackingManager.cs" />
     <Compile Include="ControllingElements\TrackingResultProcessing.cs" />
