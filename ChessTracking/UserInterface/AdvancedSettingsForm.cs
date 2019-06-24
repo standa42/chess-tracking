@@ -27,11 +27,31 @@ namespace ChessTracking.UserInterface
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             
+            PrepareComponentsValues();
         }
-
+        
         private void AdvancedSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             MainForm?.AdvancedFormClosing();
+        }
+
+        private void PrepareComponentsValues()
+        {
+            var parameters = UserParameters.GetShallowCopy();
+
+            MilimetersClippedValueLabel.Text = parameters.MilimetersClippedFromFigure.ToString();
+            MilimetersClippedTrackBar.Value = parameters.MilimetersClippedFromFigure;
+
+            PointsIndicatingFigureValueLabel.Text = parameters.NumberOfPointsIndicatingFigure.ToString();
+            PointsIndicatingFigureTrackBar.Value = parameters.NumberOfPointsIndicatingFigure;
+
+            MilisecondsTasksValueLabel.Text = parameters.MinimalTimeBetweenTrackingTasksInMiliseconds.ToString();
+            MilisecondsTasksTrackBar.Value = parameters.MinimalTimeBetweenTrackingTasksInMiliseconds;
+
+            BinarizationThresholdValueLabel.Text = parameters.BinarizationThreshold.ToString();
+            BinarizationThresholdTrackbar.Value = parameters.BinarizationThreshold;
+
+            OtzuToggleButton.Text = parameters.OtzuActiveInBinarization ? "Disable Otzu" : "Enable Otzu";
         }
 
         private void MilimetersClippedTrackBar_ValueChanged(object sender, EventArgs e)
