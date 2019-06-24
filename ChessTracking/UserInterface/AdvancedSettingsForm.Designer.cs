@@ -197,7 +197,7 @@
             this.BinarizationThresholdValueLabel.Name = "BinarizationThresholdValueLabel";
             this.BinarizationThresholdValueLabel.Size = new System.Drawing.Size(43, 24);
             this.BinarizationThresholdValueLabel.TabIndex = 17;
-            this.BinarizationThresholdValueLabel.Text = "220";
+            this.BinarizationThresholdValueLabel.Text = "120";
             // 
             // OtzuToggleButton
             // 
