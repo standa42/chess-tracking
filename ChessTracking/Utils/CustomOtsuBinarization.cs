@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace ChessTracking.Utils
 {
     /// <summary>
-    /// Modification of https://www.programmingalgorithms.com/algorithm/otsu-threshold
-    /// to archieve otsu binarization with mask option
+    /// Modification of http://www.labbookpages.co.uk/software/imgProc/otsuThreshold.html by Dr. Andrew Greensted
+    /// -> to archieve otsu binarization with mask option that ain't usually supported
     /// </summary>
     static class CustomOtsuBinarization
     {
