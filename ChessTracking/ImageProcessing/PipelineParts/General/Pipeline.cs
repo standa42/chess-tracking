@@ -88,7 +88,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                     {
                         SendResultMessageToUserThread(new TrackingError("Calibration threw an exception"));
                     }
-                        
+
                 }
             }
             else

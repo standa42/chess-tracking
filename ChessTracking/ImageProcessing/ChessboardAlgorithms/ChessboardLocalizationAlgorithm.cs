@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
-using Accord.Math;
-using Accord.Math.Geometry;
 using ChessTracking.ImageProcessing.PipelineData;
-using ChessTracking.ImageProcessing.PipelineParts.General;
-using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
-using ChessTracking.MultithreadingMessages;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
-using MathNet.Spatial.Euclidean;
 using Microsoft.Kinect;
-using Point = Accord.Point;
 using Point2D = MathNet.Spatial.Euclidean.Point2D;
 
 namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
@@ -31,17 +23,18 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 
             var linesTuple = GetFilteredHoughLines(cannyDetectorImage);
 
-            var contractedPoints = GetConcractedPoints(linesTuple);
-
-            var boardRepresentation = ChessboardFittingAlgorithm(contractedPoints, chessboardData);
-
             var snapshot = new SceneCalibrationSnapshot()
             {
                 BinarizationImage = (Bitmap)binarizedImage.Convert<Rgb, byte>().Bitmap.Clone(),
                 CannyImage = (Bitmap)cannyDetectorImage.Convert<Rgb, byte>().Bitmap.Clone(),
                 GrayImage = (Bitmap)grayImage.Convert<Rgb, byte>().Bitmap.Clone(),
-                MaskedColorImage = (Bitmap)chessboardData.PlaneData.MaskedColorImageOfTable.Convert<Rgb,byte>().Bitmap.Clone()
+                MaskedColorImage = (Bitmap)chessboardData.PlaneData.MaskedColorImageOfTable.Convert<Rgb, byte>().Bitmap.Clone()
             };
+
+            var contractedPoints = LinesIntersections.GetIntersectionPointsOfTwoGroupsOfLines(linesTuple);
+
+            var boardRepresentation = ChessboardFittingAlgorithm(contractedPoints, chessboardData);
+            
             return (boardRepresentation, snapshot);
         }
 
@@ -84,12 +77,10 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
             )[0];
 
             // render image with lines from first stage
-            Image<Bgr, Byte> drawnEdges =
-                new Image<Bgr, Byte>(new Size(image.Width, image.Height));
+            Image<Bgr, Byte> drawnEdges = new Image<Bgr, Byte>(new Size(image.Width, image.Height));
 
             foreach (LineSegment2D line in lines)
-                CvInvoke.Line(drawnEdges, line.P1, line.P2,
-                    new Bgr(Color.White).MCvScalar, 1);
+                CvInvoke.Line(drawnEdges, line.P1, line.P2, new Bgr(Color.White).MCvScalar, 1);
 
             // apply second hough transform
             var lines2 = drawnEdges.Convert<Gray, byte>().HoughLinesBinary(
@@ -100,108 +91,9 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                 10
             )[0];
 
-            return LinesFilter.FilterLinesBasedOnAngle(lines2, 25);
+            return LinesIntoGroups.FilterLinesBasedOnAngle(lines2, 25);
         }
-
-        private List<Point2D> GetConcractedPoints(Tuple<LineSegment2D[], LineSegment2D[]> linesTuple)
-        {
-            var points = new List<Point2D>();
-            var contractedPoints = new List<Point2D>();
-            var libraryLines = new Tuple<List<Line2D>, List<Line2D>>(new List<Line2D>(), new List<Line2D>());
-
-            foreach (var lineSegment2D in linesTuple.Item1)
-            {
-                libraryLines.Item1.Add(new Line2D(new Point2D(lineSegment2D.P1.X, lineSegment2D.P1.Y),
-                    new Point2D(lineSegment2D.P2.X, lineSegment2D.P2.Y)));
-            }
-
-            foreach (var lineSegment2D in linesTuple.Item2)
-            {
-                libraryLines.Item2.Add(new Line2D(new Point2D(lineSegment2D.P1.X, lineSegment2D.P1.Y),
-                    new Point2D(lineSegment2D.P2.X, lineSegment2D.P2.Y)));
-            }
-
-            foreach (var line1 in libraryLines.Item1)
-            {
-                foreach (var line2 in libraryLines.Item2)
-                {
-                    var accordLine1 =
-                        new LineSegment(new Point((float)line1.StartPoint.X, (float)line1.StartPoint.Y),
-                            new Point((float)line1.EndPoint.X, (float)line1.EndPoint.Y));
-                    var accordLine2 =
-                        new LineSegment(new Point((float)line2.StartPoint.X, (float)line2.StartPoint.Y),
-                            new Point((float)line2.EndPoint.X, (float)line2.EndPoint.Y));
-
-                    var accordNullablePoint = accordLine1.GetIntersectionWith(accordLine2);
-                    if (accordNullablePoint != null)
-                    {
-                        points.Add(new Point2D(accordNullablePoint.Value.X, accordNullablePoint.Value.Y));
-                    }
-                }
-            }
-
-            foreach (var line1 in linesTuple.Item1)
-            {
-                points.Add(new Point2D(line1.P1.X, line1.P1.Y));
-                points.Add(new Point2D(line1.P2.X, line1.P2.Y));
-            }
-
-            foreach (var line2 in linesTuple.Item2)
-            {
-                points.Add(new Point2D(line2.P1.X, line2.P1.Y));
-                points.Add(new Point2D(line2.P2.X, line2.P2.Y));
-            }
-
-
-            double distance = 12; //15
-            while (true)
-            {
-                // new list for points to average and add first element from remaining list
-                var pointsToAvg = new List<Point2D>();
-                var referencePoint = points.First();
-                pointsToAvg.Add(referencePoint);
-                points.RemoveAt(0);
-
-                // loop throught remaining list and find close neighbors
-                foreach (var point in points)
-                {
-                    double diffX = (referencePoint.X - point.X);
-                    double diffY = (referencePoint.Y - point.Y);
-
-                    if (Math.Sqrt(diffX * diffX + diffY * diffY) < distance)
-                    {
-                        pointsToAvg.Add(point);
-                    }
-                }
-
-                // remove them all from remaining list
-                foreach (var pointToRemove in pointsToAvg)
-                {
-                    points.Remove(pointToRemove);
-                }
-
-                // compute average and add it to list
-                double x = 0;
-                double y = 0;
-                int count = 0;
-                foreach (var point in pointsToAvg)
-                {
-                    x += point.X;
-                    y += point.Y;
-                    count++;
-                }
-
-                contractedPoints.Add(new Point2D((int)x / count, (int)y / count));
-
-                // if rem. list is empty -> break
-                if (points.Count == 0)
-                {
-                    break;
-                }
-            }
-
-            return contractedPoints;
-        }
+        
 
         private Chessboard3DReprezentation ChessboardFittingAlgorithm(List<Point2D> contractedPoints, ChessboardTrackingCompleteData chessboardData)
         {

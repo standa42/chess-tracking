@@ -8,7 +8,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
     /// <summary>
     /// Contains algorithms from selection of two distinct groups of lines based on similar angle, that have largest line count in sum
     /// </summary>
-    static class LinesFilter
+    static class LinesIntoGroups
     {
         /// <summary>
         /// Selects two distinct groups (according to similar angle) of lines from input with largest line count in sum
