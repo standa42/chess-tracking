@@ -117,6 +117,9 @@
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IChessboardLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IFiguresLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IPlaneLocalization.cs" />
+    <Compile Include="Utils\MyVector2D.cs" />
+    <Compile Include="Utils\MyVector3DStruct.cs" />
+    <Compile Include="Utils\Position2D.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\SceneCalibrationSnapshotMessage.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\TrackingError.cs" />
     <Compile Include="MultithreadingMessages\FromProcessing\TrackingStartSuccessfulMessage.cs" />
@@ -171,7 +174,7 @@
     <Compile Include="ImageProcessing\PlaneAlgorithms\Data.cs" />
     <Compile Include="ImageProcessing\PlaneAlgorithms\MyCameraSpacePoint.cs" />
     <Compile Include="ImageProcessing\PlaneAlgorithms\RansacSeedTriangle.cs" />
-    <Compile Include="ImageProcessing\PlaneAlgorithms\Utils.cs" />
+    <Compile Include="Utils\MyVector3D.cs" />
     <Compile Include="ImageProcessing\PipelineData\KinectData.cs" />
     <Compile Include="UserInterface\MainGameForm.cs">
       <SubType>Form</SubType>

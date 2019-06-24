@@ -7,6 +7,7 @@ using ChessTracking.ImageProcessing.PlaneAlgorithms;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.FromProcessing;
 using ChessTracking.MultithreadingMessages.ToProcessing;
+using ChessTracking.Utils;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.Stages
 {

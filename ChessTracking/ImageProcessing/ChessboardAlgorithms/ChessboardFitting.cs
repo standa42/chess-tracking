@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
+using ChessTracking.Utils;
 using Microsoft.Kinect;
 using Point2D = MathNet.Spatial.Euclidean.Point2D;
 

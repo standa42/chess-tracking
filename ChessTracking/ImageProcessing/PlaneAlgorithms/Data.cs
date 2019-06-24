@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using ChessTracking.Utils;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.LinearRegression;
 using Microsoft.Kinect;

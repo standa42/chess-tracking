@@ -1,4 +1,5 @@
 ﻿using System;
+using ChessTracking.Utils;
 
 namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 {

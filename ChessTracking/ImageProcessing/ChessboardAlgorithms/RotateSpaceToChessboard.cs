@@ -1,6 +1,7 @@
 ﻿using System;
 using Accord.Math;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
+using ChessTracking.Utils;
 using Microsoft.Kinect;
 
 namespace ChessTracking.ImageProcessing.ChessboardAlgorithms

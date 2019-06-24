@@ -1,5 +1,6 @@
 ﻿using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PlaneAlgorithms;
+using ChessTracking.Utils;
 
 namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 {
