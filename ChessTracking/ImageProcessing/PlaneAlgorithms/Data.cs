@@ -182,6 +182,12 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                     }
                 }
 
+                // discrimination of planes with wierd angles (like kinect is upside down)
+                if ((normal.y > 0 && normal.z > 0) || (normal.y < 0 && normal.z < 0))
+                {
+                    numberOfTablePoints /= 3;
+                }
+                
                 // check it its optimal estimation so far
                 if (numberOfTablePoints > max)
                 {
