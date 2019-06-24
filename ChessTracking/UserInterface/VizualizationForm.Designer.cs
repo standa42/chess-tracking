@@ -34,7 +34,10 @@
             // 
             // VizualizationPictureBox
             // 
-            this.VizualizationPictureBox.Location = new System.Drawing.Point(-1, 77);
+            this.VizualizationPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.VizualizationPictureBox.Location = new System.Drawing.Point(4, 79);
             this.VizualizationPictureBox.Name = "VizualizationPictureBox";
             this.VizualizationPictureBox.Size = new System.Drawing.Size(960, 540);
             this.VizualizationPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -45,7 +48,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 616);
+            this.ClientSize = new System.Drawing.Size(969, 622);
             this.Controls.Add(this.VizualizationPictureBox);
             this.Name = "VizualizationForm";
             this.Text = "Vizualization";

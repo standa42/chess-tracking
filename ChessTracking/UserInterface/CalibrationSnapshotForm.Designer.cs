@@ -37,15 +37,19 @@
             // 
             // PictureBox1
             // 
+            this.PictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PictureBox1.Location = new System.Drawing.Point(-1, 77);
             this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(956, 550);
+            this.PictureBox1.Size = new System.Drawing.Size(952, 550);
             this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBox1.TabIndex = 0;
             this.PictureBox1.TabStop = false;
             // 
             // NameLabel
             // 
+            this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.NameLabel.AutoSize = true;
             this.NameLabel.Depth = 0;
             this.NameLabel.Font = new System.Drawing.Font("Roboto", 11F);
@@ -59,10 +63,12 @@
             // 
             // LeftButton
             // 
+            this.LeftButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LeftButton.AutoSize = true;
             this.LeftButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LeftButton.Depth = 0;
             this.LeftButton.Icon = null;
-            this.LeftButton.Location = new System.Drawing.Point(863, 633);
+            this.LeftButton.Location = new System.Drawing.Point(862, 637);
             this.LeftButton.MaximumSize = new System.Drawing.Size(40, 40);
             this.LeftButton.MinimumSize = new System.Drawing.Size(40, 40);
             this.LeftButton.MouseState = MaterialSkin.MouseState.HOVER;
@@ -77,10 +83,12 @@
             // 
             // RightButton
             // 
+            this.RightButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RightButton.AutoSize = true;
             this.RightButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.RightButton.Depth = 0;
             this.RightButton.Icon = null;
-            this.RightButton.Location = new System.Drawing.Point(909, 633);
+            this.RightButton.Location = new System.Drawing.Point(908, 637);
             this.RightButton.MaximumSize = new System.Drawing.Size(40, 40);
             this.RightButton.MinimumSize = new System.Drawing.Size(40, 40);
             this.RightButton.MouseState = MaterialSkin.MouseState.HOVER;
@@ -97,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 677);
+            this.ClientSize = new System.Drawing.Size(951, 677);
             this.Controls.Add(this.RightButton);
             this.Controls.Add(this.LeftButton);
             this.Controls.Add(this.NameLabel);

@@ -85,7 +85,12 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                 {
                     TrackingCanceled = true;
                     if (e is TimeoutException)
-                        SendResultMessageToUserThread(new TrackingError("Calibration - no kinect data - check connection of sensor"));
+                        SendResultMessageToUserThread(new TrackingError("Calibration - no data from Kinect"));
+                    else if (e is CalibrationException)
+                    {
+                        if (!string.IsNullOrEmpty(e.Message))
+                            SendResultMessageToUserThread(new TrackingError(e.Message));
+                    }
                     else
                     {
                         SendResultMessageToUserThread(new TrackingError("Calibration threw an exception"));
@@ -101,18 +106,18 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
 
         private void Calibration()
         {
-            // if data arrive in 10 seconds, there is probably something wrong
+            // if data don't arrive in 10 seconds, there is probably something wrong
             var data = Buffer.TryTake(10000);
 
             if(data == null)
                 throw new TimeoutException();
             
             UserParameters = UserParametersFactory.GetShallowCopy();
-            var inputData = new InputData(data, UserParameters);
 
+            var inputData = new InputData(data, UserParameters);
+            
             var planeData = PlaneLocalization.Calibrate(inputData);
             var chessboardData = ChessboardLocalization.Calibrate(planeData, ProcessingOutputQueue);
-            
             var figuresData = FiguresLocalization.Calibrate(chessboardData);
 
             SendResultMessageToUserThread(new TrackingStartSuccessfulMessage());
