@@ -93,6 +93,7 @@
     <Compile Include="ControllingElements\ProgramState\States\TrackingStartedState.cs" />
     <Compile Include="Game\LoadingResult.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\Chessboard3DReprezentation.cs" />
+    <Compile Include="ImageProcessing\ChessboardAlgorithms\ChessboardFitting.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\ChessboardLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\IChessboardLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\IRotateSpaceToChessboard.cs" />
