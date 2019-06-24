@@ -110,7 +110,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                                                 new MyVector3DStruct(x.x, x.y, x.z)));
                                         
                                         // clipping of max error per point
-                                        closestPointDistance = closestPointDistance > 0.011 ? 0.011 : closestPointDistance;
+                                        closestPointDistance = closestPointDistance > 0.015 ? 0.015 : closestPointDistance;
 
                                         closestPointDistance = closestPointDistance * closestPointDistance;
 
