@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
@@ -8,6 +9,7 @@ using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.FromProcessing;
 using ChessTracking.MultithreadingMessages.ToProcessing;
+using ChessTracking.Utils;
 
 namespace ChessTracking.ImageProcessing.PipelineParts.General
 {
@@ -156,7 +158,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             var figuresData = FiguresLocalization.Track(chessboardData);
 
             SendResultMessageToUserThread(
-                new ResultMessage(figuresData.ResultData.VisualisationBitmap, figuresData.ResultData.TrackingState, figuresData.ResultData.SceneDisrupted)
+                new ResultMessage(figuresData.ResultData.VisualisationBitmap.HorizontalFlip(), figuresData.ResultData.TrackingState, figuresData.ResultData.SceneDisrupted)
             );
         }
 

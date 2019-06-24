@@ -27,10 +27,10 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 
             var snapshot = new SceneCalibrationSnapshot()
             {
-                BinarizationImage = (Bitmap)binarizedImage.Convert<Rgb, byte>().Bitmap.Clone(),
-                CannyImage = (Bitmap)cannyDetectorImage.Convert<Rgb, byte>().Bitmap.Clone(),
-                GrayImage = (Bitmap)grayImage.Convert<Rgb, byte>().Bitmap.Clone(),
-                MaskedColorImage = (Bitmap)chessboardData.PlaneData.MaskedColorImageOfTable.Convert<Rgb, byte>().Bitmap.Clone()
+                BinarizationImage = ((Bitmap)binarizedImage.Convert<Rgb, byte>().Bitmap.Clone()).HorizontalFlip(),
+                CannyImage = ((Bitmap)cannyDetectorImage.Convert<Rgb, byte>().Bitmap.Clone()).HorizontalFlip(),
+                GrayImage = ((Bitmap)grayImage.Convert<Rgb, byte>().Bitmap.Clone()).HorizontalFlip(),
+                MaskedColorImage = ((Bitmap)chessboardData.PlaneData.MaskedColorImageOfTable.Convert<Rgb, byte>().Bitmap.Clone()).HorizontalFlip()
             };
 
             var contractedPoints = LinesIntersections.GetIntersectionPointsOfTwoGroupsOfLines(linesTuple);
