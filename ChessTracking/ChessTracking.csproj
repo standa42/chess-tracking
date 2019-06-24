@@ -117,6 +117,9 @@
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IChessboardLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IFiguresLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IPlaneLocalization.cs" />
+    <Compile Include="Utils\Point.cs" />
+    <Compile Include="Utils\Root.cs" />
+    <Compile Include="ImageProcessing\PlaneAlgorithms\TrianglesGenerator.cs" />
     <Compile Include="Utils\MyVector2D.cs" />
     <Compile Include="Utils\MyVector3DStruct.cs" />
     <Compile Include="Utils\Position2D.cs" />

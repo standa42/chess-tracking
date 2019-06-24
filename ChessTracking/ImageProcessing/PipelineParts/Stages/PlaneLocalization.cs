@@ -39,7 +39,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             data.LinearRegression();
             data.LargestTableArea();
             data.RotationTo2DModified();
-            LocalizedTableMask = data.ConvexHullAlgorithmModified();
+            LocalizedTableMask = data.ConvexHullAlgorithm();
 
             var colorImg = ReturnColorImageOfTable(LocalizedTableMask, planeData.KinectData.ColorFrameData, planeData.KinectData.PointsFromColorToDepth);
             planeData.PlaneData.MaskedColorImageOfTable = colorImg;

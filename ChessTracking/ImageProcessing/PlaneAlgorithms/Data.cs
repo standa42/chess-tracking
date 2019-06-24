@@ -96,7 +96,7 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
         public void Ransac()
         {
             if (TriangleSeedsForRansac == null)
-                GenerateTriangleSeedsInImage();
+                TriangleSeedsForRansac = TrianglesGenerator.GenerateTriangleSeedsInImage();
 
             // Uniform distribution of work into tasks
             int partsCount = PlaneLocalizationConfig.ParalelTasksCount;
@@ -122,42 +122,6 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
             Task.WaitAll(tasks.ToArray());
 
             MarkTablePixels();
-        }
-
-        /// <summary>
-        /// Mark pixels that are near plane as part of that plane
-        /// </summary>
-        private void MarkTablePixels()
-        {
-            for (int i = 0; i < DepthData.Length; i++)
-            {
-                if (DepthData[i].Type == PixelType.Invalid) continue;
-
-                float pointX = DepthData[i].X;
-                float pointY = DepthData[i].Y;
-                float pointZ = DepthData[i].Z;
-                
-                float eucledidianDistancePointToPlane = 
-                    (float)
-                    (Math.Abs(
-                         PlaneLocalizationConfig.FinalNormal.x * pointX + 
-                         PlaneLocalizationConfig.FinalNormal.y * pointY + 
-                         PlaneLocalizationConfig.FinalNormal.z * pointZ + 
-                         PlaneLocalizationConfig.FinalD
-                         ) 
-                     / 
-                     Math.Sqrt(
-                         PlaneLocalizationConfig.FinalNormal.x * PlaneLocalizationConfig.FinalNormal.x +
-                         PlaneLocalizationConfig.FinalNormal.y * PlaneLocalizationConfig.FinalNormal.y +
-                         PlaneLocalizationConfig.FinalNormal.z * PlaneLocalizationConfig.FinalNormal.z
-                         )
-                     );
-
-                if (eucledidianDistancePointToPlane < PlaneLocalizationConfig.RansacThickness)
-                {
-                    DepthData[i].Type = PixelType.Table;
-                }
-            }
         }
 
         /// <summary>
@@ -205,9 +169,13 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                         float pointY = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Y;
                         float pointZ = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Z;
 
-                        float distance = (float)(Math.Abs(normal.x * pointX + normal.y * pointY + normal.z * pointZ + d) / Math.Sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z));
+                        float distancePointPlane =
+                            (float)(
+                                    Math.Abs(normal.x * pointX + normal.y * pointY + normal.z * pointZ + d) /
+                                    Math.Sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z)
+                                   );
 
-                        if (distance < threshold)
+                        if (distancePointPlane < threshold)
                         {
                             numberOfTablePoints++;
                         }
@@ -235,72 +203,99 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                 }
 
             }
-
-
-
-
         }
 
+        /// <summary>
+        /// Mark pixels that are near plane as part of that plane
+        /// </summary>
+        private void MarkTablePixels()
+        {
+            for (int i = 0; i < DepthData.Length; i++)
+            {
+                if (DepthData[i].Type == PixelType.Invalid) continue;
+
+                float pointX = DepthData[i].X;
+                float pointY = DepthData[i].Y;
+                float pointZ = DepthData[i].Z;
+                
+                float eucledidianDistancePointToPlane = 
+                    (float)
+                    (Math.Abs(
+                         PlaneLocalizationConfig.FinalNormal.x * pointX + 
+                         PlaneLocalizationConfig.FinalNormal.y * pointY + 
+                         PlaneLocalizationConfig.FinalNormal.z * pointZ + 
+                         PlaneLocalizationConfig.FinalD
+                         ) 
+                     / 
+                     Math.Sqrt(
+                         PlaneLocalizationConfig.FinalNormal.x * PlaneLocalizationConfig.FinalNormal.x +
+                         PlaneLocalizationConfig.FinalNormal.y * PlaneLocalizationConfig.FinalNormal.y +
+                         PlaneLocalizationConfig.FinalNormal.z * PlaneLocalizationConfig.FinalNormal.z
+                         )
+                     );
+
+                if (eucledidianDistancePointToPlane < PlaneLocalizationConfig.RansacThickness)
+                {
+                    DepthData[i].Type = PixelType.Table;
+                }
+            }
+        }
+        
         /// <summary>
         /// Selects largest continuous area marked as table
         /// Permorms it throught BFS from pseudorandom points
         /// </summary>
         public void LargestTableArea()
         {
-            List<Root> roots = new List<Root> {new Root(0, 0, 0)};
-            // empty root for filling the list
-            int[] rootOvnershipMarkers = new int[DepthData.Length];
+            List<Root> roots = new List<Root> {new Root(0, 0, 0)}; // empty root as padding for forbidden value 0
+            // array recording which pixel belongs to which root
+            int[] rootOwnershipMarkersOnIndividualPixels = new int[DepthData.Length];
 
-            for (int y = 1; y < PlaneLocalizationConfig.DepthImageHeight; y += 20)
+            // roots are seeded on every x-th pixel to speedup computation
+            int rootSeedingSkipValue = 20;
+
+            // for each possible root position (forming a grid)
+            for (int y = 1; y < PlaneLocalizationConfig.DepthImageHeight; y += rootSeedingSkipValue)
             {
-                for (int x = 1; x < PlaneLocalizationConfig.DepthImageWidth; x += 20)
+                for (int x = 1; x < PlaneLocalizationConfig.DepthImageWidth; x += rootSeedingSkipValue)
                 {
                     // is table pixel and doesnt belong to any area yet? -> perform bfs from this point
-                    if ((DepthData[PosFromCoor(x, y)].Type == PixelType.Table) && (rootOvnershipMarkers[PosFromCoor(x, y)] == 0))
+                    if ((DepthData[PosFromCoor(x, y)].Type == PixelType.Table) && (rootOwnershipMarkersOnIndividualPixels[PosFromCoor(x, y)] == 0))
                     {
                         int position = PosFromCoor(x, y);
                         int areaNumber = roots.Count;
 
+                        // add new root
                         roots.Add(new Root(areaNumber, x, y));
 
                         Queue<Point> points = new Queue<Point>();
 
+                        // mark point
                         points.Enqueue(new Point(x, y));
                         Root root = roots[areaNumber];
                         root.count++;
 
+                        // perform bfs spreading
                         while (points.Count != 0)
                         {
                             Point point = points.Dequeue();
 
-                            if ((DepthData[point.position].Type == PixelType.Table) && (rootOvnershipMarkers[point.position] == 0))
+                            if ((DepthData[point.position].Type == PixelType.Table) && (rootOwnershipMarkersOnIndividualPixels[point.position] == 0))
                             {
                                 root.count++;
-                                rootOvnershipMarkers[point.position] = areaNumber;
-
-                                //
+                                rootOwnershipMarkersOnIndividualPixels[point.position] = areaNumber;
+                                
                                 if (point.y > 0)
-                                {
                                     points.Enqueue(new Point(point.x, point.y - 1));
-                                }
 
                                 if (point.x > 0)
-                                {
                                     points.Enqueue(new Point(point.x - 1, point.y));
-                                }
 
                                 if (point.y < PlaneLocalizationConfig.DepthImageHeight - 1)
-                                {
                                     points.Enqueue(new Point(point.x, point.y + 1));
-                                }
 
                                 if (point.x < PlaneLocalizationConfig.DepthImageWidth - 1)
-                                {
                                     points.Enqueue(new Point(point.x + 1, point.y));
-                                }
-
-                                //
-
                             }
                         }
 
@@ -312,91 +307,45 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
             int max = 0;
             int maxPosition = 0;
             for (int i = 0; i < roots.Count; i++)
-            {
                 if (roots[i].count > max)
                 {
                     max = roots[i].count;
                     maxPosition = i;
                 }
-            }
 
             // Invalidate all table pixels that doesnt belong to the largest area
             for (int i = 0; i < DepthData.Length; i++)
-            {
-                if ((rootOvnershipMarkers[i] != maxPosition) && DepthData[i].Type == PixelType.Table)
-                {
+                if ((rootOwnershipMarkersOnIndividualPixels[i] != maxPosition) && DepthData[i].Type == PixelType.Table)
                     DepthData[i].Type = PixelType.NotMarked;
-                }
-
-            }
-
         }
-
-        private struct Point
-        {
-            public int x;
-            public int y;
-            public int position;
-
-            public Point(int _x, int _y)
-            {
-                x = _x;
-                y = _y;
-                position = x + y * PlaneLocalizationConfig.DepthImageWidth;
-            }
-        }
-
-        private class Root
-        {
-            public int selfReferenceNumber;
-
-            public int x;
-            public int y;
-
-            public int count;
-
-            public Root(int nr, int _x, int _y)
-            {
-                selfReferenceNumber = nr;
-                x = _x;
-                y = _y;
-                count = 0;
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static int PosFromCoor(int x, int y)
-        {
-            return y * PlaneLocalizationConfig.DepthImageWidth + x;
-        }
-
+        
+        /// <summary>
+        /// Performs linear regression that is evaluated on every x-th pixel
+        /// </summary>
         public void LinearRegression()
         {
             int step = PlaneLocalizationConfig.RegressionIsEvaluatedOnEveryNthTablePixel;
 
-            int NumberOfEvaluatedTablePixels = 0;
+            // count how many evaluated pixels are valid
+            int numberOfEvaluatedTablePixels = 0;
             for (int i = 0; i < DepthData.Length; i += step)
-            {
                 if (DepthData[i].Type == PixelType.Table)
-                {
-                    NumberOfEvaluatedTablePixels++;
-                }
-            }
+                    numberOfEvaluatedTablePixels++;
 
-            if (NumberOfEvaluatedTablePixels == 0) return;
+            if (numberOfEvaluatedTablePixels == 0) return;
 
             // allocate arrays for values for regression
-            double[] LAx = new double[NumberOfEvaluatedTablePixels];
-            double[] LAy = new double[NumberOfEvaluatedTablePixels];
-            double[] LAvalue = new double[NumberOfEvaluatedTablePixels];
+            double[] lAx = new double[numberOfEvaluatedTablePixels];
+            double[] lAy = new double[numberOfEvaluatedTablePixels];
+            double[] lAvalue = new double[numberOfEvaluatedTablePixels];
 
-            double[] ones = new double[NumberOfEvaluatedTablePixels];
+            double[] ones = new double[numberOfEvaluatedTablePixels];
 
             // temporary - hold position in upper arrays
             int counter = 0;
 
             // fill data to the arrays
-            for (int i = 0; i < NumberOfEvaluatedTablePixels; i++)
+            for (int i = 0; i < numberOfEvaluatedTablePixels; i++)
             {
                 ones[i] = 1;
             }
@@ -404,26 +353,24 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
             {
                 if (DepthData[i].Type == PixelType.Table)
                 {
-                    LAx[counter] = DepthData[i].X;
-                    LAy[counter] = DepthData[i].Y;
-                    LAvalue[counter] = DepthData[i].Z;
+                    lAx[counter] = DepthData[i].X;
+                    lAy[counter] = DepthData[i].Y;
+                    lAvalue[counter] = DepthData[i].Z;
 
                     counter++;
                 }
             }
 
             // library regression solver
-            var X = DenseMatrix.OfColumnArrays(ones, LAx, LAy);
-            var YY = new DenseVector(LAvalue);
-
-
+            var X = DenseMatrix.OfColumnArrays(ones, lAx, lAy);
+            var YY = new DenseVector(lAvalue);
+            
             double[][] abc = new double[3][];
             abc[0] = ones;
-            abc[1] = LAx;
-            abc[2] = LAy;
+            abc[1] = lAx;
+            abc[2] = lAy;
 
             var p = MultipleRegression.QR((MathNet.Numerics.LinearAlgebra.Matrix<double>)X, YY);
-            //var p = X.QR().Solve(YY);
 
             // regression coeficients
             double a = p[0];
@@ -453,12 +400,8 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 
             // erase potentional table markers
             for (int i = 0; i < DepthData.Length; i++)
-            {
                 if (DepthData[i].Type == PixelType.Table)
-                {
                     DepthData[i].Type = PixelType.NotMarked;
-                }
-            }
 
             // Mark pixels as table, based on distance from computed plane 
             for (int y = 0; y < PlaneLocalizationConfig.DepthImageHeight; y++)
@@ -466,15 +409,14 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                 for (int x = 0; x < PlaneLocalizationConfig.DepthImageWidth; x++)
                 {
                     if (DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Type == PixelType.Invalid)
-                    {
                         continue;
-                    }
 
                     float pointX = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].X;
                     float pointY = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Y;
                     float pointZ = DepthData[x + y * PlaneLocalizationConfig.DepthImageWidth].Z;
 
-                    float distance = (float)(Math.Abs(normal.x * pointX + normal.y * pointY + normal.z * pointZ + d) / Math.Sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z));
+                    float distance = (float)(Math.Abs(normal.x * pointX + normal.y * pointY + normal.z * pointZ + d) / 
+                                             Math.Sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z));
 
                     if (distance < PlaneLocalizationConfig.RegreseTloustka)
                     {
@@ -482,11 +424,8 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                     }
                 }
             }
-
-
         }
         
-
         /// <summary>
         /// Provides "bird view" of the table (z coordinate is height)
         /// Translates origin to the table center
@@ -546,8 +485,7 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                 float newX = (float)(DepthData[i].X * m11 + DepthData[i].Y * m12 + DepthData[i].Z * m13);
                 float newY = (float)(DepthData[i].X * m21 + DepthData[i].Y * m22 + DepthData[i].Z * m23);
                 float newZ = (float)(DepthData[i].X * m31 + DepthData[i].Y * m32 + DepthData[i].Z * m33);
-
-
+                
                 DepthData[i].X = newX;
                 DepthData[i].Y = newY;
                 DepthData[i].Z = newZ;
@@ -555,10 +493,12 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
             return new Tuple<double,double>(angleX, angleY);
         }
         
-
-        public bool[] ConvexHullAlgorithmModified()
+        /// <summary>
+        /// Computes table as minimal bounding rectangle over table pixels and makes a mask of table and table items
+        /// </summary>
+        public bool[] ConvexHullAlgorithm()
         {
-            // get candidates to convex hull
+            // get candidates to convex hull -> those marked as table points that neighbors with different type of point
             List<ConvexHullPoints> pts = new List<ConvexHullPoints>();
 
             for (int y = 0; y < PlaneLocalizationConfig.DepthImageHeight; y++)
@@ -568,75 +508,34 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                     #region longIfs - optimalization - takes only pixels of table that are surrounded with different pixel type
                     if (DepthData[PosFromCoor(x, y)].Type == PixelType.Table)
                     {
-
                         bool left = false;
                         bool right = false;
                         bool up = false;
                         bool down = false;
 
                         if (x > 0)
-                        {
                             if (DepthData[PosFromCoor(x - 1, y)].Type == PixelType.Table)
-                            {
                                 left = true;
-                            }
-                            else
-                            {
-                                left = false;
-                            }
-                        }
                         else
-                        {
                             left = true;
-                        }
 
                         if (x < PlaneLocalizationConfig.DepthImageWidth - 1)
-                        {
                             if (DepthData[PosFromCoor(x + 1, y)].Type == PixelType.Table)
-                            {
                                 right = true;
-                            }
-                            else
-                            {
-                                right = false;
-                            }
-                        }
                         else
-                        {
                             right = true;
-                        }
 
                         if (y > 0)
-                        {
                             if (DepthData[PosFromCoor(x, y - 1)].Type == PixelType.Table)
-                            {
                                 up = true;
-                            }
-                            else
-                            {
-                                up = false;
-                            }
-                        }
                         else
-                        {
                             up = true;
-                        }
 
                         if (y < PlaneLocalizationConfig.DepthImageHeight - 1)
-                        {
                             if (DepthData[PosFromCoor(x, y + 1)].Type == PixelType.Table)
-                            {
                                 down = true;
-                            }
-                            else
-                            {
-                                down = false;
-                            }
-                        }
                         else
-                        {
                             down = true;
-                        }
 
                         if (!(left && right && up && down))
                         {
@@ -651,11 +550,7 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
             // make convex hull with algorithm
             List<ConvexHullPoints> hullPts = (List<ConvexHullPoints>)ConvexHull.MakeHull(pts);
 
-            // make Minimal Bounding Rectangle and check, which points fall into it
-
-            //TODO refactor
-            int i1 = 0;
-            int i2 = 0;
+            // make Minimal Bounding Rectangle using one edge of hull at a time
             double minArea = double.PositiveInfinity;
             double minAreaAngle = double.PositiveInfinity;
             MyVector2D maxValues = new MyVector2D(0, 0);
@@ -663,15 +558,13 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 
             for (int i = 0; i < hullPts.Count; i++)
             {
-                // z jakych bodu se bude delat vektor
+                // from which points will be the edge
                 int index1 = i;
                 int index2 = i + 1;
 
-                // spojeni bodu na konci a zacatku listu
+                // special case of overflowing index
                 if (index1 == (hullPts.Count - 1))
-                {
                     index2 = 0;
-                }
 
                 // get vectors and angle
                 MyVector2D v = new MyVector2D(hullPts[index1].X - hullPts[index2].X, hullPts[index1].Y - hullPts[index2].Y);
@@ -690,23 +583,16 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                     double y = hullPts[j].X * Math.Sin(angle) + hullPts[j].Y * Math.Cos(angle);
 
                     if (x > maxX)
-                    {
                         maxX = x;
-                    }
                     if (y > maxY)
-                    {
                         maxY = y;
-                    }
                     if (x < minX)
-                    {
                         minX = x;
-                    }
                     if (y < minY)
-                    {
                         minY = y;
-                    }
                 }
 
+                // compute area of rectangle
                 double area = Math.Abs(maxX - minX) * Math.Abs(maxY - minY);
                 if (area < minArea)
                 {
@@ -714,18 +600,17 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                     minAreaAngle = angle;
                     minValues = new MyVector2D(minX, minY);
                     maxValues = new MyVector2D(maxX, maxY);
-                    i1 = index1;
-                    i2 = index2;
                 }
             }
 
-            // male orezani okraje - neni nezbytne, jen pro debug
+            // clipping of edges - for small corrections of table edge error - not necessary
             minValues.X += 0.01f;
             minValues.Y += 0.01f;
             maxValues.X += -0.01f;
             maxValues.Y += -0.01f;
 
-            bool[] resultBools = new bool[512*424];
+            // compute mask for given minimal bounding rectangle and some height limits
+            bool[] resultingMaskOfTable = new bool[512*424];
 
             for (int i = 0; i < DepthData.Length; i++)
             {
@@ -735,82 +620,24 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                 if (
                     (x > minValues.X) && (x < maxValues.X) &&
                     (y > minValues.Y) && (y < maxValues.Y) &&
-                    //DepthData[i].type == PixelType.NotMarked &&
-                    //&& DepthData[i].Z > PlaneLocalizationConfig.RegreseTloustka && DepthData[i].Z < 0.2f
                     DepthData[i].Z < 0.2f && DepthData[i].Z > -0.3f
                     )
-                {
-                    resultBools[i] = true;
-                }
+                    resultingMaskOfTable[i] = true;
                 else
-                {
-                    resultBools[i] = false;
-                }
+                    resultingMaskOfTable[i] = false;
             }
 
 
-            return resultBools;
-        }
-
-       /// <summary>
-       /// Generates uniformly distributed right triangles into image bounds
-       /// </summary>
-        private void GenerateTriangleSeedsInImage()
-        {
-            TriangleSeedsForRansac = new List<RansacSeedTriangle>();
-
-            int offsetFromImageBorders = 102;
-
-            // intervals to move in
-            int zacX = 0 + offsetFromImageBorders; 
-            int konX = PlaneLocalizationConfig.DepthImageWidth - offsetFromImageBorders; 
-            int zacY = 0 + offsetFromImageBorders; 
-            int konY = PlaneLocalizationConfig.DepthImageHeight - offsetFromImageBorders;
-
-            // generation steps
-            int positionStep = 15;
-            int angleStep = 43;
-
-            int currentRotation = 0;
-            
-            // move in discrete steps over image
-            // and generate triangles with various sizes and rotations
-            for (int y = zacY; y < konY; y += positionStep)
-            {
-                for (int x = zacX; x < konX; x += positionStep)
-                {
-                    TriangleSeedsForRansac.Add(GenerateTriangle(x,y,30,currentRotation));
-                    TriangleSeedsForRansac.Add(GenerateTriangle(x, y, 60, currentRotation));
-                    TriangleSeedsForRansac.Add(GenerateTriangle(x, y, 98, currentRotation));
-                    
-                    // reset rotation if overflows
-                    currentRotation += angleStep;
-                    if (currentRotation >= 360) currentRotation -= 360;
-                }
-            }
-
+            return resultingMaskOfTable;
         }
 
         /// <summary>
-        /// Generates right triangle in x,y position with given size and rotation
+        /// Get linear position in picture from 2D coordinates
         /// </summary>
-        /// <returns>Generated triangle</returns>
-        private RansacSeedTriangle GenerateTriangle(int x, int y, int size, int rotation)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static int PosFromCoor(int x, int y)
         {
-            var center = new Position2D(x, y);
-            var up = new Position2D(x, y + size);
-            var right = new Position2D(x + size, (int)(y));
-
-            up.RotateAroundPoint(rotation, center);
-            right.RotateAroundPoint(rotation, center);
-
-            return new RansacSeedTriangle(
-                center.X + center.Y * PlaneLocalizationConfig.DepthImageWidth,
-                up.X + up.Y * PlaneLocalizationConfig.DepthImageWidth,
-                right.X + right.Y * PlaneLocalizationConfig.DepthImageWidth
-                );
+            return y * PlaneLocalizationConfig.DepthImageWidth + x;
         }
-
-
     }
 }
