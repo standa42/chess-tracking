@@ -514,26 +514,34 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                         bool down = false;
 
                         if (x > 0)
+                        {
                             if (DepthData[PosFromCoor(x - 1, y)].Type == PixelType.Table)
                                 left = true;
+                        }
                         else
                             left = true;
 
                         if (x < PlaneLocalizationConfig.DepthImageWidth - 1)
+                        {
                             if (DepthData[PosFromCoor(x + 1, y)].Type == PixelType.Table)
                                 right = true;
+                        }
                         else
                             right = true;
 
                         if (y > 0)
+                        {
                             if (DepthData[PosFromCoor(x, y - 1)].Type == PixelType.Table)
                                 up = true;
+                        }
                         else
                             up = true;
 
                         if (y < PlaneLocalizationConfig.DepthImageHeight - 1)
+                        {
                             if (DepthData[PosFromCoor(x, y + 1)].Type == PixelType.Table)
                                 down = true;
+                        }
                         else
                             down = true;
 
