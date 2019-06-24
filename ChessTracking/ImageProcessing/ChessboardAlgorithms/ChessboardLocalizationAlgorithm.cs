@@ -100,7 +100,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                 10
             )[0];
 
-            return FilterLinesBasedOnAngle(lines2, 25);
+            return LinesFilter.FilterLinesBasedOnAngle(lines2, 25);
         }
 
         private List<Point2D> GetConcractedPoints(Tuple<LineSegment2D[], LineSegment2D[]> linesTuple)
@@ -347,124 +347,8 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
 
             return BoardRepresentation;
         }
-
         
-
-        private Tuple<LineSegment2D[], LineSegment2D[]> FilterLinesBasedOnAngle(LineSegment2D[] lines, int angle)
-        {
-            int deg = 180;
-            var resultLines1 = new List<LineSegment2D>();
-            var resultLines2 = new List<LineSegment2D>();
-
-            List<LineSegment2D>[] linesByAngle = new List<LineSegment2D>[deg];
-            for (int i = 0; i < linesByAngle.Length; i++)
-            {
-                linesByAngle[i] = new List<LineSegment2D>();
-            }
-
-            // fill lines into their degree reprezentation
-            for (int i = 0; i < lines.Length; i++)
-            {
-                var diffX = lines[i].P1.X - lines[i].P2.X;
-                var diffY = lines[i].P1.Y - lines[i].P2.Y;
-
-                int theta = Mod(((int)ConvertRadiansToDegrees(Math.Atan2(diffY, diffX))), deg);
-                linesByAngle[theta].Add(lines[i]);
-            }
-
-            // get first max window
-            int maxNumber = -1;
-            int maxIndex = -1;
-
-            for (int i = 0; i < deg; i++)
-            {
-                int number = 0;
-                int index = i;
-
-                for (int j = i; j < i + angle; j++)
-                {
-                    number += linesByAngle[Mod(j, deg)].Count;
-                }
-
-                if (number > maxNumber)
-                {
-                    maxNumber = number;
-                    maxIndex = index;
-                }
-            }
-
-            // fill and remove
-            for (int j = maxIndex; j < maxIndex + angle; j++)
-            {
-                var linesOfCertainAngle = linesByAngle[Mod(j, deg)];
-
-                foreach (var lineOfCeratinAngle in linesOfCertainAngle)
-                {
-                    resultLines1.Add(lineOfCeratinAngle);
-                }
-
-                linesByAngle[Mod(j, deg)].Clear();
-            }
-
-            // get second max window
-            maxNumber = -1;
-            maxIndex = -1;
-
-            for (int i = 0; i < deg; i++)
-            {
-                int number = 0;
-                int index = i;
-
-                for (int j = i; j < i + angle; j++)
-                {
-                    number += linesByAngle[Mod(j, deg)].Count;
-                }
-
-                if (number > maxNumber)
-                {
-                    maxNumber = number;
-                    maxIndex = index;
-                }
-            }
-
-            // fill and remove
-            for (int j = maxIndex; j < maxIndex + angle; j++)
-            {
-                var linesOfCertainAngle = linesByAngle[Mod(j, deg)];
-
-                foreach (var lineOfCeratinAngle in linesOfCertainAngle)
-                {
-                    resultLines2.Add(lineOfCeratinAngle);
-                }
-
-                linesByAngle[Mod(j, deg)].Clear();
-            }
-
-
-            return new Tuple<LineSegment2D[], LineSegment2D[]>(resultLines1.ToArray(), resultLines2.ToArray());
-        }
-
-        /// <summary>
-        /// Conversion from radians to degrees
-        /// </summary>
-        /// <param name="radians">value in radians</param>
-        /// <returns>value in degrees</returns>
-        public static double ConvertRadiansToDegrees(double radians)
-        {
-            double degrees = (180 / Math.PI) * radians;
-            return (degrees);
-        }
-
-        /// <summary>
-        /// Mathematical modulo operation - for all numbers, including negative, returns number 0..m-1
-        /// </summary>
-        /// <param name="x">input number</param>
-        /// <param name="m">modulo coeficient</param>
-        /// <returns>moduled result</returns>
-        private int Mod(int x, int m)
-        {
-            return (x % m + m) % m;
-        }
+        
 
         
     }

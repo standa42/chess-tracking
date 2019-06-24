@@ -96,6 +96,7 @@
     <Compile Include="ImageProcessing\ChessboardAlgorithms\ChessboardLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\IChessboardLocalizationAlgorithm.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\IRotateSpaceToChessboard.cs" />
+    <Compile Include="ImageProcessing\ChessboardAlgorithms\LinesFilter.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\RendererOfSceneWithChessboard.cs" />
     <Compile Include="ImageProcessing\ChessboardAlgorithms\RotateSpaceToChessboard.cs" />
     <Compile Include="ImageProcessing\FiguresAlgorithms\FiguresLocalizationAlgorithm.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Utils\ArrayExtensions.cs" />
     <Compile Include="Utils\ChessExtensions.cs" />
     <Compile Include="Utils\CloneExtensions.cs" />
+    <Compile Include="Utils\MathExtensions.cs" />
     <Compile Include="Utils\TimestampObject.cs" />
     <EmbeddedResource Include="UserInterface\AdvancedSettingsForm.resx">
       <DependentUpon>AdvancedSettingsForm.cs</DependentUpon>
