@@ -19,7 +19,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
             for (int i = 0; i < csp.Length; i++)
             {
                 var chessboardSize = fieldSize * 8;
-                var additionalSpaceOutsideOfChessboard = fieldSize * (7 / 10f);
+                var additionalSpaceOutsideOfChessboard = fieldSize * (5 / 10f);
 
                 var pointIsValid = !(float.IsInfinity(csp[i].Z) || float.IsNaN(csp[i].Z));
                 var pointIsHighEnoughtAccordingToThreshold = csp[i].Z < -0.11f;
