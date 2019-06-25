@@ -1,0 +1,4 @@
+var interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_hand_detection_algorithm =
+[
+    [ "HandDetected", "interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_hand_detection_algorithm.html#a19e4eb54c2de026ddf63b0f1174d8517", null ]
+];

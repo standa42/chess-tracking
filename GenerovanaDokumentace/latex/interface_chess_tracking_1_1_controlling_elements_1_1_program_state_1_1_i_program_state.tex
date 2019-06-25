@@ -1,0 +1,178 @@
+\hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state}{}\section{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State Interface Reference}
+\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state}\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+
+
+Interface representing state of program (modification of state pattern) -\/ inner state can be changed by defined actions  
+
+
+Inheritance diagram for Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.518359cm]{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_afaaa62756391f219e5318342f9bb568a}{Game\+Loaded}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} was loaded \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_afb709d1cfd4782712e5e23e54fc3ad28}{Game\+Ended}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} was ended \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a6c68e5ce7c334b28439ae9bdc7462e8d}{Started\+Tracking}} ()
+\begin{DoxyCompactList}\small\item\em Tracking has started \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_aa8c051432b41c20be372d050635d84af}{Stopped\+Tracking}} ()
+\begin{DoxyCompactList}\small\item\em Tracking has stopped \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_ab429b32115bb96d9a91e3966c12096a9}{Recalibrating}} ()
+\begin{DoxyCompactList}\small\item\em Recalibration command was issued \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a5c438d1bd53a0dd168eb56e20c482c1f}{Game\+Finished}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} has finished \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_aefc4990cd4c48560aa7d6b857476bd56}{Error\+In\+Tracking}} (string message)
+\begin{DoxyCompactList}\small\item\em Error in tracking procedure occured \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_ae544420adecf8b0f6a58863cb3f89b1a}{Tracking\+Start\+Successful}} ()
+\begin{DoxyCompactList}\small\item\em Calibration is succesfully done \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a4b28776980cafc1555ae100548aaf046}{Game\+Recognized}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} on chessboard was recognized by program \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface representing state of program (modification of state pattern) -\/ inner state can be changed by defined actions 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_aefc4990cd4c48560aa7d6b857476bd56}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_aefc4990cd4c48560aa7d6b857476bd56}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!ErrorInTracking@{ErrorInTracking}}
+\index{ErrorInTracking@{ErrorInTracking}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{ErrorInTracking()}{ErrorInTracking()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Error\+In\+Tracking (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+
+Error in tracking procedure occured 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_adff6e8fc8dff0a594286ae35b59d416c}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a696ede3bce5b54db8f0d2dd9e7d8eabb}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_afb709d1cfd4782712e5e23e54fc3ad28}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_afb709d1cfd4782712e5e23e54fc3ad28}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!GameEnded@{GameEnded}}
+\index{GameEnded@{GameEnded}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{GameEnded()}{GameEnded()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Game\+Ended (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} was ended 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_a78fc127e221dc85207312df1a5753268}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a7ff7676272d3449e524a11eb73201e30}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_game_running_state_a716f8029e51162d10d89e1a81c97bb32}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Game\+Running\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_game_finished_state_a13eabd72515fdbb1fc9b0026ff7800a7}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Game\+Finished\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a5c438d1bd53a0dd168eb56e20c482c1f}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a5c438d1bd53a0dd168eb56e20c482c1f}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!GameFinished@{GameFinished}}
+\index{GameFinished@{GameFinished}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{GameFinished()}{GameFinished()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Game\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} has finished 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_a20a84c94188c6e15e464152862d13647}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a03a8db068264aa4ec11e8d473b6d3c46}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_game_state_a66e4b6c89dab25aea56c4ca51b5f7b34}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+Game\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_no_game_running_state_a9c8a27c252c9b474ab5357dbbf952bb1}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+No\+Game\+Running\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_afaaa62756391f219e5318342f9bb568a}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_afaaa62756391f219e5318342f9bb568a}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!GameLoaded@{GameLoaded}}
+\index{GameLoaded@{GameLoaded}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{GameLoaded()}{GameLoaded()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Game\+Loaded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} was loaded 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_a48d65a925eb5a5f38a874e486a4477e2}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_ae44259fd379473c103e8957d51832de9}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_no_game_running_state_a1e892271241639d1e2a77739a8e58892}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+No\+Game\+Running\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a4b28776980cafc1555ae100548aaf046}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a4b28776980cafc1555ae100548aaf046}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!GameRecognized@{GameRecognized}}
+\index{GameRecognized@{GameRecognized}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{GameRecognized()}{GameRecognized()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Game\+Recognized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{namespace_chess_tracking_1_1_game}{Game}} on chessboard was recognized by program 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_af3085a452edced63dca39e16da3459c7}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a5361b01f2091526a01550fa927735889}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_state_a36f3273295b31a2c88c7ed5c35778460}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_ab429b32115bb96d9a91e3966c12096a9}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_ab429b32115bb96d9a91e3966c12096a9}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!Recalibrating@{Recalibrating}}
+\index{Recalibrating@{Recalibrating}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{Recalibrating()}{Recalibrating()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Recalibrating (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Recalibration command was issued 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_ae815016db915cdbf14a9705560038f19}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a702ebae08f0615d645dfaa4334ea62fc}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_state_a3a8001d1ae948604124652f58164fa89}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_game_state_a52925b07fb679d59e78b218c7c12d78c}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+Game\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a6c68e5ce7c334b28439ae9bdc7462e8d}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_a6c68e5ce7c334b28439ae9bdc7462e8d}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!StartedTracking@{StartedTracking}}
+\index{StartedTracking@{StartedTracking}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{StartedTracking()}{StartedTracking()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Started\+Tracking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tracking has started 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_afd555f69a318ca50b76a7bd275daa904}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a633786bcd19a9f94d568115db3cdb5d9}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_game_running_state_aa540a4f9c96114762fe08925d7cdc6de}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Game\+Running\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_aa8c051432b41c20be372d050635d84af}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_aa8c051432b41c20be372d050635d84af}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!StoppedTracking@{StoppedTracking}}
+\index{StoppedTracking@{StoppedTracking}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{StoppedTracking()}{StoppedTracking()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Stopped\+Tracking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tracking has stopped 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_a565a98e53eef118e055172bca8672fae}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a0c86a45963ed8eb2b938f5d8f2d956ff}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_state_ad0e9790393a45fd5508f871864d09c04}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+State}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_game_state_a403e1536e7a40f736bc8d4b2e7c7aed1}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+Game\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_started_state_af5c55ca3a77c8b0d227d688ba3b2fc69}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+Started\+State}}.
+
+\mbox{\Hypertarget{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_ae544420adecf8b0f6a58863cb3f89b1a}\label{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state_ae544420adecf8b0f6a58863cb3f89b1a}} 
+\index{ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}!TrackingStartSuccessful@{TrackingStartSuccessful}}
+\index{TrackingStartSuccessful@{TrackingStartSuccessful}!ChessTracking.ControllingElements.ProgramState.IProgramState@{ChessTracking.ControllingElements.ProgramState.IProgramState}}
+\subsubsection{\texorpdfstring{TrackingStartSuccessful()}{TrackingStartSuccessful()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+I\+Program\+State.\+Tracking\+Start\+Successful (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calibration is succesfully done 
+
+
+
+Implemented in \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_controller_a029929ed04eab54893eaed751f7bcae2}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State\+Controller}}, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_program_state_a120f53f07c30eb53b34a7e1de82a4226}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+Program\+State}}, and \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_states_1_1_tracking_started_state_aa1840f95aae0d1aa49a898b1387bdda5}{Chess\+Tracking.\+Controlling\+Elements.\+Program\+State.\+States.\+Tracking\+Started\+State}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Controlling\+Elements/\+Program\+State/I\+Program\+State.\+cs\end{DoxyCompactItemize}

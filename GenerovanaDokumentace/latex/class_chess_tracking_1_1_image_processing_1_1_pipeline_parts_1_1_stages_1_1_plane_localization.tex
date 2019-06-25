@@ -1,0 +1,91 @@
+\hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization}{}\section{Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+Stages.\+Plane\+Localization Class Reference}
+\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization}\index{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization@{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization}}
+Inheritance diagram for Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+Stages.\+Plane\+Localization\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a5f78fbdc5844408feaa7e54f289349ce}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a5f78fbdc5844408feaa7e54f289349ce}} 
+{\bfseries Plane\+Localization} (\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline}{Pipeline}} pipeline)
+\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_plane_tracking_complete_data}{Plane\+Tracking\+Complete\+Data}} \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a85e3456fc26b865f16bb985efd5e41a7}{Calibrate}} (\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_input_data}{Input\+Data}} input\+Data)
+\begin{DoxyCompactList}\small\item\em Method called while calibrating to the given scene \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_plane_tracking_complete_data}{Plane\+Tracking\+Complete\+Data}} \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a37055795945cfe41324cbc59e3563b2e}{Track}} (\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_input_data}{Input\+Data}} input\+Data)
+\begin{DoxyCompactList}\small\item\em Method called while tracking given scene \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a1c57a6318253afa76065caa14fc08c52}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a1c57a6318253afa76065caa14fc08c52}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline}{Pipeline}} {\bfseries Pipeline}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a03caff7aacd944e89217e6598d15d717}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a03caff7aacd944e89217e6598d15d717}} 
+bool \mbox{[}$\,$\mbox{]} {\bfseries Localized\+Table\+Mask}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a859a6151b9572ea005925687a5535891}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a859a6151b9572ea005925687a5535891}} 
+Image$<$ Rgb, byte $>$ {\bfseries Return\+Color\+Image\+Of\+Table} (bool\mbox{[}$\,$\mbox{]} result\+Bools, byte\mbox{[}$\,$\mbox{]} color\+Frame\+Data, Depth\+Space\+Point\mbox{[}$\,$\mbox{]} points\+From\+Color\+To\+Depth)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a925f50ed44cb2f8bbd4c0b6ab44be4e3}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a925f50ed44cb2f8bbd4c0b6ab44be4e3}} 
+Bitmap {\bfseries Return\+Color\+Bitmap} (byte\mbox{[}$\,$\mbox{]} color\+Frame\+Data)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a2bf0d3c208b1cfca8ba843c2298c7f49}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a2bf0d3c208b1cfca8ba843c2298c7f49}} 
+byte \mbox{[}$\,$\mbox{]} {\bfseries Canny\+Applied\+To\+Depth\+Data} (Camera\+Space\+Point\mbox{[}$\,$\mbox{]} camera\+Space\+Points\+From\+Depth\+Data)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a85e3456fc26b865f16bb985efd5e41a7}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a85e3456fc26b865f16bb985efd5e41a7}} 
+\index{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization@{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization}!Calibrate@{Calibrate}}
+\index{Calibrate@{Calibrate}!ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization@{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization}}
+\subsubsection{\texorpdfstring{Calibrate()}{Calibrate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_plane_tracking_complete_data}{Plane\+Tracking\+Complete\+Data}} Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+Stages.\+Plane\+Localization.\+Calibrate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_input_data}{Input\+Data}}}]{input\+Data }\end{DoxyParamCaption})}
+
+
+
+Method called while calibrating to the given scene 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Data} & Data from kinect sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data with calibrated plane
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_plane_localization_a51e84fb5106e34dbe4f2775b82fb2a7e}{Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+Stages\+Interfaces.\+I\+Plane\+Localization}}.
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a37055795945cfe41324cbc59e3563b2e}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization_a37055795945cfe41324cbc59e3563b2e}} 
+\index{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization@{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization}!Track@{Track}}
+\index{Track@{Track}!ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization@{ChessTracking.ImageProcessing.PipelineParts.Stages.PlaneLocalization}}
+\subsubsection{\texorpdfstring{Track()}{Track()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_plane_tracking_complete_data}{Plane\+Tracking\+Complete\+Data}} Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+Stages.\+Plane\+Localization.\+Track (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_input_data}{Input\+Data}}}]{input\+Data }\end{DoxyParamCaption})}
+
+
+
+Method called while tracking given scene 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Data} & Data from kinect sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data with tracked plane
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_plane_localization_a03e2c5fc754830f91491a704352c24cf}{Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+Stages\+Interfaces.\+I\+Plane\+Localization}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Image\+Processing/\+Pipeline\+Parts/\+Stages/Plane\+Localization.\+cs\end{DoxyCompactItemize}

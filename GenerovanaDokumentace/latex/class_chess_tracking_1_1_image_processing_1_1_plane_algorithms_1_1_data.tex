@@ -1,0 +1,212 @@
+\hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data}{}\section{Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data Class Reference}
+\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data}\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a981b5f67df7728802365e20ee8a1d0f5}{Data}} (Camera\+Space\+Point\mbox{[}$\,$\mbox{]} camera\+Space\+Points)
+\begin{DoxyCompactList}\small\item\em Converts depth data from sensor to custom structure \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aafc7ada7cdf88d76166727dc356e80b3}{Cut\+Off\+Min\+Max\+Depth}} (float min\+Depth, float max\+Depth)
+\begin{DoxyCompactList}\small\item\em Marks (Cuts off) depths under min\+Depth and over max\+Depth as invalid. Used for distances, where sensor cannot guarantee reliability of measurement, of for distance requirements of user \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a64fe60a4cb39f078d1e9aad796f3ae8f}{Ransac}} ()
+\begin{DoxyCompactList}\small\item\em Performs R\+A\+N\+S\+AC algorithm \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ab3a997440f071d189eed862fe4f25465}{Largest\+Table\+Area}} ()
+\begin{DoxyCompactList}\small\item\em Selects largest continuous area marked as table Permorms it throught B\+FS from pseudorandom points \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a37768ff592499abb76a2a8fb153a3455}{Linear\+Regression}} ()
+\begin{DoxyCompactList}\small\item\em Performs linear regression that is evaluated on every x-\/th pixel \end{DoxyCompactList}\item 
+Tuple$<$ double, double $>$ \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a83ebef6478b258f001e571201a4f145a}{Rotation\+To2\+D\+Modified}} ()
+\begin{DoxyCompactList}\small\item\em Provides \char`\"{}bird view\char`\"{} of the table (z coordinate is height) Translates origin to the table center Takes normal vector of the table plane and rotates it to align (0,0,1) \end{DoxyCompactList}\item 
+bool \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aba06dd63e5324838c6654e2e51b744b6}{Convex\+Hull\+Algorithm}} ()
+\begin{DoxyCompactList}\small\item\em Computes table as minimal bounding rectangle over table pixels and makes a mask of table and table items \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_my_camera_space_point}{My\+Camera\+Space\+Point}} \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aadb769b49d3275c69d22d87aa61a6e8a}{Depth\+Data}}
+\begin{DoxyCompactList}\small\item\em Custom structure holding depth data from senzor, that are beeing processed \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_ransac_seed_triangle}{Ransac\+Seed\+Triangle}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ad9deed9c86fed79de5b12695c403e72b}{Triangle\+Seeds\+For\+Ransac}}
+\begin{DoxyCompactList}\small\item\em Triangles generated uniformly over image. Serve as seeds for R\+A\+N\+S\+AC algorithm \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ae981498fae36fb12b15958e553cbb180}{Cut\+Off\+Min\+Max\+Depth\+Implementation}} (float min\+Depth, float max\+Depth, int start\+Index, int end\+Index)
+\begin{DoxyCompactList}\small\item\em Marks (Cuts off) depths under min\+Depth and over max\+Depth in given range as invalid. Used for distances, where sensor cannot guarantee reliability of measurement, of for distance requirements of user \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ad5065038051954ae954b3ecd310e8c9b}{Ransac\+Implementation}} (int zacatek, int konec)
+\begin{DoxyCompactList}\small\item\em Performs R\+A\+N\+S\+AC algorithm \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a5ad7ead3acd0dc6b41fb632c3d3b2a8a}{Mark\+Table\+Pixels}} ()
+\begin{DoxyCompactList}\small\item\em Mark pixels that are near plane as part of that plane \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a30fbf7f86b4a8885d6034ba17fa23f7b}{Pos\+From\+Coor}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Get linear position in picture from 2D coordinates \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a981b5f67df7728802365e20ee8a1d0f5}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a981b5f67df7728802365e20ee8a1d0f5}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!Data@{Data}}
+\index{Data@{Data}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{Data()}{Data()}}
+{\footnotesize\ttfamily Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Data (\begin{DoxyParamCaption}\item[{Camera\+Space\+Point \mbox{[}$\,$\mbox{]}}]{camera\+Space\+Points }\end{DoxyParamCaption})}
+
+
+
+Converts depth data from sensor to custom structure 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+Space\+Points} & Camera space points from sensor\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aba06dd63e5324838c6654e2e51b744b6}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aba06dd63e5324838c6654e2e51b744b6}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!ConvexHullAlgorithm@{ConvexHullAlgorithm}}
+\index{ConvexHullAlgorithm@{ConvexHullAlgorithm}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{ConvexHullAlgorithm()}{ConvexHullAlgorithm()}}
+{\footnotesize\ttfamily bool \mbox{[}$\,$\mbox{]} Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Convex\+Hull\+Algorithm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Computes table as minimal bounding rectangle over table pixels and makes a mask of table and table items 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aafc7ada7cdf88d76166727dc356e80b3}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aafc7ada7cdf88d76166727dc356e80b3}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!CutOffMinMaxDepth@{CutOffMinMaxDepth}}
+\index{CutOffMinMaxDepth@{CutOffMinMaxDepth}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{CutOffMinMaxDepth()}{CutOffMinMaxDepth()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Cut\+Off\+Min\+Max\+Depth (\begin{DoxyParamCaption}\item[{float}]{min\+Depth,  }\item[{float}]{max\+Depth }\end{DoxyParamCaption})}
+
+
+
+Marks (Cuts off) depths under min\+Depth and over max\+Depth as invalid. Used for distances, where sensor cannot guarantee reliability of measurement, of for distance requirements of user 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+Depth} & Minimal depth that is recognized as valid\\
+\hline
+{\em max\+Depth} & Maximal depth that is recognized as valid\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ae981498fae36fb12b15958e553cbb180}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ae981498fae36fb12b15958e553cbb180}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!CutOffMinMaxDepthImplementation@{CutOffMinMaxDepthImplementation}}
+\index{CutOffMinMaxDepthImplementation@{CutOffMinMaxDepthImplementation}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{CutOffMinMaxDepthImplementation()}{CutOffMinMaxDepthImplementation()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Cut\+Off\+Min\+Max\+Depth\+Implementation (\begin{DoxyParamCaption}\item[{float}]{min\+Depth,  }\item[{float}]{max\+Depth,  }\item[{int}]{start\+Index,  }\item[{int}]{end\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Marks (Cuts off) depths under min\+Depth and over max\+Depth in given range as invalid. Used for distances, where sensor cannot guarantee reliability of measurement, of for distance requirements of user 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+Depth} & Minimal depth that is recognized as valid\\
+\hline
+{\em max\+Depth} & Maximal depth that is recognized as valid\\
+\hline
+{\em start\+Index} & Start index of array for processing\\
+\hline
+{\em end\+Index} & Last index of array for processing\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ab3a997440f071d189eed862fe4f25465}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ab3a997440f071d189eed862fe4f25465}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!LargestTableArea@{LargestTableArea}}
+\index{LargestTableArea@{LargestTableArea}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{LargestTableArea()}{LargestTableArea()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Largest\+Table\+Area (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Selects largest continuous area marked as table Permorms it throught B\+FS from pseudorandom points 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a37768ff592499abb76a2a8fb153a3455}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a37768ff592499abb76a2a8fb153a3455}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!LinearRegression@{LinearRegression}}
+\index{LinearRegression@{LinearRegression}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{LinearRegression()}{LinearRegression()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Linear\+Regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Performs linear regression that is evaluated on every x-\/th pixel 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a5ad7ead3acd0dc6b41fb632c3d3b2a8a}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a5ad7ead3acd0dc6b41fb632c3d3b2a8a}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!MarkTablePixels@{MarkTablePixels}}
+\index{MarkTablePixels@{MarkTablePixels}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{MarkTablePixels()}{MarkTablePixels()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Mark\+Table\+Pixels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mark pixels that are near plane as part of that plane 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a30fbf7f86b4a8885d6034ba17fa23f7b}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a30fbf7f86b4a8885d6034ba17fa23f7b}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!PosFromCoor@{PosFromCoor}}
+\index{PosFromCoor@{PosFromCoor}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{PosFromCoor()}{PosFromCoor()}}
+{\footnotesize\ttfamily static int Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Pos\+From\+Coor (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Get linear position in picture from 2D coordinates 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a64fe60a4cb39f078d1e9aad796f3ae8f}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a64fe60a4cb39f078d1e9aad796f3ae8f}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!Ransac@{Ransac}}
+\index{Ransac@{Ransac}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{Ransac()}{Ransac()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Ransac (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Performs R\+A\+N\+S\+AC algorithm 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ad5065038051954ae954b3ecd310e8c9b}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ad5065038051954ae954b3ecd310e8c9b}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!RansacImplementation@{RansacImplementation}}
+\index{RansacImplementation@{RansacImplementation}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{RansacImplementation()}{RansacImplementation()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Ransac\+Implementation (\begin{DoxyParamCaption}\item[{int}]{zacatek,  }\item[{int}]{konec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Performs R\+A\+N\+S\+AC algorithm 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a83ebef6478b258f001e571201a4f145a}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_a83ebef6478b258f001e571201a4f145a}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!RotationTo2DModified@{RotationTo2DModified}}
+\index{RotationTo2DModified@{RotationTo2DModified}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{RotationTo2DModified()}{RotationTo2DModified()}}
+{\footnotesize\ttfamily Tuple$<$double,double$>$ Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Rotation\+To2\+D\+Modified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Provides \char`\"{}bird view\char`\"{} of the table (z coordinate is height) Translates origin to the table center Takes normal vector of the table plane and rotates it to align (0,0,1) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em form} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aadb769b49d3275c69d22d87aa61a6e8a}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_aadb769b49d3275c69d22d87aa61a6e8a}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!DepthData@{DepthData}}
+\index{DepthData@{DepthData}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{DepthData}{DepthData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_my_camera_space_point}{My\+Camera\+Space\+Point}} \mbox{[}$\,$\mbox{]} Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Depth\+Data}
+
+
+
+Custom structure holding depth data from senzor, that are beeing processed 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ad9deed9c86fed79de5b12695c403e72b}\label{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_data_ad9deed9c86fed79de5b12695c403e72b}} 
+\index{ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}!TriangleSeedsForRansac@{TriangleSeedsForRansac}}
+\index{TriangleSeedsForRansac@{TriangleSeedsForRansac}!ChessTracking.ImageProcessing.PlaneAlgorithms.Data@{ChessTracking.ImageProcessing.PlaneAlgorithms.Data}}
+\subsubsection{\texorpdfstring{TriangleSeedsForRansac}{TriangleSeedsForRansac}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_plane_algorithms_1_1_ransac_seed_triangle}{Ransac\+Seed\+Triangle}}$>$ Chess\+Tracking.\+Image\+Processing.\+Plane\+Algorithms.\+Data.\+Triangle\+Seeds\+For\+Ransac}
+
+
+
+Triangles generated uniformly over image. Serve as seeds for R\+A\+N\+S\+AC algorithm 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Image\+Processing/\+Plane\+Algorithms/Data.\+cs\end{DoxyCompactItemize}

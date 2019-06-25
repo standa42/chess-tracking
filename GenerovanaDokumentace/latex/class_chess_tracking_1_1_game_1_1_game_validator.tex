@@ -1,0 +1,481 @@
+\hypertarget{class_chess_tracking_1_1_game_1_1_game_validator}{}\section{Chess\+Tracking.\+Game.\+Game\+Validator Class Reference}
+\label{class_chess_tracking_1_1_game_1_1_game_validator}\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+
+
+Validator of chess game  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_validation_result}{Validation\+Result}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a55036629d94e4cb6960bad9a10a8635a}{Validate\+And\+Perform}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, string move)
+\begin{DoxyCompactList}\small\item\em Validates and performs move described in text \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_validation_result}{Validation\+Result}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a5ab7f254ae447333762ff20d983c9899}{Validate\+And\+Perform}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, \mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_tracking_state}{Tracking\+State}} tracking\+State)
+\begin{DoxyCompactList}\small\item\em Validates and performs move described by difference between game and tracking\+State \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_validation_result}{Validation\+Result}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a616609a52db6c7aff18286405c71e49e}{Validate\+And\+Perform}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} my\+Move)
+\begin{DoxyCompactList}\small\item\em Validates and performs given move \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a4c5f596df3dc8967ec7c7f0330cd3d51}{Serialize\+Move\+To\+Algebraic\+Notation}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} move)
+\begin{DoxyCompactList}\small\item\em Serializes move into its algebraic notation representation \end{DoxyCompactList}\item 
+static char \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_af281d5b7de0758fd82b6fefc5b0f72a9}{Get\+Character\+For\+Figure}} (Figure\+Type figure)
+\begin{DoxyCompactList}\small\item\em Gets character representation for given figure \end{DoxyCompactList}\item 
+static Figure\+Type \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a263009ed877e341ddf34a2dd2c0f4792}{Get\+Figure\+For\+Character}} (char ch)
+\begin{DoxyCompactList}\small\item\em Gets figure type for given character \end{DoxyCompactList}\item 
+static char \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a9d64f0d4215314e71ded89fa25d1cf8f}{Get\+Character\+For\+Position}} (int position)
+\begin{DoxyCompactList}\small\item\em Gets character represenation of column on chessboard \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a231e517419b3738888d68a870da7445d}{Get\+Position\+For\+Character}} (char ch)
+\begin{DoxyCompactList}\small\item\em Gets integer represenation of column on chessboard \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_aed12c92e698d54c439a7ab0293a26b48}{Perform\+Move}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} move)
+\begin{DoxyCompactList}\small\item\em Performs given move on chessboard \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a4c30ee1e2e8ae6afb00f75425b449854}{Revert\+Move}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} move, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} temp\+Saved\+Taken\+Figure)
+\begin{DoxyCompactList}\small\item\em Reverts given move \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a9b6bedb9fa2b0a96790228c6f364e249}{Player\+Has\+No\+Possible\+Moves}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Checks whether player has no possible moves to play \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{namespace_chess_tracking_1_1_game_acd441ca4d0791bf4bf7fa8ec204a1ed7}{Game\+State}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a875c72479331c044b547f2a257338ce0}{Get\+Win\+State\+From\+Player\+Color}} (\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} color)
+\begin{DoxyCompactList}\small\item\em Transforms player color to win state of player of this color \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a7de5a5137a4ad56912ec65a693e36883}{Player\+Is\+Checked}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} color)
+\begin{DoxyCompactList}\small\item\em Checks wheter given player is checked in given game \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a7708ca21ef7efd32215c32570b757668}{Get\+Opposite\+Color}} (\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} color)
+\begin{DoxyCompactList}\small\item\em Gets oponents color \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a6d2d0d1ac5503c09b716bb208a7fc877}{Get\+King\+Position}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}}\mbox{[},\mbox{]} figures, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Gets king position on chessboard for player of given color \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_ae388315a03f9b3e37296d94f5bb04ca0}{Decode\+Move}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, string move)
+\begin{DoxyCompactList}\small\item\em Decodes textual representation of move into object \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_ae8a8e271e382bb27e307a8ccd6f2d3af}{Decode\+Move}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}} game, \mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_tracking_state}{Tracking\+State}} tracking\+State)
+\begin{DoxyCompactList}\small\item\em Decodes game and tracking state difference into game move object \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_ac398b44f0918461ab68a70f117c8d45b}{Get\+All\+Moves}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Get all possible moves for given player \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a98518e2fd8e0ce4768cb254a402c6c82}{Get\+Moves\+For\+Rooks}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Gets all possible moves of rooks of given player \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a72c7c0dabb399e9a15ff60faa7b7cba6}{Get\+Moves\+For\+Bishops}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Gets all possible moves of bishops of given player \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_afd2936714cc765530dc2208304d29c1d}{Get\+Moves\+For\+Queens}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Gets all possible moves of queens of given player \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_ae326494a4a16d134e06c1fdcfa664e31}{Get\+Moves\+For\+Pawns}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Gets all possible moves of pawns of given player \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a991d89bd66ce11ad6dfd4299466b9150}{Get\+Moves\+For\+Knights}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Gets all possible moves of knights of given player \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a18ce16abbc46f5d7823f26866b34cdc8}{Get\+Moves\+For\+King}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color)
+\begin{DoxyCompactList}\small\item\em Gets all possible moves of king of given player \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_af1a68e3f4cbdbb559b47ab2cd6a58564}{Can\+Move\+Or\+Attack\+Iterative}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} from, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move_vector}{Game\+Move\+Vector}} vector)
+\begin{DoxyCompactList}\small\item\em Gets moves in direction of vector, until figure of playing player is encountered, or positions ain\textquotesingle{}t valid \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_ac060c9914c0e4efeaaa5d9db4b282e2e}{Can\+Move\+Or\+Attack}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} from, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} to)
+\begin{DoxyCompactList}\small\item\em Gets move, if there is figure of opponent on moving to position, or its empty, null otherwise \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_a2230b130e68b1827d1d85c06e6cd63d8}{Can\+Attack}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} from, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} to)
+\begin{DoxyCompactList}\small\item\em Gets move, if there is figure of opponent on moving to position, null otherwise \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_validator_ab292e53f0f73662f01c2bc44d12d43c1}{Can\+Move}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}} chessboard, \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} player\+Color, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} from, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} to)
+\begin{DoxyCompactList}\small\item\em Gets move, if there is no figure in the place moving to, null otherwise \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Validator of chess game 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a2230b130e68b1827d1d85c06e6cd63d8}\label{class_chess_tracking_1_1_game_1_1_game_validator_a2230b130e68b1827d1d85c06e6cd63d8}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!CanAttack@{CanAttack}}
+\index{CanAttack@{CanAttack}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{CanAttack()}{CanAttack()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Can\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{from,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets move, if there is figure of opponent on moving to position, null otherwise 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Color} & Capturing player\\
+\hline
+{\em from} & Position to capture from\\
+\hline
+{\em to} & Position to capture to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_ab292e53f0f73662f01c2bc44d12d43c1}\label{class_chess_tracking_1_1_game_1_1_game_validator_ab292e53f0f73662f01c2bc44d12d43c1}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!CanMove@{CanMove}}
+\index{CanMove@{CanMove}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{CanMove()}{CanMove()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Can\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{from,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets move, if there is no figure in the place moving to, null otherwise 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Color} & Moving player\\
+\hline
+{\em from} & Position to move from\\
+\hline
+{\em to} & Position to move to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_ac060c9914c0e4efeaaa5d9db4b282e2e}\label{class_chess_tracking_1_1_game_1_1_game_validator_ac060c9914c0e4efeaaa5d9db4b282e2e}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!CanMoveOrAttack@{CanMoveOrAttack}}
+\index{CanMoveOrAttack@{CanMoveOrAttack}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{CanMoveOrAttack()}{CanMoveOrAttack()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Can\+Move\+Or\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{from,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets move, if there is figure of opponent on moving to position, or its empty, null otherwise 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Color} & Moving player\\
+\hline
+{\em from} & Position to move from\\
+\hline
+{\em to} & Position to move to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_af1a68e3f4cbdbb559b47ab2cd6a58564}\label{class_chess_tracking_1_1_game_1_1_game_validator_af1a68e3f4cbdbb559b47ab2cd6a58564}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!CanMoveOrAttackIterative@{CanMoveOrAttackIterative}}
+\index{CanMoveOrAttackIterative@{CanMoveOrAttackIterative}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{CanMoveOrAttackIterative()}{CanMoveOrAttackIterative()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Can\+Move\+Or\+Attack\+Iterative (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{from,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move_vector}{Game\+Move\+Vector}}}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets moves in direction of vector, until figure of playing player is encountered, or positions ain\textquotesingle{}t valid 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Color} & Capturing player\\
+\hline
+{\em from} & Position to move from\\
+\hline
+{\em vector} & Vector to move to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_ae388315a03f9b3e37296d94f5bb04ca0}\label{class_chess_tracking_1_1_game_1_1_game_validator_ae388315a03f9b3e37296d94f5bb04ca0}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!DecodeMove@{DecodeMove}}
+\index{DecodeMove@{DecodeMove}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{DecodeMove()}{DecodeMove()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Decode\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{string}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Decodes textual representation of move into object 
+
+\begin{DoxyReturn}{Returns}
+Move if it\textquotesingle{}s valid, null otherwise
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_ae8a8e271e382bb27e307a8ccd6f2d3af}\label{class_chess_tracking_1_1_game_1_1_game_validator_ae8a8e271e382bb27e307a8ccd6f2d3af}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!DecodeMove@{DecodeMove}}
+\index{DecodeMove@{DecodeMove}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{DecodeMove()}{DecodeMove()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Decode\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_tracking_state}{Tracking\+State}}}]{tracking\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Decodes game and tracking state difference into game move object 
+
+\begin{DoxyReturn}{Returns}
+Move if it\textquotesingle{}s valid, null otherwise
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_ac398b44f0918461ab68a70f117c8d45b}\label{class_chess_tracking_1_1_game_1_1_game_validator_ac398b44f0918461ab68a70f117c8d45b}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetAllMoves@{GetAllMoves}}
+\index{GetAllMoves@{GetAllMoves}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetAllMoves()}{GetAllMoves()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+All\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Get all possible moves for given player 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_af281d5b7de0758fd82b6fefc5b0f72a9}\label{class_chess_tracking_1_1_game_1_1_game_validator_af281d5b7de0758fd82b6fefc5b0f72a9}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetCharacterForFigure@{GetCharacterForFigure}}
+\index{GetCharacterForFigure@{GetCharacterForFigure}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetCharacterForFigure()}{GetCharacterForFigure()}}
+{\footnotesize\ttfamily static char Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Character\+For\+Figure (\begin{DoxyParamCaption}\item[{Figure\+Type}]{figure }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets character representation for given figure 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a9d64f0d4215314e71ded89fa25d1cf8f}\label{class_chess_tracking_1_1_game_1_1_game_validator_a9d64f0d4215314e71ded89fa25d1cf8f}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetCharacterForPosition@{GetCharacterForPosition}}
+\index{GetCharacterForPosition@{GetCharacterForPosition}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetCharacterForPosition()}{GetCharacterForPosition()}}
+{\footnotesize\ttfamily static char Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Character\+For\+Position (\begin{DoxyParamCaption}\item[{int}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets character represenation of column on chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Integer represenation of column\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a263009ed877e341ddf34a2dd2c0f4792}\label{class_chess_tracking_1_1_game_1_1_game_validator_a263009ed877e341ddf34a2dd2c0f4792}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetFigureForCharacter@{GetFigureForCharacter}}
+\index{GetFigureForCharacter@{GetFigureForCharacter}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetFigureForCharacter()}{GetFigureForCharacter()}}
+{\footnotesize\ttfamily static Figure\+Type Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Figure\+For\+Character (\begin{DoxyParamCaption}\item[{char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets figure type for given character 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a6d2d0d1ac5503c09b716bb208a7fc877}\label{class_chess_tracking_1_1_game_1_1_game_validator_a6d2d0d1ac5503c09b716bb208a7fc877}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetKingPosition@{GetKingPosition}}
+\index{GetKingPosition@{GetKingPosition}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetKingPosition()}{GetKingPosition()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+King\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}}}]{figures\mbox{[},\mbox{]},  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets king position on chessboard for player of given color 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a72c7c0dabb399e9a15ff60faa7b7cba6}\label{class_chess_tracking_1_1_game_1_1_game_validator_a72c7c0dabb399e9a15ff60faa7b7cba6}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetMovesForBishops@{GetMovesForBishops}}
+\index{GetMovesForBishops@{GetMovesForBishops}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetMovesForBishops()}{GetMovesForBishops()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Moves\+For\+Bishops (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets all possible moves of bishops of given player 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a18ce16abbc46f5d7823f26866b34cdc8}\label{class_chess_tracking_1_1_game_1_1_game_validator_a18ce16abbc46f5d7823f26866b34cdc8}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetMovesForKing@{GetMovesForKing}}
+\index{GetMovesForKing@{GetMovesForKing}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetMovesForKing()}{GetMovesForKing()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Moves\+For\+King (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets all possible moves of king of given player 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a991d89bd66ce11ad6dfd4299466b9150}\label{class_chess_tracking_1_1_game_1_1_game_validator_a991d89bd66ce11ad6dfd4299466b9150}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetMovesForKnights@{GetMovesForKnights}}
+\index{GetMovesForKnights@{GetMovesForKnights}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetMovesForKnights()}{GetMovesForKnights()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Moves\+For\+Knights (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets all possible moves of knights of given player 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_ae326494a4a16d134e06c1fdcfa664e31}\label{class_chess_tracking_1_1_game_1_1_game_validator_ae326494a4a16d134e06c1fdcfa664e31}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetMovesForPawns@{GetMovesForPawns}}
+\index{GetMovesForPawns@{GetMovesForPawns}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetMovesForPawns()}{GetMovesForPawns()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Moves\+For\+Pawns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets all possible moves of pawns of given player 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_afd2936714cc765530dc2208304d29c1d}\label{class_chess_tracking_1_1_game_1_1_game_validator_afd2936714cc765530dc2208304d29c1d}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetMovesForQueens@{GetMovesForQueens}}
+\index{GetMovesForQueens@{GetMovesForQueens}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetMovesForQueens()}{GetMovesForQueens()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Moves\+For\+Queens (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets all possible moves of queens of given player 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a98518e2fd8e0ce4768cb254a402c6c82}\label{class_chess_tracking_1_1_game_1_1_game_validator_a98518e2fd8e0ce4768cb254a402c6c82}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetMovesForRooks@{GetMovesForRooks}}
+\index{GetMovesForRooks@{GetMovesForRooks}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetMovesForRooks()}{GetMovesForRooks()}}
+{\footnotesize\ttfamily static List$<$\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}$>$ Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Moves\+For\+Rooks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model}{Chessboard\+Model}}}]{chessboard,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets all possible moves of rooks of given player 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a7708ca21ef7efd32215c32570b757668}\label{class_chess_tracking_1_1_game_1_1_game_validator_a7708ca21ef7efd32215c32570b757668}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetOppositeColor@{GetOppositeColor}}
+\index{GetOppositeColor@{GetOppositeColor}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetOppositeColor()}{GetOppositeColor()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Opposite\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets oponents color 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a231e517419b3738888d68a870da7445d}\label{class_chess_tracking_1_1_game_1_1_game_validator_a231e517419b3738888d68a870da7445d}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetPositionForCharacter@{GetPositionForCharacter}}
+\index{GetPositionForCharacter@{GetPositionForCharacter}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetPositionForCharacter()}{GetPositionForCharacter()}}
+{\footnotesize\ttfamily static int Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Position\+For\+Character (\begin{DoxyParamCaption}\item[{char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets integer represenation of column on chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Character represenation of column\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a875c72479331c044b547f2a257338ce0}\label{class_chess_tracking_1_1_game_1_1_game_validator_a875c72479331c044b547f2a257338ce0}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!GetWinStateFromPlayerColor@{GetWinStateFromPlayerColor}}
+\index{GetWinStateFromPlayerColor@{GetWinStateFromPlayerColor}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{GetWinStateFromPlayerColor()}{GetWinStateFromPlayerColor()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_chess_tracking_1_1_game_acd441ca4d0791bf4bf7fa8ec204a1ed7}{Game\+State}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Get\+Win\+State\+From\+Player\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Transforms player color to win state of player of this color 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_aed12c92e698d54c439a7ab0293a26b48}\label{class_chess_tracking_1_1_game_1_1_game_validator_aed12c92e698d54c439a7ab0293a26b48}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!PerformMove@{PerformMove}}
+\index{PerformMove@{PerformMove}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{PerformMove()}{PerformMove()}}
+{\footnotesize\ttfamily static void Chess\+Tracking.\+Game.\+Game\+Validator.\+Perform\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Performs given move on chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Description of game\\
+\hline
+{\em move} & Move to perform\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a9b6bedb9fa2b0a96790228c6f364e249}\label{class_chess_tracking_1_1_game_1_1_game_validator_a9b6bedb9fa2b0a96790228c6f364e249}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!PlayerHasNoPossibleMoves@{PlayerHasNoPossibleMoves}}
+\index{PlayerHasNoPossibleMoves@{PlayerHasNoPossibleMoves}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{PlayerHasNoPossibleMoves()}{PlayerHasNoPossibleMoves()}}
+{\footnotesize\ttfamily static bool Chess\+Tracking.\+Game.\+Game\+Validator.\+Player\+Has\+No\+Possible\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{player\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Checks whether player has no possible moves to play 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Description of game\\
+\hline
+{\em player\+Color} & Color of player\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether player has no possible moves to play
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a7de5a5137a4ad56912ec65a693e36883}\label{class_chess_tracking_1_1_game_1_1_game_validator_a7de5a5137a4ad56912ec65a693e36883}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!PlayerIsChecked@{PlayerIsChecked}}
+\index{PlayerIsChecked@{PlayerIsChecked}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{PlayerIsChecked()}{PlayerIsChecked()}}
+{\footnotesize\ttfamily static bool Chess\+Tracking.\+Game.\+Game\+Validator.\+Player\+Is\+Checked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{\mbox{\hyperlink{namespace_chess_tracking_1_1_game_ab79070a55977a8c8326e9cdda7dcfa9a}{Player\+Color}}}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Checks wheter given player is checked in given game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Description of game\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a4c30ee1e2e8ae6afb00f75425b449854}\label{class_chess_tracking_1_1_game_1_1_game_validator_a4c30ee1e2e8ae6afb00f75425b449854}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!RevertMove@{RevertMove}}
+\index{RevertMove@{RevertMove}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{RevertMove()}{RevertMove()}}
+{\footnotesize\ttfamily static void Chess\+Tracking.\+Game.\+Game\+Validator.\+Revert\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}}]{move,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}}}]{temp\+Saved\+Taken\+Figure }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Reverts given move 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Description of game\\
+\hline
+{\em move} & Move to revert\\
+\hline
+{\em temp\+Saved\+Taken\+Figure} & Saved figure in case, that move was capture\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a4c5f596df3dc8967ec7c7f0330cd3d51}\label{class_chess_tracking_1_1_game_1_1_game_validator_a4c5f596df3dc8967ec7c7f0330cd3d51}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!SerializeMoveToAlgebraicNotation@{SerializeMoveToAlgebraicNotation}}
+\index{SerializeMoveToAlgebraicNotation@{SerializeMoveToAlgebraicNotation}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{SerializeMoveToAlgebraicNotation()}{SerializeMoveToAlgebraicNotation()}}
+{\footnotesize\ttfamily static string Chess\+Tracking.\+Game.\+Game\+Validator.\+Serialize\+Move\+To\+Algebraic\+Notation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Serializes move into its algebraic notation representation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & Move to serialize\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Textual representation of move
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a55036629d94e4cb6960bad9a10a8635a}\label{class_chess_tracking_1_1_game_1_1_game_validator_a55036629d94e4cb6960bad9a10a8635a}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!ValidateAndPerform@{ValidateAndPerform}}
+\index{ValidateAndPerform@{ValidateAndPerform}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{ValidateAndPerform()}{ValidateAndPerform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_validation_result}{Validation\+Result}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Validate\+And\+Perform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{string}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Validates and performs move described in text 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Description of game\\
+\hline
+{\em move} & Move to process\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of validation
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a5ab7f254ae447333762ff20d983c9899}\label{class_chess_tracking_1_1_game_1_1_game_validator_a5ab7f254ae447333762ff20d983c9899}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!ValidateAndPerform@{ValidateAndPerform}}
+\index{ValidateAndPerform@{ValidateAndPerform}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{ValidateAndPerform()}{ValidateAndPerform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_validation_result}{Validation\+Result}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Validate\+And\+Perform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_tracking_state}{Tracking\+State}}}]{tracking\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Validates and performs move described by difference between game and tracking\+State 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Description of game\\
+\hline
+{\em move} & Tracking state of game\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of validation
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_game_validator_a616609a52db6c7aff18286405c71e49e}\label{class_chess_tracking_1_1_game_1_1_game_validator_a616609a52db6c7aff18286405c71e49e}} 
+\index{ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}!ValidateAndPerform@{ValidateAndPerform}}
+\index{ValidateAndPerform@{ValidateAndPerform}!ChessTracking.Game.GameValidator@{ChessTracking.Game.GameValidator}}
+\subsubsection{\texorpdfstring{ValidateAndPerform()}{ValidateAndPerform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_validation_result}{Validation\+Result}} Chess\+Tracking.\+Game.\+Game\+Validator.\+Validate\+And\+Perform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_data}{Game\+Data}}}]{game,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move}{Game\+Move}}}]{my\+Move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Validates and performs given move 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Description of game\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of validation
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Game/Game\+Validator.\+cs\end{DoxyCompactItemize}

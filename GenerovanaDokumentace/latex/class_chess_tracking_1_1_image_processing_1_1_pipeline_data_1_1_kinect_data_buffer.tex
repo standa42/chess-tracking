@@ -1,0 +1,71 @@
+\hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer}{}\section{Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Data.\+Kinect\+Data\+Buffer Class Reference}
+\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer}\index{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer@{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer}}
+
+
+Data buffer holding kinect data, accesible from multiple threads  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_ad45109086afe8c8ec1e39acd43044646}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_ad45109086afe8c8ec1e39acd43044646}} 
+bool {\bfseries Is\+Empty} ()
+\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a9744c849f88289fb5ec180f9ec99a9f3}{Store}} (\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}} data)
+\begin{DoxyCompactList}\small\item\em Store data in buffer -\/ blocking call \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}} \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a6309fa36d0985a0d8ea72718155a5d9f}{Try\+Take}} (int miliseconds\+Timeout=200)
+\begin{DoxyCompactList}\small\item\em Try to get data from buffer in given interval \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}} \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a4a0b205edd0724a90ad3c46a91bd6b10}{Take}} ()
+\begin{DoxyCompactList}\small\item\em Try to get data from buffer -\/ blocking call \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_ab8d097230a4483316c35db4255c23424}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_ab8d097230a4483316c35db4255c23424}} 
+Blocking\+Collection$<$ \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}} $>$ {\bfseries Data} = new Blocking\+Collection$<$\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}}$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Data buffer holding kinect data, accesible from multiple threads 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a9744c849f88289fb5ec180f9ec99a9f3}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a9744c849f88289fb5ec180f9ec99a9f3}} 
+\index{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer@{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer}!Store@{Store}}
+\index{Store@{Store}!ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer@{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer}}
+\subsubsection{\texorpdfstring{Store()}{Store()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Data.\+Kinect\+Data\+Buffer.\+Store (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Store data in buffer -\/ blocking call 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a4a0b205edd0724a90ad3c46a91bd6b10}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a4a0b205edd0724a90ad3c46a91bd6b10}} 
+\index{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer@{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer}!Take@{Take}}
+\index{Take@{Take}!ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer@{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer}}
+\subsubsection{\texorpdfstring{Take()}{Take()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}} Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Data.\+Kinect\+Data\+Buffer.\+Take (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Try to get data from buffer -\/ blocking call 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a6309fa36d0985a0d8ea72718155a5d9f}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer_a6309fa36d0985a0d8ea72718155a5d9f}} 
+\index{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer@{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer}!TryTake@{TryTake}}
+\index{TryTake@{TryTake}!ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer@{ChessTracking.ImageProcessing.PipelineData.KinectDataBuffer}}
+\subsubsection{\texorpdfstring{TryTake()}{TryTake()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data}{Kinect\+Data}} Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Data.\+Kinect\+Data\+Buffer.\+Try\+Take (\begin{DoxyParamCaption}\item[{int}]{miliseconds\+Timeout = {\ttfamily 200} }\end{DoxyParamCaption})}
+
+
+
+Try to get data from buffer in given interval 
+
+\begin{DoxyReturn}{Returns}
+Data if successful, null otherwise
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Image\+Processing/\+Pipeline\+Data/Kinect\+Data\+Buffer.\+cs\end{DoxyCompactItemize}

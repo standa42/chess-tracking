@@ -1,0 +1,131 @@
+\hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline}{}\section{Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+General.\+Pipeline Class Reference}
+\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline}\index{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}}
+
+
+Maintains all processing of chessboard tracking  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a74e4ccffda2514a73e77027948920a1e}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a74e4ccffda2514a73e77027948920a1e}} 
+{\bfseries Pipeline} (Blocking\+Collection$<$ \mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_message}{Message}} $>$ processing\+Output\+Queue, \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_user_defined_parameters_prototype_factory}{User\+Defined\+Parameters\+Prototype\+Factory}} user\+Parameters\+Factory)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a8f066a85cc910a6d15aa7f05414703a0}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a8f066a85cc910a6d15aa7f05414703a0}} 
+void {\bfseries Set\+Buffer} (\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer}{Kinect\+Data\+Buffer}} buffer)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a34f4a3fc92cb36c5d7bdd2248502f61e}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a34f4a3fc92cb36c5d7bdd2248502f61e}} 
+void {\bfseries Reset\+Calibration} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a281cfd111575f60ffc22eed5e72a91fd}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a281cfd111575f60ffc22eed5e72a91fd}} 
+void {\bfseries Move\+Chessboard} (\mbox{\hyperlink{namespace_chess_tracking_1_1_multithreading_messages_1_1_to_processing_af48751428f7a12d314dbbac688726bac}{Chessboard\+Movement}} movement)
+\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a931aae22be6e7c5d056af5353cf1af48}{Update}} ()
+\begin{DoxyCompactList}\small\item\em Entry point of pipeline processing, decides whether calibrate or track \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a4e5136a8474cfccab3ecec47b8f2f42d}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a4e5136a8474cfccab3ecec47b8f2f42d}} 
+Blocking\+Collection$<$ \mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_message}{Message}} $>$ {\bfseries Processing\+Output\+Queue}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_adf259a747c0269efc6c199fc4d8dc4ce}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_adf259a747c0269efc6c199fc4d8dc4ce}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_user_defined_parameters_prototype_factory}{User\+Defined\+Parameters\+Prototype\+Factory}} {\bfseries User\+Parameters\+Factory}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a26023cde4b7b634e0af3130561b6743e}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a26023cde4b7b634e0af3130561b6743e}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_kinect_data_buffer}{Kinect\+Data\+Buffer}} {\bfseries Buffer}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a2ac7dff537bb33714f4d5f76d53eba8b}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a2ac7dff537bb33714f4d5f76d53eba8b}} 
+\mbox{\hyperlink{interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_plane_localization}{I\+Plane\+Localization}} {\bfseries Plane\+Localization}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a524c8e2a09468f9efa25eda75711ff73}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a524c8e2a09468f9efa25eda75711ff73}} 
+\mbox{\hyperlink{interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_chessboard_localization}{I\+Chessboard\+Localization}} {\bfseries Chessboard\+Localization}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_ab3dca188eccc3fe582d9d88a7ba340f3}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_ab3dca188eccc3fe582d9d88a7ba340f3}} 
+\mbox{\hyperlink{interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_figures_localization}{I\+Figures\+Localization}} {\bfseries Figures\+Localization}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a43b01763526dfc73d9c58da40202c783}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a43b01763526dfc73d9c58da40202c783}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_user_defined_parameters}{User\+Defined\+Parameters}} {\bfseries User\+Parameters}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a6e217a0d131dbbbf857be3060b21e500}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a6e217a0d131dbbbf857be3060b21e500}} 
+Date\+Time {\bfseries Last\+Released\+Tracking\+Task} = Date\+Time.\+Min\+Value\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a86e9efc6c479c7a8137b19b80abd52d1}{Is\+Tracking}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates calibration/tracking state \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a7c72e9604390f31fddc8380d42569575}{Tracking\+Canceled}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicated, whether there was exception in calibration causing end of tracking \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_ae85e486e4a3d07e92bc93ad430a2d12a}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_ae85e486e4a3d07e92bc93ad430a2d12a}} 
+Semaphore\+Slim {\bfseries Semaphore} = new Semaphore\+Slim(1)\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a8cbd1f4411b36a3ec951ca8e804c4d10}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a8cbd1f4411b36a3ec951ca8e804c4d10}} 
+void {\bfseries Calibration} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a1154d48981d3083b4162e49d1e10f9d2}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a1154d48981d3083b4162e49d1e10f9d2}} 
+void {\bfseries Tracking} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a8c2bf1b5d60c2933f448f337535d6736}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a8c2bf1b5d60c2933f448f337535d6736}} 
+void {\bfseries Tracking\+Implementation} ()
+\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a6614378b08acc03caa79ba47e3a6871e}{Pipeline\+Slowdown}} ()
+\begin{DoxyCompactList}\small\item\em If next release of task is too soon, sleep for reasonable time \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a1d2d93453628e5c8aaeee9a644ce7da9}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a1d2d93453628e5c8aaeee9a644ce7da9}} 
+void {\bfseries Send\+Result\+Message\+To\+User\+Thread} (\mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_message}{Message}} msg)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Maintains all processing of chessboard tracking 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a6614378b08acc03caa79ba47e3a6871e}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a6614378b08acc03caa79ba47e3a6871e}} 
+\index{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}!PipelineSlowdown@{PipelineSlowdown}}
+\index{PipelineSlowdown@{PipelineSlowdown}!ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}}
+\subsubsection{\texorpdfstring{PipelineSlowdown()}{PipelineSlowdown()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+General.\+Pipeline.\+Pipeline\+Slowdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+If next release of task is too soon, sleep for reasonable time 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a931aae22be6e7c5d056af5353cf1af48}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a931aae22be6e7c5d056af5353cf1af48}} 
+\index{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}!Update@{Update}}
+\index{Update@{Update}!ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+General.\+Pipeline.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Entry point of pipeline processing, decides whether calibrate or track 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a86e9efc6c479c7a8137b19b80abd52d1}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a86e9efc6c479c7a8137b19b80abd52d1}} 
+\index{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}!IsTracking@{IsTracking}}
+\index{IsTracking@{IsTracking}!ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}}
+\subsubsection{\texorpdfstring{IsTracking}{IsTracking}}
+{\footnotesize\ttfamily bool Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+General.\+Pipeline.\+Is\+Tracking\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [private]}}
+
+
+
+Indicates calibration/tracking state 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a7c72e9604390f31fddc8380d42569575}\label{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_a7c72e9604390f31fddc8380d42569575}} 
+\index{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}!TrackingCanceled@{TrackingCanceled}}
+\index{TrackingCanceled@{TrackingCanceled}!ChessTracking.ImageProcessing.PipelineParts.General.Pipeline@{ChessTracking.ImageProcessing.PipelineParts.General.Pipeline}}
+\subsubsection{\texorpdfstring{TrackingCanceled}{TrackingCanceled}}
+{\footnotesize\ttfamily bool Chess\+Tracking.\+Image\+Processing.\+Pipeline\+Parts.\+General.\+Pipeline.\+Tracking\+Canceled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [private]}}
+
+
+
+Indicated, whether there was exception in calibration causing end of tracking 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Image\+Processing/\+Pipeline\+Parts/\+General/Pipeline.\+cs\end{DoxyCompactItemize}

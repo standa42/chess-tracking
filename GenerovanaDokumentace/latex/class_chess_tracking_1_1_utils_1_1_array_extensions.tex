@@ -1,0 +1,109 @@
+\hypertarget{class_chess_tracking_1_1_utils_1_1_array_extensions}{}\section{Chess\+Tracking.\+Utils.\+Array\+Extensions Class Reference}
+\label{class_chess_tracking_1_1_utils_1_1_array_extensions}\index{ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_utils_1_1_array_extensions_a7ee8db3a5c02ab354c3f555f2105399c}{Flip\+Horizontally$<$ T $>$}} (this T\mbox{[}$\,$\mbox{]} original\+Array, int width, int height)
+\begin{DoxyCompactList}\small\item\em Flips 2D structure represented by original\+Array, width and height horizontally Intended use is flipping of images \end{DoxyCompactList}\item 
+static T \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_utils_1_1_array_extensions_aedd2468ee9462cdcfdce1392d69b7e3a}{Flip\+Horizontally$<$ T $>$}} (this T\mbox{[}$\,$\mbox{]} original\+Array, int width, int height, int channels)
+\begin{DoxyCompactList}\small\item\em Flips 2D structure represented by original\+Array, width, height and channels horizontally Intended use is flipping of images \end{DoxyCompactList}\item 
+static T \mbox{[},\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_utils_1_1_array_extensions_a646bfd39dec184b89c70b9a6eef28ebf}{Flip\+Horizontally$<$ T $>$}} (this T\mbox{[},\mbox{]} original\+Array)
+\begin{DoxyCompactList}\small\item\em Horizontal flip on rectangular array \end{DoxyCompactList}\item 
+static T \mbox{[},\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_utils_1_1_array_extensions_a0037fa8dad6fbbcb44c28d225688bbe8}{Rotate\+Array90\+Deg\+Ccw\+N\+Times$<$ T $>$}} (this T\mbox{[},\mbox{]} matrix, int n)
+\begin{DoxyCompactList}\small\item\em Rotation of square array n-\/times by 90 degrees counterclockwise \end{DoxyCompactList}\item 
+static T \mbox{[},\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_utils_1_1_array_extensions_a046ba68618e1cd3ed9e581ff5f753b3e}{Rotate\+Array90\+Deg\+Ccw$<$ T $>$}} (this T\mbox{[},\mbox{]} matrix)
+\begin{DoxyCompactList}\small\item\em Rotation of square array by 90 degrees counterclockwise derived from \href{https://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array}{\texttt{ https\+://stackoverflow.\+com/questions/42519/how-\/do-\/you-\/rotate-\/a-\/two-\/dimensional-\/array}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_utils_1_1_array_extensions_a7ee8db3a5c02ab354c3f555f2105399c}\label{class_chess_tracking_1_1_utils_1_1_array_extensions_a7ee8db3a5c02ab354c3f555f2105399c}} 
+\index{ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}!FlipHorizontally$<$ T $>$@{FlipHorizontally$<$ T $>$}}
+\index{FlipHorizontally$<$ T $>$@{FlipHorizontally$<$ T $>$}!ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}}
+\subsubsection{\texorpdfstring{FlipHorizontally$<$ T $>$()}{FlipHorizontally< T >()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily static T \mbox{[}$\,$\mbox{]} Chess\+Tracking.\+Utils.\+Array\+Extensions.\+Flip\+Horizontally$<$ T $>$ (\begin{DoxyParamCaption}\item[{this T \mbox{[}$\,$\mbox{]}}]{original\+Array,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flips 2D structure represented by original\+Array, width and height horizontally Intended use is flipping of images 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Array} & Data of structure\\
+\hline
+{\em width} & Width of structure\\
+\hline
+{\em height} & Height of structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Flipped structure
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_utils_1_1_array_extensions_aedd2468ee9462cdcfdce1392d69b7e3a}\label{class_chess_tracking_1_1_utils_1_1_array_extensions_aedd2468ee9462cdcfdce1392d69b7e3a}} 
+\index{ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}!FlipHorizontally$<$ T $>$@{FlipHorizontally$<$ T $>$}}
+\index{FlipHorizontally$<$ T $>$@{FlipHorizontally$<$ T $>$}!ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}}
+\subsubsection{\texorpdfstring{FlipHorizontally$<$ T $>$()}{FlipHorizontally< T >()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily static T \mbox{[}$\,$\mbox{]} Chess\+Tracking.\+Utils.\+Array\+Extensions.\+Flip\+Horizontally$<$ T $>$ (\begin{DoxyParamCaption}\item[{this T \mbox{[}$\,$\mbox{]}}]{original\+Array,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{int}]{channels }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flips 2D structure represented by original\+Array, width, height and channels horizontally Intended use is flipping of images 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Array} & Data of structure\\
+\hline
+{\em width} & Width of structure\\
+\hline
+{\em height} & Height of structure\\
+\hline
+{\em channels} & Number of channels of 2D structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Flipped structure
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_utils_1_1_array_extensions_a646bfd39dec184b89c70b9a6eef28ebf}\label{class_chess_tracking_1_1_utils_1_1_array_extensions_a646bfd39dec184b89c70b9a6eef28ebf}} 
+\index{ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}!FlipHorizontally$<$ T $>$@{FlipHorizontally$<$ T $>$}}
+\index{FlipHorizontally$<$ T $>$@{FlipHorizontally$<$ T $>$}!ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}}
+\subsubsection{\texorpdfstring{FlipHorizontally$<$ T $>$()}{FlipHorizontally< T >()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily static T \mbox{[},\mbox{]} Chess\+Tracking.\+Utils.\+Array\+Extensions.\+Flip\+Horizontally$<$ T $>$ (\begin{DoxyParamCaption}\item[{this T}]{original\+Array\mbox{[},\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Horizontal flip on rectangular array 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_utils_1_1_array_extensions_a046ba68618e1cd3ed9e581ff5f753b3e}\label{class_chess_tracking_1_1_utils_1_1_array_extensions_a046ba68618e1cd3ed9e581ff5f753b3e}} 
+\index{ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}!RotateArray90DegCcw$<$ T $>$@{RotateArray90DegCcw$<$ T $>$}}
+\index{RotateArray90DegCcw$<$ T $>$@{RotateArray90DegCcw$<$ T $>$}!ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}}
+\subsubsection{\texorpdfstring{RotateArray90DegCcw$<$ T $>$()}{RotateArray90DegCcw< T >()}}
+{\footnotesize\ttfamily static T \mbox{[},\mbox{]} Chess\+Tracking.\+Utils.\+Array\+Extensions.\+Rotate\+Array90\+Deg\+Ccw$<$ T $>$ (\begin{DoxyParamCaption}\item[{this T}]{matrix\mbox{[},\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Rotation of square array by 90 degrees counterclockwise derived from \href{https://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array}{\texttt{ https\+://stackoverflow.\+com/questions/42519/how-\/do-\/you-\/rotate-\/a-\/two-\/dimensional-\/array}} 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_utils_1_1_array_extensions_a0037fa8dad6fbbcb44c28d225688bbe8}\label{class_chess_tracking_1_1_utils_1_1_array_extensions_a0037fa8dad6fbbcb44c28d225688bbe8}} 
+\index{ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}!RotateArray90DegCcwNTimes$<$ T $>$@{RotateArray90DegCcwNTimes$<$ T $>$}}
+\index{RotateArray90DegCcwNTimes$<$ T $>$@{RotateArray90DegCcwNTimes$<$ T $>$}!ChessTracking.Utils.ArrayExtensions@{ChessTracking.Utils.ArrayExtensions}}
+\subsubsection{\texorpdfstring{RotateArray90DegCcwNTimes$<$ T $>$()}{RotateArray90DegCcwNTimes< T >()}}
+{\footnotesize\ttfamily static T \mbox{[},\mbox{]} Chess\+Tracking.\+Utils.\+Array\+Extensions.\+Rotate\+Array90\+Deg\+Ccw\+N\+Times$<$ T $>$ (\begin{DoxyParamCaption}\item[{this T}]{matrix\mbox{[},\mbox{]},  }\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Rotation of square array n-\/times by 90 degrees counterclockwise 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Utils/Array\+Extensions.\+cs\end{DoxyCompactItemize}

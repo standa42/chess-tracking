@@ -1,0 +1,164 @@
+\hypertarget{class_chess_tracking_1_1_game_1_1_chess_position}{}\section{Chess\+Tracking.\+Game.\+Chess\+Position Class Reference}
+\label{class_chess_tracking_1_1_game_1_1_chess_position}\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+
+
+Describes position on chessboard  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_aa4cb1b1a3efa6f96b0e9553f61060d13}\label{class_chess_tracking_1_1_game_1_1_chess_position_aa4cb1b1a3efa6f96b0e9553f61060d13}} 
+{\bfseries Chess\+Position} (int x, int y)
+\item 
+bool \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_ad09d6fdc1fdd5c5652deaea5c246f0b9}{Is\+Valid}} ()
+\begin{DoxyCompactList}\small\item\em Checks is current position is valid position on chessboard \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_adf336b10f5e5943de1423fd93517cf48}{Is\+Equivalent}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} other)
+\begin{DoxyCompactList}\small\item\em Checks, whether two positions correspond to the same square on chessboard \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_aa65a17af184774b44f0631a8014e17d0}{To\+Chess\+String}} ()
+\begin{DoxyCompactList}\small\item\em Serializes position to text representation \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_acb0c72210d03873bf923d1b871e31b4b}{Add}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move_vector}{Game\+Move\+Vector}} vector)
+\begin{DoxyCompactList}\small\item\em Get position after translating by given vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_ad32aafa65d366856bc27b37565e0aff8}{Is\+Valid}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Checks is position is valid position on chessboard \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_ac4f8302f35f751eba3c9baa8a3ec43d0}{Is\+Equivalent}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} lhs, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} rhs)
+\begin{DoxyCompactList}\small\item\em Checks, whether two positions correspond to the same square on chessboard \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_a6900df7ad0744748c4b4da4452b9701a}{X}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Column coordinate \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position_a44dd6acdeb33707df6cc3d40119554ba}{Y}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Row coordinate \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Describes position on chessboard 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_acb0c72210d03873bf923d1b871e31b4b}\label{class_chess_tracking_1_1_game_1_1_chess_position_acb0c72210d03873bf923d1b871e31b4b}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!Add@{Add}}
+\index{Add@{Add}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} Chess\+Tracking.\+Game.\+Chess\+Position.\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_move_vector}{Game\+Move\+Vector}}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Get position after translating by given vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Vector move translation\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Transalted position
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_adf336b10f5e5943de1423fd93517cf48}\label{class_chess_tracking_1_1_game_1_1_chess_position_adf336b10f5e5943de1423fd93517cf48}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!IsEquivalent@{IsEquivalent}}
+\index{IsEquivalent@{IsEquivalent}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{IsEquivalent()}{IsEquivalent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Chess\+Tracking.\+Game.\+Chess\+Position.\+Is\+Equivalent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Checks, whether two positions correspond to the same square on chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_ac4f8302f35f751eba3c9baa8a3ec43d0}\label{class_chess_tracking_1_1_game_1_1_chess_position_ac4f8302f35f751eba3c9baa8a3ec43d0}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!IsEquivalent@{IsEquivalent}}
+\index{IsEquivalent@{IsEquivalent}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{IsEquivalent()}{IsEquivalent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static bool Chess\+Tracking.\+Game.\+Chess\+Position.\+Is\+Equivalent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{lhs,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Checks, whether two positions correspond to the same square on chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_ad09d6fdc1fdd5c5652deaea5c246f0b9}\label{class_chess_tracking_1_1_game_1_1_chess_position_ad09d6fdc1fdd5c5652deaea5c246f0b9}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!IsValid@{IsValid}}
+\index{IsValid@{IsValid}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{IsValid()}{IsValid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Chess\+Tracking.\+Game.\+Chess\+Position.\+Is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks is current position is valid position on chessboard 
+
+\begin{DoxyReturn}{Returns}
+Validity of position coordinates
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_ad32aafa65d366856bc27b37565e0aff8}\label{class_chess_tracking_1_1_game_1_1_chess_position_ad32aafa65d366856bc27b37565e0aff8}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!IsValid@{IsValid}}
+\index{IsValid@{IsValid}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{IsValid()}{IsValid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static bool Chess\+Tracking.\+Game.\+Chess\+Position.\+Is\+Valid (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Checks is position is valid position on chessboard 
+
+\begin{DoxyReturn}{Returns}
+Validity of position coordinates
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_aa65a17af184774b44f0631a8014e17d0}\label{class_chess_tracking_1_1_game_1_1_chess_position_aa65a17af184774b44f0631a8014e17d0}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!ToChessString@{ToChessString}}
+\index{ToChessString@{ToChessString}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{ToChessString()}{ToChessString()}}
+{\footnotesize\ttfamily string Chess\+Tracking.\+Game.\+Chess\+Position.\+To\+Chess\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Serializes position to text representation 
+
+\begin{DoxyReturn}{Returns}
+Text reprezentation
+\end{DoxyReturn}
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_a6900df7ad0744748c4b4da4452b9701a}\label{class_chess_tracking_1_1_game_1_1_chess_position_a6900df7ad0744748c4b4da4452b9701a}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!X@{X}}
+\index{X@{X}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{X}{X}}
+{\footnotesize\ttfamily int Chess\+Tracking.\+Game.\+Chess\+Position.\+X\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Column coordinate 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chess_position_a44dd6acdeb33707df6cc3d40119554ba}\label{class_chess_tracking_1_1_game_1_1_chess_position_a44dd6acdeb33707df6cc3d40119554ba}} 
+\index{ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}!Y@{Y}}
+\index{Y@{Y}!ChessTracking.Game.ChessPosition@{ChessTracking.Game.ChessPosition}}
+\subsubsection{\texorpdfstring{Y}{Y}}
+{\footnotesize\ttfamily int Chess\+Tracking.\+Game.\+Chess\+Position.\+Y\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Row coordinate 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Game/Chess\+Position.\+cs\end{DoxyCompactItemize}

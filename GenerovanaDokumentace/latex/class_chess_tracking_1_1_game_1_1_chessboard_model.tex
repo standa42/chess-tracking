@@ -1,0 +1,134 @@
+\hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model}{}\section{Chess\+Tracking.\+Game.\+Chessboard\+Model Class Reference}
+\label{class_chess_tracking_1_1_game_1_1_chessboard_model}\index{ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}}
+
+
+Representation of state of physical chessboard  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model_af15317d4e3a6a2553d7e39835d7af6aa}\label{class_chess_tracking_1_1_game_1_1_chessboard_model_af15317d4e3a6a2553d7e39835d7af6aa}} 
+{\bfseries Chessboard\+Model} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}}\mbox{[},\mbox{]} figures)
+\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_tracking_state}{Tracking\+State}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model_a7dba1550cc252450505f388ad10ebffd}{Get\+Tracking\+States}} ()
+\begin{DoxyCompactList}\small\item\em Gets tracking states of given chessboard \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model_a86d722a1525231eb7133323b7bf021c5}{Move\+To}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} from, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} to)
+\begin{DoxyCompactList}\small\item\em Performs move of figure on chessboard \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model_a81d023f3491a9d0c41ac971c8ac5b86d}{Delete}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} position)
+\begin{DoxyCompactList}\small\item\em Performs deletion of figure on chessboard \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model_a4cce922d242645f63b9fe071dca6e221}{Add\+Figure}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} figure, \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} position)
+\begin{DoxyCompactList}\small\item\em Adds figure to chessboard \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model_a0a6ca632d187edbe633a18c21d210365}{Get\+Figure\+On\+Position}} (\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}} position)
+\begin{DoxyCompactList}\small\item\em Returns figure on given position \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} \mbox{[},\mbox{]} \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chessboard_model_ac653deeae3dc84b3b0470aac4c60d671}{Figures}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Contains information about presence of figure on each square of chessboard \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} if there is figure, null otherwise \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representation of state of physical chessboard 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model_a4cce922d242645f63b9fe071dca6e221}\label{class_chess_tracking_1_1_game_1_1_chessboard_model_a4cce922d242645f63b9fe071dca6e221}} 
+\index{ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}!AddFigure@{AddFigure}}
+\index{AddFigure@{AddFigure}!ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}}
+\subsubsection{\texorpdfstring{AddFigure()}{AddFigure()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Game.\+Chessboard\+Model.\+Add\+Figure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}}}]{figure,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{position }\end{DoxyParamCaption})}
+
+
+
+Adds figure to chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em figure} & Added figure\\
+\hline
+{\em position} & Added figure position\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model_a81d023f3491a9d0c41ac971c8ac5b86d}\label{class_chess_tracking_1_1_game_1_1_chessboard_model_a81d023f3491a9d0c41ac971c8ac5b86d}} 
+\index{ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}!Delete@{Delete}}
+\index{Delete@{Delete}!ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}}
+\subsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Game.\+Chessboard\+Model.\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{position }\end{DoxyParamCaption})}
+
+
+
+Performs deletion of figure on chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Position of figure to delete\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model_a0a6ca632d187edbe633a18c21d210365}\label{class_chess_tracking_1_1_game_1_1_chessboard_model_a0a6ca632d187edbe633a18c21d210365}} 
+\index{ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}!GetFigureOnPosition@{GetFigureOnPosition}}
+\index{GetFigureOnPosition@{GetFigureOnPosition}!ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}}
+\subsubsection{\texorpdfstring{GetFigureOnPosition()}{GetFigureOnPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} Chess\+Tracking.\+Game.\+Chessboard\+Model.\+Get\+Figure\+On\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{position }\end{DoxyParamCaption})}
+
+
+
+Returns figure on given position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Position of demanded figure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} on position, null if there ain\textquotesingle{}t no figure
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model_a7dba1550cc252450505f388ad10ebffd}\label{class_chess_tracking_1_1_game_1_1_chessboard_model_a7dba1550cc252450505f388ad10ebffd}} 
+\index{ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}!GetTrackingStates@{GetTrackingStates}}
+\index{GetTrackingStates@{GetTrackingStates}!ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}}
+\subsubsection{\texorpdfstring{GetTrackingStates()}{GetTrackingStates()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_tracking_state}{Tracking\+State}} Chess\+Tracking.\+Game.\+Chessboard\+Model.\+Get\+Tracking\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets tracking states of given chessboard 
+
+\begin{DoxyReturn}{Returns}
+Tracking states of given chessboard
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model_a86d722a1525231eb7133323b7bf021c5}\label{class_chess_tracking_1_1_game_1_1_chessboard_model_a86d722a1525231eb7133323b7bf021c5}} 
+\index{ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}!MoveTo@{MoveTo}}
+\index{MoveTo@{MoveTo}!ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}}
+\subsubsection{\texorpdfstring{MoveTo()}{MoveTo()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Game.\+Chessboard\+Model.\+Move\+To (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{from,  }\item[{\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_chess_position}{Chess\+Position}}}]{to }\end{DoxyParamCaption})}
+
+
+
+Performs move of figure on chessboard 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & Move origin positon\\
+\hline
+{\em to} & Move destination position\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_game_1_1_chessboard_model_ac653deeae3dc84b3b0470aac4c60d671}\label{class_chess_tracking_1_1_game_1_1_chessboard_model_ac653deeae3dc84b3b0470aac4c60d671}} 
+\index{ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}!Figures@{Figures}}
+\index{Figures@{Figures}!ChessTracking.Game.ChessboardModel@{ChessTracking.Game.ChessboardModel}}
+\subsubsection{\texorpdfstring{Figures}{Figures}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} \mbox{[},\mbox{]} Chess\+Tracking.\+Game.\+Chessboard\+Model.\+Figures\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Contains information about presence of figure on each square of chessboard \mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_figure}{Figure}} if there is figure, null otherwise 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Game/Chessboard\+Model.\+cs\end{DoxyCompactItemize}

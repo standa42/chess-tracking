@@ -1,0 +1,5 @@
+var interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_figures_localization =
+[
+    [ "Calibrate", "interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_figures_localization.html#a6d7306330fd25133e389b0f5b02af6e8", null ],
+    [ "Track", "interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_figures_localization.html#aaa05ccf9e70cdf5a9f11dc967cfb2d39", null ]
+];

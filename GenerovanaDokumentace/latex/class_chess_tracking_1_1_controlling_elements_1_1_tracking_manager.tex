@@ -1,0 +1,107 @@
+\hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager}{}\section{Chess\+Tracking.\+Controlling\+Elements.\+Tracking\+Manager Class Reference}
+\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager}\index{ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}}
+
+
+Maintains communication with tracking thread  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ac35559bd2bb67c2b1ee15cef031437f3}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ac35559bd2bb67c2b1ee15cef031437f3}} 
+{\bfseries Tracking\+Manager} (\mbox{\hyperlink{class_chess_tracking_1_1_user_interface_1_1_user_interface_output_facade}{User\+Interface\+Output\+Facade}} output\+Facade, \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_result_processing}{Tracking\+Result\+Processing}} tracking\+Result\+Processing, \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_user_defined_parameters_prototype_factory}{User\+Defined\+Parameters\+Prototype\+Factory}} user\+Parameters, \mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state}{I\+Program\+State}} program\+State)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ad6f1b1c8f37c01e6aea72ccb24c8862d}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ad6f1b1c8f37c01e6aea72ccb24c8862d}} 
+void {\bfseries Start\+Tracking} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ad31ebf5a92763fe568dc456ee4b15ecc}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ad31ebf5a92763fe568dc456ee4b15ecc}} 
+void {\bfseries Stop\+Tracking} (bool game\+Finished=false)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a6d6077c9056d17a98501b9abdc4e4896}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a6d6077c9056d17a98501b9abdc4e4896}} 
+void {\bfseries Recalibrate} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ac8d46ee462cb136c41cdbba6863ac6f7}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_ac8d46ee462cb136c41cdbba6863ac6f7}} 
+void {\bfseries Send\+Chessboard\+Movement} (\mbox{\hyperlink{namespace_chess_tracking_1_1_multithreading_messages_1_1_to_processing_af48751428f7a12d314dbbac688726bac}{Chessboard\+Movement}} movement)
+\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a25d9c67ca29f33db16fe5b319b1fda40}{Process\+Queue}} ()
+\begin{DoxyCompactList}\small\item\em Processing of messages arriving from tracking thread \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a23c6900af22dcd29ed1ce47e6184919c}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a23c6900af22dcd29ed1ce47e6184919c}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_user_interface_1_1_user_interface_output_facade}{User\+Interface\+Output\+Facade}} {\bfseries Output\+Facade}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a1458258430f5bc6c097e4a9ff42658d9}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a1458258430f5bc6c097e4a9ff42658d9}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_result_processing}{Tracking\+Result\+Processing}} {\bfseries Tracking\+Result\+Processing}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a52fc613b137b33af137b3ae5233d2a9f}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a52fc613b137b33af137b3ae5233d2a9f}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_kinect}{Kinect}} {\bfseries Kinect}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_abe3da30023e3be06af818332e3e38f49}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_abe3da30023e3be06af818332e3e38f49}} 
+\mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state}{I\+Program\+State}} {\bfseries Program\+State}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Blocking\+Collection$<$ \mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_message}{Message}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a36fc9d67eabe3676ac9ac410ba331cc9}{Processing\+Output\+Queue}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Queue of messages arriving from tracking thread \end{DoxyCompactList}\item 
+Blocking\+Collection$<$ \mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_message}{Message}} $>$ \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_aee8b76218258f5f3ec6d4bb39bec4901}{Processing\+Commands\+Queue}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Queue pointing to tracking thread \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_af0adf3ec805f8b8ce898fe6d7dfc77ff}{Init\+Pipeline\+Thread}} (\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_user_defined_parameters_prototype_factory}{User\+Defined\+Parameters\+Prototype\+Factory}} user\+Parameters)
+\begin{DoxyCompactList}\small\item\em Initialization of tracking thread \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Maintains communication with tracking thread 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_af0adf3ec805f8b8ce898fe6d7dfc77ff}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_af0adf3ec805f8b8ce898fe6d7dfc77ff}} 
+\index{ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}!InitPipelineThread@{InitPipelineThread}}
+\index{InitPipelineThread@{InitPipelineThread}!ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}}
+\subsubsection{\texorpdfstring{InitPipelineThread()}{InitPipelineThread()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Tracking\+Manager.\+Init\+Pipeline\+Thread (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_user_defined_parameters_prototype_factory}{User\+Defined\+Parameters\+Prototype\+Factory}}}]{user\+Parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of tracking thread 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a25d9c67ca29f33db16fe5b319b1fda40}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a25d9c67ca29f33db16fe5b319b1fda40}} 
+\index{ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}!ProcessQueue@{ProcessQueue}}
+\index{ProcessQueue@{ProcessQueue}!ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}}
+\subsubsection{\texorpdfstring{ProcessQueue()}{ProcessQueue()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+Controlling\+Elements.\+Tracking\+Manager.\+Process\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Processing of messages arriving from tracking thread 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_aee8b76218258f5f3ec6d4bb39bec4901}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_aee8b76218258f5f3ec6d4bb39bec4901}} 
+\index{ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}!ProcessingCommandsQueue@{ProcessingCommandsQueue}}
+\index{ProcessingCommandsQueue@{ProcessingCommandsQueue}!ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}}
+\subsubsection{\texorpdfstring{ProcessingCommandsQueue}{ProcessingCommandsQueue}}
+{\footnotesize\ttfamily Blocking\+Collection$<$\mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_message}{Message}}$>$ Chess\+Tracking.\+Controlling\+Elements.\+Tracking\+Manager.\+Processing\+Commands\+Queue\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private]}}
+
+
+
+Queue pointing to tracking thread 
+
+\mbox{\Hypertarget{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a36fc9d67eabe3676ac9ac410ba331cc9}\label{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager_a36fc9d67eabe3676ac9ac410ba331cc9}} 
+\index{ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}!ProcessingOutputQueue@{ProcessingOutputQueue}}
+\index{ProcessingOutputQueue@{ProcessingOutputQueue}!ChessTracking.ControllingElements.TrackingManager@{ChessTracking.ControllingElements.TrackingManager}}
+\subsubsection{\texorpdfstring{ProcessingOutputQueue}{ProcessingOutputQueue}}
+{\footnotesize\ttfamily Blocking\+Collection$<$\mbox{\hyperlink{class_chess_tracking_1_1_multithreading_messages_1_1_message}{Message}}$>$ Chess\+Tracking.\+Controlling\+Elements.\+Tracking\+Manager.\+Processing\+Output\+Queue\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Queue of messages arriving from tracking thread 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+Controlling\+Elements/Tracking\+Manager.\+cs\end{DoxyCompactItemize}

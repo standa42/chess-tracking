@@ -1,0 +1,70 @@
+\hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade}{}\section{Chess\+Tracking.\+User\+Interface.\+User\+Interface\+Input\+Facade Class Reference}
+\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade}\index{ChessTracking.UserInterface.UserInterfaceInputFacade@{ChessTracking.UserInterface.UserInterfaceInputFacade}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a6162572f856dba8ff5d37bc3a0dc683c}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a6162572f856dba8ff5d37bc3a0dc683c}} 
+{\bfseries User\+Interface\+Input\+Facade} (\mbox{\hyperlink{class_chess_tracking_1_1_user_interface_1_1_user_interface_output_facade}{User\+Interface\+Output\+Facade}} output\+Facade, \mbox{\hyperlink{class_chess_tracking_1_1_image_processing_1_1_pipeline_data_1_1_user_defined_parameters_prototype_factory}{User\+Defined\+Parameters\+Prototype\+Factory}} user\+Parameters)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_acde564517357cb980d3278d8ebed4b0d}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_acde564517357cb980d3278d8ebed4b0d}} 
+void {\bfseries New\+Game} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a7a2c50a48aa2b21204ca85878ad7b483}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a7a2c50a48aa2b21204ca85878ad7b483}} 
+void {\bfseries Save\+Game} (Stream\+Writer stream)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a5c62c7054f2b24deaaac8c4df1f7d28e}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a5c62c7054f2b24deaaac8c4df1f7d28e}} 
+void {\bfseries Load\+Game} (Stream\+Reader stream)
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a94e2beb508d06eb9d03a814122e7922d}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a94e2beb508d06eb9d03a814122e7922d}} 
+void {\bfseries End\+Game} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_ab5371578612ba35198eb5de2fa2aaff7}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_ab5371578612ba35198eb5de2fa2aaff7}} 
+void {\bfseries Start\+Tracking} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_ac713da3cc4f893c5fcec13b44e2f09f1}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_ac713da3cc4f893c5fcec13b44e2f09f1}} 
+void {\bfseries Stop\+Tracking} ()
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a5045f3d0e315abf1010dbe05a823978c}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a5045f3d0e315abf1010dbe05a823978c}} 
+void {\bfseries Recalibrate} ()
+\item 
+void \mbox{\hyperlink{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a1f17a5883cc0d513edd5a1e400087a7e}{Process\+Queue\+Tick}} ()
+\begin{DoxyCompactList}\small\item\em Tick to process queue from tracking thread \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a7e36f7aeec76ff56be7caa35750273bc}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a7e36f7aeec76ff56be7caa35750273bc}} 
+void {\bfseries Send\+Chessboard\+Movement} (\mbox{\hyperlink{namespace_chess_tracking_1_1_multithreading_messages_1_1_to_processing_af48751428f7a12d314dbbac688726bac}{Chessboard\+Movement}} movement)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a34cbc90723567c0b190c4e09c02e3488}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a34cbc90723567c0b190c4e09c02e3488}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_user_interface_1_1_user_interface_output_facade}{User\+Interface\+Output\+Facade}} {\bfseries Output\+Facade}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a89845eca73f5082dd738c46784376d7d}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a89845eca73f5082dd738c46784376d7d}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_manager}{Tracking\+Manager}} {\bfseries Tracking\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a4b8bec2cbda7c7079f20f39b91ac8987}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a4b8bec2cbda7c7079f20f39b91ac8987}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_controlling_elements_1_1_tracking_result_processing}{Tracking\+Result\+Processing}} {\bfseries Tracking\+Result\+Processing}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_ac7d7842642e92b442d40e18a942f9722}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_ac7d7842642e92b442d40e18a942f9722}} 
+\mbox{\hyperlink{class_chess_tracking_1_1_game_1_1_game_controller}{Game\+Controller}} {\bfseries Game\+Controller}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_aa3f7a0d0c8c061c0ffd040ec830ee644}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_aa3f7a0d0c8c061c0ffd040ec830ee644}} 
+\mbox{\hyperlink{interface_chess_tracking_1_1_controlling_elements_1_1_program_state_1_1_i_program_state}{I\+Program\+State}} {\bfseries Program\+State}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a1f17a5883cc0d513edd5a1e400087a7e}\label{class_chess_tracking_1_1_user_interface_1_1_user_interface_input_facade_a1f17a5883cc0d513edd5a1e400087a7e}} 
+\index{ChessTracking.UserInterface.UserInterfaceInputFacade@{ChessTracking.UserInterface.UserInterfaceInputFacade}!ProcessQueueTick@{ProcessQueueTick}}
+\index{ProcessQueueTick@{ProcessQueueTick}!ChessTracking.UserInterface.UserInterfaceInputFacade@{ChessTracking.UserInterface.UserInterfaceInputFacade}}
+\subsubsection{\texorpdfstring{ProcessQueueTick()}{ProcessQueueTick()}}
+{\footnotesize\ttfamily void Chess\+Tracking.\+User\+Interface.\+User\+Interface\+Input\+Facade.\+Process\+Queue\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tick to process queue from tracking thread 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ondrej\+Stanek/\+Source/\+Repos/\+Chess\+Tracking/\+Chess\+Tracking/\+User\+Interface/User\+Interface\+Input\+Facade.\+cs\end{DoxyCompactItemize}

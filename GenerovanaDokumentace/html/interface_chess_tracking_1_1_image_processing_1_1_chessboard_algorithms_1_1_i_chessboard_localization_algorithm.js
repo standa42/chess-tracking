@@ -1,0 +1,5 @@
+var interface_chess_tracking_1_1_image_processing_1_1_chessboard_algorithms_1_1_i_chessboard_localization_algorithm =
+[
+    [ "LocateChessboard", "interface_chess_tracking_1_1_image_processing_1_1_chessboard_algorithms_1_1_i_chessboard_localization_algorithm.html#a53fca1495b5d93e859616eb23f2873a5", null ],
+    [ "boardReprezentation", "interface_chess_tracking_1_1_image_processing_1_1_chessboard_algorithms_1_1_i_chessboard_localization_algorithm.html#a5d480f7fc5aa9d0eb820a9051192cdfe", null ]
+];
