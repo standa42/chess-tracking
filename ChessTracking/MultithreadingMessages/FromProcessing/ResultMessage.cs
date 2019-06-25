@@ -15,12 +15,14 @@ namespace ChessTracking.MultithreadingMessages
         public Bitmap BitmapToDisplay { get; }
         public TrackingState TrackingState { get; }
         public bool HandDetected { get; }
+        public int[,] PointCountsOverFields { get; }
 
-        public ResultMessage(Bitmap bitmapToDisplay, TrackingState trackingState, bool handDetected)
+        public ResultMessage(Bitmap bitmapToDisplay, TrackingState trackingState, bool handDetected, int[,] pointCountsOverFields)
         {
-            this.BitmapToDisplay = bitmapToDisplay;
+            BitmapToDisplay = bitmapToDisplay;
             TrackingState = trackingState;
-            this.HandDetected = handDetected;
+            HandDetected = handDetected;
+            PointCountsOverFields = pointCountsOverFields;
         }
     }
 }

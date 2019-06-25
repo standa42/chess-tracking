@@ -11,5 +11,6 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public TrackingState TrackingState { get; set; }
         public bool SceneDisrupted { get; set; }
         public Bitmap VisualisationBitmap { get; set; }
+        public int[,] PointCountsOverFields { get; set; }
     }
 }

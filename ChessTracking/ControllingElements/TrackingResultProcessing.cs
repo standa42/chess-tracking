@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accord.Math.Geometry;
 using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.Game;
 using ChessTracking.MultithreadingMessages;
@@ -93,16 +94,21 @@ namespace ChessTracking.ControllingElements
             var trackingState = resultMessage.TrackingState;
             trackingState.HorizontalFlip();
 
+            var pointCounts = resultMessage.PointCountsOverFields;
+            pointCounts = pointCounts.FlipHorizontally();
+
             if (TrackningInProgress)
             {
                 trackingState.RotateClockWise(NumberOfCwRotations);
-                OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState));
+                pointCounts = pointCounts.RotateArray90DegCcwNTimes(NumberOfCwRotations);
+                
+                OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState, pointCounts));
                 // averaging
                 var average = Averaging(trackingState);
                 if (average == null)
                     return;
                 // send averaging
-                OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average,GameController.GetTrackingState()));
+                OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average,null,GameController.GetTrackingState()));
                 // check so we aren't sending the same state again
                 if (LastSentState != null && !LastSentState.IsEquivalentTo(average))
                 {
@@ -114,7 +120,7 @@ namespace ChessTracking.ControllingElements
             }
             else
             {
-                OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState));
+                OutputFacade.UpdateImmediateBoard(GenerateImageForTrackingState(trackingState, pointCounts));
                 // averaging
                 var average = Averaging(trackingState);
                 if (average == null)
@@ -122,7 +128,7 @@ namespace ChessTracking.ControllingElements
                 else
                 {
                     // send averaging
-                    OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average));
+                    OutputFacade.UpdateAveragedBoard(GenerateImageForTrackingState(average,null));
                     // try to get rotation of tracking state
                     var rotation = GameController.InitiateWithTracingInput(average);
                     // if rotation is succesfull(figures got matched)
@@ -208,7 +214,7 @@ namespace ChessTracking.ControllingElements
         /// <summary>
         /// Render tracking state image for displaying
         /// </summary>
-        private Bitmap GenerateImageForTrackingState(TrackingState trackingState, TrackingState gameTrackingState = null)
+        private Bitmap GenerateImageForTrackingState(TrackingState trackingState, int[,] pointCounts, TrackingState gameTrackingState = null)
         {
             trackingState = new TrackingState(trackingState.Figures);
 
@@ -216,6 +222,8 @@ namespace ChessTracking.ControllingElements
             SolidBrush blackBrush = new SolidBrush(Color.Black);
             SolidBrush whiteBrush = new SolidBrush(Color.White);
             SolidBrush redBrush = new SolidBrush(Color.Red);
+
+            Font font = new Font(FontFamily.GenericSerif, 4);
 
             for (int x = 0; x < 8; x++)
             {
@@ -237,6 +245,9 @@ namespace ChessTracking.ControllingElements
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
+
+                        if(pointCounts != null)
+                            graphics.DrawString(pointCounts[x,7-y].ToString(), font, redBrush, x * 40, y * 40);
 
                         if (gameTrackingState != null && gameTrackingState.Figures[x,7 - y] != trackingState.Figures[x,7-y])
                         {

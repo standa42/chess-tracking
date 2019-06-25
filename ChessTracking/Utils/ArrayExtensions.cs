@@ -61,6 +61,50 @@ namespace ChessTracking.Utils
 
             return newArray;
         }
-        
+
+        /// <summary>
+        /// Horizontal flip on rectangular array
+        /// </summary>
+        public static T[,] FlipHorizontally<T>(this T[,] originalArray)
+        {
+            var size = originalArray.GetLength(0);
+            var newArray = new T[size, size];
+
+            for (int x = 0; x < size; x++)
+                for (int y = 0; y < size; y++)
+                {
+                    newArray[x, y] = originalArray[size - x - 1, y];
+                }
+
+            return newArray;
+        }
+
+        public static T[,] RotateArray90DegCcwNTimes<T>(this T[,] matrix, int n)
+        {
+            for (int i = 0; i < n; i++)
+                matrix = matrix.RotateArray90DegCcw();
+
+            return matrix;
+        }
+
+        /// <summary>
+        /// Rotation of square array by 90 degrees clockwise
+        /// derived from https://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array
+        /// </summary>
+        public static T[,] RotateArray90DegCcw<T>(this T[,] matrix)
+        {
+            var size = matrix.GetLength(0);
+            var array = new T[size, size];
+
+            for (int i = 0; i < size; ++i)
+            {
+                for (int j = 0; j < size; ++j)
+                {
+                    array[i, j] = matrix[j,size - i - 1];
+                }
+            }
+
+            return array;
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
         {
             var figuresData = new FiguresTrackingCompleteData(chessboardData);
 
-            figuresData.ResultData.TrackingState =
+            (figuresData.ResultData.TrackingState, figuresData.ResultData.PointCountsOverFields) =
                 FiguresLocalizationAlgorithm.LocateFigures(
                     figuresData.KinectData,
                     figuresData.ChessboardData.FieldSize,

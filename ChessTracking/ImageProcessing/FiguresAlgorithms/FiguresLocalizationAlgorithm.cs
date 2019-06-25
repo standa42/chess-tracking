@@ -6,12 +6,13 @@ using System.Linq;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.Utils;
+using Point = System.Drawing.Point;
 
 namespace ChessTracking.ImageProcessing.FiguresAlgorithms
 {
     class FiguresLocalizationAlgorithm : IFiguresLocalizationAlgorithm
     {
-        public TrackingState LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap colorBitmap)
+        public (TrackingState, int[,]) LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap colorBitmap)
         {
             // Collection of pixel colors for each field on chessboard
             var colorsOfPointsOverIndividualFields = InitializeColorCollection();
@@ -22,7 +23,20 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
             
             resultData.VisualisationBitmap = RenderLabelsToFigures(colorsOfPointsOverIndividualFields, trackingState, resultData.VisualisationBitmap);
 
-            return trackingState;
+            var pointCounts = GetPointsCountsOverIndividualFields(colorsOfPointsOverIndividualFields);
+
+            return (trackingState, pointCounts);
+        }
+
+        private int[,] GetPointsCountsOverIndividualFields(List<Point2DWithColor>[,] colorArray)
+        {
+            var counts = new int[8, 8];
+
+            for (int x = 0; x < 8; x++)
+                for (int y = 0; y < 8; y++)
+                    counts[x, y] = colorArray[x, y].Count;
+
+            return counts;
         }
 
         /// <summary>

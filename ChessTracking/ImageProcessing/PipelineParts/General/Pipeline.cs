@@ -163,7 +163,11 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             var figuresData = FiguresLocalization.Track(chessboardData);
 
             SendResultMessageToUserThread(
-                new ResultMessage(figuresData.ResultData.VisualisationBitmap.HorizontalFlip(), figuresData.ResultData.TrackingState, figuresData.ResultData.SceneDisrupted)
+                new ResultMessage(
+                    figuresData.ResultData.VisualisationBitmap.HorizontalFlip(),
+                    figuresData.ResultData.TrackingState, 
+                    figuresData.ResultData.SceneDisrupted,
+                    figuresData.ResultData.PointCountsOverFields)
             );
         }
 
