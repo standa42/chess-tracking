@@ -88,6 +88,24 @@ namespace ChessTracking.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calibration - no data from Kinect.
+        /// </summary>
+        internal static string CalibrationNoDataArrived {
+            get {
+                return ResourceManager.GetString("CalibrationNoDataArrived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibration threw an exception.
+        /// </summary>
+        internal static string CalibrationThrewException {
+            get {
+                return ResourceManager.GetString("CalibrationThrewException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ––––––––––––––––––––––––.
         /// </summary>
         internal static string DashedLine {

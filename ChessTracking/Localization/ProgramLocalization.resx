@@ -126,6 +126,12 @@
   <data name="BlackWonRecord" xml:space="preserve">
     <value>0-1</value>
   </data>
+  <data name="CalibrationNoDataArrived" xml:space="preserve">
+    <value>Calibration - no data from Kinect</value>
+  </data>
+  <data name="CalibrationThrewException" xml:space="preserve">
+    <value>Calibration threw an exception</value>
+  </data>
   <data name="DashedLine" xml:space="preserve">
     <value>––––––––––––––––––––––––</value>
   </data>

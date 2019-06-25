@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.Stages;
 using ChessTracking.ImageProcessing.PipelineParts.StagesInterfaces;
+using ChessTracking.Localization;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.FromProcessing;
 using ChessTracking.MultithreadingMessages.ToProcessing;
@@ -85,7 +86,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                 {
                     TrackingCanceled = true;
                     if (e is TimeoutException)
-                        SendResultMessageToUserThread(new TrackingError("Calibration - no data from Kinect"));
+                        SendResultMessageToUserThread(new TrackingError(ProgramLocalization.CalibrationNoDataArrived));
                     else if (e is CalibrationException)
                     {
                         if (!string.IsNullOrEmpty(e.Message))
@@ -93,7 +94,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                     }
                     else
                     {
-                        SendResultMessageToUserThread(new TrackingError("Calibration threw an exception"));
+                        SendResultMessageToUserThread(new TrackingError(ProgramLocalization.CalibrationThrewException));
                     }
 
                 }
