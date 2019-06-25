@@ -286,22 +286,22 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                         {
                             Point point = points.Dequeue();
 
-                            if ((DepthData[point.position].Type == PixelType.Table) && (rootOwnershipMarkersOnIndividualPixels[point.position] == 0))
+                            if ((DepthData[point.Position].Type == PixelType.Table) && (rootOwnershipMarkersOnIndividualPixels[point.Position] == 0))
                             {
                                 root.Count++;
-                                rootOwnershipMarkersOnIndividualPixels[point.position] = areaNumber;
+                                rootOwnershipMarkersOnIndividualPixels[point.Position] = areaNumber;
                                 
-                                if (point.y > 0)
-                                    points.Enqueue(new Point(point.x, point.y - 1));
+                                if (point.Y > 0)
+                                    points.Enqueue(new Point(point.X, point.Y - 1));
 
-                                if (point.x > 0)
-                                    points.Enqueue(new Point(point.x - 1, point.y));
+                                if (point.X > 0)
+                                    points.Enqueue(new Point(point.X - 1, point.Y));
 
-                                if (point.y < PlaneLocalizationConfig.DepthImageHeight - 1)
-                                    points.Enqueue(new Point(point.x, point.y + 1));
+                                if (point.Y < PlaneLocalizationConfig.DepthImageHeight - 1)
+                                    points.Enqueue(new Point(point.X, point.Y + 1));
 
-                                if (point.x < PlaneLocalizationConfig.DepthImageWidth - 1)
-                                    points.Enqueue(new Point(point.x + 1, point.y));
+                                if (point.X < PlaneLocalizationConfig.DepthImageWidth - 1)
+                                    points.Enqueue(new Point(point.X + 1, point.Y));
                             }
                         }
 

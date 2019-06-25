@@ -7,6 +7,9 @@ using ChessTracking.ImageProcessing.PipelineData;
 
 namespace ChessTracking.MultithreadingMessages.FromProcessing
 {
+    /// <summary>
+    /// Message containing images taken during calibration for user to have visual feedback
+    /// </summary>
     class SceneCalibrationSnapshotMessage : Message
     {
         public SceneCalibrationSnapshot Snapshot { get; }

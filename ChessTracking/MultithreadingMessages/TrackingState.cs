@@ -79,6 +79,9 @@ namespace ChessTracking.MultithreadingMessages
             return equivalent;
         }
 
+        /// <summary>
+        /// Performs vertical flip of tracking state
+        /// </summary>
         public void VerticalFlip()
         {
             var newMatrix = new TrackingFieldState[Figures.GetLength(1), Figures.GetLength(0)];
@@ -94,6 +97,9 @@ namespace ChessTracking.MultithreadingMessages
             Figures = newMatrix;
         }
 
+        /// <summary>
+        /// Performs horizontal flip of tracking state
+        /// </summary>
         public void HorizontalFlip()
         {
             var newMatrix = new TrackingFieldState[Figures.GetLength(1), Figures.GetLength(0)];

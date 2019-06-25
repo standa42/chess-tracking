@@ -11,7 +11,10 @@ namespace ChessTracking.Utils
 {
     static class BitmapExtenstions
     {
-        public static byte[] ImageToByteArray(this System.Drawing.Image image)
+        /// <summary>
+        /// Serializes image to byte array
+        /// </summary>
+        public static byte[] ImageToByteArray(this Image image)
         {
             using (var ms = new MemoryStream())
             {
@@ -20,18 +23,26 @@ namespace ChessTracking.Utils
             }
         }
 
-        public static Bitmap HorizontalFlip(this Bitmap bm)
+        /// <summary>
+        /// Horizontally flips image
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
+        public static Bitmap HorizontalFlip(this Bitmap bitmap)
         {
-            bm.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            return bm;
+            bitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            return bitmap;
         }
 
-        public static double CustomBrightness(this Color c)
+        /// <summary>
+        /// Custom computation of brightness from rgb
+        /// </summary>
+        public static double CustomBrightness(this Color color)
         {
             return Math.Sqrt(
-                c.R * c.R * .241 +
-                c.G * c.G * .691 +
-                c.B * c.B * .068) / 255f;
+                color.R * color.R * .241 +
+                color.G * color.G * .691 +
+                color.B * color.B * .068) / 255f;
         }
     }
 }

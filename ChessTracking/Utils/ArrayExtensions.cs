@@ -79,6 +79,9 @@ namespace ChessTracking.Utils
             return newArray;
         }
 
+        /// <summary>
+        /// Rotation of square array n-times by 90 degrees counterclockwise
+        /// </summary>
         public static T[,] RotateArray90DegCcwNTimes<T>(this T[,] matrix, int n)
         {
             for (int i = 0; i < n; i++)
@@ -88,7 +91,7 @@ namespace ChessTracking.Utils
         }
 
         /// <summary>
-        /// Rotation of square array by 90 degrees clockwise
+        /// Rotation of square array by 90 degrees counterclockwise
         /// derived from https://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array
         /// </summary>
         public static T[,] RotateArray90DegCcw<T>(this T[,] matrix)

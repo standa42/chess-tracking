@@ -2,18 +2,17 @@
 
 namespace ChessTracking.Utils
 {
-    
         struct Point
         {
-            public int x;
-            public int y;
-            public int position;
+            public int X { get; }
+            public int Y { get; }
+            public int Position { get; }
 
-            public Point(int _x, int _y)
+            public Point(int x, int y)
             {
-                x = _x;
-                y = _y;
-                position = x + y * PlaneLocalizationConfig.DepthImageWidth;
+                X = x;
+                Y = y;
+                Position = X + Y * PlaneLocalizationConfig.DepthImageWidth;
             }
         }
         

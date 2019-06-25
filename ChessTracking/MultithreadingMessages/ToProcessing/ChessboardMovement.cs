@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.MultithreadingMessages.ToProcessing
 {
+    /// <summary>
+    /// Describes which way should chessboard location move by one field
+    /// </summary>
     enum ChessboardMovement
     {
         Vector1Plus,
