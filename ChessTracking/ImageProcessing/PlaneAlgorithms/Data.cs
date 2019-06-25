@@ -279,7 +279,7 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
                         // mark point
                         points.Enqueue(new Point(x, y));
                         Root root = roots[areaNumber];
-                        root.count++;
+                        root.Count++;
 
                         // perform bfs spreading
                         while (points.Count != 0)
@@ -288,7 +288,7 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
 
                             if ((DepthData[point.position].Type == PixelType.Table) && (rootOwnershipMarkersOnIndividualPixels[point.position] == 0))
                             {
-                                root.count++;
+                                root.Count++;
                                 rootOwnershipMarkersOnIndividualPixels[point.position] = areaNumber;
                                 
                                 if (point.y > 0)
@@ -313,9 +313,9 @@ namespace ChessTracking.ImageProcessing.PlaneAlgorithms
             int max = 0;
             int maxPosition = 0;
             for (int i = 0; i < roots.Count; i++)
-                if (roots[i].count > max)
+                if (roots[i].Count > max)
                 {
-                    max = roots[i].count;
+                    max = roots[i].Count;
                     maxPosition = i;
                 }
 
