@@ -193,9 +193,11 @@ namespace ChessTracking.Game
             foreach (var move in possibleMoves)
             {
                 var tempSavedTakenFigure = game.Chessboard.GetFigureOnPosition(move.To);
+                var isFromMoved = game.Chessboard.GetFigureOnPosition(move.From).Moved;
                 PerformMove(game, move);
                 bool isChecked = PlayerIsChecked(game, playerColor);
                 RevertMove(game, move, tempSavedTakenFigure);
+                game.Chessboard.GetFigureOnPosition(move.From).Moved = isFromMoved;
                 if (!isChecked)
                     return false;
             }
