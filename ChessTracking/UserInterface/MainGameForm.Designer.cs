@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGameForm));
             this.GameStatePictureBox = new System.Windows.Forms.PictureBox();
             this.TrackedBoardStatePictureBox = new System.Windows.Forms.PictureBox();
             this.ImmediateBoardStatePictureBox = new System.Windows.Forms.PictureBox();
@@ -624,6 +625,7 @@
             this.Controls.Add(this.ImmediateBoardStatePictureBox);
             this.Controls.Add(this.TrackedBoardStatePictureBox);
             this.Controls.Add(this.GameStatePictureBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1058, 950);
             this.Name = "MainGameForm";
             this.Text = "Chess tracking";

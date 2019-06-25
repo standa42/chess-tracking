@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalibrationSnapshotForm));
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.NameLabel = new MaterialSkin.Controls.MaterialLabel();
             this.LeftButton = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -68,7 +69,7 @@
             this.LeftButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LeftButton.Depth = 0;
             this.LeftButton.Icon = null;
-            this.LeftButton.Location = new System.Drawing.Point(862, 637);
+            this.LeftButton.Location = new System.Drawing.Point(871, 641);
             this.LeftButton.MaximumSize = new System.Drawing.Size(40, 40);
             this.LeftButton.MinimumSize = new System.Drawing.Size(40, 40);
             this.LeftButton.MouseState = MaterialSkin.MouseState.HOVER;
@@ -88,7 +89,7 @@
             this.RightButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.RightButton.Depth = 0;
             this.RightButton.Icon = null;
-            this.RightButton.Location = new System.Drawing.Point(908, 637);
+            this.RightButton.Location = new System.Drawing.Point(917, 641);
             this.RightButton.MaximumSize = new System.Drawing.Size(40, 40);
             this.RightButton.MinimumSize = new System.Drawing.Size(40, 40);
             this.RightButton.MouseState = MaterialSkin.MouseState.HOVER;
@@ -110,6 +111,7 @@
             this.Controls.Add(this.LeftButton);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.PictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CalibrationSnapshotForm";
             this.Text = "CalibrationSnapshotForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalibrationSnapshotForm_FormClosing);

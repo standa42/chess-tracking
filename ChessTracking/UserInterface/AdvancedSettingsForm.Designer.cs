@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdvancedSettingsForm));
             this.MilimetersClippedTrackBar = new System.Windows.Forms.TrackBar();
             this.PointsIndicatingFigureTrackBar = new System.Windows.Forms.TrackBar();
             this.MilisecondsTasksTrackBar = new System.Windows.Forms.TrackBar();
@@ -339,6 +340,7 @@
             this.Controls.Add(this.MilisecondsTasksTrackBar);
             this.Controls.Add(this.PointsIndicatingFigureTrackBar);
             this.Controls.Add(this.MilimetersClippedTrackBar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdvancedSettingsForm";
             this.Text = "Advanced settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedSettingsForm_FormClosing);
