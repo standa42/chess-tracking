@@ -223,7 +223,7 @@ namespace ChessTracking.ControllingElements
             SolidBrush whiteBrush = new SolidBrush(Color.White);
             SolidBrush redBrush = new SolidBrush(Color.Red);
 
-            Font font = new Font(FontFamily.GenericSerif, 4);
+            Font font = new Font(FontFamily.GenericSerif, 4, FontStyle.Bold);
 
             for (int x = 0; x < 8; x++)
             {
