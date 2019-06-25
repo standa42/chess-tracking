@@ -64,12 +64,6 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                                         *(ptr + rgbPositon + 0) = 255;
                                     }
                                 }
-                                else
-                                {
-                                    *(ptr + rgbPositon + 2) = 255;
-                                    *(ptr + rgbPositon + 1) = 255;
-                                    *(ptr + rgbPositon + 0) = 255;
-                                }
                             }
 
                         }

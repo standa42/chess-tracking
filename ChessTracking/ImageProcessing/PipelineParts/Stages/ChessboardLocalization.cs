@@ -74,7 +74,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             if (chessboardData.UserParameters.VisualisationType == VisualisationType.HighlightedChessboard)
                 chessboardData.ResultData.VisualisationBitmap =
                     Renderer.ReturnLocalizedChessboardWithTable(
-                        chessboardData.PlaneData.ColorBitmap,
+                        chessboardData.PlaneData.MaskedColorImageOfTable.Bitmap,
                         chessboardData.PlaneData.MaskOfTable,
                         chessboardData.KinectData.PointsFromColorToDepth,
                         chessboardData.KinectData.CameraSpacePointsFromDepthData,
