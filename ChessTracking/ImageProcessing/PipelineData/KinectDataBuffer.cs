@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 
 namespace ChessTracking.ImageProcessing.PipelineData
 {
@@ -44,6 +45,6 @@ namespace ChessTracking.ImageProcessing.PipelineData
         {
             return Data.Take();
         }
-
+        
     }
 }

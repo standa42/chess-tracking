@@ -122,14 +122,10 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                         depthFrameData.Size,
                         cameraSpacePointsFromDepthData);
                 }
-
-                // dispose frames so that Kinect can continue processing
-                colorFrame.Dispose();
-                depthFrame.Dispose();
-                infraredFrame.Dispose();
             }
             finally
             {
+                // dispose frames so that Kinect can continue processing
                 colorFrame?.Dispose();
                 depthFrame?.Dispose();
                 infraredFrame?.Dispose();
