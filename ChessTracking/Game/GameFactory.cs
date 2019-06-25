@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accord.IO;
+using ChessTracking.Localization;
 
 namespace ChessTracking.Game
 {
@@ -96,15 +97,15 @@ namespace ChessTracking.Game
                     {
                         if (game.EndState == GameState.BlackWin)
                         {
-                            game.RecordOfGame.Add("0-1");
+                            game.RecordOfGame.Add(ProgramLocalization.BlackWonRecord);
                         }
                         if (game.EndState == GameState.WhiteWin)
                         {
-                            game.RecordOfGame.Add("1-0");
+                            game.RecordOfGame.Add(ProgramLocalization.WhiteWonRecord);
                         }
                         if (game.EndState == GameState.Draw)
                         {
-                            game.RecordOfGame.Add("1/2-1/2");
+                            game.RecordOfGame.Add(ProgramLocalization.ItsDrawRecord);
                         }
                     }
                 }

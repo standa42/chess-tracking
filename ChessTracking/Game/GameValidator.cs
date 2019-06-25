@@ -194,9 +194,9 @@ namespace ChessTracking.Game
             {
                 var tempSavedTakenFigure = game.Chessboard.GetFigureOnPosition(move.To);
                 PerformMove(game, move);
-                bool IsChecked = PlayerIsChecked(game, playerColor);
+                bool isChecked = PlayerIsChecked(game, playerColor);
                 RevertMove(game, move, tempSavedTakenFigure);
-                if (!IsChecked)
+                if (!isChecked)
                     return false;
             }
 

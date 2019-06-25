@@ -70,6 +70,24 @@ namespace ChessTracking.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Black won.
+        /// </summary>
+        internal static string BlackWon {
+            get {
+                return ResourceManager.GetString("BlackWon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0-1.
+        /// </summary>
+        internal static string BlackWonRecord {
+            get {
+                return ResourceManager.GetString("BlackWonRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ––––––––––––––––––––––––.
         /// </summary>
         internal static string DashedLine {
@@ -115,6 +133,15 @@ namespace ChessTracking.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game ended.
+        /// </summary>
+        internal static string GameEnded {
+            get {
+                return ResourceManager.GetString("GameEnded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game loading failed.
         /// </summary>
         internal static string GameLoadingFailed {
@@ -142,6 +169,15 @@ namespace ChessTracking.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game saved.
+        /// </summary>
+        internal static string GameSaved {
+            get {
+                return ResourceManager.GetString("GameSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game saving failed.
         /// </summary>
         internal static string GameSavingFailed {
@@ -156,6 +192,24 @@ namespace ChessTracking.Localization {
         internal static string InvalidState {
             get {
                 return ResourceManager.GetString("InvalidState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Its a draw.
+        /// </summary>
+        internal static string ItsDraw {
+            get {
+                return ResourceManager.GetString("ItsDraw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1/2-1/2.
+        /// </summary>
+        internal static string ItsDrawRecord {
+            get {
+                return ResourceManager.GetString("ItsDrawRecord", resourceCulture);
             }
         }
         
@@ -282,6 +336,24 @@ namespace ChessTracking.Localization {
         internal static string WhitePlaying {
             get {
                 return ResourceManager.GetString("WhitePlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White won.
+        /// </summary>
+        internal static string WhiteWon {
+            get {
+                return ResourceManager.GetString("WhiteWon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1-0.
+        /// </summary>
+        internal static string WhiteWonRecord {
+            get {
+                return ResourceManager.GetString("WhiteWonRecord", resourceCulture);
             }
         }
     }

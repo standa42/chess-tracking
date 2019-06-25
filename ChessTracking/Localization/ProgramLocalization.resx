@@ -120,6 +120,12 @@
   <data name="BlackPlaying" xml:space="preserve">
     <value>Black is playing</value>
   </data>
+  <data name="BlackWon" xml:space="preserve">
+    <value>Black won</value>
+  </data>
+  <data name="BlackWonRecord" xml:space="preserve">
+    <value>0-1</value>
+  </data>
   <data name="DashedLine" xml:space="preserve">
     <value>––––––––––––––––––––––––</value>
   </data>
@@ -135,6 +141,9 @@
   <data name="Fps" xml:space="preserve">
     <value>FPS: {0}</value>
   </data>
+  <data name="GameEnded" xml:space="preserve">
+    <value>Game ended</value>
+  </data>
   <data name="GameLoadingFailed" xml:space="preserve">
     <value>Game loading failed</value>
   </data>
@@ -144,11 +153,20 @@
   <data name="GameRecordRow" xml:space="preserve">
     <value>{0}. {1}</value>
   </data>
+  <data name="GameSaved" xml:space="preserve">
+    <value>Game saved</value>
+  </data>
   <data name="GameSavingFailed" xml:space="preserve">
     <value>Game saving failed</value>
   </data>
   <data name="InvalidState" xml:space="preserve">
     <value>Invalid State</value>
+  </data>
+  <data name="ItsDraw" xml:space="preserve">
+    <value>Its a draw</value>
+  </data>
+  <data name="ItsDrawRecord" xml:space="preserve">
+    <value>1/2-1/2</value>
   </data>
   <data name="LogRow" xml:space="preserve">
     <value>{0} – {1}</value>
@@ -191,5 +209,11 @@
   </data>
   <data name="WhitePlaying" xml:space="preserve">
     <value>White is playing</value>
+  </data>
+  <data name="WhiteWon" xml:space="preserve">
+    <value>White won</value>
+  </data>
+  <data name="WhiteWonRecord" xml:space="preserve">
+    <value>1-0</value>
   </data>
 </root>

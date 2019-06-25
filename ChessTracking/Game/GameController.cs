@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Accord.IO;
 using ChessTracking.ControllingElements.ProgramState;
+using ChessTracking.Localization;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.UserInterface;
 
@@ -37,7 +38,7 @@ namespace ChessTracking.Game
         public void SaveGame(StreamWriter stream)
         {
             stream.Write(Game.ExportGameToAlgebraicNotation());
-            OutputFacade.AddToTrackingLog("Game saved");
+            OutputFacade.AddToTrackingLog(ProgramLocalization.GameSaved);
         }
 
         public void LoadGame(StreamReader stream)
@@ -59,7 +60,7 @@ namespace ChessTracking.Game
             }
             else
             {
-                OutputFacade.AddToTrackingLog("Game loading failed");
+                OutputFacade.AddToTrackingLog(ProgramLocalization.GameLoadingFailed);
             }
         }
 
@@ -116,21 +117,21 @@ namespace ChessTracking.Game
                 {
                     ProgramState.GameFinished();
                     // do some stopping of everything}
-                    OutputFacade.AddToTrackingLog("Game ended");
+                    OutputFacade.AddToTrackingLog(ProgramLocalization.GameEnded);
                     if (Game.EndState == GameState.BlackWin)
                     {
-                        OutputFacade.AddToTrackingLog("Black won");
-                        Game.RecordOfGame.Add("0-1");
+                        OutputFacade.AddToTrackingLog(ProgramLocalization.BlackWon);
+                        Game.RecordOfGame.Add(ProgramLocalization.BlackWonRecord);
                     }
                     if (Game.EndState == GameState.WhiteWin)
                     {
-                        OutputFacade.AddToTrackingLog("White won");
-                        Game.RecordOfGame.Add("1-0");
+                        OutputFacade.AddToTrackingLog(ProgramLocalization.WhiteWon);
+                        Game.RecordOfGame.Add(ProgramLocalization.WhiteWonRecord);
                     }
                     if (Game.EndState == GameState.Draw)
                     {
-                        OutputFacade.AddToTrackingLog("Its a draw");
-                        Game.RecordOfGame.Add("1/2-1/2");
+                        OutputFacade.AddToTrackingLog(ProgramLocalization.ItsDraw);
+                        Game.RecordOfGame.Add(ProgramLocalization.ItsDrawRecord);
                     }
                 }
 
