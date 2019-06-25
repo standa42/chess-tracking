@@ -159,9 +159,9 @@
             this.materialLabel1.Location = new System.Drawing.Point(11, 91);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(221, 24);
+            this.materialLabel1.Size = new System.Drawing.Size(323, 24);
             this.materialLabel1.TabIndex = 32;
-            this.materialLabel1.Text = "Immediate tracking state";
+            this.materialLabel1.Text = "Immediate tracking state + figure pts";
             // 
             // materialLabel2
             // 

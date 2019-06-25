@@ -58,9 +58,21 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
                         figures[x, y] = TrackingFieldState.None;
                     else
                     {
-                        var averageBrightnessInField =
-                            inputColorsData[x, y].Sum(f => 1 - Math.Pow(-2.5f*(Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).CustomBrightness() - 0.5f),2))
-                            / inputColorsData[x, y].Count;
+                        double averageBrightnessInField;
+
+                        if (userParameters.IsFiguresColorMetricExperimental)
+                        {
+                            averageBrightnessInField =
+                                inputColorsData[x, y].Sum(f => 1 - Math.Pow(-2.5f * (Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).CustomBrightness() - 0.5f), 2))
+                                / inputColorsData[x, y].Count;
+                        }
+                        else
+                        {
+                            averageBrightnessInField =
+                                inputColorsData[x, y].Sum(f => Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).GetBrightness())
+                                / inputColorsData[x, y].Count;
+                        }
+
 
                         figures[x, y] =
                             averageBrightnessInField > 0.5 + userParameters.ColorCalibrationAdditiveConstant

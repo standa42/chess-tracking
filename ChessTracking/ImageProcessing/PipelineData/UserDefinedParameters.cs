@@ -14,6 +14,9 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public int MinimalTimeBetweenTrackingTasksInMiliseconds { get; set; } = 220;
         public bool OtzuActiveInBinarization { get; set; } = true;
         public int BinarizationThreshold { get; set; } = 120;
+        public bool IsFiguresColorMetricExperimental { get; set; } = true;
+        public bool IsDistanceMetricInChessboardFittingExperimental { get; set; } = true;
+        public int ClippedDistanecInChessboardFittingMetric { get; set; } = 15;
 
         public UserDefinedParameters GetShallowCopy()
         {

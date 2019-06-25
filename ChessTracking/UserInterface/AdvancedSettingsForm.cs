@@ -52,6 +52,16 @@ namespace ChessTracking.UserInterface
             BinarizationThresholdTrackbar.Value = parameters.BinarizationThreshold;
 
             OtzuToggleButton.Text = parameters.OtzuActiveInBinarization ? "Disable Otzu" : "Enable Otzu";
+
+            FiguresColorMetricButton.Text = parameters.IsFiguresColorMetricExperimental 
+                ? "Set default metric" 
+                : "Set quadratic metric";
+
+            DistanceMetricFittingChessboardButton.Text = parameters.IsDistanceMetricInChessboardFittingExperimental
+                ? "Set default metric"
+                : "Set quadratic metric";
+            DistanceMetricFittingChessboardTrackBar.Value = parameters.ClippedDistanecInChessboardFittingMetric;
+            DistanceMetricFittingChessboardButtonValueLabel.Text = parameters.ClippedDistanecInChessboardFittingMetric.ToString();
         }
 
         private void MilimetersClippedTrackBar_ValueChanged(object sender, EventArgs e)
@@ -90,6 +100,40 @@ namespace ChessTracking.UserInterface
         {
             BinarizationThresholdValueLabel.Text = BinarizationThresholdTrackbar.Value.ToString();
             UserParameters.ChangePrototype(x => x.BinarizationThreshold = BinarizationThresholdTrackbar.Value);
+        }
+
+        private void FiguresColorMetricButton_Click(object sender, EventArgs e)
+        {
+            if (FiguresColorMetricButton.Text == "Set default metric")
+            {
+                FiguresColorMetricButton.Text = "Set quadratic metric";
+                UserParameters.ChangePrototype(x => x.IsFiguresColorMetricExperimental = false);
+            }
+            else
+            {
+                FiguresColorMetricButton.Text = "Set default metric";
+                UserParameters.ChangePrototype(x => x.IsFiguresColorMetricExperimental = true);
+            }
+        }
+
+        private void DistanceMetricFittingChessboardButton_Click(object sender, EventArgs e)
+        {
+            if (DistanceMetricFittingChessboardButton.Text == "Set default metric")
+            {
+                DistanceMetricFittingChessboardButton.Text = "Set quadratic metric";
+                UserParameters.ChangePrototype(x => x.IsDistanceMetricInChessboardFittingExperimental = false);
+            }
+            else
+            {
+                DistanceMetricFittingChessboardButton.Text = "Set default metric";
+                UserParameters.ChangePrototype(x => x.IsDistanceMetricInChessboardFittingExperimental = true);
+            }
+        }
+
+        private void DistanceMetricFittingChessboardTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            DistanceMetricFittingChessboardButtonValueLabel.Text = DistanceMetricFittingChessboardTrackBar.Value.ToString();
+            UserParameters.ChangePrototype(x => x.ClippedDistanecInChessboardFittingMetric = DistanceMetricFittingChessboardTrackBar.Value);
         }
     }
 }

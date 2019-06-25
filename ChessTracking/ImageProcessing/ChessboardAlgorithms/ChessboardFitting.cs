@@ -108,11 +108,13 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                                         var closestPointDistance = contractedPoints3DasStruct.Min(x =>
                                             MyVector3DStruct.Distance(ref currentPoint,
                                                 new MyVector3DStruct(x.x, x.y, x.z)));
-                                        
-                                        // clipping of max error per point
-                                        closestPointDistance = closestPointDistance > 0.015 ? 0.015 : closestPointDistance;
 
-                                        closestPointDistance = closestPointDistance * closestPointDistance;
+                                        // clipping of max error per point
+                                        var clippingDistance = chessboardData.UserParameters.ClippedDistanecInChessboardFittingMetric / 1000f;
+                                        closestPointDistance = closestPointDistance > clippingDistance ? clippingDistance : closestPointDistance;
+
+                                        if(chessboardData.UserParameters.IsDistanceMetricInChessboardFittingExperimental)
+                                            closestPointDistance = closestPointDistance * closestPointDistance;
 
                                         currentError += closestPointDistance;
                                     }

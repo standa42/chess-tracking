@@ -193,7 +193,6 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
                         *ptr++ = value;
                         *ptr++ = value;
                         *ptr++ = value;
-
                     }
                 }
             }
@@ -201,9 +200,9 @@ namespace ChessTracking.ImageProcessing.PipelineParts.Stages
             bitmap.UnlockBits(bitmapData);
 
             //////////////////
-            Image<Gray, byte> CannyAppliedImage = new Image<Gray, byte>(bitmap);
-            CannyAppliedImage = CannyAppliedImage.Canny(1000, 1200, 7, true).SmoothGaussian(3, 3, 1, 1).ThresholdBinary(new Gray(65), new Gray(255));
-            var canniedBytes = CannyAppliedImage.Bytes;
+            Image<Gray, byte> cannyAppliedImage = new Image<Gray, byte>(bitmap);
+            cannyAppliedImage = cannyAppliedImage.Canny(1000, 1200, 7, true).SmoothGaussian(3, 3, 1, 1).ThresholdBinary(new Gray(65), new Gray(255));
+            var canniedBytes = cannyAppliedImage.Bytes;
             return canniedBytes;
         }
     }
