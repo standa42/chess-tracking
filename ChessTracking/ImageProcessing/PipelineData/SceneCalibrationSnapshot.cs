@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ChessTracking.ImageProcessing.PipelineData
 {
+    /// <summary>
+    /// Class carying visual info from calibration to user for better visual feedback what happened
+    /// </summary>
     public class SceneCalibrationSnapshot
     {
         public Bitmap MaskedColorImage { get; set; }
