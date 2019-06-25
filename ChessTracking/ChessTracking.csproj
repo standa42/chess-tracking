@@ -118,6 +118,11 @@
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IChessboardLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IFiguresLocalization.cs" />
     <Compile Include="ImageProcessing\PipelineParts\StagesInterfaces\IPlaneLocalization.cs" />
+    <Compile Include="Localization\ProgramLocalization.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProgramLocalization.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Point.cs" />
     <Compile Include="Utils\Root.cs" />
     <Compile Include="ImageProcessing\PlaneAlgorithms\TrianglesGenerator.cs" />
@@ -207,6 +212,10 @@
     <Compile Include="Utils\CloneExtensions.cs" />
     <Compile Include="Utils\MathExtensions.cs" />
     <Compile Include="Utils\TimestampObject.cs" />
+    <EmbeddedResource Include="Localization\ProgramLocalization.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProgramLocalization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\AdvancedSettingsForm.resx">
       <DependentUpon>AdvancedSettingsForm.cs</DependentUpon>
     </EmbeddedResource>

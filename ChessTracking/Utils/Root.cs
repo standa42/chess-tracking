@@ -7,14 +7,14 @@
             public int X { get; }
             public int Y { get; }
 
-            public int count;
+            public int Count;
 
             public Root(int nr, int _x, int _y)
             {
                 SelfReferenceNumber = nr;
                 X = _x;
                 Y = _y;
-                count = 0;
+                Count = 0;
             }
         }
 }

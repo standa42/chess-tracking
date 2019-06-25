@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.Game;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.Localization;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.ToProcessing;
 using MaterialSkin;
@@ -87,7 +88,7 @@ namespace ChessTracking.UserInterface
             if (TrackingLogsListBox.Columns[0].Text.Split(' ')[2] != time)
             {
                 //ClockLabel.Text = time;
-                TrackingLogsListBox.Columns[0].Text = "Tracking log – " + time;
+                TrackingLogsListBox.Columns[0].Text = string.Format(ProgramLocalization.TimeCounter, time);
             }
 
         }
@@ -117,8 +118,7 @@ namespace ChessTracking.UserInterface
                 }
                 catch (SecurityException)
                 {
-                    // TODO: má se tu něco dělat?
-                    AddToTrackingLog("Game loading failed");
+                    AddToTrackingLog(ProgramLocalization.GameLoadingFailed);
                 }
                 finally
                 {
@@ -140,8 +140,7 @@ namespace ChessTracking.UserInterface
                 }
                 catch (SecurityException)
                 {
-                    // TODO: má se tu něco dělat?
-                    AddToTrackingLog("Game saving failed");
+                    AddToTrackingLog(ProgramLocalization.GameSavingFailed);
                 }
                 finally
                 {
@@ -216,7 +215,7 @@ namespace ChessTracking.UserInterface
 
         public void UpdateFps(int fps)
         {
-            FPSLabel.Text = $@"FPS: {fps}";
+            FPSLabel.Text = string.Format(ProgramLocalization.Fps,fps);
         }
 
         public void UpdateImmediateBoard(Bitmap bitmap)
@@ -230,7 +229,7 @@ namespace ChessTracking.UserInterface
         public void HandDetectionUpdate(bool handDetected)
         {
             SceneDisruptionBtn.BackColor = handDetected ? Color.LightCoral : SystemColors.ControlLight;
-            SceneDisruptionBtn.Text = handDetected ? "Scene disrupted" : "";
+            SceneDisruptionBtn.Text = handDetected ? ProgramLocalization.SceneDisrupted : string.Empty;
         }
 
         public void UpdateAveragedBoard(Bitmap bitmap)
@@ -254,7 +253,7 @@ namespace ChessTracking.UserInterface
             if (records != null)
             {
                 int counter = 1;
-                var recordsWithIndexInThem = records.Select(x => (counter++) + ". " + x).ToList();
+                var recordsWithIndexInThem = records.Select(x => string.Format(ProgramLocalization.GameRecordRow, counter++, x)).ToList();
                 GameHistoryListBox.Items.Clear();
                 GameHistoryListBox.Items.AddRange(recordsWithIndexInThem.Select(x => new ListViewItem(x)).ToArray());
                 GameHistoryListBox.Refresh();
@@ -263,7 +262,7 @@ namespace ChessTracking.UserInterface
 
         public void AddToTrackingLog(string line)
         {
-            TrackingLog.Add(DateTime.Now.ToLongTimeString() + " – " + line);
+            TrackingLog.Add(string.Format(ProgramLocalization.LogRow, DateTime.Now.ToLongTimeString(), line));
             if (TrackingLog != null)
             {
                 var temp = new List<string>(TrackingLog);
@@ -287,7 +286,7 @@ namespace ChessTracking.UserInterface
             GameHistoryListBox.Items.AddRange(temp.Select(x => new ListViewItem(x)).ToArray());
 
             SceneDisruptionBtn.BackColor = SystemColors.ControlLight;
-            SceneDisruptionBtn.Text = "";
+            SceneDisruptionBtn.Text = string.Empty;
 
             ImmediateBoardStatePictureBox.Image = null;
             TrackedBoardStatePictureBox.Image = null;
@@ -299,19 +298,19 @@ namespace ChessTracking.UserInterface
             if (!isValid.HasValue)
             {
                 ValidationStateBtn.BackColor = SystemColors.ControlLight;
-                ValidationStateBtn.Text = "Validation State";
+                ValidationStateBtn.Text = ProgramLocalization.ValidationState;
             }
 
             if (isValid.HasValue && isValid.Value)
             {
                 ValidationStateBtn.BackColor = Color.LightGreen;
-                ValidationStateBtn.Text = "Valid State";
+                ValidationStateBtn.Text = ProgramLocalization.ValidState;
             }
 
             if (isValid.HasValue && !isValid.Value)
             {
                 ValidationStateBtn.BackColor = Color.LightCoral;
-                ValidationStateBtn.Text = "Invalid State";
+                ValidationStateBtn.Text = ProgramLocalization.InvalidState;
             }
         }
 
@@ -323,7 +322,7 @@ namespace ChessTracking.UserInterface
 
         public void UpdateWhosPlaying(PlayerColor color)
         {
-            WhosPlayingLabel.Text = color == PlayerColor.White ? "White is playing" : "Black is playing";
+            WhosPlayingLabel.Text = color == PlayerColor.White ? ProgramLocalization.WhitePlaying : ProgramLocalization.BlackPlaying;
             WhosPlayingLabel.ForeColor = Color.Black;
         }
 
@@ -368,7 +367,7 @@ namespace ChessTracking.UserInterface
             EnableOnlyListedButtons(new List<Button>() { SaveGameBtn, EndGameBtn, StartTrackingBtn });
             UpdateValidationState(null);
             ChangeVisibility(new List<Control>() { FPSLabel, ValidationStateBtn, SceneDisruptionBtn, WhosPlayingLabel }, false);
-            WhosPlayingLabel.Text = "   ";
+            WhosPlayingLabel.Text = ProgramLocalization.FewSpaces;
         }
 
         public void StartedTrackingLockState()

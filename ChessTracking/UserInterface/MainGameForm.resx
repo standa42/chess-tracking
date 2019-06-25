@@ -117,13 +117,1056 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="GameStatePictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>706, 118</value>
+  </data>
+  <data name="GameStatePictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 340</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GameStatePictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GameStatePictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GameStatePictureBox.Name" xml:space="preserve">
+    <value>GameStatePictureBox</value>
+  </data>
+  <data name="&gt;&gt;GameStatePictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GameStatePictureBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GameStatePictureBox.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="TrackedBoardStatePictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 118</value>
+  </data>
+  <data name="TrackedBoardStatePictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 340</value>
+  </data>
+  <data name="TrackedBoardStatePictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
+  </data>
+  <data name="TrackedBoardStatePictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;TrackedBoardStatePictureBox.Name" xml:space="preserve">
+    <value>TrackedBoardStatePictureBox</value>
+  </data>
+  <data name="&gt;&gt;TrackedBoardStatePictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TrackedBoardStatePictureBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TrackedBoardStatePictureBox.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="ImmediateBoardStatePictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 118</value>
+  </data>
+  <data name="ImmediateBoardStatePictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 340</value>
+  </data>
+  <data name="ImmediateBoardStatePictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
+  </data>
+  <data name="ImmediateBoardStatePictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;ImmediateBoardStatePictureBox.Name" xml:space="preserve">
+    <value>ImmediateBoardStatePictureBox</value>
+  </data>
+  <data name="&gt;&gt;ImmediateBoardStatePictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ImmediateBoardStatePictureBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ImmediateBoardStatePictureBox.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="VizualizationChoiceComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10.2pt</value>
+  </data>
+  <data name="VizualizationChoiceComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>844, 772</value>
+  </data>
+  <data name="VizualizationChoiceComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 28</value>
+  </data>
+  <data name="VizualizationChoiceComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;VizualizationChoiceComboBox.Name" xml:space="preserve">
+    <value>VizualizationChoiceComboBox</value>
+  </data>
+  <data name="&gt;&gt;VizualizationChoiceComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VizualizationChoiceComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;VizualizationChoiceComboBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
   <metadata name="ResultProcessingTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>18, 8</value>
+  </metadata>
+  <data name="ColorCalibrationTrackBar.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ColorCalibrationTrackBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>857, 844</value>
+  </data>
+  <data name="ColorCalibrationTrackBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 37</value>
+  </data>
+  <data name="ColorCalibrationTrackBar.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;ColorCalibrationTrackBar.Name" xml:space="preserve">
+    <value>ColorCalibrationTrackBar</value>
+  </data>
+  <data name="&gt;&gt;ColorCalibrationTrackBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ColorCalibrationTrackBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ColorCalibrationTrackBar.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>844, 848</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1028, 848</value>
+  </data>
+  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
+    <value>pictureBox2</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="materialLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 91</value>
+  </data>
+  <data name="materialLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 24</value>
+  </data>
+  <data name="materialLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="materialLabel1.Text" xml:space="preserve">
+    <value>Immediate tracking state + figure pts</value>
+  </data>
+  <data name="&gt;&gt;materialLabel1.Name" xml:space="preserve">
+    <value>materialLabel1</value>
+  </data>
+  <data name="&gt;&gt;materialLabel1.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel1.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="materialLabel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 91</value>
+  </data>
+  <data name="materialLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 24</value>
+  </data>
+  <data name="materialLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="materialLabel2.Text" xml:space="preserve">
+    <value>Averaged tracking state</value>
+  </data>
+  <data name="&gt;&gt;materialLabel2.Name" xml:space="preserve">
+    <value>materialLabel2</value>
+  </data>
+  <data name="&gt;&gt;materialLabel2.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel2.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="materialLabel3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>702, 91</value>
+  </data>
+  <data name="materialLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 24</value>
+  </data>
+  <data name="materialLabel3.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="materialLabel3.Text" xml:space="preserve">
+    <value>Game state</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.Name" xml:space="preserve">
+    <value>materialLabel3</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="NewGameBtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="NewGameBtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="NewGameBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 472</value>
+  </data>
+  <data name="NewGameBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="NewGameBtn.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="NewGameBtn.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="NewGameBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="NewGameBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="NewGameBtn.Text" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="&gt;&gt;NewGameBtn.Name" xml:space="preserve">
+    <value>NewGameBtn</value>
+  </data>
+  <data name="&gt;&gt;NewGameBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;NewGameBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NewGameBtn.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="LoadGameBtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LoadGameBtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="LoadGameBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 513</value>
+  </data>
+  <data name="LoadGameBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="LoadGameBtn.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="LoadGameBtn.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="LoadGameBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="LoadGameBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="LoadGameBtn.Text" xml:space="preserve">
+    <value>Load game</value>
+  </data>
+  <data name="&gt;&gt;LoadGameBtn.Name" xml:space="preserve">
+    <value>LoadGameBtn</value>
+  </data>
+  <data name="&gt;&gt;LoadGameBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;LoadGameBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LoadGameBtn.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="SaveGameBtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SaveGameBtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="SaveGameBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 554</value>
+  </data>
+  <data name="SaveGameBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="SaveGameBtn.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="SaveGameBtn.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="SaveGameBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="SaveGameBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="SaveGameBtn.Text" xml:space="preserve">
+    <value>Save game</value>
+  </data>
+  <data name="&gt;&gt;SaveGameBtn.Name" xml:space="preserve">
+    <value>SaveGameBtn</value>
+  </data>
+  <data name="&gt;&gt;SaveGameBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SaveGameBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SaveGameBtn.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="EndGameBtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="EndGameBtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="EndGameBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 595</value>
+  </data>
+  <data name="EndGameBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="EndGameBtn.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="EndGameBtn.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="EndGameBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="EndGameBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="EndGameBtn.Text" xml:space="preserve">
+    <value>End game</value>
+  </data>
+  <data name="&gt;&gt;EndGameBtn.Name" xml:space="preserve">
+    <value>EndGameBtn</value>
+  </data>
+  <data name="&gt;&gt;EndGameBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;EndGameBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;EndGameBtn.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="StartTrackingBtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="StartTrackingBtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="StartTrackingBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 656</value>
+  </data>
+  <data name="StartTrackingBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="StartTrackingBtn.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="StartTrackingBtn.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="StartTrackingBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="StartTrackingBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="StartTrackingBtn.Text" xml:space="preserve">
+    <value>Start tracking</value>
+  </data>
+  <data name="&gt;&gt;StartTrackingBtn.Name" xml:space="preserve">
+    <value>StartTrackingBtn</value>
+  </data>
+  <data name="&gt;&gt;StartTrackingBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StartTrackingBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StartTrackingBtn.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="Recalibrate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Recalibrate.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="Recalibrate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 697</value>
+  </data>
+  <data name="Recalibrate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="Recalibrate.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="Recalibrate.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="Recalibrate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="Recalibrate.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="Recalibrate.Text" xml:space="preserve">
+    <value>Recalibrate</value>
+  </data>
+  <data name="&gt;&gt;Recalibrate.Name" xml:space="preserve">
+    <value>Recalibrate</value>
+  </data>
+  <data name="&gt;&gt;Recalibrate.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Recalibrate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Recalibrate.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="StopTrackingBtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="StopTrackingBtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="StopTrackingBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 738</value>
+  </data>
+  <data name="StopTrackingBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="StopTrackingBtn.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="StopTrackingBtn.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="StopTrackingBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="StopTrackingBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="StopTrackingBtn.Text" xml:space="preserve">
+    <value>Stop tracking</value>
+  </data>
+  <data name="&gt;&gt;StopTrackingBtn.Name" xml:space="preserve">
+    <value>StopTrackingBtn</value>
+  </data>
+  <data name="&gt;&gt;StopTrackingBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StopTrackingBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StopTrackingBtn.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="Record.Text" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Record.Width" type="System.Int32, mscorlib">
+    <value>105</value>
+  </data>
+  <data name="GameHistoryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 24pt</value>
+  </data>
+  <data name="GameHistoryListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>175, 472</value>
+  </data>
+  <data name="GameHistoryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 403</value>
+  </data>
+  <data name="GameHistoryListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="&gt;&gt;GameHistoryListBox.Name" xml:space="preserve">
+    <value>GameHistoryListBox</value>
+  </data>
+  <data name="&gt;&gt;GameHistoryListBox.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialListView, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GameHistoryListBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GameHistoryListBox.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="TrackingLogColumn.Text" xml:space="preserve">
+    <value>Tracking log - 00:00:00</value>
+  </data>
+  <data name="TrackingLogColumn.Width" type="System.Int32, mscorlib">
+    <value>340</value>
+  </data>
+  <data name="TrackingLogsListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 24pt</value>
+  </data>
+  <data name="TrackingLogsListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 472</value>
+  </data>
+  <data name="TrackingLogsListBox.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="TrackingLogsListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>490, 403</value>
+  </data>
+  <data name="TrackingLogsListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;TrackingLogsListBox.Name" xml:space="preserve">
+    <value>TrackingLogsListBox</value>
+  </data>
+  <data name="&gt;&gt;TrackingLogsListBox.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialListView, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TrackingLogsListBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TrackingLogsListBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="WhosPlayingLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="WhosPlayingLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="WhosPlayingLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>845, 573</value>
+  </data>
+  <data name="WhosPlayingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 24</value>
+  </data>
+  <data name="WhosPlayingLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="WhosPlayingLabel.Text" xml:space="preserve">
+    <value>        </value>
+  </data>
+  <data name="&gt;&gt;WhosPlayingLabel.Name" xml:space="preserve">
+    <value>WhosPlayingLabel</value>
+  </data>
+  <data name="&gt;&gt;WhosPlayingLabel.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;WhosPlayingLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;WhosPlayingLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="FPSLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FPSLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="FPSLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>845, 599</value>
+  </data>
+  <data name="FPSLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 24</value>
+  </data>
+  <data name="FPSLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="FPSLabel.Text" xml:space="preserve">
+    <value>FPS: </value>
+  </data>
+  <data name="&gt;&gt;FPSLabel.Name" xml:space="preserve">
+    <value>FPSLabel</value>
+  </data>
+  <data name="&gt;&gt;FPSLabel.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FPSLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FPSLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="materialLabel6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>844, 739</value>
+  </data>
+  <data name="materialLabel6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 24</value>
+  </data>
+  <data name="materialLabel6.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="materialLabel6.Text" xml:space="preserve">
+    <value>Visualisation choice</value>
+  </data>
+  <data name="&gt;&gt;materialLabel6.Name" xml:space="preserve">
+    <value>materialLabel6</value>
+  </data>
+  <data name="&gt;&gt;materialLabel6.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel6.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="materialLabel7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>844, 810</value>
+  </data>
+  <data name="materialLabel7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 24</value>
+  </data>
+  <data name="materialLabel7.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="materialLabel7.Text" xml:space="preserve">
+    <value>Figure color calibration</value>
+  </data>
+  <data name="&gt;&gt;materialLabel7.Name" xml:space="preserve">
+    <value>materialLabel7</value>
+  </data>
+  <data name="&gt;&gt;materialLabel7.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel7.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="AdvancedSettingsBtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AdvancedSettingsBtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="AdvancedSettingsBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 835</value>
+  </data>
+  <data name="AdvancedSettingsBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="AdvancedSettingsBtn.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="AdvancedSettingsBtn.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="AdvancedSettingsBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="AdvancedSettingsBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="AdvancedSettingsBtn.Text" xml:space="preserve">
+    <value>Advanced settings</value>
+  </data>
+  <data name="&gt;&gt;AdvancedSettingsBtn.Name" xml:space="preserve">
+    <value>AdvancedSettingsBtn</value>
+  </data>
+  <data name="&gt;&gt;AdvancedSettingsBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;AdvancedSettingsBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AdvancedSettingsBtn.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="SceneDisruptionBtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="SceneDisruptionBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>845, 521</value>
+  </data>
+  <data name="SceneDisruptionBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 46</value>
+  </data>
+  <data name="SceneDisruptionBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="SceneDisruptionBtn.Text" xml:space="preserve">
+    <value>Scene Disruption</value>
+  </data>
+  <data name="SceneDisruptionBtn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;SceneDisruptionBtn.Name" xml:space="preserve">
+    <value>SceneDisruptionBtn</value>
+  </data>
+  <data name="&gt;&gt;SceneDisruptionBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SceneDisruptionBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SceneDisruptionBtn.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ValidationStateBtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="ValidationStateBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>845, 472</value>
+  </data>
+  <data name="ValidationStateBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 46</value>
+  </data>
+  <data name="ValidationStateBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="ValidationStateBtn.Text" xml:space="preserve">
+    <value>Validation State</value>
+  </data>
+  <data name="ValidationStateBtn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;ValidationStateBtn.Name" xml:space="preserve">
+    <value>ValidationStateBtn</value>
+  </data>
+  <data name="&gt;&gt;ValidationStateBtn.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ValidationStateBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ValidationStateBtn.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="MovementBtn1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MovementBtn1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="MovementBtn1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>854, 693</value>
+  </data>
+  <data name="MovementBtn1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="MovementBtn1.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn1.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn1.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="MovementBtn1.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn1.Name" xml:space="preserve">
+    <value>MovementBtn1</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn1.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="MovementBtn2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MovementBtn2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="MovementBtn2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>902, 693</value>
+  </data>
+  <data name="MovementBtn2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="MovementBtn2.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn2.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn2.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="MovementBtn2.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn2.Name" xml:space="preserve">
+    <value>MovementBtn2</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn2.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="MovementBtn3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MovementBtn3.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="MovementBtn3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>950, 693</value>
+  </data>
+  <data name="MovementBtn3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="MovementBtn3.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn3.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn3.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="MovementBtn3.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn3.Name" xml:space="preserve">
+    <value>MovementBtn3</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn3.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="MovementBtn4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MovementBtn4.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="MovementBtn4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>998, 693</value>
+  </data>
+  <data name="MovementBtn4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="MovementBtn4.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn4.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 40</value>
+  </data>
+  <data name="MovementBtn4.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="MovementBtn4.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn4.Name" xml:space="preserve">
+    <value>MovementBtn4</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn4.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MovementBtn4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="materialLabel4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>840, 663</value>
+  </data>
+  <data name="materialLabel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 24</value>
+  </data>
+  <data name="materialLabel4.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="materialLabel4.Text" xml:space="preserve">
+    <value>Chessboard movement</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.Name" xml:space="preserve">
+    <value>materialLabel4</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 794</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 40</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="CalibrationSnapshotsButton.Text" xml:space="preserve">
+    <value>Calibration snapshots</value>
+  </data>
+  <data name="&gt;&gt;CalibrationSnapshotsButton.Name" xml:space="preserve">
+    <value>CalibrationSnapshotsButton</value>
+  </data>
+  <data name="&gt;&gt;CalibrationSnapshotsButton.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialFlatButton, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;CalibrationSnapshotsButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CalibrationSnapshotsButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1058, 950</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAQEAQAAEABABoCgAAFgAAACgAAABAAAAAgAAAAAEABAAAAAAAAAgAABguAAAYLgAAEAAAABAA
@@ -172,5 +1215,35 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1058, 950</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Chess tracking</value>
+  </data>
+  <data name="&gt;&gt;ResultProcessingTimer.Name" xml:space="preserve">
+    <value>ResultProcessingTimer</value>
+  </data>
+  <data name="&gt;&gt;ResultProcessingTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Record.Name" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="&gt;&gt;Record.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TrackingLogColumn.Name" xml:space="preserve">
+    <value>TrackingLogColumn</value>
+  </data>
+  <data name="&gt;&gt;TrackingLogColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainGameForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialForm, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

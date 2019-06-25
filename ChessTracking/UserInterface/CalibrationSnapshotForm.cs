@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.Localization;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Bitmap = System.Drawing.Bitmap;
@@ -41,7 +42,7 @@ namespace ChessTracking.UserInterface
         {
             if (snapshot == null)
             {
-                NameLabel.Text = "Null data came";
+                NameLabel.Text = ProgramLocalization.NoDataArrived;
                 LeftButton.Visible = false;
                 RightButton.Visible = false;
                 return;

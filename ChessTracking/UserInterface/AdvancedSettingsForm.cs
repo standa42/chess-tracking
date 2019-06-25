@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChessTracking.ImageProcessing.PipelineData;
+using ChessTracking.Localization;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
@@ -51,15 +52,15 @@ namespace ChessTracking.UserInterface
             BinarizationThresholdValueLabel.Text = parameters.BinarizationThreshold.ToString();
             BinarizationThresholdTrackbar.Value = parameters.BinarizationThreshold;
 
-            OtzuToggleButton.Text = parameters.OtzuActiveInBinarization ? "Disable Otzu" : "Enable Otzu";
+            OtzuToggleButton.Text = parameters.OtzuActiveInBinarization ? ProgramLocalization.DisableOtzu : ProgramLocalization.EnableOtzu;
 
             FiguresColorMetricButton.Text = parameters.IsFiguresColorMetricExperimental 
-                ? "Set default metric" 
-                : "Set quadratic metric";
+                ? ProgramLocalization.SetDefaultMetric
+                : ProgramLocalization.SetQuadraticMetric;
 
             DistanceMetricFittingChessboardButton.Text = parameters.IsDistanceMetricInChessboardFittingExperimental
-                ? "Set default metric"
-                : "Set quadratic metric";
+                ? ProgramLocalization.SetDefaultMetric
+                : ProgramLocalization.SetQuadraticMetric;
             DistanceMetricFittingChessboardTrackBar.Value = parameters.ClippedDistanecInChessboardFittingMetric;
             DistanceMetricFittingChessboardButtonValueLabel.Text = parameters.ClippedDistanecInChessboardFittingMetric.ToString();
         }
@@ -84,14 +85,14 @@ namespace ChessTracking.UserInterface
 
         private void OtzuToggleButton_Click(object sender, EventArgs e)
         {
-            if (OtzuToggleButton.Text == "Disable Otzu")
+            if (OtzuToggleButton.Text == ProgramLocalization.DisableOtzu)
             {
-                OtzuToggleButton.Text = "Enable Otzu";
+                OtzuToggleButton.Text = ProgramLocalization.EnableOtzu;
                 UserParameters.ChangePrototype(x => x.OtzuActiveInBinarization = false);
             }
             else
             {
-                OtzuToggleButton.Text = "Disable Otzu";
+                OtzuToggleButton.Text = ProgramLocalization.DisableOtzu;
                 UserParameters.ChangePrototype(x => x.OtzuActiveInBinarization = true);
             }
         }
@@ -104,28 +105,28 @@ namespace ChessTracking.UserInterface
 
         private void FiguresColorMetricButton_Click(object sender, EventArgs e)
         {
-            if (FiguresColorMetricButton.Text == "Set default metric")
+            if (FiguresColorMetricButton.Text == ProgramLocalization.SetDefaultMetric)
             {
-                FiguresColorMetricButton.Text = "Set quadratic metric";
+                FiguresColorMetricButton.Text = ProgramLocalization.SetQuadraticMetric;
                 UserParameters.ChangePrototype(x => x.IsFiguresColorMetricExperimental = false);
             }
             else
             {
-                FiguresColorMetricButton.Text = "Set default metric";
+                FiguresColorMetricButton.Text = ProgramLocalization.SetDefaultMetric;
                 UserParameters.ChangePrototype(x => x.IsFiguresColorMetricExperimental = true);
             }
         }
 
         private void DistanceMetricFittingChessboardButton_Click(object sender, EventArgs e)
         {
-            if (DistanceMetricFittingChessboardButton.Text == "Set default metric")
+            if (DistanceMetricFittingChessboardButton.Text == ProgramLocalization.SetDefaultMetric)
             {
-                DistanceMetricFittingChessboardButton.Text = "Set quadratic metric";
+                DistanceMetricFittingChessboardButton.Text = ProgramLocalization.SetQuadraticMetric;
                 UserParameters.ChangePrototype(x => x.IsDistanceMetricInChessboardFittingExperimental = false);
             }
             else
             {
-                DistanceMetricFittingChessboardButton.Text = "Set default metric";
+                DistanceMetricFittingChessboardButton.Text = ProgramLocalization.SetDefaultMetric;
                 UserParameters.ChangePrototype(x => x.IsDistanceMetricInChessboardFittingExperimental = true);
             }
         }
