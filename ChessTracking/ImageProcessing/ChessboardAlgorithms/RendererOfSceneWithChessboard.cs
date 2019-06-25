@@ -61,11 +61,7 @@ namespace ChessTracking.ImageProcessing.ChessboardAlgorithms
                                     {
                                         *(ptr + rgbPositon + 2) = (byte)(*(ptr + rgbPositon + 2) * 0.8f);
                                         *(ptr + rgbPositon + 1) = (byte)(*(ptr + rgbPositon + 1) * 0.8f);
-
-
-                                        var value = *(ptr + rgbPositon + 0);
-                                        value += (byte)((255 - value) * 0.95f);
-                                        *(ptr + rgbPositon + 0) = value; // R
+                                        *(ptr + rgbPositon + 0) = 255;
                                     }
                                 }
                                 else

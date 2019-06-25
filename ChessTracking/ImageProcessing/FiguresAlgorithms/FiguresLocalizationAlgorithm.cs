@@ -16,7 +16,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
             // Collection of pixel colors for each field on chessboard
             var colorsOfPointsOverIndividualFields = InitializeColorCollection();
 
-            colorsOfPointsOverIndividualFields = FillArrayWithData(colorsOfPointsOverIndividualFields, kinectData, fieldSize, canniedBytes, userParameters);
+            colorsOfPointsOverIndividualFields = FillColorsOverFiledsArrayWithData(colorsOfPointsOverIndividualFields, kinectData, fieldSize, canniedBytes, userParameters);
 
             var trackingState = DetectPresenceAndColorOfFiguresOnFields(colorsOfPointsOverIndividualFields, userParameters);
             
@@ -61,7 +61,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
         /// <summary>
         /// Detects points over individual fields of chessboard satisfying required conditions
         /// </summary>
-        private List<Point2DWithColor>[,] FillArrayWithData(List<Point2DWithColor>[,] array, KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters)
+        private List<Point2DWithColor>[,] FillColorsOverFiledsArrayWithData(List<Point2DWithColor>[,] array, KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters)
         {
             var csp = kinectData.CameraSpacePointsFromDepthData;
             var infraredData = kinectData.InfraredData;
