@@ -5,6 +5,7 @@ using System.Threading;
 using ChessTracking.ControllingElements.ProgramState;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.ImageProcessing.PipelineParts.General;
+using ChessTracking.Localization;
 using ChessTracking.MultithreadingMessages;
 using ChessTracking.MultithreadingMessages.FromProcessing;
 using ChessTracking.MultithreadingMessages.ToProcessing;
@@ -119,7 +120,7 @@ namespace ChessTracking.ControllingElements
 
                 if (messageProcessed && message == null)
                 {
-                    throw new InvalidOperationException($"Unexpected incoming message in {nameof(TrackingManager)}");
+                    throw new InvalidOperationException(string.Format(ProgramLocalization.UnexpectedIncomingMessage, nameof(TrackingManager)));
                 }
 
             } while (messageProcessed);

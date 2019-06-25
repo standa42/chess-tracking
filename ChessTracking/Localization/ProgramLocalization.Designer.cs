@@ -70,6 +70,15 @@ namespace ChessTracking.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ––––––––––––––––––––––––.
+        /// </summary>
+        internal static string DashedLine {
+            get {
+                return ResourceManager.GetString("DashedLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable otsu.
         /// </summary>
         internal static string DisableOtzu {
@@ -111,6 +120,15 @@ namespace ChessTracking.Localization {
         internal static string GameLoadingFailed {
             get {
                 return ResourceManager.GetString("GameLoadingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Recognized.
+        /// </summary>
+        internal static string GameRecognized {
+            get {
+                return ResourceManager.GetString("GameRecognized", resourceCulture);
             }
         }
         
@@ -160,6 +178,15 @@ namespace ChessTracking.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recalibration started, please wait.
+        /// </summary>
+        internal static string RecalibrationStarted {
+            get {
+                return ResourceManager.GetString("RecalibrationStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scene disrupted.
         /// </summary>
         internal static string SceneDisrupted {
@@ -187,11 +214,47 @@ namespace ChessTracking.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start of tracking was successful.
+        /// </summary>
+        internal static string StartOfTrackingSuccessful {
+            get {
+                return ResourceManager.GetString("StartOfTrackingSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tracking log – {0}.
         /// </summary>
         internal static string TimeCounter {
             get {
                 return ResourceManager.GetString("TimeCounter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tracking calibration started, please wait.
+        /// </summary>
+        internal static string TrackingCalibrationStarted {
+            get {
+                return ResourceManager.GetString("TrackingCalibrationStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tracking stoped.
+        /// </summary>
+        internal static string TrackingStopped {
+            get {
+                return ResourceManager.GetString("TrackingStopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected incoming message in {0}.
+        /// </summary>
+        internal static string UnexpectedIncomingMessage {
+            get {
+                return ResourceManager.GetString("UnexpectedIncomingMessage", resourceCulture);
             }
         }
         

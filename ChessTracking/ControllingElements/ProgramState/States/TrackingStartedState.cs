@@ -1,4 +1,5 @@
 ﻿using System;
+using ChessTracking.Localization;
 
 namespace ChessTracking.ControllingElements.ProgramState.States
 {
@@ -15,14 +16,14 @@ namespace ChessTracking.ControllingElements.ProgramState.States
         public override void TrackingStartSuccessful()
         {
             StateContext.OutputFacade.TrackingLockState();
-            StateContext.OutputFacade.AddToTrackingLog("Start of tracking was successful");
+            StateContext.OutputFacade.AddToTrackingLog(ProgramLocalization.StartOfTrackingSuccessful);
             StateContext.InternalState = new TrackingState(StateContext);
         }
 
         public override void StoppedTracking()
         {
             StateContext.OutputFacade.GameRunningLockState();
-            StateContext.OutputFacade.AddToTrackingLog("Tracking stoped");
+            StateContext.OutputFacade.AddToTrackingLog(ProgramLocalization.TrackingStopped);
             StateContext.InternalState = new GameRunningState(StateContext);
         }
     }

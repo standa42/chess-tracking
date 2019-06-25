@@ -120,6 +120,9 @@
   <data name="BlackPlaying" xml:space="preserve">
     <value>Black is playing</value>
   </data>
+  <data name="DashedLine" xml:space="preserve">
+    <value>––––––––––––––––––––––––</value>
+  </data>
   <data name="DisableOtzu" xml:space="preserve">
     <value>Disable otsu</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="GameLoadingFailed" xml:space="preserve">
     <value>Game loading failed</value>
+  </data>
+  <data name="GameRecognized" xml:space="preserve">
+    <value>Game Recognized</value>
   </data>
   <data name="GameRecordRow" xml:space="preserve">
     <value>{0}. {1}</value>
@@ -150,6 +156,9 @@
   <data name="NoDataArrived" xml:space="preserve">
     <value>No data arrived</value>
   </data>
+  <data name="RecalibrationStarted" xml:space="preserve">
+    <value>Recalibration started, please wait</value>
+  </data>
   <data name="SceneDisrupted" xml:space="preserve">
     <value>Scene disrupted</value>
   </data>
@@ -159,8 +168,20 @@
   <data name="SetQuadraticMetric" xml:space="preserve">
     <value>Set quadratic metric</value>
   </data>
+  <data name="StartOfTrackingSuccessful" xml:space="preserve">
+    <value>Start of tracking was successful</value>
+  </data>
   <data name="TimeCounter" xml:space="preserve">
     <value>Tracking log – {0}</value>
+  </data>
+  <data name="TrackingCalibrationStarted" xml:space="preserve">
+    <value>Tracking calibration started, please wait</value>
+  </data>
+  <data name="TrackingStopped" xml:space="preserve">
+    <value>Tracking stoped</value>
+  </data>
+  <data name="UnexpectedIncomingMessage" xml:space="preserve">
+    <value>Unexpected incoming message in {0}</value>
   </data>
   <data name="ValidationState" xml:space="preserve">
     <value>Validation State</value>

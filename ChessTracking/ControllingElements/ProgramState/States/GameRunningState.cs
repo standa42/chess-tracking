@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ChessTracking.Localization;
 
 namespace ChessTracking.ControllingElements.ProgramState.States
 {
@@ -23,8 +24,8 @@ namespace ChessTracking.ControllingElements.ProgramState.States
         public override void StartedTracking()
         {
             StateContext.OutputFacade.StartedTrackingLockState();
-            StateContext.OutputFacade.AddToTrackingLog("––––––––––––––––––––––––");
-            StateContext.OutputFacade.AddToTrackingLog("Tracking calibration started, please wait");
+            StateContext.OutputFacade.AddToTrackingLog(ProgramLocalization.DashedLine);
+            StateContext.OutputFacade.AddToTrackingLog(ProgramLocalization.TrackingCalibrationStarted);
             StateContext.InternalState = new TrackingStartedState(StateContext);
         }
 
