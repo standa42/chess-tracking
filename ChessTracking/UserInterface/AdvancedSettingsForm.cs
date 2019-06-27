@@ -63,6 +63,11 @@ namespace ChessTracking.UserInterface
                 : ProgramLocalization.SetQuadraticMetric;
             DistanceMetricFittingChessboardTrackBar.Value = parameters.ClippedDistanecInChessboardFittingMetric;
             DistanceMetricFittingChessboardButtonValueLabel.Text = parameters.ClippedDistanecInChessboardFittingMetric.ToString();
+
+            InfluenceColorTrackbar.Value = parameters.GameStateInfluenceOnColor;
+
+            InfluencePresenceTrackBar.Value = parameters.GameStateInfluenceOnPresence;
+            InfluencePresenceTrackBar.Maximum = parameters.NumberOfPointsIndicatingFigure - 1;
         }
 
         private void MilimetersClippedTrackBar_ValueChanged(object sender, EventArgs e)
@@ -75,6 +80,11 @@ namespace ChessTracking.UserInterface
         {
             PointsIndicatingFigureValueLabel.Text = PointsIndicatingFigureTrackBar.Value.ToString();
             UserParameters.ChangePrototype(x => x.NumberOfPointsIndicatingFigure = PointsIndicatingFigureTrackBar.Value);
+            
+            if (InfluencePresenceTrackBar.Value >= PointsIndicatingFigureTrackBar.Value)
+                InfluencePresenceTrackBar.Value = PointsIndicatingFigureTrackBar.Value - 1;
+            InfluencePresenceTrackBar.Maximum = PointsIndicatingFigureTrackBar.Value - 1;
+            UserParameters.ChangePrototype(x => x.GameStateInfluenceOnPresence = InfluencePresenceTrackBar.Value);
         }
 
         private void MilisecondsTasksTrackBar_ValueChanged(object sender, EventArgs e)
@@ -135,6 +145,16 @@ namespace ChessTracking.UserInterface
         {
             DistanceMetricFittingChessboardButtonValueLabel.Text = DistanceMetricFittingChessboardTrackBar.Value.ToString();
             UserParameters.ChangePrototype(x => x.ClippedDistanecInChessboardFittingMetric = DistanceMetricFittingChessboardTrackBar.Value);
+        }
+
+        private void InfluenceColorTrackbar_ValueChanged(object sender, EventArgs e)
+        {
+            UserParameters.ChangePrototype(x => x.GameStateInfluenceOnColor = InfluenceColorTrackbar.Value);
+        }
+
+        private void InfluencePresenceTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            UserParameters.ChangePrototype(x => x.GameStateInfluenceOnPresence = InfluencePresenceTrackBar.Value);
         }
     }
 }

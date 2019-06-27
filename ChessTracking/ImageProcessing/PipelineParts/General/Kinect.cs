@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using ChessTracking.ControllingElements;
 using ChessTracking.ImageProcessing.PipelineData;
 using ChessTracking.MultithreadingMessages;
 using Microsoft.Kinect;
@@ -17,12 +18,15 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
 
         private KinectDataBuffer Buffer { get; }
         
-        public BlockingCollection<Message> OutputQueue { get; }
+        private TrackingManager TrackingManager { get; }
 
-        public Kinect(BlockingCollection<Message> processingCommandsQueue, KinectDataBuffer buffer)
+        public BlockingCollection<Message> CommandsQueue { get; }
+
+        public Kinect(BlockingCollection<Message> processingCommandsQueue, KinectDataBuffer buffer, TrackingManager trackingManager)
         {
-            OutputQueue = processingCommandsQueue;
+            CommandsQueue = processingCommandsQueue;
             Buffer = buffer;
+            TrackingManager = trackingManager;
 
             KinectSensor = KinectSensor.GetDefault();
 
@@ -38,7 +42,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             KinectSensor.Open();
 
             // initial message for pipeline, causes it to wait for input and throw exception if nothing arrives
-            OutputQueue.Add(new KinectUpdateMessage());
+            CommandsQueue.Add(new KinectUpdateMessage(null));
         }
         
 
@@ -150,7 +154,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                         )
                     );
 
-                    OutputQueue.Add(new KinectUpdateMessage());
+                    TrackingManager.SendKinectUpdate();
                 }
 
             }

@@ -59,13 +59,18 @@ namespace ChessTracking.ControllingElements
             thread.Start();
         }
 
+        public void SendKinectUpdate()
+        {
+            ProcessingCommandsQueue.Add(new KinectUpdateMessage(TrackingResultProcessing.GetGameStateAlignedWithTrackingState()));
+        }
+
         public void StartTracking()
         {
             var buffer = new KinectDataBuffer();
 
             ProgramState.StartedTracking();
             ProcessingCommandsQueue.Add(new StartTrackingMessage(buffer));
-            Kinect = new Kinect(ProcessingCommandsQueue, buffer);
+            Kinect = new Kinect(ProcessingCommandsQueue, buffer, this);
         }
 
         public void StopTracking(bool gameFinished = false)

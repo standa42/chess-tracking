@@ -12,15 +12,15 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
 {
     class FiguresLocalizationAlgorithm : IFiguresLocalizationAlgorithm
     {
-        public (TrackingState, int[,]) LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap colorBitmap)
+        public (TrackingState, int[,]) LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes, UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap colorBitmap, TrackingState gameTrackingState)
         {
             // Collection of pixel colors for each field on chessboard
             var colorsOfPointsOverIndividualFields = InitializeColorCollection();
 
             colorsOfPointsOverIndividualFields = FillColorsOverFiledsArrayWithData(colorsOfPointsOverIndividualFields, kinectData, fieldSize, canniedBytes, userParameters);
 
-            var trackingState = DetectPresenceAndColorOfFiguresOnFields(colorsOfPointsOverIndividualFields, userParameters);
-            
+            var trackingState = DetectPresenceAndColorOfFiguresOnFields(colorsOfPointsOverIndividualFields, gameTrackingState, userParameters);
+
             resultData.VisualisationBitmap = RenderLabelsToFigures(colorsOfPointsOverIndividualFields, trackingState, resultData.VisualisationBitmap);
 
             var pointCounts = GetPointsCountsOverIndividualFields(colorsOfPointsOverIndividualFields);
@@ -47,29 +47,56 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
         /// <param name="inputColorsData">Colors of points over individual fields</param>
         /// <param name="userParameters">User defined parameters</param>
         /// <returns>Tracking state of chessboard</returns>
-        private TrackingState DetectPresenceAndColorOfFiguresOnFields(List<Point2DWithColor>[,] inputColorsData, UserDefinedParameters userParameters)
+        private TrackingState DetectPresenceAndColorOfFiguresOnFields(List<Point2DWithColor>[,] inputColorsData, TrackingState gameTrackingState, UserDefinedParameters userParameters)
         {
             var figures = new TrackingFieldState[8, 8];
 
             for (int x = 0; x < 8; x++)
                 for (int y = 0; y < 8; y++)
                 {
-                    if (inputColorsData[x, y].Count < userParameters.NumberOfPointsIndicatingFigure)
+                    int presenceInfluence = 0;
+                    float colorInfluence = 0;
+
+                    if (gameTrackingState != null)
+                    {
+                        presenceInfluence =
+                            gameTrackingState.Figures[x,y] != TrackingFieldState.None 
+                                ? userParameters.GameStateInfluenceOnPresence
+                                : 0;
+
+                        colorInfluence =
+                            (userParameters.GameStateInfluenceOnColor / 100f) *
+                            (gameTrackingState.Figures[x, y] == TrackingFieldState.None
+                                ? 0
+                                : gameTrackingState.Figures[x, y] == TrackingFieldState.White
+                                    ? 1
+                                    : -1
+                            );
+                    }
+
+
+                    if ((inputColorsData[x, y].Count + presenceInfluence) < userParameters.NumberOfPointsIndicatingFigure)
                         figures[x, y] = TrackingFieldState.None;
                     else
                     {
+                        if (gameTrackingState != null && inputColorsData[x, y].Count == 0)
+                        {
+                            figures[x, y] = gameTrackingState.Figures[x, y];
+                            continue;;
+                        }
+
                         double averageBrightnessInField;
 
                         if (userParameters.IsFiguresColorMetricExperimental)
                         {
                             averageBrightnessInField =
-                                inputColorsData[x, y].Sum(f => 1 - Math.Pow(-2.5f * (Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).CustomBrightness() - 0.5f), 2))
+                                inputColorsData[x, y].Sum(f => 1 - Math.Pow(-2.5f * (Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).CustomBrightness() - 0.5f), 2) + colorInfluence)
                                 / inputColorsData[x, y].Count;
                         }
                         else
                         {
                             averageBrightnessInField =
-                                inputColorsData[x, y].Sum(f => Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).GetBrightness())
+                                inputColorsData[x, y].Sum(f => Color.FromArgb(f.Color.R, f.Color.G, f.Color.B).GetBrightness() + colorInfluence)
                                 / inputColorsData[x, y].Count;
                         }
 
@@ -169,7 +196,7 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
                 for (int x = 0; x < 8; x++)
                     for (int y = 0; y < 8; y++)
                     {
-                        if (trackingState.Figures[x,y] != TrackingFieldState.None)
+                        if (trackingState.Figures[x, y] != TrackingFieldState.None)
                         {
                             // locate point to draw (mean of coordinates of points of figure)
                             var xCoordinatesSum = points[x, y].Sum(p => p.X);

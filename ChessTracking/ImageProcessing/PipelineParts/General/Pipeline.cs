@@ -39,7 +39,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         /// </summary>
         private bool TrackingCanceled { get; set; }
         private SemaphoreSlim Semaphore { get; } = new SemaphoreSlim(1);
-        
+
         public Pipeline(BlockingCollection<Message> processingOutputQueue, UserDefinedParametersPrototypeFactory userParametersFactory)
         {
             ProcessingOutputQueue = processingOutputQueue;
@@ -70,7 +70,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
         /// <summary>
         /// Entry point of pipeline processing, decides whether calibrate or track
         /// </summary>
-        public void Update()
+        public void Update(TrackingState trackingStateOfGame)
         {
             if (TrackingCanceled)
                 return;
@@ -101,7 +101,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             }
             else
             {
-                Tracking();
+                Tracking(trackingStateOfGame);
             }
         }
 
@@ -110,13 +110,13 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             // if data don't arrive in 10 seconds, there is probably something wrong
             var data = Buffer.TryTake(10000);
 
-            if(data == null)
+            if (data == null)
                 throw new TimeoutException();
-            
+
             UserParameters = UserParametersFactory.GetShallowCopy();
 
             var inputData = new InputData(data, UserParameters);
-            
+
             var planeData = PlaneLocalization.Calibrate(inputData);
             var chessboardData = ChessboardLocalization.Calibrate(planeData, ProcessingOutputQueue);
             var figuresData = FiguresLocalization.Calibrate(chessboardData);
@@ -124,7 +124,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             SendResultMessageToUserThread(new TrackingStartSuccessfulMessage());
         }
 
-        private void Tracking()
+        private void Tracking(TrackingState trackingStateOfGame)
         {
             PipelineSlowdown();
 
@@ -136,7 +136,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             {
                 try
                 {
-                    TrackingImplementation();
+                    TrackingImplementation(trackingStateOfGame);
                 }
                 catch (Exception)
                 {
@@ -149,7 +149,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             });
         }
 
-        private void TrackingImplementation()
+        private void TrackingImplementation(TrackingState trackingStateOfGame)
         {
             var data = Buffer.TryTake();
 
@@ -157,7 +157,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
                 return;
 
             UserParameters = UserParametersFactory.GetShallowCopy();
-            var inputData = new InputData(data, UserParameters);
+            var inputData = new InputData(data, UserParameters, trackingStateOfGame);
 
             var planeData = PlaneLocalization.Track(inputData);
             var chessboardData = ChessboardLocalization.Track(planeData);
@@ -166,7 +166,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
             SendResultMessageToUserThread(
                 new ResultMessage(
                     figuresData.ResultData.VisualisationBitmap.HorizontalFlip(),
-                    figuresData.ResultData.TrackingState, 
+                    figuresData.ResultData.TrackingState,
                     figuresData.ResultData.SceneDisrupted,
                     figuresData.ResultData.PointCountsOverFields)
             );

@@ -17,6 +17,8 @@ namespace ChessTracking.ImageProcessing.PipelineData
         public bool IsFiguresColorMetricExperimental { get; set; } = true;
         public bool IsDistanceMetricInChessboardFittingExperimental { get; set; } = true;
         public int ClippedDistanecInChessboardFittingMetric { get; set; } = 15;
+        public int GameStateInfluenceOnColor { get; set; } = 0;
+        public int GameStateInfluenceOnPresence { get; set; } = 0;
 
         public UserDefinedParameters GetShallowCopy()
         {

@@ -1,4 +1,6 @@
-﻿namespace ChessTracking.ImageProcessing.PipelineData
+﻿using ChessTracking.MultithreadingMessages;
+
+namespace ChessTracking.ImageProcessing.PipelineData
 {
     /// <summary>
     /// Data arriving into pipeline
@@ -8,12 +10,14 @@
         public KinectData KinectData { get; set; }
         public TrackingResultData ResultData { get; set; }
         public UserDefinedParameters UserParameters { get; set; }
-        
-        public InputData(KinectData kinectData, UserDefinedParameters userParameters)
+        public TrackingState TrackingStateOfGame { get; set; }
+
+        public InputData(KinectData kinectData, UserDefinedParameters userParameters, TrackingState trackingStateOfGame = null)
         {
             KinectData = kinectData;
             UserParameters = userParameters;
             ResultData = new TrackingResultData();
+            TrackingStateOfGame = trackingStateOfGame;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ChessTracking.ImageProcessing.PipelineData
+﻿using ChessTracking.MultithreadingMessages;
+
+namespace ChessTracking.ImageProcessing.PipelineData
 {
     /// <summary>
     /// Output information of chessboard localization procedure
@@ -10,7 +12,8 @@
         public PlaneTrackingData PlaneData { get; set; }
         public ChessboardTrackingData ChessboardData { get; set; }
         public UserDefinedParameters UserParameters { get; set; }
-        
+        public TrackingState TrackingStateOfGame { get; set; }
+
         public ChessboardTrackingCompleteData(PlaneTrackingCompleteData planeData)
         {
             KinectData = planeData.KinectData;
@@ -18,6 +21,7 @@
             PlaneData = planeData.PlaneData;
             UserParameters = planeData.UserParameters;
             ChessboardData = new ChessboardTrackingData();
+            TrackingStateOfGame = planeData.TrackingStateOfGame;
         }
     }
 }

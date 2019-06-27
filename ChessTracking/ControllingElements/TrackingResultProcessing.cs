@@ -144,6 +144,21 @@ namespace ChessTracking.ControllingElements
         }
 
         /// <summary>
+        /// Takes game state as tracking state and rotates so its aligned with state in processing thread
+        /// </summary>
+        /// <returns></returns>
+        public TrackingState GetGameStateAlignedWithTrackingState()
+        {
+            if (!TrackningInProgress)
+                return null;
+
+            var gameTrackingState = GameController.GetTrackingState();
+            gameTrackingState.RotateClockWise(4-NumberOfCwRotations);
+            gameTrackingState.HorizontalFlip();
+            return gameTrackingState;
+        }
+
+        /// <summary>
         /// Rotate currently saved states in averaging queue
         /// </summary>
         private void RotatedSavedStates()

@@ -9,6 +9,6 @@ namespace ChessTracking.ImageProcessing.FiguresAlgorithms
     /// </summary>
     interface IFiguresLocalizationAlgorithm
     {
-        (TrackingState, int[,]) LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes,  UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap ColorBitmap);
+        (TrackingState, int[,]) LocateFigures(KinectData kinectData, double fieldSize, byte[] canniedBytes,  UserDefinedParameters userParameters, TrackingResultData resultData, Bitmap ColorBitmap, TrackingState gameTrackingState);
     }
 }

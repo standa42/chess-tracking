@@ -33,7 +33,7 @@ namespace ChessTracking.ImageProcessing.PipelineParts.General
 
         private void Process(KinectUpdateMessage msg)
         {
-            Pipeline.Update();
+            Pipeline.Update(msg.TrackingStateOfGame);
         }
 
         private void Process(StartTrackingMessage msg)

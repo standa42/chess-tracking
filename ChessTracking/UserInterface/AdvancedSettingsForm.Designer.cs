@@ -48,11 +48,18 @@
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.DistanceMetricFittingChessboardTrackBar = new System.Windows.Forms.TrackBar();
             this.DistanceMetricFittingChessboardButtonValueLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            this.InfluenceColorTrackbar = new System.Windows.Forms.TrackBar();
+            this.InfluencePresenceTrackBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.MilimetersClippedTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointsIndicatingFigureTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MilisecondsTasksTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BinarizationThresholdTrackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DistanceMetricFittingChessboardTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfluenceColorTrackbar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfluencePresenceTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // MilimetersClippedTrackBar
@@ -67,7 +74,7 @@
             // 
             resources.ApplyResources(this.PointsIndicatingFigureTrackBar, "PointsIndicatingFigureTrackBar");
             this.PointsIndicatingFigureTrackBar.Maximum = 30;
-            this.PointsIndicatingFigureTrackBar.Minimum = -1;
+            this.PointsIndicatingFigureTrackBar.Minimum = 1;
             this.PointsIndicatingFigureTrackBar.Name = "PointsIndicatingFigureTrackBar";
             this.PointsIndicatingFigureTrackBar.Value = 5;
             this.PointsIndicatingFigureTrackBar.ValueChanged += new System.EventHandler(this.PointsIndicatingFigureTrackBar_ValueChanged);
@@ -221,10 +228,53 @@
             this.DistanceMetricFittingChessboardButtonValueLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.DistanceMetricFittingChessboardButtonValueLabel.Name = "DistanceMetricFittingChessboardButtonValueLabel";
             // 
+            // materialLabel3
+            // 
+            resources.ApplyResources(this.materialLabel3, "materialLabel3");
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            // 
+            // materialLabel4
+            // 
+            resources.ApplyResources(this.materialLabel4, "materialLabel4");
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            // 
+            // materialLabel5
+            // 
+            resources.ApplyResources(this.materialLabel5, "materialLabel5");
+            this.materialLabel5.Depth = 0;
+            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel5.Name = "materialLabel5";
+            // 
+            // InfluenceColorTrackbar
+            // 
+            resources.ApplyResources(this.InfluenceColorTrackbar, "InfluenceColorTrackbar");
+            this.InfluenceColorTrackbar.Maximum = 100;
+            this.InfluenceColorTrackbar.Name = "InfluenceColorTrackbar";
+            this.InfluenceColorTrackbar.ValueChanged += new System.EventHandler(this.InfluenceColorTrackbar_ValueChanged);
+            // 
+            // InfluencePresenceTrackBar
+            // 
+            resources.ApplyResources(this.InfluencePresenceTrackBar, "InfluencePresenceTrackBar");
+            this.InfluencePresenceTrackBar.Maximum = 20;
+            this.InfluencePresenceTrackBar.Name = "InfluencePresenceTrackBar";
+            this.InfluencePresenceTrackBar.ValueChanged += new System.EventHandler(this.InfluencePresenceTrackBar_ValueChanged);
+            // 
             // AdvancedSettingsForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.InfluencePresenceTrackBar);
+            this.Controls.Add(this.InfluenceColorTrackbar);
+            this.Controls.Add(this.materialLabel5);
+            this.Controls.Add(this.materialLabel4);
+            this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.DistanceMetricFittingChessboardButtonValueLabel);
             this.Controls.Add(this.DistanceMetricFittingChessboardTrackBar);
             this.Controls.Add(this.DistanceMetricFittingChessboardButton);
@@ -251,6 +301,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.MilisecondsTasksTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BinarizationThresholdTrackbar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DistanceMetricFittingChessboardTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfluenceColorTrackbar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfluencePresenceTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +328,10 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.Windows.Forms.TrackBar DistanceMetricFittingChessboardTrackBar;
         private MaterialSkin.Controls.MaterialLabel DistanceMetricFittingChessboardButtonValueLabel;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private System.Windows.Forms.TrackBar InfluenceColorTrackbar;
+        private System.Windows.Forms.TrackBar InfluencePresenceTrackBar;
     }
 }

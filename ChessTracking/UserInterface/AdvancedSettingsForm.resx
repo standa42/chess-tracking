@@ -141,7 +141,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;MilimetersClippedTrackBar.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>23</value>
   </data>
   <data name="PointsIndicatingFigureTrackBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -165,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PointsIndicatingFigureTrackBar.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>22</value>
   </data>
   <data name="MilisecondsTasksTrackBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -189,7 +189,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;MilisecondsTasksTrackBar.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>21</value>
   </data>
   <data name="MilimetersClippedFromFigureLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -219,7 +219,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;MilimetersClippedFromFigureLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>20</value>
   </data>
   <data name="MilimetersClippedValueLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -249,7 +249,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;MilimetersClippedValueLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>19</value>
   </data>
   <data name="PointsIndicatingFigureLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -279,7 +279,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PointsIndicatingFigureLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>18</value>
   </data>
   <data name="PointsIndicatingFigureValueLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -309,7 +309,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PointsIndicatingFigureValueLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>17</value>
   </data>
   <data name="MilisecondsTasksLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -339,7 +339,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;MilisecondsTasksLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>16</value>
   </data>
   <data name="MilisecondsTasksValueLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -369,7 +369,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;MilisecondsTasksValueLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>15</value>
   </data>
   <data name="BinarizationThresholdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -399,7 +399,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BinarizationThresholdLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>14</value>
   </data>
   <data name="BinarizationThresholdTrackbar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -423,7 +423,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BinarizationThresholdTrackbar.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>13</value>
   </data>
   <data name="BinarizationThresholdValueLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -453,7 +453,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BinarizationThresholdValueLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>12</value>
   </data>
   <data name="OtzuToggleButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -493,7 +493,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OtzuToggleButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>11</value>
   </data>
   <data name="materialLabel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -523,7 +523,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;materialLabel1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>10</value>
   </data>
   <data name="FiguresColorMetricButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -562,7 +562,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FiguresColorMetricButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="DistanceMetricFittingChessboardButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -601,7 +601,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DistanceMetricFittingChessboardButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="materialLabel2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -632,7 +632,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;materialLabel2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="DistanceMetricFittingChessboardTrackBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -656,7 +656,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DistanceMetricFittingChessboardTrackBar.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="DistanceMetricFittingChessboardButtonValueLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -686,6 +686,150 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DistanceMetricFittingChessboardButtonValueLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="materialLabel3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>417, 312</value>
+  </data>
+  <data name="materialLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 24</value>
+  </data>
+  <data name="materialLabel3.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="materialLabel3.Text" xml:space="preserve">
+    <value>Game state influence on figures</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.Name" xml:space="preserve">
+    <value>materialLabel3</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="materialLabel4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>438, 337</value>
+  </data>
+  <data name="materialLabel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 24</value>
+  </data>
+  <data name="materialLabel4.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="materialLabel4.Text" xml:space="preserve">
+    <value>color:</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.Name" xml:space="preserve">
+    <value>materialLabel4</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="materialLabel5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="materialLabel5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 11pt</value>
+  </data>
+  <data name="materialLabel5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>438, 408</value>
+  </data>
+  <data name="materialLabel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 24</value>
+  </data>
+  <data name="materialLabel5.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="materialLabel5.Text" xml:space="preserve">
+    <value>presence:</value>
+  </data>
+  <data name="&gt;&gt;materialLabel5.Name" xml:space="preserve">
+    <value>materialLabel5</value>
+  </data>
+  <data name="&gt;&gt;materialLabel5.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialLabel5.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="InfluenceColorTrackbar.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="InfluenceColorTrackbar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="InfluenceColorTrackbar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>442, 364</value>
+  </data>
+  <data name="InfluenceColorTrackbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 41</value>
+  </data>
+  <data name="InfluenceColorTrackbar.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;InfluenceColorTrackbar.Name" xml:space="preserve">
+    <value>InfluenceColorTrackbar</value>
+  </data>
+  <data name="&gt;&gt;InfluenceColorTrackbar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;InfluenceColorTrackbar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;InfluenceColorTrackbar.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="InfluencePresenceTrackBar.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="InfluencePresenceTrackBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="InfluencePresenceTrackBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>442, 435</value>
+  </data>
+  <data name="InfluencePresenceTrackBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 41</value>
+  </data>
+  <data name="InfluencePresenceTrackBar.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;InfluencePresenceTrackBar.Name" xml:space="preserve">
+    <value>InfluencePresenceTrackBar</value>
+  </data>
+  <data name="&gt;&gt;InfluencePresenceTrackBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;InfluencePresenceTrackBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;InfluencePresenceTrackBar.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -695,7 +839,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>832, 434</value>
+    <value>838, 521</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
