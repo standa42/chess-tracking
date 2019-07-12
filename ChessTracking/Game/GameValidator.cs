@@ -81,7 +81,6 @@ namespace ChessTracking.Game
         /// <returns>Textual representation of move</returns>
         private static string SerializeMoveToAlgebraicNotation(GameMove move)
         {
-            // TODO: make it member function of Move?
             char separator = move.ToWhom == null ? '-' : 'x';
             return
                 $"{GetCharacterForFigure(move.Who)}{GetCharacterForPosition(move.From.X)}{move.From.Y + 1}{separator}{GetCharacterForPosition(move.To.X)}{move.To.Y + 1}";
@@ -92,7 +91,6 @@ namespace ChessTracking.Game
         /// </summary>
         private static char GetCharacterForFigure(FigureType figure)
         {
-            // TODO: move to another file?
             switch (figure)
             {
                 case FigureType.Queen:
@@ -117,7 +115,6 @@ namespace ChessTracking.Game
         /// </summary>
         private static FigureType GetFigureForCharacter(char ch)
         {
-            // TODO: move to another file?
             switch (ch)
             {
                 case 'Q':
@@ -143,7 +140,6 @@ namespace ChessTracking.Game
         /// <param name="position">Integer represenation of column</param>
         private static char GetCharacterForPosition(int position)
         {
-            // TODO: move to another file?
             return (char)((int)'a' + position);
         }
 
@@ -153,7 +149,6 @@ namespace ChessTracking.Game
         /// <param name="ch">Character represenation of column</param>
         private static int GetPositionForCharacter(char ch)
         {
-            // TODO: move to another file?
             return (int)((int)ch - (int)'a');
         }
 
@@ -210,7 +205,6 @@ namespace ChessTracking.Game
         /// </summary>
         private static GameState GetWinStateFromPlayerColor(PlayerColor color)
         {
-            // TODO: move to different file?
             return color == PlayerColor.White ? GameState.WhiteWin : GameState.BlackWin;
         }
 
