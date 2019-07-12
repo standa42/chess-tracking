@@ -578,7 +578,7 @@ namespace ChessTracking.Game
             var downRight = new GameMoveVector(1, -2);
             var leftUp = new GameMoveVector(-2, 1);
             var leftDown = new GameMoveVector(-2, -1);
-            var rightUp = new GameMoveVector(2, -1);
+            var rightUp = new GameMoveVector(2, 1);
             var rightDown = new GameMoveVector(2, -1);
 
             for (int x = 0; x < 8; x++)
