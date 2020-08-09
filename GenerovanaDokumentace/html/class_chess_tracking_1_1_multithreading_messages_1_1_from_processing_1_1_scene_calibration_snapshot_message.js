@@ -1,5 +1,0 @@
-var class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_scene_calibration_snapshot_message =
-[
-    [ "SceneCalibrationSnapshotMessage", "class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_scene_calibration_snapshot_message.html#a21b6b053b5af853760ca39dea5f15996", null ],
-    [ "Snapshot", "class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_scene_calibration_snapshot_message.html#af4d02a741d57542148a2547a94233a69", null ]
-];

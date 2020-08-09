@@ -1,6 +1,0 @@
-var namespace_chess_tracking_1_1_multithreading_messages_1_1_from_processing =
-[
-    [ "SceneCalibrationSnapshotMessage", "class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_scene_calibration_snapshot_message.html", "class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_scene_calibration_snapshot_message" ],
-    [ "TrackingError", "class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_tracking_error.html", "class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_tracking_error" ],
-    [ "TrackingStartSuccessfulMessage", "class_chess_tracking_1_1_multithreading_messages_1_1_from_processing_1_1_tracking_start_successful_message.html", null ]
-];

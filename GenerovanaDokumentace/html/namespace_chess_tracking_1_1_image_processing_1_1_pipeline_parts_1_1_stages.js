@@ -1,6 +1,0 @@
-var namespace_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages =
-[
-    [ "ChessboardLocalization", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_chessboard_localization.html", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_chessboard_localization" ],
-    [ "FiguresLocalization", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_figures_localization.html", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_figures_localization" ],
-    [ "PlaneLocalization", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization.html", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_1_1_plane_localization" ]
-];

@@ -1,5 +1,0 @@
-var interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_plane_localization =
-[
-    [ "Calibrate", "interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_plane_localization.html#a51e84fb5106e34dbe4f2775b82fb2a7e", null ],
-    [ "Track", "interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_plane_localization.html#a03e2c5fc754830f91491a704352c24cf", null ]
-];

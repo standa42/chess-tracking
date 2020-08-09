@@ -1,7 +1,0 @@
-var namespace_chess_tracking_1_1_image_processing_1_1_figures_algorithms =
-[
-    [ "FiguresLocalizationAlgorithm", "class_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_figures_localization_algorithm.html", "class_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_figures_localization_algorithm" ],
-    [ "HandDetectionAlgorithm", "class_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_hand_detection_algorithm.html", "class_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_hand_detection_algorithm" ],
-    [ "IFiguresLocalizationAlgorithm", "interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_figures_localization_algorithm.html", "interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_figures_localization_algorithm" ],
-    [ "IHandDetectionAlgorithm", "interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_hand_detection_algorithm.html", "interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_hand_detection_algorithm" ]
-];

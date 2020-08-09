@@ -1,4 +1,0 @@
-var class_chess_tracking_1_1_image_processing_1_1_chessboard_algorithms_1_1_rotate_space_to_chessboard =
-[
-    [ "Rotate", "class_chess_tracking_1_1_image_processing_1_1_chessboard_algorithms_1_1_rotate_space_to_chessboard.html#ae0c68ec5694df63717e48778e7f8bde1", null ]
-];

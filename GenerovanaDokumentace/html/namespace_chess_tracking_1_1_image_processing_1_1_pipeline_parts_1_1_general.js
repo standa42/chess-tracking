@@ -1,6 +1,0 @@
-var namespace_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general =
-[
-    [ "Kinect", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_kinect.html", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_kinect" ],
-    [ "Pipeline", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline.html", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline" ],
-    [ "PipelineController", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_controller.html", "class_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_general_1_1_pipeline_controller" ]
-];

@@ -1,5 +1,0 @@
-var interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_figures_localization_algorithm =
-[
-    [ "LocateFigures", "interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_figures_localization_algorithm.html#a3e8f908999d98d97cddd038567f5b311", null ],
-    [ "TrackingState", "interface_chess_tracking_1_1_image_processing_1_1_figures_algorithms_1_1_i_figures_localization_algorithm.html#a656b191087f2b502e88b28d7e4329c38", null ]
-];

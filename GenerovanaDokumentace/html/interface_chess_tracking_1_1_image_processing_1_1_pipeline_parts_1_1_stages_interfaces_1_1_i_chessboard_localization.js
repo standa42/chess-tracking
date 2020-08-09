@@ -1,6 +1,0 @@
-var interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_chessboard_localization =
-[
-    [ "Calibrate", "interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_chessboard_localization.html#a123320210fd4312b27bea5f39a7c57f0", null ],
-    [ "MoveChessboard", "interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_chessboard_localization.html#aa9b487eaeca8782b3901f65b1828d951", null ],
-    [ "Track", "interface_chess_tracking_1_1_image_processing_1_1_pipeline_parts_1_1_stages_interfaces_1_1_i_chessboard_localization.html#a198327bd00496b49d385b18622245d38", null ]
-];
