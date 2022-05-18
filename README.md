@@ -6,5 +6,4 @@ C# application using Kinect v2 to track and make recording of the whole chess ga
 Screen capture video: https://youtu.be/mPcexamqT0Q \
 Scene setting video: https://youtu.be/isQyzfTcpxA
 
-![Screen](docs/screen_gif.gif)
-
+<img src="docs/screen_gif.gif" width="100%" />
